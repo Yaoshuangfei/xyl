@@ -83,7 +83,6 @@ Views.indexView = $.extend({}, Views.PanelView, {
                     $('.index_fireStorm').remove();
                 }else{
                     var _length = data.data.listGoods;
-                    console.log(data.data);
                     var styleId = data.data.styleId;
                     dataSave('styleId',styleId);
                     var str     = '';
@@ -149,8 +148,8 @@ Views.indexView = $.extend({}, Views.PanelView, {
                 if(!data.success){
                     console.log(data.msg);
                 }else{
+                    console.log(data)
                     var _length = data.data.listGoods;
-                    console.log(data);
                     var str     = '';
                     var Vimg    ='';
                     for(var i=0;i<_length.length;i++){

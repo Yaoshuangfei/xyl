@@ -195,7 +195,7 @@ Views.indexMineView = $.extend({}, Views.PanelView, {
         //path:'http://www.51att.cn/sm666/fenxiang.html?mobile='+dataGet('mobile')
         sharedModule.share({
             type:'text',
-            text:"http://123.206.115.18:8081/sm666/fenxiang.html?mobile="+dataGet('mobile')
+            text:"http://123.206.115.18:8084/sm666/fenxiang.html?mobile="+dataGet('mobile')
         });
         $('.masks').hide();
         $('.fenxiangs').hide();
@@ -8183,7 +8183,7 @@ Views.dpsfView = $.extend({}, Views.PanelView, {
             error: function (XMLHttpRequest, textStatus, errorThrown) {},
             success:function(data){
                 if(!data.success){
-                    alert(data.msg);
+                   alert(data.msg);
                 }else{
                     var _thisData           = data.data;
                     console.log(_thisData);
@@ -8216,27 +8216,11 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
     didShow: function () {
         var swiper3 = new Swiper('.swiper3', {
             loop: true,
-            autoplay: 3000,
+            autoplay: 5000,
 
         });
         $(function(){
 
-            //导航条的显示隐藏
-            // $('#more').click(function(e){
-            // 	var state =$('#sDNew').attr("data-state");
-            // 	if(state == "hide"){
-            // 		$('#sDNew').show();
-            // 		$('#sDNew').attr("data-state","show");
-            // 	}else{
-            // 		$('#sDNew').hide();
-            // 		$('#sDNew').attr("data-state","hide");
-            // 	}
-            //     $(document).click(function(){
-            //         $('#sDNew').hide();
-            //         $('#sDNew').attr("data-state","hide");
-            //     });
-            //     e.stopPropagation();
-            // });
 
             //导航条的显示隐藏
             window.onclick = function(e){
@@ -8304,7 +8288,6 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                 if(!data.success){
                     console.log(data.msg);
                 }else{
-                    console.log(data);
                     var _self = data.data;
                     var sytsss = '';
                     for (var i=0;i<_self.length;i++){
@@ -8331,58 +8314,136 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                 }else{
                     console.log(data);
                     var _thisData       = data.data;
-                    var _thisName       = _thisData.store.name;//店铺名称
-                    var _thisLogo       = _thisData.store.logo;//店铺Logo
-                    var _thisIdentity   = _thisData.identity;//当前登录身份
-                    var _thisIdCode     = _thisData.idCode;//店铺身份
-                    dataSave('idCode', _thisIdCode);//存储当前身份 1(有身份) / 0
-                    $('.sdbLogo').css('background-image','url('+_thisLogo+')');
-                    $('.shopName .name').html(_thisName);
-                    $('.shopName .identity').html('我的店铺身份：'+_thisIdentity);
-                    _thisData.coreCollection!=null?$('.collection').html('取消收藏'):$('.collection').html('收藏')
-                    if(_thisData.coreCollection!=null){
-                        dataSave('collectionIds',_thisData.coreCollection.id);
-                    }else{
 
-                    }
-                    if(_thisIdCode == 0){
-                        var str ='';
-                        var strs ='';
-                        var shopRole = _thisData.shopRole;
-                        if(shopRole.length!==0){
-                            for (var i=shopRole.length-1;i>=0;i--){
-                                str += '<div class="becomeLeft ui_btn" data-action="becomeSort">' +shopRole[i].name+'</div>'
+                    // 分佣线区分店铺
+                    if(_thisData.store.commissionLine == 2){
+
+                        var _thisName       = _thisData.store.name;//店铺名称
+                        var _thisLogo       = _thisData.store.logo;//店铺Logo
+                        var _thisIdentity   = _thisData.identity;//当前登录身份
+                        var _thisIdCode     = _thisData.idCode;//店铺身份
+                        dataSave('idCode', _thisIdCode);//存储当前身份 1(有身份) / 0
+                        $('#information').show();//花想容会员信息
+                        if(_thisLogo == null ){
+                            _thisLogo = 'images/headT.png'
+                        }else{
+                            _thisLogo = _thisLogo;
+                        }
+                        $('.sdbLogo').css('background-image','url('+_thisLogo+')');
+                        $('.shopName .name').html(_thisName);
+                        $('.shopName .identity').html('我的店铺身份：'+_thisIdentity);
+                        _thisData.coreCollection!=null?$('#collection').html('取消收藏'):$('#collection').html('收藏')
+                        if(_thisData.coreCollection!=null){
+                            dataSave('collectionIds',_thisData.coreCollection.id);
+                        }else{
+
+                        }
+                        if(_thisIdCode == 0){
+                            var str ='';
+                            var strs ='';
+                            var shopRole = _thisData.shopRole;
+                            if(shopRole.length!==0){
+                                for (var i=shopRole.length-1;i>=0;i--){
+                                    str += '<div class="becomeLeft ui_btn" data-action="becomeSort">' +shopRole[i].name+'</div>'
+                                }
+                                $('.become').html(str)
+                            }else{
+                                $('.become').html('该店铺目前还没有合伙人!')
                             }
-                            $('.become').html(str)
-                        }else{
-                            $('.become').html('该店铺目前还没有合伙人!')
-                        }
-                    }else if(_thisIdCode == 1) {
-                        var str = '';
-                        var shopRole = _thisData.shopRole;
-                        if(shopRole.length!==0){
-                            $('.become').html('<div class="becomeLefts ui_btn" data-action="becomeSort">补货区</div>');
-                        }else{
-                            $('.become').html('暂时不能补货')
-                        }
-                    }else if(_thisIdCode == 2){
-                        var str ='';
-                        var strs ='';
-                        var shopRole = _thisData.shopRole;
-                        if(shopRole.length!==0){
-                            for (var i=shopRole.length-1;i>=0;i--){
-                                str += '<div class="becomeLeft" data-action="becomeSort">' +shopRole[i].name+'</div>'
+                        }else if(_thisIdCode == 1) {
+                            var str = '';
+                            var shopRole = _thisData.shopRole;
+                            if(shopRole.length!==0){
+                                $('.become').html('<div class="becomeLefts ui_btn" data-action="becomeSort">补货区</div>');
+                            }else{
+                                $('.become').html('暂时不能补货')
                             }
-                            $('.become').html(str)
+                        }else if(_thisIdCode == 2){
+                            var str ='';
+                            var strs ='';
+                            var shopRole = _thisData.shopRole;
+                            if(shopRole.length!==0){
+                                for (var i=shopRole.length-1;i>=0;i--){
+                                    str += '<div class="becomeLeft" data-action="becomeSort">' +shopRole[i].name+'</div>'
+                                }
+                                $('.become').html(str)
+                            }else{
+                                $('.become').html('该店铺目前还没有合伙人!')
+                            }
+                        }
+                        $('.become div').each(function(){
+                            if($(this).index()%2 !== 0){
+                                $(this).css({borderRight:'inherit',width:'50%'});
+                            }
+                        });
+                    }else if(_thisData.store.commissionLine == 3){
+                        var _thisName       = _thisData.store.name;//店铺名称
+                        var _thisLogo       = _thisData.store.logo;//店铺Logo
+                        var _thisIdentity   = _thisData.identity;//当前登录身份
+                        var _thisIdCode     = _thisData.idCode;//店铺身份
+                        dataSave('idCode', _thisIdCode);//存储当前身份 1(有身份) / 0
+                        $('#information').show();//花想容会员信息
+                        if(_thisLogo == null ){
+                            _thisLogo = 'images/headT.png'
                         }else{
-                            $('.become').html('该店铺目前还没有合伙人!')
+                            _thisLogo = _thisLogo;
                         }
+                        alert('这是磁疗贴!')
+                    }else {
+
+                        var _thisName       = _thisData.store.name;//店铺名称
+                        var _thisLogo       = _thisData.store.logo;//店铺Logo
+                        var _thisIdentity   = _thisData.identity;//当前登录身份
+                        var _thisIdCode     = _thisData.idCode;//店铺身份
+                        dataSave('idCode', _thisIdCode);//存储当前身份 1(有身份) / 0
+                        $('.sdbLogo').css('background-image','url('+_thisLogo+')');
+                        $('.shopName .name').html(_thisName);
+                        $('.shopName .identity').html('我的店铺身份：'+_thisIdentity);
+                        _thisData.coreCollection!=null?$('#collection').html('取消收藏'):$('#collection').html('收藏')
+                        if(_thisData.coreCollection!=null){
+                            dataSave('collectionIds',_thisData.coreCollection.id);
+                        }else{
+
+                        }
+                        if(_thisIdCode == 0){
+                            var str ='';
+                            var strs ='';
+                            var shopRole = _thisData.shopRole;
+                            if(shopRole.length!==0){
+                                for (var i=shopRole.length-1;i>=0;i--){
+                                    str += '<div class="becomeLeft ui_btn" data-action="becomeSort">' +shopRole[i].name+'</div>'
+                                }
+                                $('.become').html(str)
+                            }else{
+                                $('.become').html('该店铺目前还没有合伙人!')
+                            }
+                        }else if(_thisIdCode == 1) {
+                            var str = '';
+                            var shopRole = _thisData.shopRole;
+                            if(shopRole.length!==0){
+                                $('.become').html('<div class="becomeLefts ui_btn" data-action="becomeSort">补货区</div>');
+                            }else{
+                                $('.become').html('暂时不能补货')
+                            }
+                        }else if(_thisIdCode == 2){
+                            var str ='';
+                            var strs ='';
+                            var shopRole = _thisData.shopRole;
+                            if(shopRole.length!==0){
+                                for (var i=shopRole.length-1;i>=0;i--){
+                                    str += '<div class="becomeLeft" data-action="becomeSort">' +shopRole[i].name+'</div>'
+                                }
+                                $('.become').html(str)
+                            }else{
+                                $('.become').html('该店铺目前还没有合伙人!')
+                            }
+                        }
+                        $('.become div').each(function(){
+                            if($(this).index()%2 !== 0){
+                                $(this).css({borderRight:'inherit',width:'50%'});
+                            }
+                        });
                     }
-                    $('.become div').each(function(){
-                        if($(this).index()%2 !== 0){
-                            $(this).css({borderRight:'inherit',width:'50%'});
-                        }
-                    });
                 }
             }
         });
@@ -8402,7 +8463,6 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                 if(!data.success){
                     console.log(data.msg);
                 }else{
-                    console.log(data)
                     var _length = data.data.list;
                     var str ='';
                     for (var i=0;i<_length.length;i++){
@@ -8428,6 +8488,15 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
 
 
 
+    },
+    // 会员信息  跳转
+    vipinformation:function(btn){
+        var storeId = dataGet('storeId');  //根据店铺id 查找会员信息   花想容为3，磁疗贴 为15
+        if(storeId == 3){
+            alert('这是进花想容的')
+        }else if(storeId == 15){
+            alert('这是进磁疗贴的')
+        }
     },
     windowBottomLeft:function(){
         Views.commodityEvaluationView.show();
@@ -8477,7 +8546,7 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                         var _thisData           = data.data;
                         alert('收藏成功！');
                         console.log(_thisData);
-                        $('.collection').html('取消收藏');
+                        $('#collection').html('取消收藏');
                     }
                 }
             });
@@ -8498,7 +8567,7 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                         var _thisData           = data.data;
                         alert('已取消收藏！');
                         console.log(_thisData);
-                        $('.collection').html('收藏');
+                        $('#collection').html('收藏');
                     }
                 }
             });
@@ -8508,7 +8577,6 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
     goInIntroduction:function(){
         Views.shopIntroductionView.show();
     },
-
     link_lc:function(){
         Views.commodityDetailsView.show();
     },

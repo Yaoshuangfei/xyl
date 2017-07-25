@@ -12,7 +12,25 @@ Views.informationView = $.extend({}, Views.PanelView, {
     },
 
     didShow: function () {
+        var url     = WEB_URL + '/api/notify/selectListGroup';
+        var data    =[2,7,11,14,3,13];
+        $.ajax({
+            type:'POST',
+            dataType:'json',
+            url:url,
+            data: JSON.stringify(data),
+            contentType:'application/json;charset=utf-8',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {},
+            success:function(data){
+                if(!data.success) {
+                    alert(data.msg);
+                }else{
+                    var _self = data.data.list;
+                    console.log(data)
 
+                }
+            }
+        });
     },
 
     viewMessage:function(btn){
