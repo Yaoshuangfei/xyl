@@ -1,0 +1,25 @@
+
+	<!-- 头部 -->
+	<div class="head">
+		<div class="return fL" onclick="backPage()"></div>
+		意见反馈
+	</div>
+
+	<!-- 文本 -->
+	<div class="text">
+		<textarea placeholder="点击输入你在使用过程中发现的问题..."></textarea>
+	</div>
+
+	<!-- 图片上传 -->
+	<div class="pictureUpload">
+		<div class="Prompt fL">如果能提供一张相关页面的截图，我们可以更好的帮助你。</div>
+		<div class="up fR">
+			<div class="pd_right" id="img-head-input">
+				<div id="localImag" ><img src="" id="preview" alt="" style="vertical-align:top;"/></div>
+				<input type="file" id="doc" name="file"  class="ui_btn" data-action="imgheadinput"   style="position: absolute;top:0;right:0;opacity: 0;"/>
+			</div>
+		</div>
+	</div>
+
+	<!-- 提交按钮 -->
+	<div class="submit ui_btn" data-action="fSubmit">提交审核</div>

@@ -1,0 +1,218 @@
+<!-- 顶部站位 -->
+<div class="position" style=" height: 44px;"></div>
+
+<div class="smTop">我的
+    <div class="return ui_btn" data-action="mine_index"></div>
+    <div class="set ui_btn" data-action="goInSetUp">设置</div>
+</div>
+
+<div class="tHead">
+    <div class="pic ui_btn" data-action="goInPersonal" id="pic">
+
+    </div>
+    <div class="name"></div>
+
+    <div class="smData">
+        <div class="balance fL ui_btn" data-action="goInWallet">
+            <div class="smTitle">
+                <div class="left balanceSign fL"></div>
+                <div class="right fL">我的余额</div>
+            </div>
+            <div class="oNumber"></div>
+        </div>
+        <div class="Imazamox fR ui_btn" data-action="goInImazamox">
+            <div class="smTitle">
+                <div class="left ImazamoxSign fL"></div>
+                <div class="right fL">我的金豆</div>
+            </div>
+            <div class="oNumber">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="follow">
+    <div class="numberT ui_btn" data-action="coll_01" data-typeId="1">
+        <p style=" font-size: 16px;" id="chanp"></p>
+        <p>收藏的产品</p>
+    </div>
+    <div class="numberT ui_btn" data-action="coll_01" data-typeId="2">
+        <p style=" font-size: 16px;" id="dianp"></p>
+        <p>收藏的店铺</p>
+    </div>
+</div>
+
+
+<!-- 订单 -->
+<div class="order">
+    <div class="title ui_btn" data-action="goInOrder">
+        <span>我的订单</span>
+        <div class="more">
+            <div class="mGoIn fR"></div>
+            <div class="go fR">查看更多</div>
+        </div>
+    </div>
+    <div class="orderType">
+
+        <div class="typeTox ui_btn" data-side="1" data-action="typeTox">
+            <div class="pic waitPay">
+            </div>
+            <div class="typeName">待付款</div>
+        </div>
+
+        <div class="typeTox ui_btn" data-side="2" data-action="typeTox">
+            <div class="pic waitDelivery">
+            </div>
+            <div class="typeName">待发货</div>
+        </div>
+
+        <div class="typeTox ui_btn" data-side="5" data-action="typeTox">
+            <div class="pic waitReceipt">
+            </div>
+            <div class="typeName">待收货</div>
+        </div>
+
+        <div class="typeTox ui_btn" data-side="6" data-action="typeTox">
+            <div class="pic waitEvaluate">
+            </div>
+            <div class="typeName">待评价</div>
+        </div>
+
+        <div class="typeTox ui_btn" data-action="goInRefund">
+            <div class="pic service">
+            </div>
+            <div class="typeName">售后/退款</div>
+        </div>
+
+    </div>
+
+    <!--<div class="logistics ui_btn" data-action="ckwl">-->
+        <!--<div class="newest fL">-->
+            <!--<p>最新物流</p>-->
+            <!--<p>05-06</p>-->
+        <!--</div>-->
+        <!--<div class="mContent fL">-->
+            <!--<div class="pic">-->
+                <!--<img src="images/mine/head.png">-->
+            <!--</div>-->
+            <!--<div class="information">-->
+                <!--<p style=" color: red">已签收</p>-->
+                <!--<p style="width:100%; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow: hidden;">[杭州市]已签收，感谢使用顺丰，期[杭州市]已签收，感谢使用顺丰，期[杭州市]已签收，感谢使用顺丰，期[杭州市]已签收，感谢使用顺丰，期待再次</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+</div>
+
+
+<div class="typeRegion">
+    <div class="typeList ui_btn" data-action="goInSuperior">
+        <div class="typeLogo myUp"></div>
+        <div class="typeTitle">我的上级</div>
+    </div>
+
+    <div class="typeList ui_btn" data-action="goInShoppingCart">
+        <div class="typeLogo myUp" style="background-image: url(images/mine/car.png)"></div>
+        <div class="typeTitle">购物车</div>
+    </div>
+
+    <div class="typeList ui_btn" data-action="goInMyBill">
+        <div class="typeLogo myBill"></div>
+        <div class="typeTitle">我的账单</div>
+    </div>
+
+    <div class="typeList ui_btn" data-action="goInWallet">
+        <div class="typeLogo myWallet"></div>
+        <div class="typeTitle">我的钱包</div>
+    </div>
+
+    <!-- 		<div class="typeList">
+                <div class="typeLogo myOrder"></div>
+                <div class="typeTitle">我的订单</div>
+            </div> -->
+
+    <div class="typeList ui_btn" data-action="goInPersonalStore">
+        <div class="typeLogo myShop"></div>
+        <div class="typeTitle">我的店铺</div>
+    </div>
+
+    <div class="typeList ui_btn" data-action="goInDistribution">
+        <div class="typeLogo myDistribution"></div>
+        <div class="typeTitle">我的分销店铺</div>
+    </div>
+
+    <div class="typeList" onclick="alertBtn()" data-motion="code">
+        <div class="typeLogo myCode"></div>
+        <div class="typeTitle">我的二维码</div>
+    </div>
+
+    <div class="typeList" onclick="alertBtn()" data-action="goInMy">
+        <div class="typeLogo myDonation"></div>
+        <div class="typeTitle " >爱心捐赠</div>
+    </div>
+
+    <div class="typeList ui_btn" data-action="recharge">
+        <div class="typeLogo myRecharge"></div>
+        <div class="typeTitle">充值</div>
+    </div>
+
+    <div class="typeList ui_btn" data-action="recharges">
+        <div class="typeLogo" style="    background-image: url(images/dpsf.png);"></div>
+        <div class="typeTitle">店铺身份</div>
+    </div>
+
+    <!--<div class="typeList" id="fenxiangsssss" onclick="alertBtn()">-->
+    <div class="typeList ui_btn" data-action="typeListFX" id="fenxiangsssss">
+        <div class="typeLogo myShare"></div>
+        <div class="typeTitle">分享</div>
+    </div>
+
+    <div class="typeList ui_btn" data-action="goInService">
+        <div class="typeLogo myService"></div>
+        <div class="typeTitle">客服</div>
+    </div>
+</div>
+
+<!-- 分享 -->
+
+<div class="mallShare">
+    <div class="clos Ubtn" data-motion="closes">X</div>
+    <div class="mall_img Ubtn" data-motion="xiala" id="cc"></div>
+    <div class="mallShare_btn">分享</div>
+</div>
+<!-- 分享 -->
+<div class="share" id="shareShow" style="display: block; height: 296px;">
+    <div class="shareMethod">
+        <div class="mTop" style="height: 55px;text-align: center;">
+            <div class="shareTitle" style="line-height: 55px;color: #fff;font-size: 18px;">分享链接</div>
+        </div>
+        <div class="bottom">
+            <div class="shareLogoFrame" style=" margin-left: 0px;">
+                <div class="pic"></div>
+                <span>QQ</span>
+            </div>
+            <div class="shareLogoFrame">
+                <div class="pic"></div>
+                <span>微信</span>
+            </div>
+        </div>
+    </div>
+    <div class="cancel" id="bgCancel">取消</div>
+</div>
+<!-- 分享 -->
+<!-- 遮罩 -->
+<div class="masks" style="z-index: 9999;"></div>
+
+
+<!-- 底部站位 -->
+<div class="positionBottom"></div>
+<div class="fenxiangs" style="position: fixed;top:0;left:0;width:100%;height:100%;display: none;z-index: 99999;text-align: center;">
+    <img src="images/icon_003.png" class="ui_btn" data-action="fenxiangs_Close" alt="" style="position: fixed;
+    top: 17%;
+    z-index: 9;
+    right: 10%;width:20px;height:20px;">
+    <img src="images/fenxiang.jpg" alt="" style="width:333px;height:500px;position: relative;top:50%;transform: translateY(-50%);">
+    <div id="qrcode" style="position: fixed;bottom:25%;left:50%;transform: translateX(-50%);"></div>
+    <div class="ui_btn" data-action="btnss" style="position: fixed;left:50%;transform:translateX(-50%);width:180px;height:40px;border-radius: 8px;background: #f54b31;color: #fff;font-size: 18px;bottom:17%;line-height: 40px;">分享</div>
+</div>

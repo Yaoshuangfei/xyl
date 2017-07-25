@@ -1,0 +1,260 @@
+
+	<div class="headOne" >
+		<div class="bgCircular return returnOne" onclick="backPage()"></div>
+		<div class="bgCircular more moreOne"></div>
+		<div class="bgCircular shoppingCart shoppingCartOne ui_btn" data-action="go_shoppingcar"></div>
+	</div>
+
+	<div class="headTwo" style="display: none;">
+		<div class="topTwo">
+			<div class="bgCircular return returnTwo" onclick="backPage()" ></div>
+			<div class="bgCircular more moreTwo"></div>
+			<div class="bgCircular shoppingCart shoppingCartTwo ui_btn" data-action="go_shoppingcar"></div>
+		</div>
+
+		<div class="next">
+			<div class="type" id="type1">宝贝</div>
+			<div class="type" id="type2">评价</div>
+			<div class="type" id="type3">详情</div>
+		</div>
+
+	</div>
+
+	<!-- 导航 -->
+	<div class="new" id="sDNew" data-state="hide" style="top:45px;">
+		<div class="list" style="position: relative; height: 5px;">
+			<div class="triangle-down"></div>
+		</div>
+		<div class="list ui_btn" data-action="com_index" style="background-image: url(images/new/homePage.png); background-color: #666;">首页</div>
+		<div class="list ui_btn" data-action="com_customer" style="background-image: url(images/new/dp_01.png); background-color: #666;">客服</div>
+		<div class="list ui_btn" data-action="com_mine" style="background-image: url(images/new/dp_02.png); background-color: #666;">我的</div>
+		<!--<div class="list ui_btn" data-action="com_dianpu" style="background-image: url(images/new/dp_03.png); background-color: #666;">店铺简介</div>-->
+		<div class="list ui_btn" data-action="com_fenxiang" id="newShare" style="background-image: url(images/new/dp_04.png); background-color: #666; border-bottom: 0;" >分享</div>
+	</div>
+	<!-- 导航 -->
+
+
+	<!-- 头图 -->
+	<div class="headFigure" style="max-height:414px;">
+
+		<div class="swiper-container swiper1" style="background: #fff;">
+			<div class="swiper-wrapper" id="bannerImg">
+				<!--<div class="swiper-slide index_head ui_btn" data-action="banner_link"><img src="images/commodityDetails/headFigure.png"></div>-->
+			</div>
+		</div>
+	</div>
+
+	<!-- 产品信息 -->
+	<div class="productDescBase">
+		<div class="productName">
+			<div class="name"></div>
+			<div class="shares ui_btn" data-action="com_fenxiang">分享</div>
+		</div>
+
+		<div class="price"></div>
+		<div class="orderPrice">原价：87</div>
+		<div class="express">
+			<div class="expressContent tL">快递：10.00</div>
+			<div class="expressContent tC">月销20笔</div>
+			<div class="expressContent tR">浙江杭州</div>
+		</div>
+
+		<div class="discount" style="margin-top: 10px; border-bottom: 1px solid #eeeeee">
+			<!--<div class="cdItem fL">-->
+				<!--<div class="flag fL"></div>-->
+				<!--<div class="cdTitle fL">正品保障</div>-->
+			<!--</div>-->
+		</div>
+
+	</div>
+
+	<!-- 属性 -->
+	<div class="attributeBox">
+		<div class="attribute ui_btn" data-action="mine_warp" id="attribute_01" style="margin-top: 10px; border-bottom: 1px solid #eeeeee">
+			<span>请选择</span>
+			<span style="margin-left: 10px;" id="cccc"></span>
+		</div>
+		<div class="attribute" id="attribute_02">产品参数</div>
+	</div>
+
+	<!-- 评价 -->
+	<div class="evaluate" id="evaluate" >
+		<div class="evaluateTitle">
+			<div class="evaluateTitleIn">
+				<div class="cltLine fL"></div>
+				<span class="citTitle">评价</span>
+				<div class="cltLine fR"></div>
+			</div>
+		</div>
+
+		<div class="evaluateNumber">宝贝评价</div>
+
+		<div class="evaluateContent">
+			<div class="ecItem">
+				<div class="cdTop">
+					<div class="left fL">
+						<div class="citLogo fL"></div>
+						<div class="name fL">
+							<span class="nameL" id="nameL">昵称</span>
+							<span id="nameL_01">创客</span>
+						</div>
+					</div>
+					<div class="right fR" id="liulan">浏览量：11</div>
+				</div>
+
+				<div class="evaluationContent">
+					<div class="information" style="min-height: 50px;"></div>
+					<div class="attribute">
+						<span id="attribute_time">2017.08.29</span>
+						<!--<span>颜色：黑色</span>-->
+					</div>
+				</div>
+
+				<!--<div class="evaluatePic">-->
+					<!--<div class="Pic" style=" margin-left: 0px;"></div>-->
+					<!--<div class="Pic"></div>-->
+					<!--<div class="Pic"></div>-->
+				<!--</div>-->
+
+				<!--<div class="additional">-->
+					<!--<div class="additionalTime">用户10天后追加</div>-->
+					<!--<div class="Content">书的质量太一般，纸质薄，容易坏，外皮包装不好，书皮有破损，大家看图片吧！拍之前有个20元优惠券，忘记领了，事后跟客服沟通，不给退补！书出现了这样的质量问题，一句道歉的话没有就让退货，态度很恶劣，这是我自淘宝以来最郁闷的一次购物！要不是等着用，我一定会退货！！</div>-->
+				<!--</div>-->
+			</div>
+		</div>
+
+		<div class="viewAll">
+			<div class="button ui_btn" data-action="commodityEvaluation">查看所有</div>
+		</div>
+	</div>
+	<!-- 详情 -->
+	<div class="evaluateTitle" id="evaluateTitle">
+		<div class="evaluateTitleIn">
+			<div class="cltLine fL"></div>
+			<span class="citTitle">详情</span>
+			<div class="cltLine fR"></div>
+		</div>
+
+	</div>
+
+	<!-- 详情内容 -->
+	<div class="details">
+		
+
+	</div>
+
+	<div class="footNavBar" style="border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
+		<div class="left fL">
+			<div class="goCart fL ui_btn" data-action="go_shoppingcar">购物车</div>
+			<div class="shop fL ui_btn" data-action="shop_room">店铺</div>
+			<div class="collection fL uiBtn coll ui_btn" data-action="collection" data-motion="addcoll" id="collection">收藏</div>
+		</div>
+		<div class="right fL">
+			<div class="joinCart fL ui_btn" data-action="joinCar">加入购物车</div>
+			<div class="purchase fL ui_btn" data-action="shppping">立即购买</div>
+		</div>
+	</div>
+
+
+	<!--正品保障-->
+	<div class="mine_warp "  id="mine_warp_01">
+		<div class="shoppingCart_black" style="z-index: 999"></div>
+		<div class="shoppingCart_properties" style="z-index: 1000;background: #fff;">
+			<div class="shoppingCart_properties_title">基础服务</div>
+			<div id="shoppingCart_properties_list">
+				<div class="shoppingCart_properties_list"><span><img src="images/commodityDetails/choice.png" alt=""></span>7天退货</div>
+			</div>
+		</div>
+		<div class="shoppingCart_check ui_btn" data-action="guanbi01" style="z-index: 1000">关闭</div>
+	</div>
+	<!--属性编辑-->
+	<div class="mine_warp" id="mine_warp_02">
+		<div class="shoppingCart_black" style="z-index: 999"></div>
+		<div class="shoppingCart_properties" style="z-index: 1000;background: #fff;">
+			<div class="properties_top">
+				<div class="header"></div>
+				<div class="a"> <span class="arrange">控油极男水油平衡套装男士护肤品套装控油极男水油平衡套装</span> <span>库存：<span id="cdStock">10</span> 件</span> <span style="color: #666">顏色</span> </div>
+			</div>
+			<div class="shoppingCart_quality">
+				<!--<div class="shoppingCart_qualityArea">-->
+					<!--<div class="shoppingCart_qualityTop">颜色</div>-->
+					<!--<div class="shoppingCart_qualityBtn">-->
+						<!--<div class="area">白色</div>-->
+					<!--</div>-->
+					<!--<div class="shoppingCart_qualityBtn">-->
+						<!--<div class="area">白色</div>-->
+					<!--</div>-->
+					<!--<div class="shoppingCart_qualityBtn">-->
+						<!--<div class="area">白色</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			</div>
+			<div class="shoppingCart_number"> <span class="warp_Lt">数量</span>
+				<div class="number warp_Rg">
+					<div class="symbol min ui_btn" data-action="symbolMin" style="font-size: 14px;" id="min">—</div>
+					<div class="symbol warp_Lt num" style="font-size: 12px;">1</div>
+					<div class="symbol mix ui_btn" data-action="symbolMax" style="font-size: 14px;" id="max">＋</div>
+				</div>
+			</div>
+		</div>
+		<div class="shoppingCart_check ui_btn" data-action="shoppingCart_check" style="z-index: 1000">确定</div>
+	</div>
+	<!--产品参数-->
+	<div class="mine_warp" id="mine_warp_03">
+		<div class="shoppingCart_black" style="z-index: 999"></div>
+		<div class="shoppingCart_properties" style="z-index: 1000;background: #fff;">
+			<div class="shoppingCart_properties_title" style="border-bottom: 1px solid #eee;">产品参数</div>
+			<div class="shoppingCart_properties_pro"><span>品牌</span><span>品牌</span></div>
+			<div class="shoppingCart_properties_pro"><span>颜色分类</span><span>颜色分类</span></div>
+			<div class="shoppingCart_properties_pro"><span>材质</span><span>材质</span></div>
+			<div class="shoppingCart_properties_pro"><span>功能</span><span>吸湿排汗 抗紫外线 速干 超轻</span></div>
+		</div>
+		<div class="shoppingCart_check ui_btn" data-action="guanbi03" style="z-index: 1000">关闭</div>
+	</div>
+
+	<!-- 分享 -->
+	<div class="share" id="shareShowT" style="display: none;">
+		<div class="shareMethod">
+			<div class="shTop">
+				<div class="shareTitle">分享</div>
+				<div class="shareLogo">
+					<div class="shareLogoFrame" style=" margin-left: 0px;">
+						<div class="pic"></div>
+						<span>复制链接</span>
+					</div>
+					<div class="shareLogoFrame ui_btn" data-action="partake">
+						<div class="pic"></div>
+						<span>分享长图</span>
+					</div>
+					<div class="shareLogoFrame ui_btn" data-action="sweepTheFace">
+						<div class="pic"></div>
+						<span>当面扫码</span>
+					</div>
+				</div>
+			</div>
+			<div class="bottom">
+				<div class="shareLogoFrame" style=" margin-left: 0px;">
+					<div class="pic"></div>
+					<span>QQ</span>
+				</div>
+				<div class="shareLogoFrame">
+					<div class="pic"></div>
+					<span>微信</span>
+					<!-- JiaThis Button BEGIN --><div id="ckepop">
+					<span class="jiathis_txt">分享到：</span>
+					<a class="jiathis_button_weixin">微信</a>
+					<a href="http://www.jiathis.com/share"  class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+					<a class="jiathis_counter_style"></a> </div>
+					<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1" charset="utf-8"></script>
+				</div> <!-- JiaThis Button END -->
+				</div>
+			</div>
+		</div>
+		<div class="cancel ui_btn" data-action="bgCancel" id="bgCancel">取消</div>
+	</div>
+	<!-- 分享 -->
+
+	<!-- 遮罩 -->
+	<div class="bgMask ui_btn" data-action="bgCancel" id="bgMask" style="display: none; top: 0;"></div>
+	<!-- 遮罩 -->
+

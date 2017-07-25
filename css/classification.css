@@ -1,0 +1,1408 @@
+
+/***********************导航 **********************/
+
+.new{
+    width: 30%;
+    opacity: 0.8;
+    position:absolute;
+    right: 15px;
+    top: 35px;
+    z-index: 8;
+    display: none;
+}
+
+.new .list{
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid #7e7e7e;
+    line-height: 30px;
+    background-repeat: no-repeat;
+    background-position: 10%;
+    background-size: 20px;
+    color: #fff;
+    font-size: 12px;
+    text-indent: 35px;
+}
+
+.new .triangle-down {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #666666;
+    position: absolute;
+    right: 10px;
+    bottom:0px;
+}
+
+
+/***********************头部 **********************/
+
+.ciSshopHead {
+    width: 100%;
+    height: 105px;
+    /*	background-image: url(../images/classification/shopHead_bg.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        transition: height 0.6s;*/
+    background-color: #eeeeee;
+    position:fixed;
+    top: 0;
+    z-index: 6;
+}
+
+.ciSshopHead .shopHead_top{
+    width: 100%;
+    height: 44px;
+}
+
+.ciSshopHead .shopHead_top .back{
+    width: 22px;
+    height: 22px;
+    background-image: url(../images/classification/returnTwo.png);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    float: left;
+    margin-top: 10px;
+    margin-left: 5%;
+}
+
+.ciSshopHead .shopHead_top .search{
+    width: 60%;
+    height: 22px;
+    float: left;
+    margin-left:10%;
+    margin-top: 10px;
+    text-align: center;
+    line-height: 22px;
+}
+
+.ciSshopHead .shopHead_top .more{
+    width: 22px;
+    height: 22px;
+    float:right;
+    margin-top: 10px;
+    margin-right: 5%;
+}
+
+.ciSshopHead .shopHead_top .more span{
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
+    float: left;
+    margin-left: 2px;
+    margin-top: 8px;
+    background-color: #aaaaaa;
+    display: block;
+
+}
+
+.ciSshopHead .commodityType{
+    width: 95%;
+    height: 60px;
+    background-color: #007cc3;
+    padding-left: 5%;
+}
+
+.ciSshopHead .commodityType .typeIn{
+    width: calc(100% / 6);
+    height: 100%;
+    float: left;
+    background-position:center 9px;
+    background-size: 35%;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 90px;
+    color: #fff;
+}
+
+.ciSshopHead .commodityType  .dropDown{
+    width: calc(100% / 6 - 1px);
+    height: 32px;
+    float: left;
+    border-left: 1px solid #fff;
+    /*padding-top: 16px;*/
+    margin-top: 14px;
+    background-image: url(../images/classification/dropDown.png);
+    background-position: center;
+    background-size: 45%;
+    background-repeat: no-repeat;
+}
+
+/*.shopHead .commodityType  .dropDown p{
+	width: 50%;
+	height: 2px;
+	background-color: #fff;
+	margin-top: 5px;
+	margin-left: 25%;
+}*/
+
+/***********************站位 **********************/
+.position{
+    width: 100%;
+    height: 105px;
+}
+
+/***********************类型 **********************/
+.ciTypeContent{
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    /*根据里面的内容增加高度*/
+    display:inline-block;
+}
+
+.ciEvaluateTitle{
+    width: 100%;
+    padding-top: 10px;
+    /*	padding-bottom: 10px;*/
+    position: relative;
+}
+
+.ciEvaluateTitle .evaluateTitleIn{
+    width: 50%;
+    height: 100%;
+    /*background-color: #fff;*/
+    position: absolute;
+    left: 50%;
+    margin-left: -25%;
+    text-align: center;
+}
+
+.ciEvaluateTitle .evaluateTitleIn .ciTitle{
+    /*width: 36px;*/
+    width: 25%;
+    /*margin-left: 10%;*/
+    text-align: center;
+    color: #666;
+    margin: 0 10px;
+
+}
+
+.ciEvaluateTitle .evaluateTitleIn .ciLine{
+    width: 34px;
+    height: 2px;
+    background-color: #cccccc;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.product{
+    margin-top: 25px;
+}
+
+.product .p_in{
+    width: 19%;
+    margin-left: 2.5%;
+    height: 101px;
+    background-color: #fff;
+    padding-left: 2%;
+    padding-right: 2%;
+    float: left;
+    margin-top: 10px;
+}
+
+.product .p_in .p_logo{
+    width: 100%;
+    height: 67px;
+    text-align: center;
+    /* 	background-image: url(../images/classification/p_logo.png);
+        background-position: center;
+        background-size: 100%;
+        background-repeat: no-repeat;*/
+}
+
+.product .p_in .p_logo img{
+    /*width: 100%;*/
+    height: 100%
+}
+
+.product .p_in .name{
+    width: 100%;
+    height: 34px;
+    border-top: 1px  solid #eee;
+    text-align: center;
+    line-height: 34px;
+    color: #666666;
+}
+
+/***********************下拉 **********************/
+.dropDownBox{
+    width: 90%;
+    display: inline-block;
+    background-color: #007cc3;
+    position: fixed;
+    top: 44px;
+    left: 0px;
+    z-index: 10000;
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-top: 15px;
+}
+
+.dropDownBox .whole{
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+}
+
+.dropDownBox .whole .right{
+    width: 40px;
+    height: 32px;
+    border-left: 1px solid #fff;
+    background-image: url(../images/classification/dropDown.png);
+    background-position: center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+}
+
+.dropDownBox .wholeType{
+    width: 100%;
+    margin-top: 15px;
+
+}
+
+.dropDownBox .wholeType .type{
+    width: calc(100% / 3);
+    color: #fff;
+    text-align: center;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.dropDownBox .wholeType .type .t_logo{
+    width:100%;
+    /*height: 64px;*/
+    text-align: center;
+    vertical-align:middle
+}
+
+.dropDownBox .wholeType .type .t_logo img{
+    width:22px;
+
+}
+/***********************遮罩 **********************/
+
+.ciMask{
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.6;
+    position: fixed;
+    z-index: 9999;
+    top: 44px;
+    left: 0;
+    /*display: none;*/
+}
+
+
+/*商品详情*/
+
+
+
+/***********************头部 **********************/
+.bgCircular{
+    width: 30px;
+    height: 30px;
+    opacity: 0.7;
+    border-radius: 15px;
+}
+
+.return{
+    float: left;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+
+.shoppingCart{
+    float: right;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+
+.more{
+    float: right;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+
+.headOne{
+    width: 90%;
+    height: 30px;
+    position: fixed;
+    top: 10px;
+    left: 0;
+    z-index: 10;
+    padding-left: 5%;
+    padding-right: 5%;
+    /*display: none;*/
+}
+
+.returnOne{
+    background-color: #666666;
+    background-image: url(../images/commodityDetails/return.png);
+}
+
+.shoppingCartOne{
+    background-color: #666666;
+    background-image: url(../images/commodityDetails/cart.png);
+}
+.moreOne{
+    background-color: #666666;
+    background-image: url(../images/commodityDetails/more.png);
+}
+
+.returnTwo{
+    background-image: url(../images/commodityDetails/returnTwo.png);
+}
+
+.shoppingCartTwo{
+    background-image: url(../images/commodityDetails/cartTwo.png);
+}
+.moreTwo{
+    background-image: url(../images/commodityDetails/moreTwo.png);
+}
+
+.headTwo{
+    width: 90%;
+    height: 63px;
+    background-color: #fff;
+    opacity: 0.98;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding-top: 10px;
+    padding-left: 5%;
+    padding-right: 5%;
+    z-index: 15;
+    border-bottom: 1px solid #eee;
+}
+
+.headTwo .topTwo{
+    width: 100%;
+    height: 30px;
+}
+
+.headTwo .next{
+    width: 100%;
+    height: 33px;
+}
+.headTwo .next .type{
+    width: calc(100% / 3);
+    height: 33px;
+    text-align: center;
+    line-height: 33px;
+    font-size: 12px;
+    float: left;
+}
+
+/***********************导航 **********************/
+
+.new{
+    width: 30%;
+    opacity: 0.8;
+    position:absolute;
+    right: 5%;
+    top: 50px;
+    z-index: 5;
+    display: none;
+}
+
+.new .list{
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid #7e7e7e;
+    line-height: 30px;
+    background-repeat: no-repeat;
+    background-position: 10%;
+    background-size: 20px;
+    color: #fff;
+    font-size: 12px;
+    text-indent: 35px;
+}
+
+.new .triangle-down {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #666666;
+    position: absolute;
+    right: 10px;
+    bottom:0px;
+}
+
+/***********************头图 **********************/
+.headFigure{
+    width: 100%;
+    display: inline-block;
+    /*height: 414px;*/
+    /*line-height: 414px;*/
+}
+
+.headFigure img{
+    width: 100%;
+    max-height:100%;
+}
+
+/***********************产品信息 **********************/
+
+.productDescBase{
+    width: 100%;
+    background-color: #fff;
+    padding: 16px 0 0 0;
+}
+
+.productDescBase .productName{
+    width: 90%;
+    height: 45px;
+    color: #000;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.productDescBase .productName .name{
+    width: calc(100% - 42px);
+    height: 55px;
+    font-size: 18px;
+    float: left;
+    /*限制div文字显示的行数并且将多余的已省略号显示*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;/*设置的行数*/
+    -webkit-box-orient: vertical;
+}
+
+.productDescBase .productName .shares{
+    width: 42px;
+    height: 42px;
+    float: right;
+    background-image: url(../images/commodityDetails/share.png);
+    background-size: 75%;
+    background-position:center -2px;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 85px;
+    color: #aaaaaa;
+    font-size: 12px;
+}
+
+.productDescBase .price{
+    width: 90%;
+    height: 24px;
+    margin-top: 10px;
+    font-size: 20px;
+    color: #e60012;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.productDescBase .price span{
+    font-size: 14px;
+}
+
+.productDescBase .orderPrice{
+    width: 90%;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #aaaaaa;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.productDescBase .express{
+    width: 90%;
+    height: 20px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #aaaaaa;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.productDescBase .express .expressContent{
+    width: calc(100% / 3);
+    float: left;
+}
+
+.productDescBase .discount{
+    width: 90%;
+    height: 34px;
+    font-size: 12px;
+    color: #aaaaaa;
+    background-color: #fafafa;
+    background-image: url(../images/commodityDetails/point.png);
+    background-position:95%;
+    background-repeat: no-repeat;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.productDescBase .discount .cdItem{
+    line-height: 34px;
+    /*margin-left:10px;*/
+}
+
+.productDescBase .discount .cdItem .flag{
+    width: 24px;
+    height: 24px;
+    margin-top: 5px;
+    background-image: url(../images/commodityDetails/choice.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+}
+
+.productDescBase .discount .cdItem .cdTitle{
+    margin-left: 5px;
+}
+
+.productDescBase .discount .discountBottom{
+    line-height: 34px;
+    margin-left: 5px;
+}
+
+
+/***********************属性 **********************/
+
+.attributeBox{
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 10px;
+    background-color: #fff;
+}
+.attributeBox .attribute{
+    width: 100%;
+    height: 34px;
+    font-size: 14px;
+    color: #000;
+    background-color: #fff;
+    background-image: url(../images/commodityDetails/point.png);
+    background-position:right;
+    background-repeat: no-repeat;
+    line-height: 34px;
+
+}
+
+/***********************评价 **********************/
+.evaluate{
+    width: 100%;
+}
+
+.evaluateTitle{
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.evaluateTitle .evaluateTitleIn{
+    width: 50%;
+    height: 100%;
+    /*background-color: #fff;*/
+    position: absolute;
+    left: 50%;
+    margin-left: -25%;
+}
+
+.evaluateTitle .evaluateTitleIn .citTitle{
+    /*width: 36px;*/
+    width: 20%;
+    margin-left: 10%;
+    text-align: center;
+
+}
+
+.evaluateTitle .evaluateTitleIn .cltLine{
+    width: 30%;
+    height: 2px;
+    margin-top: 10px;
+    background-color: #cccccc;
+}
+
+.evaluate .evaluateNumber{
+    width: 95%;
+    height: 20px;
+    color: #000;
+    font-size: 14px;
+    margin-top: 20px;
+    padding-left: 5%;
+    padding-top: 10px;
+    background-color: #fff;
+}
+
+.evaluate .evaluateContent{
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 10px;
+    background-color: #fff;
+
+}
+
+.evaluate .evaluateContent .ecItem{
+    width: 100%;
+}
+
+.evaluate .evaluateContent .ecItem .cdTop{
+    width: 100%;
+    height: 33px;
+    background-color: #fff;
+}
+
+.evaluate .evaluateContent .ecItem .cdTop .left{
+    width: 50%;
+    height: 33px;
+    line-height: 33px;
+}
+
+.evaluate .evaluateContent .ecItem .cdTop .left .citLogo{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #eeeeee;
+}
+
+.evaluate .evaluateContent .ecItem .cdTop .left .name{
+    height: 30px;
+    margin-left: 10px;
+}
+
+.evaluate .evaluateContent .ecItem .cdTop .left .name .nameL{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.evaluate .evaluateContent .ecItem .cdTop .right{
+    width: 50%;
+    height: 33px;
+    font-size: 12px;
+    color: #666666;
+    text-align: right;
+    line-height: 33px;
+}
+
+.evaluate .evaluateContent .ecItem  .evaluationContent{
+    width: 100%;
+}
+
+.evaluate .evaluateContent .ecItem  .evaluationContent .information{
+    width: 100%;
+    margin-top: 10px;
+    color: #000;
+    text-align: justify;
+}
+
+.evaluate .evaluateContent .ecItem  .evaluationContent .attribute{
+    width: 100%;
+    margin-top: 5px;
+    color: #666;
+}
+
+.evaluate .evaluateContent .ecItem .evaluatePic{
+    width: 100%;
+    height: 120px;
+    margin-top: 10px;
+    border-bottom: #eeeeee 1px solid;
+}
+
+.evaluate .evaluateContent .ecItem .evaluatePic .Pic{
+    width: calc(92% / 3);
+    height: 104px;
+    margin-top: 8px;
+    margin-left: 3%;
+    background-color:#eeeeee;
+    float: left;
+}
+
+.evaluate .evaluateContent .ecItem .additional{
+    width: 100%;
+    background-color: #fff;
+}
+
+.evaluate .evaluateContent .ecItem .additional .additionalTime{
+    width: 100%;
+    color: #666666;
+    margin-top: 10px;
+}
+
+.evaluate .evaluateContent .ecItem .additional .Content{
+    width: 100%;
+    color: #000000;
+    margin-top: 10px;
+    text-align: justify;
+}
+
+.evaluate .viewAll{
+    width: 100%;
+    height: 75px;
+    background-color: #fff;
+    position: relative;
+}
+
+.evaluate .viewAll .button{
+    width: 100px;
+    height: 22px;
+    border-radius: 10px;
+    color: #eb6100;
+    border: 1px solid #eb6100;
+    line-height: 22px;
+    text-align: center;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    margin-left: -50px;
+    top: 50%;
+    margin-top: -11px;
+
+}
+
+
+/***********************详情 **********************/
+
+.details{
+    width: 100%;
+    height: 100px;
+    background-color: #fff;
+    margin-top: 20px;
+    overflow: auto;
+}
+
+
+
+.footNavBar{
+    width: 100%;
+    height: 60px;
+    /*border-top: 1px solid #cccccc;*/
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+.footNavBar .left{
+    width: 50%;
+    height: 100%;
+    background-color: #fafafa;
+    text-align: center;
+    color: #cccccc;
+}
+
+.footNavBar .left .goCart{
+    width: calc(100% / 3);
+    height: 100%;
+    background-position: center 5px;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    background-image: url(../images/commodityDetails/cartS.png);
+    line-height: 85px;
+}
+
+.footNavBar .left .shop{
+    width: calc( 100% / 3 - 2px);
+    height: 100%;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    background-position: center 5px;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    background-image: url(../images/commodityDetails/shop.png);
+    line-height: 85px;
+
+}
+
+.footNavBar .left .collection{
+    width: calc(100% / 3);
+    height: 100%;
+    background-position: center 5px;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    background-image: url(../images/commodityDetails/collection_hide.png);
+    line-height: 85px;
+}
+.footNavBar .left .collections{
+    width: calc(100% / 3);
+    height: 100%;
+    background-position: center 5px;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    background-image: url(../images/commodityDetails/collection.png);
+    line-height: 85px;
+}
+
+.footNavBar .right{
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+}
+
+.footNavBar .right .joinCart{
+    width: 50%;
+    height: 100%;
+    background-color: #f1c330;
+}
+
+.footNavBar .right .purchase{
+    width: 50%;
+    height: 100%;
+    background-color: #eb6100;
+}
+
+/*商品列表*/
+
+
+.new{
+    width: 30%;
+    opacity: 0.8;
+    position:absolute;
+    right: 15px;
+    top: 35px;
+    z-index: 8;
+    display: none;
+}
+
+.new .list{
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid #7e7e7e;
+    line-height: 30px;
+    background-repeat: no-repeat;
+    background-position: 10%;
+    background-size: 20px;
+    color: #fff;
+    font-size: 12px;
+    text-indent: 35px;
+}
+
+.new .triangle-down {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #666666;
+    position: absolute;
+    right: 10px;
+    bottom:0px;
+}
+
+
+/***********************头部 **********************/
+
+.citShopHead {
+    width: 100%;
+    height: 78px;
+    /*	background-image: url(../images/storeDetails/shopHead_bg.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        transition: height 0.6s;*/
+    background-color: #eeeeee;
+    position:fixed;
+    top: 0;
+    z-index: 7;
+}
+
+.citShopHead .shopHead_top{
+    width: 100%;
+    height: 44px;
+}
+
+.citShopHead .shopHead_top .back{
+    width: 22px;
+    height: 22px;
+    background-image: url(../images/commodityList/returnTwo.png);
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    float: left;
+    margin-top: 10px;
+    margin-left: 5%;
+}
+
+.citShopHead .shopHead_top .search{
+    width: 60%;
+    height: 22px;
+    float: left;
+    margin-left:10%;
+    margin-top: 10px;
+    background-color: #fff;
+    border-radius: 25px;
+}
+
+.citShopHead .shopHead_top .search input{
+    width: 80%;
+    margin-left: 10px;
+    font-size: 12px;
+    height: 100%;
+    display: block;
+    float: left;
+}
+
+.citShopHead .shopHead_top .search .search_r{
+    width: 14%;
+    height: 100%;
+    float: right;
+    background-image: url(../images/commodityList/seach.png);
+    background-repeat: no-repeat;
+    background-position:center;
+}
+
+.citShopHead .shopHead_top .more{
+    width: 22px;
+    height: 22px;
+    float:right;
+    margin-top: 10px;
+    margin-right: 5%;
+}
+
+.citShopHead .shopHead_top .more span{
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
+    float: left;
+    margin-left: 2px;
+    margin-top: 8px;
+    background-color: #aaaaaa;
+    display: block;
+
+}
+
+
+.cfCategory{
+    width: 100%;
+    height: 34px;
+    padding-left: 5%;
+    font-size: 14px;
+    color: #000;
+    line-height: 34px;
+}
+
+.cfCategory span{
+    padding: 8px 10px;
+}
+/***********************站位 **********************/
+.position{
+    width: 100%;
+    height: 109px;
+}
+/***********************排序 **********************/
+
+.sort{
+    width: 90%;
+    height: 31px;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-bottom: 1px solid #ccc;
+    color: #666;
+    position: fixed;
+    top: 77px;
+    background: #fff;
+    z-index: 6;
+}
+
+.sort .left{
+    width: calc(80% - 1px);
+    height: 100%;
+    background-color: #fff;
+    border-right: 1px solid #ccc;
+}
+
+.sort .left .type{
+    width: calc(100% / 3);
+    height: 100%;
+    float: left;
+    text-align: center;
+    line-height: 31px;
+}
+
+
+.sort .right{
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    line-height: 31px;
+}
+
+
+
+
+.cfProduct{
+    width: 100%;
+    height: 131px;
+    background-color:#fff;
+}
+
+.cfProduct .productPic{
+    width: 40%;
+    height: 100%;
+    /*background-color: #000;*/
+}
+
+.cfProduct .productPic img{
+    width: 100%;
+    height: 100%;
+
+}
+
+.cfProduct .productDesc{
+    width: 55%;
+    border-bottom: 1px solid #ccc;
+    padding-top: 5%;
+    padding-right: 5%;
+}
+
+.descTitle{
+    width: 100%;
+    height: 35px;
+    /*限制div文字显示的行数并且将多余的已省略号显示*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;/*设置的行数*/
+    -webkit-box-orient: vertical;
+}
+
+.cfProduct .productDesc .descIp{
+    width: 100%;
+    margin-top: 3px;
+}
+
+.cfProduct .productDesc .descIp .express{
+    width: 35px;
+    height: 20px;
+    border-radius: 2px;
+    margin-top: 5px;
+    background-color: #ff0000;
+    line-height: 18px;
+    text-align: center;
+    color: #fff;
+}
+
+.cfProduct .productDesc .count{
+    width: 100%;
+    /*margin-top: 10px;*/
+}
+
+.cfProduct .productDesc .price{
+    padding: 5px;
+    color: #ff0000;
+    font-size: 16px;
+}
+
+.cfProduct .productDesc .price span{
+    font-size: 12px;
+}
+
+.cfProduct .productDesc .paymentNumber{
+    padding: 5px;
+    color: #cccccc;
+    margin-left: 5px;
+    line-height: 20px;
+}
+
+.cfProduct .productDesc .more{
+    width: 12px;
+    height: 12px;
+    background-image: url(../images/commodityList/more.png);
+    background-position: center;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    margin-top: 10px;
+}
+/***********************筛选模块 **********************/
+.screen{
+    width: 67%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 11;
+    background-color: #fff;
+    padding-left: 3%;
+    padding-top: 5%;
+    display: none;
+}
+
+.screen .close{
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    line-height: 25px;
+    text-align: center;
+}
+
+.screen .theme{
+    width: 100%;
+    /*根据里面的内容增加高度*/
+    display:inline-block;
+}
+
+.screen .ciiTitle {
+    width: 100%;
+    padding-bottom: 5%;
+}
+
+.screen .theme .listName{
+    width: 30%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #eeeeee;
+    color: #666666;
+    margin-right: 3%;
+    float: left;
+    margin-bottom: 3%;
+}
+
+.screen .line{
+    width: 97%;
+    height: 1px;
+    background-color: #ccc;
+    margin-bottom: 10px;
+}
+
+.selected{
+    width: 30%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #f4eee9;
+    color: #eb6100;
+    margin-right: 3%;
+    float: left;
+    margin-bottom: 3%;
+    position: relative;
+}
+
+.delete{
+    width: 30%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    /*background-color: #eb6100;*/
+    background-image: url(../images/commodityList/delete.png);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+}
+
+.screen .button{
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+
+.screen .button .left{
+    width: 50%;
+    height: 100%;
+    background-color: #f1c330;
+}
+
+.screen .button .right{
+    width: 50%;
+    height: 100%;
+    background-color: #eb6100;
+}
+
+.screen .theme .most{
+    width: 30%;
+    height: 40px;
+    text-align: center;
+    background-color: #eeeeee;
+    color: #666666;
+    margin-right: 3%;
+    float: left;
+    margin-bottom: 3%;
+}
+
+.screen .theme .choice{
+    width: calc(97% - 12px);
+    height: 22px;
+    padding: 4px 6px;
+    margin-bottom: 10px;
+    background-color: #eeeeee;
+}
+
+.screen .theme .choice .minimum{
+    width: 40%;
+    height: 100%;
+    line-height: 22px;
+    text-align: center;
+    background-color: #fff;
+    color: #333;
+}
+
+.screen .theme .choice .to{
+    width: 10%;
+    height: 2px;
+    background-color: #cccccc;
+    margin-top: 10px;
+    margin-left: 5%;
+}
+
+.screen .theme .choice .highest{
+    width: 40%;
+    height: 100%;
+    line-height: 22px;
+    text-align: center;
+    background-color: #fff;
+    color: #eeeeee;
+}
+
+.screen .theme .most span{
+    width: 100%;
+    height: 50%;
+    display: block;
+    line-height: 20px;
+}
+/***********************遮罩 **********************/
+
+.mask{
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.6;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+/************************商品评价********************/
+.evaluationCar {
+    width: 30px;
+    position: absolute;
+    top:0;
+    right:15%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 44px;
+    background-size: 18px;
+    background-image: url("../images/classification/car.png");
+}
+.evaluationMore {
+    width: 30px;
+    position: absolute;
+    top:0;
+    right:5%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 44px;
+    background-size: 20px 6px;
+    background-image: url("../images/classification/dd.png");
+}
+.evaluationArea {
+    height: 362px;
+    padding-top: 20px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    background-color: #FFFFFF;
+}
+.evaluationArea .evaluationArea_top {
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    font-size: 12px;
+}
+.evaluationArea .evaluationArea_top .figure {
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-top: 5px;
+    background-color:#CCCCCC;
+    margin-right: 20px;
+    border-radius: 15px;
+    background-size: cover;
+}
+.evaluationArea .evaluationArea_top .figure img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    vertical-align: sub;
+}
+.evaluationArea .speechArea {
+    width: 100%;
+    height: 322px;
+}
+.evaluationArea .speechArea .speech{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.evaluationArea .speechArea .speechPhoto {
+    width: 100%;
+
+
+}
+.evaluationArea .speechArea .speechPhoto .photoArea{
+    width: 32%;
+    height:104px;
+    margin-bottom: 10px;
+    float: left;
+    background-color: #CCCCCC;
+}
+.evaluationArea .speechArea .speechPhoto .photoArea:nth-of-type(even) {
+    margin-right: 2%;
+    margin-left: 2%;
+}
+.evaluationArea .speechArea .reply {
+    width:95%;
+    height: 90px;
+    padding-left: 5%;
+    padding-top: 10px;
+    margin-top: 20px;
+    position: relative;
+    background-color: #F7F7F7;
+}
+.evaluationArea .speechArea .reply .triangle {
+    width: 18px;
+    height: 9px;
+    background-size: cover;
+    position:absolute;
+    left:5%;
+    top:-9px;
+    background-image: url("../images/classification/triangle.png");
+    background-repeat: no-repeat;
+}
+
+
+
+/*2017.06.03*/
+.left .actives {color: #ff0000;}
+/*2017.06.05*/
+#fixed {position: fixed;top:109px;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);display: none;}
+#fixed .fixed_sort {width:95%;background: #fff;padding: 10px 0 10px 5%;border-bottom: 1px solid #eee;}
+#fixed .fixed_sort img {width:15px;height:10px;}
+#fixed .fixed_sort i {float:right;margin-right: 5%;}
+#fixed_list .fixed_list_active {color: #f00;}
+/*2017.06.07*/
+.product .product_ul {position: relative;width:110%;overflow: hidden;}
+.product .product_ul .product_li {width:21%;float:left;height:75px;margin: 0 2% 2% 0;}
+.product .product_ul .product_li img {height:100%;width:100%;}
+.shoppingCart_properties_title {width:100%;color: #000;font-size: 16px;text-align: center;height:35px;line-height: 35px;}
+.shoppingCart_properties_list {height:35px;line-height: 35px;font-size: 12px;}
+.shoppingCart_properties_list img {width:15px;height:15px;vertical-align: text-top;}
+.shoppingCart_properties_list span {margin-right: 10px;}
+.shoppingCart_properties_pro {height:35px;line-height: 35px;font-size: 12px;width:100%;border-bottom: 1px solid #eee;}
+.shoppingCart_properties_pro span {display: inline-block;}
+.shoppingCart_properties_pro span:first-child {width:60px;color: #d7d7d7;text-align: left;}
+.shoppingCart_properties_pro span:last-child {color: #000;text-align: left;}

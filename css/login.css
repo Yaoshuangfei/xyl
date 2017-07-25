@@ -1,0 +1,282 @@
+
+/*登录*/
+/*body {*/
+    /*background-color: #fff;*/
+/*}*/
+.siTop {
+    width: 90%;
+    height: 44px;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #007cc3;
+    line-height: 44px;
+    text-align: center;
+    position: relative;
+    top: 0;
+    left: 0;
+    color: #fff;
+    font-size: 18px;
+}
+.siTop .return {
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    background-image: url(../images/storeDetails/return.png);
+    background-position: left;
+    background-size: 30px;
+    background-repeat: no-repeat;
+}
+.siHead {
+    width: 100%;
+    height: 242px;
+    position: relative;
+}
+.siHead .pic {
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -65px;
+    margin-top: -65px;
+    border-radius: 130px;
+    background-color: #000000;
+}
+.siHead .pic img {
+    width: 100%;
+    border-radius: 130px;
+}
+.siDataBox {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    /*background-color: #fff;*/
+}
+.siDataBox .siAccount {
+    width: 100%;
+    height: 70px;
+}
+.siDataBox .siAccount .textBox {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: #fff;
+}
+.siDataBox .siAccount .textBox .l_logo {
+    width: 20%;
+    height: 100%;
+    border-right: 1px solid #eee;
+    float: left;
+    background-position: center;
+    background-size: 26px;
+    background-repeat: no-repeat;
+}
+.siDataBox .siAccount .textBox .r_input {
+    width: calc(69%);
+    height: 100%;
+    float: left;
+    padding-left: 10px;
+}
+.siDataBox .siAccount .textBox .r_input input {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0px;
+}
+.siDataBox .siAccount .siPrompt {
+    width: 100%;
+    height: 20px;
+    text-align: right;
+    color: red;
+    font-size: 12px;
+}
+.siDataBox .verification {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+}
+.siDataBox .verification .verificationBox {
+    width: 60%;
+    height: 100%;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    font-size: 14px;
+    color: #999;
+    float: left;
+}
+.siDataBox .verification .verificationBox input {
+    width: calc(90%);
+    height: 100%;
+    border: 0px;
+    padding-left: 10px;
+}
+.siDataBox .verification .verificationBtn {
+    width: 35%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #39b06e;
+    float: right;
+    color: #fff;
+    text-align: center;
+}
+.siDataBox .vPrompt {
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    margin-top: 5px;
+    color: red;
+}
+.siDataBox .guide {
+    width: 100%;
+    height: 25px;
+    color: #007cc3;
+    font-size: 12px;
+}
+.signInBtn {
+    width: 90%;
+    height: 40px;
+    background-color: #cccccc;
+    border-radius: 5px;
+    margin-left: 5%;
+    font-size: 18px;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 60px;
+}
+.user_Icon {
+    background-image: url(../images/loging/head.png);
+}
+.pw_Icon {
+    background-image: url(../images/loging/pw.png);
+}
+
+
+/*注册*/
+
+.dataBox {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 20px;
+    background-color: #fff;
+}
+.dataBox .rAccount {
+    width: 100%;
+    height: 70px;
+}
+.dataBox .rAccount .textBox {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.dataBox .rAccount .textBox .l_logo {
+    width: 20%;
+    height: 100%;
+    border-right: 1px solid #eee;
+    float: left;
+    background-position: center;
+    background-size: 26px;
+    background-repeat: no-repeat;
+}
+.dataBox .rAccount .textBox .r_input {
+    width: calc(69%);
+    height: 100%;
+    float: left;
+    padding-left: 10px;
+}
+.dataBox .rAccount .textBox .r_input input {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0px;
+}
+.dataBox .rAccount .rePrompt {
+    width: 100%;
+    height: 20px;
+    text-align: right;
+    color: red;
+    font-size: 12px;
+}
+.dataBox .verification {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 12px;
+}
+.dataBox .verification .verificationBox {
+    width: 60%;
+    /*height: 100%;*/
+    border-radius: 5px;
+    border: 1px solid #eee;
+    font-size: 14px;
+    color: #999;
+    float: left;
+}
+.dataBox .verification .verificationBox input {
+    width: calc(90%);
+    height: 100%;
+    border: 0px;
+    padding-left: 10px;
+}
+.dataBox .verification .verificationBtn {
+    width: 35%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #39b06e;
+    float: right;
+    color: #fff;
+    text-align: center;
+}
+.dataBox .vPrompt {
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    margin-top: 5px;
+    color: red;
+}
+.registerBtn {
+    width: 90%;
+    height: 40px;
+    background-color: #cccccc;
+    border-radius: 5px;
+    margin-left: 5%;
+    font-size: 18px;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+}
+.rPrompt {
+    width: 90%;
+    height: 25px;
+    margin-left: 5%;
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 5px;
+}
+.rPrompt a {
+    color: #26a5ff;
+}
+.user_Icon {
+    background-image: url(../images/loging/head.png);
+}
+.pw_Icon {
+    background-image: url(../images/loging/pw.png);
+}
+.pwT_Icon {
+    background-image: url(../images/loging/pwT.png);
+}
+.sys_Icon {
+    background-image: url(../images/loging/sys.png);
+}

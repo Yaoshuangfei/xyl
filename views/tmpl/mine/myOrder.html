@@ -1,0 +1,176 @@
+
+<div class="mine_warp"> 
+  <!--头部-->
+  <div class="store_top" >
+    <div class="end ui_btn" data-action="back"   id="fs" ></div>
+     <span>我的订单</span>
+  </div>
+  <div class="myOrder_selectArea breadth mT bB">
+    <div data-order="" class="myOrderOdd selectArea warp_Lt ui_btn" data-action="orderNum" id="myOrder"><div class="odd"></div>全部</div>
+    <div data-order="1" class="myOrderOdd  warp_Lt ui_btn" data-action="orderNum" id="pendingPayment">待付款</div>
+    <div data-order="2" class="myOrderOdd  warp_Lt ui_btn" data-action="orderNum" id="toBeShippedDetails">待发货</div>
+    <div data-order="5" class="myOrderOdd  warp_Lt ui_btn" data-action="orderNum" id="pendingReceipt">待收货</div>
+    <div data-order="6" class="myOrderOdd  warp_Lt ui_btn" data-action="orderNum" id="toBeEvaluated">待评价</div>
+  </div>
+  <!--全部-->
+  <div class="myOrder">
+    <!--<div class="shoppingCart_wareArea">-->
+      <!--&lt;!&ndash;头部店铺选择&ndash;&gt;-->
+      <!--<div class="shoppingCart_wareStore">-->
+        <!--<div class="shop"></div>-->
+        <!--<span class="warp_Lt">店铺名</span>-->
+        <!--<div class="quiet"></div>-->
+        <!--<span class="warp_Rg myOrder_reveal" >卖家已发货</span>-->
+      <!--</div>-->
+      <!--&lt;!&ndash;商品属性展示区&ndash;&gt;-->
+      <!--<div class="shoppingCart_wareDetails" style="height: 105px">-->
+        <!--<div class="shoppingCart_wareDetailTxt">-->
+          <!--<div class="print"></div>-->
+          <!--<div class="shoppingCart_wareTxt">-->
+            <!--<div class="myOrder_revealArea warp_Lt">-->
+              <!--<span class="warp_lC" style="height: 30px;">控油极男水油平衡套装男士护肤品套装控油极男水油平衡套</span>-->
+               <!--<span style="color: #cccccc;display: block">颜色分类：黑色</span>-->
+              <!--<div class="myOrder_quality">七天包退</div>-->
+            <!--</div>-->
+            <!--<div class="myOrder_reverlAreaL warp_Rg">-->
+              <!--<span style="color:#E60012">￥40.00</span>-->
+              <!--<span style="text-decoration:line-through;">￥40.00</span>-->
+              <!--<br/><br/>-->
+              <!--<span>X1</span>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--&lt;!&ndash;结算区&ndash;&gt;-->
+      <!--<div class="myOrder_settlementArea breadth bB">共1件商品 合计：<span style="font-size:.9875rem">¥ 40.00</span>(含运费¥0.00)</div>-->
+      <!--<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">-->
+        <!--<div class="settlementBtn warp_Rg changeBtn">付款</div>-->
+        <!--<div class="settlementBtn warp_Rg">取消订单</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+
+</div>
+
+
+
+<div class="BackOrder">
+  <div class="store_top" >
+    <span>取消订单</span>
+  </div>
+  <textarea name="" id="BackOrder_02" placeholder="请输入您退款的理由"></textarea>
+  <div class="wantToRechargePay " >
+    <div class="withdraw_btn ui_btn" data-action="BackOrdersuccess" style="margin-top: 155px;" id="success">确认</div>
+    <div class="withdraw_btn" style="margin-top: 20px;" id="cencal">算了QAQ</div>
+  </div>
+</div>
+
+
+<div class="wantToRecharge_shady" style="display: none"></div>
+<div class="wantToRecharge_payment" style="display: none">
+  <!--头部-->
+  <div class="wantToRechargeHeader breadth bB">
+    <div class="end" id="backs"></div>
+    <div class="end" id="backss" style="display: none;"></div>
+    <span>付款详情</span>
+  </div>
+  <!--付款方式-->
+  <div class="wantToRechargePay " >
+    <div class="wantToRechargeChangeArea bB"  style="background-image: url('images/recharge/start.png');">
+      <span style="font-size: 16px;color: #333;">付款方式</span>
+      <span class="warp_Rg" style="font-size: .75rem;margin-right:12px">微信</span>
+    </div>
+    <div class="wantToRechargeChangeArea">
+      需付款
+    </div>
+    <div class="withdraw_btn ui_btn"style="margin-top: 85px;" data-action="payFor">确认付款</div>
+  </div>
+  <!--支付选项-->
+  <div class="wantToRechargeChange bB" style="display: none" id="sdasda">
+    <div class="wantToRechargeChangeArea bB selecteds">
+      <div class="ChangeArea_btn warp_Lt"><img src="images/icon_wx.png" alt=""></div>
+      <span>微信</span>
+    </div>
+    <div class="wantToRechargeChangeArea wantToRecharge_balance " id="yue">
+      <div class="ChangeArea_btn warp_Lt" ><img src="images/icon_ye.png" alt=""></div>
+      <span>余额支付</span>
+    </div>
+  </div>
+</div>
+
+<div style="position: fixed;top:0;left:0;width:100%;height:100%;background: #fff;z-index: -1;"></div>
+
+<div id="payFixed" style="position: fixed;top:0;left:0;width:100%;height:100%;z-index: 999999;background: rgba(0,0,0,.5);display: none;">
+  <div style="background: #fff;position: fixed;bottom: 0;left: 0;width: 100%;height: 320px;">
+    <p style="    text-align: center;
+    padding: 25px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;">请输入您的支付密码</p>
+    <label style="display: block;
+    width: 100%;
+    height: 50px;
+    color: #000;text-align: center;line-height: 50px;"><input type="password" value="" placeholder="请在这里输出密码" id="passwords" style="padding-left: 10px;    padding-left: 10px;
+    border: 1px solid #eee;
+    width: 80%;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 8px;text-align: center;"></label>
+    <div id="paySuccess" class="ui_btn" data-action="paySuccessaf" style="width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;">确认支付</div>
+  </div>
+  <div id="cencalss" class="ui_btn" data-action="cencalss" style="    width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);">取消</div>
+</div>
+<div id="qrsh" style="position: fixed;top:0;left:0;width:100%;height:100%;z-index: 999999;background: rgba(0,0,0,.5);display: none;">
+  <div style="background: #fff;position: fixed;bottom: 0;left: 0;width: 100%;height: 320px;">
+    <p style="    text-align: center;
+    padding: 25px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;">确认收货</p>
+    <label style="display: block;
+    width: 100%;
+    height: 50px;
+    color: #000;text-align: center;line-height: 50px;"><input type="password" value="" placeholder="请在这里输入密码" id="passwordss" style="padding-left: 10px;    padding-left: 10px;
+    border: 1px solid #eee;
+    width: 80%;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 8px;text-align: center;"></label>
+    <div id="paySuccesss" class="ui_btn" data-action="payshouhuo" style="width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;">确认支付</div>
+  </div>
+  <div id="cencalsss" class="ui_btn" data-action="cencalss" style="    width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);">取消</div>
+</div>

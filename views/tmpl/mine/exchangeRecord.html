@@ -1,0 +1,49 @@
+	<div class="top" style="background: #fff;">
+		<div class="return" onclick="backPage()"></div>
+		记录
+	</div>
+
+	<div class="chooseBox" style="margin-top: 40px;background: inherit;">
+		<div class="not selection ui_btn" data-action="already" data-side="15">兑换记录</div>
+		<div class="already ui_btn" data-action="already" data-side="14">转账记录</div>
+	</div>
+	<div class="chooseSort" id="content_01">
+		<div>兑换张数</div>
+		<div>获得金豆数</div>
+		<div>兑换时间</div>
+	</div>
+	<div class="chooseSort" id="content_02" style="display: none;">
+		<div>转赠张数</div>
+		<div>转赠人</div>
+		<div>兑换时间</div>
+	</div>
+	<!-- 未兑换 -->
+	<div id="side1" class="chooseList" style="text-align: center;">
+		<div class="lists">
+			<div class="lists_01"></div>
+			<div class="lists_02"></div>
+			<div class="lists_03">
+				<p></p>
+				<p></p>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- 转赠 -->
+	<div class="donation">
+		<div class="donationIn">
+			<input type="text" name="" placeholder="赠送人账号">
+		</div>
+
+		<div class="donationIn">
+			<input  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" type="text" name="" placeholder="赠送数量">
+		</div>
+
+		<div class="miCancel ui_btn" data-action="cancel" >取消</div>
+		<div class="confirm">赠送</div>
+	</div>
+
+
+	<!-- 遮罩 -->
+	<div class="miMask ui_btn" data-action="cancel_no"></div>

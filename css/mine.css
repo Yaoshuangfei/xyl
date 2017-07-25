@@ -1,0 +1,3871 @@
+
+/*我的*/
+/**{*/
+    /*margin:0;*/
+    /*padding:0;*/
+    /*border:0;*/
+/*}*/
+
+/*body{*/
+    /*background-color: #f7f7f7;*/
+    /*font-family: "微软雅黑";*/
+    /*font-size: 12px;*/
+    /*color: #333;*/
+/*}*/
+
+/*.tL{*/
+    /*text-align: left;*/
+/*}*/
+
+/*.tR{*/
+    /*text-align: right;*/
+/*}*/
+
+/*.tC{*/
+    /*text-align:center;*/
+/*}*/
+
+/*.fL{*/
+    /*float: left;*/
+/*}*/
+
+/*.fR{*/
+    /*float: right;*/
+/*}*/
+
+.masks{
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.7;
+    position: fixed;
+    top:0px;
+    left: 0px;
+    z-index: 2;
+    display: none;
+}
+
+/***********************顶部 **********************/
+
+.smTop{
+    width: 100%;
+    height: 44px;
+    background-color: #007cc3;
+    line-height: 44px;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+.smTop .set{
+    line-height: 44px;
+    font-size: 12px;
+    color: #fff;
+    position: absolute;
+    right: 5%;
+    top: 0;
+}
+.smTop .return{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-image: url(../images/InitiateDonation/returnM.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 26px;
+}
+
+/***********************头像模块 **********************/
+
+.tHead{
+    width: 100%;
+    height: 200px;
+    background-color: #13a5bd;
+    position: relative;
+}
+
+.tHead .pic{
+    width: 55px;
+    height: 55px;
+    background-color: #000;
+    border-radius: 60px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    margin-left: -30px;
+    border:5px solid #97c4c7;
+    overflow: hidden;
+}
+
+.tHead .pic img{
+    width: 100%;
+    border-radius: 60px;
+}
+
+.tHead .name{
+    width: 100%;
+    position: absolute;
+    top: 90px;
+    left: 0px;
+    text-align: center;
+}
+
+.tHead .smData{
+    width: 90%;
+    height: 40px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgba(255,255,255,0.7);
+}
+
+.tHead .smData .balance{
+    width: 50%;
+    height: 100%;
+}
+
+.tHead .smData .Imazamox{
+    width: 50%;
+    height: 100%;
+}
+
+.smTitle{
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.smTitle .left{
+    width: 50px;
+    height: 20px;
+
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: 20px;
+}
+
+.smTitle .right{
+    width: 50%;
+    text-align: center;
+}
+
+.oNumber{
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #ff0000;
+    font-size: 16px;
+}
+
+.balanceSign{
+    background-image: url(../images/mine/money.png);
+}
+
+.ImazamoxSign{
+    background-image: url(../images/mine/Imazamox.png);
+}
+
+
+.follow{
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    padding-top: 10px;
+}
+
+.follow .numberT{
+    width: 50%;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+.follow .numberT p{
+    line-height: 20px;
+
+}
+
+
+/***********************定单 **********************/
+.order{
+    width: 100%;
+    /*height: 157px;*/
+    background-color: #fff;margin-top: 10px;
+
+}
+
+.order .title{
+    width: 90%;
+    height: 36px;
+    border-bottom: 1px solid #eee;
+    padding-left: 5%;
+    padding-right: 5%;
+    line-height: 36px;
+}
+
+.order .title span{
+    font-size: 16px;
+    color: #333;
+    float: left;
+}
+
+.order .title .more{
+    float: right;
+    font-size: 12px;
+    color: #666;
+    height: 100%;
+    width: 50%;
+}
+
+.order .title .more .go{
+    width: 80%;
+    height: 100%;
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+}
+
+.order .title .more .mGoIn{
+    width: 20px;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-image: url(../images/mine/point.png);
+}
+
+.order .orderType{
+    width: 90%;
+    height: 73px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.order .orderType .typeTox{
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+.order .orderType .typeTox .pic{
+    width:100%;
+    height: 40px;
+    margin-top: 5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40px;
+    position: relative;
+
+}
+
+.waitPay{
+    background-image: url(../images/mine/wait.png);
+}
+
+.waitDelivery{
+    background-image: url(../images/mine/waitDelivery.png);
+}
+
+.waitReceipt{
+    background-image: url(../images/mine/waitReceipt.png);
+}
+
+.waitEvaluate{
+    background-image: url(../images/mine/waitEvaluate.png);
+}
+
+.service{
+    background-image: url(../images/mine/service.png);
+}
+
+.order .orderType .typeTox .pic .number{
+    width: 15px;
+    height: 15px;
+    border:1px solid #e96300;
+    border-radius: 15px;
+    line-height: 15px;
+    text-align: center;
+    font-size: 12px;
+    position: absolute;
+    left: calc(50% + 10px);
+    top: 0px;
+    color: red;
+}
+
+.order .orderType .typeTox  .typeName{
+    width: 100%;
+    height: 23px;
+    line-height: 23px;
+    text-align: center;
+}
+
+.order .logistics{
+    width: 90%;
+    height: 39px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 10px;
+}
+
+.logistics .newest{
+    width: 30%;
+    height: 29px;
+    text-align: center;
+    border-right: 2px solid #ccc;
+}
+
+.logistics .mContent{
+    width: calc(70% - 2px);
+    height: 39px;
+}
+
+.logistics  .mContent .pic{
+    width: 28px;
+    height: 28px;
+    /*background-color: #000;*/
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.logistics  .mContent .pic img{
+    width: 100%;
+}
+
+.logistics  .mContent .information{
+    width: calc(100% - 38px);
+    height: 100%;
+    float: right;
+    /*限制div文字显示的行数并且将多余的已省略号显示*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;/*设置的行数*/
+    -webkit-box-orient: vertical;
+
+}
+
+/***********************类型 **********************/
+.typeRegion{
+    width: 90%;
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #fff;
+    /*border-bottom: 1px solid #eee;*/
+    border-top: 1px solid #eee;
+    padding: 10px 5%;
+}
+
+.typeList{
+    width: 25%;
+    height: 75px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+.typeLogo{
+    width: 100%;
+    height: 60px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40px;
+}
+
+.typeTitle{
+    width: 100%;
+    height: 15px;
+    line-height: 15px;
+    text-align: center;
+}
+
+.myUp{
+    background-image: url(../images/mine/myUp.png);
+}
+.myBill{
+    background-image: url(../images/mine/myBill.png);
+}
+.myWallet{
+    background-image: url(../images/mine/myWallet.png);
+}
+.aMyOrder{
+    background-image: url(../images/mine/myOrder.png);
+}
+.myShop{
+    background-image: url(../images/mine/myShop.png);
+}
+.myDistribution{
+    background-image: url(../images/mine/myDistribution.png);
+}
+.myCode{
+    background-image: url(../images/mine/myCode.png);
+}
+.myDonation{
+    background-image: url(../images/mine/myDonation.png);
+}
+.myRecharge{
+    background-image: url(../images/mine/myRecharge.png);
+}
+.myShare{
+    background-image: url(../images/mine/myShare.png);
+}
+.myService{
+    background-image: url(../images/mine/myService.png);
+}
+
+
+/***********************底部 **********************/
+.smBottom{
+    width: 90%;
+    height: 59px;
+    background-color: #007cc3;
+    padding-left: 5%;
+    padding-right: 5%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    z-index: 3;
+}
+
+.index{
+    width: calc(100% / 3);
+    height: 100%;
+}
+
+.index .logo{
+    width: 100%;
+    height: 35px;
+    background-image: url(../images/mine/indexLogo.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: 25px;
+}
+
+.index .title{
+    width: 100%;
+    height: 24px;
+    line-height: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: #f1c330;
+}
+
+
+.mine{
+    width: calc(100% / 3);
+    height: 100%;
+}
+
+
+.mine .logo{
+    width: 100%;
+    height: 35px;
+    background-image: url(../images/mine/smMine.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: 25px;
+}
+
+.mine .title{
+    width: 100%;
+    height: 24px;
+    line-height: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: #fff;
+}
+
+.telephone{
+    width: 49px;
+    height: 49px;
+    border-radius: 69px;
+    border:10px solid #f6b539;
+    background-color: #fff;
+    position: absolute;
+    top: -23px;
+    left: 50%;
+    margin-left: -34px;
+    background-image: url(../images/mine/call.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+}
+
+/*.mallShare{
+	width: 100%;
+	height: 130px;
+	background-color: #fff;
+	position: fixed;
+	bottom: 58px;
+	left: 0px;
+	z-index: 3;
+}*/
+
+.mallShare {
+    width: 250px;
+    height: 385px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -190px;
+    margin-left: -125px;
+    z-index: 5;
+    display: none;
+}
+.mall_img {
+    width: 250px;
+    height: 385px;
+    background-image: url(../images/mine/mallShare.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 10px;
+}
+.clos{
+    width: 20px;
+    height: 20px;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    line-height: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+
+/***********************分享 **********************/
+.bgMask{
+    width: 100%;
+    height: 100%;
+    background-color: #666666;
+    position: fixed;
+    z-index: 6;
+    top: 0;
+    left: 0;
+    opacity: .7;
+}
+
+.share{
+    width: 100%;
+    height: 402px;
+    background-color: #d3d3d3;
+    position: fixed;
+    z-index: 99999;
+    bottom: -296px;
+    left: 0;
+}
+
+.share .shareMethod{
+    width: 100%;
+}
+
+.share .shareMethod .mTop{
+    width: 100%;
+    height: 159px;
+    border-bottom: 1px solid #ffffff;
+
+}
+
+.share .shareMethod .bottom{
+    width: 100%;
+    height: 186px;
+    padding-top: 10px;
+    padding-left: 5%;
+}
+
+.share .shareMethod .shTop .shareTitle{
+    width: 100%;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.share .shareMethod .shTop .shareLogo{
+    width: 100%;
+    height: 104px;
+    padding-left: 5%;
+}
+
+.shareLogoFrame{
+    width:60px;
+    height: 100%;
+    float: left;
+    margin-left: 10px;
+}
+
+.shareLogoFrame .pic{
+    width: 100%;
+    height: 60px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.shareLogoFrame span{
+    display: block;
+    width: 100%;
+    height: 34px;
+    text-align: center;
+    line-height: 34px;
+    color: #666666;
+    font-size: 12px;
+}
+
+.share .cancel{
+    width: 100%;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    background-color: #ffffff;
+    font-size: 16px;
+    color: #666;
+}
+/***********************站位 **********************/
+.position{
+    width: 100%;
+    height: 44px;
+}
+
+.positionBottom{
+    width: 100%;
+    height: 82px;
+}
+
+
+/*意见反馈*/
+
+
+/***********************头部 **********************/
+
+.head{
+    width: 90%;
+    height: 44px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eee;
+    padding-left: 5%;
+    padding-right: 5%;
+    line-height: 44px;
+    text-align: center;
+    color: #000;
+    font-size: 18px;
+    position: relative;
+}
+
+.head .return{
+    width: 25%;
+    color: #000;
+    height: 100%;
+    background-image: url(../images/InitiateDonation/return.png);
+    background-position: 0px center;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+/***********************文本 **********************/
+
+.text{
+    width: 90%;
+    height: 196px;
+    padding: 5%;
+    background-color: #fff;
+}
+
+.text textarea{
+    width: 100%;
+    height: 100%;
+    color: #ccc;
+    resize:none;
+    border-bottom: 1px solid #eee;
+}
+
+/***********************图片上传 **********************/
+.pictureUpload{
+    width: 95%;
+    height: 94px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    /*	padding-left: 5%;*/
+    padding-right: 5%;
+}
+
+.pictureUpload .up{
+    width: 20%;
+    height: 70px;
+    margin-left: 5%;
+    background-color: #eee;
+    background-image: url(../images/InitiateDonation/up.png);
+    background-position:center;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    float:left;
+    margin-bottom: 5%;
+    position: relative;
+    overflow: hidden;
+}
+
+.pictureUpload .up input{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* 宽高和外围元素保持一致 */
+    height: 70px;
+    opacity: 0;
+    -moz-opacity: 0;  /* 兼容老式浏览器 */
+    filter: alpha(opacity=0); /* 兼容ie */
+}
+
+.pictureUpload .Prompt{
+    width: 70%;
+    height: 100%;
+    padding-left: 5%;
+    color: #ccc;
+}
+/***********************提交按钮 **********************/
+
+.submit{
+    width: 90%;
+    height: 39px;
+    border-radius: 10px;
+    background-color: #ec6941;
+    margin-left: 5%;
+    margin-top: 35px;
+    line-height: 39px;
+    text-align: center;
+    color: #fff;
+}
+
+/*个人中心*/
+
+
+.fa-rotate-45 {
+    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+    -webkit-transform: rotate(-10deg);
+    -ms-transform: rotate(-10deg);
+    transform: rotate(-10deg);
+}
+/***********************顶部 **********************/
+
+.pcTop{
+    width: 90%;
+    height: 44px;
+    background-color: #007cc3;
+    color: #fff;
+    font-size: 16px;
+    line-height: 44px;
+    text-align: center;
+    position: relative;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.logo{
+    width: 20px;
+    height: 100%;
+    background-image: url(../images/mine/back.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0px;
+}
+
+
+/***********************头部 **********************/
+
+.pcHead{
+    width: 90%;
+    height: 60px;
+    background-color: #fff;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.pcHead .pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    /*background-color: #dbdbdb;*/
+    border:5px solid #dbdbdb;
+    overflow: hidden;
+}
+
+.pcHead .pic img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.pcHead .information{
+    width: 55%;
+    height: 100%;
+    margin-left: 3%;
+
+}
+
+.pcHead .information .name{
+    font-size: 16px;
+}
+
+
+.pcHead .information .number{
+    color: #666;
+    margin-top: 10px;
+}
+
+.pcHead .pcGoIn{
+    width: 26px;
+    height: 26px;
+    line-height: 40px;
+    text-align: center;
+    color: #ccc;
+    background-image: url(../images/mine/point.png);
+    background-repeat: no-repeat;
+    -webkit-background-size: 26px 26px;
+    background-size: 26px 26px;
+    margin-top: 17px;
+}
+
+
+/***********************头部 **********************/
+.pcMyList{
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 10px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+}
+
+.pcList{
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #eee;
+    line-height:40px;
+
+}
+
+.pcMyList .pcList .pcTitle{
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.pcMyList .pcList .pcGoIn{
+    width: 26px;
+    height: 26px;
+    background-image: url(../images/mine/point.png);
+    background-repeat: no-repeat;
+    -webkit-background-size: 26px 26px;
+    background-size: 26px 26px;
+    margin-top: 7px;
+}
+
+.bankCard{
+    width: 30px;
+    height: 20px;
+    color: #f39800;
+    background-image: url(../images/mine/bankCard.png);
+    background-repeat: no-repeat;
+    -webkit-background-size: 30px 20px;
+    background-size: 30px 20px;
+    margin-top: 10px;
+}
+
+.friend{
+    width: 30px;
+    height: 20px;
+    color: #f39800;
+    background-image: url(../images/mine/friend.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: 20px 20px;
+    background-size: 20px 20px;
+    margin-top: 10px;
+}
+
+.distribution{
+    width: 30px;
+    height: 20px;
+    color: #f39800;
+    background-image: url(../images/mine/coll.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: 20px 20px;
+    background-size: 20px 20px;
+    margin-top: 10px;
+}
+
+.pcShare{
+    width: 30px;
+    height: 20px;
+    color: #f39800;
+    background-image: url(../images/mine/share.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: 20px 20px;
+    background-size: 20px 20px;
+    margin-top: 10px;
+}
+
+/*我的银行卡*/
+
+/***********************顶部 **********************/
+.bcTop{
+    width: 90%;
+    height: 44px;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #007cc3;
+    line-height: 44px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #fff;
+    font-size: 18px;
+    z-index: 5;
+}
+
+.bcTop .return{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    background-image: url(../images/storeDetails/return.png);
+    background-position:left;
+    background-size: 30px;
+    background-repeat: no-repeat;
+}
+
+.bcTop .add{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 5%;
+    background-image: url(../images/storeDetails/add.png);
+    background-position:right;
+    background-size: 20px;
+    background-repeat: no-repeat;
+}
+
+/***********************卡 **********************/
+.card{
+    width: 90%;
+    height: 60px;
+    border-radius: 5px;
+    margin-left: 5%;
+    margin-top: 20px;
+    /*	background-color: #133d97;*/
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.card .cardLogo{
+    width: 35px;
+    height: 35px;
+    background-color: #fff;
+    margin-left: 10px;
+    border-radius: 35px;
+    /*	background-image: url(../images/storeDetails/cardLogo.png);
+        background-position:center;
+        background-size: 100%;
+        background-repeat: no-repeat;	*/
+}
+
+.card .cardLogo img{
+    width: 100%;
+    height: 100%;
+}
+
+
+.cardInformation{
+    width: calc(100% - 65px);
+    height: 100%;
+    padding-left: 10px;
+}
+
+.cardInformation .bcTitle{
+    width: 100px;
+    height: 20px;
+    line-height: 20px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.cardInformation .type{
+    /*width: 100px;*/
+    height: 20px;
+    line-height: 20px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.cardInformation .number{
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.card  .paymentLogo{
+    width: 50px;
+    height: 15px;
+    background-image: url(../images/storeDetails/paymentLogo.png);
+    background-position:right;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    top:10px;
+    right: 10px;
+}
+
+.buildBg{
+    background: linear-gradient(left, #0863b2 0%, #1d1f83 100%);
+    background: linear-gradient(to right, #0863b2 0%,#1d1f83 100%);
+}
+
+.businessBg{
+    background: linear-gradient(left, #f29600 0%, #c15300 100%);
+    background: linear-gradient(to right, #f29600 0%,#c15300 100%);
+}
+
+.chinaBg{
+    background: linear-gradient(left, #ee5255 0%, #e50113 100%);
+    background: linear-gradient(to right, #ee5255 0%,#e50113 100%);
+}
+
+.agricultureBg{
+    background: linear-gradient(left, #588b0f 0%, #23811d 100%);
+    background: linear-gradient(to right, #588b0f 0%,#23811d 100%);
+}
+
+.trafficBg{
+    background: linear-gradient(left, #0e68da 0%, #1120bd 100%);
+    background: linear-gradient(to right, #0e68da 0%,#1120bd 100%);
+}
+
+/*添加银行卡*/
+
+
+/***********************顶部 **********************/
+.addTop{
+    width: 90%;
+    height: 44px;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #007cc3;
+    line-height: 44px;
+    text-align: center;
+    position: relative;
+    top: 0;
+    left: 0;
+    color: #fff;
+    font-size: 18px;
+}
+
+.addTop .return{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    background-image: url(../images/storeDetails/return.png);
+    background-position:left;
+    background-size: 30px;
+    background-repeat: no-repeat;
+}
+
+.addTop .add{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 5%;
+    background-image: url(../images/storeDetails/add.png);
+    background-position:right;
+    background-size: 20px;
+    background-repeat: no-repeat;
+}
+
+/***********************提示 **********************/
+
+.prompt{
+    width: 90%;
+    height: 50px;
+    line-height: 50px;
+    color: #666;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+
+.addZone{
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #fff;
+    font-size: 16px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    line-height: 50px;
+
+}
+
+.addZone .list{
+    width: 100%;
+    height: 55px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.addZone .list .name{
+    width: 20%;
+    height: 100%;
+    text-align: left;
+}
+
+.addZone .list input{
+    width: 80%;
+    height: 100%;
+}
+
+.addZone .list label{
+    width: 80%;
+    height: 100%;
+    font-size: 16px;
+}
+
+.addClear{
+    width: 25px;
+    height: 25px;
+    border-radius: 15px;
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    margin-top: -13px;
+    background-image: url(../images/storeDetails/clear.png);
+    background-position:center;
+    background-size: 25px;
+    background-repeat: no-repeat;
+
+}
+
+.submit{
+    width: 90%;
+    height: 39px;
+    background-color: #007cc3;
+    border-radius: 5px;
+    margin-left: 5%;
+    margin-top: 150px;
+    line-height: 39px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+}
+
+/*填写银行卡信息*/
+
+
+/***********************顶部 **********************/
+.fTop{
+    width: 90%;
+    height: 44px;
+    padding-left: 5%;
+    padding-right: 5%;
+    line-height: 44px;
+    text-align: center;
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+}
+
+.fTop .return{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    background-image: url(../images/storeDetails/returnTwo.png);
+    background-position:left;
+    background-size: 25px;
+    background-repeat: no-repeat;
+}
+
+
+
+
+.fInformation{
+    width: 90%;
+    height: 36px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    margin-top: 10px;
+    padding-left: 5%;
+    padding-right: 5%;
+    line-height: 36px;
+}
+
+.fInformation .fItitle{
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    font-size: 16px;
+}
+
+.fiiContent{
+    width: 75%;
+    height: 100%;
+    font-size: 14px;
+    padding-left: 5%;
+    position: relative;
+}
+
+.fInformation .fiiContent input{
+    width: 100%;
+    height: 100%;
+    display:block;
+}
+
+.notice{
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/storeDetails/notice.png);
+    background-position:left;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    margin-top: -10px;
+}
+
+/***********************按钮 **********************/
+
+.fiSubmit{
+    width: 90%;
+    height: 39px;
+    background-color: #007cc3;
+    border-radius: 5px;
+    margin-left: 5%;
+    margin-top: 150px;
+    line-height: 39px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+}
+
+
+/*我的朋友圈*/
+
+
+
+/***********************顶部 **********************/
+
+
+.cTop{
+    width: 100%;
+    height: 44px;
+    border-bottom: 1px solid #eee;
+    line-height: 44px;
+    text-align: center;
+    position: fixed;
+    font-size: 18px;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    background-color: #f7f7f7
+}
+
+.cTop .return{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    background-image: url(../images/storeDetails/returnTwo.png);
+    background-position:left;
+    background-size: 30px;
+    background-repeat: no-repeat;
+}
+
+/***********************头像模块 **********************/
+
+.cHead{
+    width: 100%;
+    height: 160px;
+    background-color: #fff;
+    position: relative;
+}
+
+.cHead .pic{
+    width: 55px;
+    height: 55px;
+    background-color: #000;
+    border-radius: 60px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    margin-left: -30px;
+    border:5px solid #dbdbdb;
+}
+
+.cHead .pic img{
+    width: 100%;
+    border-radius: 60px;
+}
+
+.cHead .name{
+    width: 100%;
+    position: absolute;
+    top: 90px;
+    left: 0px;
+    text-align: center;
+}
+
+.cHead .smData{
+    width: 90%;
+    height: 40px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgba(255,255,255,0.7);
+}
+
+.cHead .smData .cTitle{
+    width: 50%;
+    height: 100%;
+    line-height: 40px;
+    text-align: center;
+}
+
+
+
+/***********************类型 **********************/
+.sc{
+    color: #007cc3;
+}
+
+.cType{
+    width: 100%;
+    height: 36px;
+    border-bottom: 1px solid #eee;
+    line-height: 36px;
+    font-size: 16px;
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.cType .cTitle{
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    float: left;
+}
+.cType .cTitle:active {
+    background: #eee;
+}
+.cType .left{
+
+}
+.list_sort {
+    display: none;
+}
+
+.cType .right{
+    width: calc(50% - 1px);
+    border-left: 1px solid #eee;
+}
+
+.cGrade{
+    width: 100%;
+    height: 34px;
+    /*border-top: 1px solid #eee;*/
+    border-bottom: 1px solid #eee;
+    line-height: 34px;
+    font-size: 14px;
+}
+
+.cGrade .gradeType{
+    width: calc( 100% / 3 );
+    height: 100%;
+    text-align: center;
+    float: left;
+}
+
+.cGrade .center{
+    width: calc(100% /3 - 2px);
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+}
+
+
+.numberList{
+    width: 90%;
+    /*	height: 351px;*/
+    background-color: #fff;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: none;
+}
+
+.cList{
+    width: 100%;
+    height: 50px;
+    display: inline-block;
+    border-bottom: 1px solid #eee;
+}
+
+.cList .cfHead{
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    margin-top: 10px;
+    /*	background-image: url(../images/storeDetails/head.png);
+        background-position:left;
+        background-size: 30px;
+        background-repeat: no-repeat;*/
+}
+
+.cList .cfHead img{
+    width:30px;
+    height:30px;
+    border-radius: 30px;
+}
+
+
+.cList .cfData{
+    width: 56%;
+    height: 30px;
+    margin-top: 10px;
+    padding-left: 4%;
+}
+
+.cList .cfTime{
+    width: calc(40% - 30px);
+    height: 30px;
+    margin-top: 10px;
+    color: #ccc;
+    line-height: 30px;
+    text-align: center;
+}
+
+.cList .coSee{
+    width:35px;
+    height: 35px;
+    margin-top: 10px;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #007cc3;
+}
+
+.cList .no {
+    background-color: #eee;
+}
+
+/***********************站位 **********************/
+/*.position{*/
+    /*width: 100%;*/
+    /*height: 44px;*/
+/*}*/
+
+/*.positionBottom{*/
+    /*width: 100%;*/
+    /*height: 60px;*/
+/*}*/
+
+
+/*我的分享商品*/
+
+/***********************顶部 **********************/
+.mscTop{
+    width: 90%;
+    height: 44px;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #f7f7f7;
+    line-height: 44px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #333;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+    z-index:1;
+}
+
+.mscTop .return{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    background-image: url(../images/storeDetails/returnTwo.png);
+    background-position:left;
+    background-size: 26px;
+    background-repeat: no-repeat;
+}
+
+.mscTop .edit{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 5%;
+    font-size: 12px;
+}
+
+/***********************商品 **********************/
+
+.shareCommodity{
+    width: 100%;
+    background-color: #ffffff;
+
+}
+
+.mscList{
+    width: 100%;
+    height: 102px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    /*overflow: auto;*/
+
+}
+
+.mscList .select{
+    width: 10%;
+    height: 100%;
+    position: absolute;
+    left: -10%;
+    top: 0px;
+}
+
+.mscList .select .but{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    /*	position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -10px;
+        margin-left: -10px;*/
+    background-image: url(../images/storeDetails/noChoice.png);
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.mscList .commodity{
+    width: 95%;
+    height: 100%;
+    padding-left: 5%;
+}
+
+.mscList .commodity .pic{
+    width: 81px;
+    height: 81px;
+    margin-top: 10px;
+}
+
+.mscList .commodity .pic img{
+    width: 100%;
+}
+
+.mscList .commodity .mscContent{
+    width: calc(80% - 91px);
+    height: calc(100% - 10px);
+    padding-top: 10px;
+    padding-left: 10px;
+
+}
+
+.mscList .commodity .mscContent .mscTitle{
+    width: 60%;
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    /*限制div文字显示的行数并且将多余的已省略号显示*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;/*设置的行数*/
+    -webkit-box-orient: vertical;
+}
+
+.mscList .commodity .mscContent .mscIntroduce{
+    width: 100%;
+    color: #666;
+    /*margin-top: 5px;*/
+    /*限制div文字显示的行数并且将多余的已省略号显示*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;/*设置的行数*/
+    -webkit-box-orient: vertical;
+}
+
+.mscList .commodity .mscContent .salesVolume{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.mscList .commodity .obtain{
+    width: 20%;
+    height: 100%;
+    color: #f6b539;
+    line-height: 125px;
+    text-align: center;
+    background-image: url(../images/storeDetails/obtain.png);
+    background-size: 26px;
+    background-position: center 22px;
+    background-repeat: no-repeat;
+}
+
+.mscList .singleDelete{
+    width: 15%;
+    height: 100%;
+    background-color: red;
+    position: absolute;
+    right: -15%;
+    top: 0px;
+    line-height: 100px;
+    text-align: center;
+    color: #fff;
+}
+
+
+
+
+.editWhole{
+    width: 100%;
+    height: 44px;
+    border-top: 1px solid #eee;
+    background-color: #f7f7f7;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+.editWhole .wholeSelect{
+    width: calc(55% - 20px);
+    height: 100%;
+    position: relative;
+    line-height: 44px;
+    padding-left: calc(5% + 20px);
+}
+
+.editWhole .wholeSelect .but{
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    position: absolute;
+    left:5%;
+    top:50%;
+    margin-top: -10px;
+    background-image: url(../images/storeDetails/noChoice.png);
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.editWhole .wholeDelete{
+    width: 40%;
+    height: 100%;
+    background-color: red;
+    line-height: 44px;
+    text-align: center;
+    color: #fff;
+}
+
+/*我的收藏*/
+
+
+/***********************顶部 **********************/
+.mcTop{
+    width: 90%;
+    height: 44px;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #fff;
+    line-height: 44px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #333;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+    z-index:6;
+}
+
+.mcTop .return{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    background-image: url(../images/storeDetails/returnTwo.png);
+    background-position:left;
+    background-size: 26px;
+    background-repeat: no-repeat;
+}
+
+.mcTop .edit{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 5%;
+    font-size: 12px;
+}
+
+
+/***********************类别 **********************/
+.CollectionType{
+    width: 100%;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    position: fixed;
+    top: 44px;
+    left: 0;
+    background-color: #FFF;
+    z-index: 10;
+}
+.type{
+    width: 50%;
+    height:100%;
+}
+
+/***********************商品 **********************/
+
+.shareCommodity{
+    width: 100%;
+    background-color: #ffffff;
+
+}
+
+.shareCommodity .paragraph{
+    width: 95%;
+    height: 30px;
+    background-color: #f7f7f7;
+    padding-left: 5%;
+    position: relative;
+    z-index: 5;
+}
+
+
+.wholeSelect{
+    width: 30%;
+    height: 100%;
+    position: relative;
+    line-height: 30px;
+    /*padding-left: calc(5% + 20px);*/
+}
+
+.but{
+    width: 10%;
+    height: 100%;
+    border-radius: 20px;
+    /*	position: absolute;
+        left:5%;
+        top:50%;
+        margin-top: -10px;*/
+    background-image: url(../images/storeDetails/noChoice.png);
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.list{
+    width: 100%;
+    height: 102px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    /*overflow: auto;*/
+    transition: left cubic-bezier(.68,.69,.11,.4) 0.2s;
+    -webkit-transition: left cubic-bezier(.68,.69,.11,.4) 0.2s;
+
+}
+
+.list .select{
+    width: 10%;
+    height: 100%;
+    position: absolute;
+    left: -10%;
+    top: 0;
+    z-index: 999;
+}
+
+.list .select .but{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    /*	position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -10px;
+        margin-left: -10px;*/
+    background-image: url(../images/storeDetails/noChoice.png);
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.list .commodity{
+    width: 95%;
+    height: 100%;
+    padding-left: 5%;
+}
+
+.list .commodity .pic{
+    width: 81px;
+    height: 81px;
+    margin-top: 10px;
+}
+
+.list .commodity .pic img{
+    width: 100%;
+}
+
+.list .commodity .content{
+    width: calc(85% - 91px);
+    height: calc(100% - 10px);
+    padding-top: 10px;
+    padding-left: 10px;
+
+}
+
+.list .commodity .content .title{
+    width: 60%;
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    /*限制div文字显示的行数并且将多余的已省略号显示*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;/*设置的行数*/
+    -webkit-box-orient: vertical;
+}
+
+.list .commodity .content .mcIntroduce{
+    width: 100%;
+    color: #666;
+    /*margin-top: 5px;*/
+    /*限制div文字显示的行数并且将多余的已省略号显示*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;/*设置的行数*/
+    -webkit-box-orient: vertical;
+}
+
+.list .commodity .content .salesVolume{
+    width: 100%;
+    margin-top: 10px;
+
+}
+
+.list .commodity .content .salesVolume{
+    color: red;
+    font-size: 15px;
+}
+
+.list .commodity .more{
+    width: 15%;
+    height: 25%;
+    color: #f6b539;
+    line-height: 125px;
+    text-align: center;
+    background-image: url(../images/mine/more.png);
+    background-size: 26px;
+    background-position: center 80%;
+    background-repeat: no-repeat;
+    bottom:0;
+    right:0;
+    position: absolute;
+}
+
+.list .singleDelete{
+    width: 15%;
+    height: 100%;
+    background-color: red;
+    position: absolute;
+    right: -15%;
+    top: 0px;
+    line-height: 100px;
+    text-align: center;
+    color: #fff;
+    z-index: 999;
+}
+
+.editWhole{
+    width: 100%;
+    height: 44px;
+    border-top: 1px solid #eee;
+    background-color: #f7f7f7;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.editWhole .wholeDelete{
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    line-height: 44px;
+    text-align: center;
+    color: #fff;
+}
+
+
+/***********************更多 **********************/
+
+.moreModules{
+    width: 100%;
+    height: 181px;
+    background-color: #ccc;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 99999;
+}
+
+.mcCancel{
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    line-height: 50px;
+    text-align: center;
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.moreModulesType{
+    width: 170px;
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    margin-left: -85px;
+}
+
+.moreModulesType .type{
+    width: 50px;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+    float: left;
+}
+.CollectionType .type:active {background: #eee;}
+/***********************遮罩 **********************/
+
+.bgMask{
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.5;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 9999;
+}
+
+/***********************站位 **********************/
+.position{
+    width: 100%;
+    height: 78px;
+}
+
+.positionBottom{
+    width: 100%;
+    height: 44px;
+}
+
+
+
+/*阻止事件遮罩层*/
+#top_fixed {position: fixed;top:0;left:0;width:100%;height:100%;background: #eee;z-index: 99;opacity: 0;display: none;}
+#bottom_fixed {position: fixed;top:45px;left:0;width:100%;height:100%;background: #eee;z-index: 4;opacity: 0;display: none;}
+
+
+
+/*新增修改项2017.5.12*/
+.type_tab {display: none;}
+/*商家*/
+#side2 .shareCommodity{
+    width: 100%;
+    background-color: #ffffff;
+
+}
+
+#side2 .list{
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    /*overflow: auto;*/
+
+}
+
+#side2 .list .select{
+    width: 10%;
+    height: 100%;
+    position: absolute;
+    left: -10%;
+    top: 0px;
+}
+
+#side2 .list .select .but{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    /*	position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -10px;
+        margin-left: -10px;*/
+    background-image: url(../images/storeDetails/noChoice.png);
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#side2 .list .commodity{
+    width: 95%;
+    height: 100%;
+    padding-left: 5%;
+}
+
+#side2 .list .commodity .pic{
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+}
+
+#side2 .list .commodity .pic img{
+    width: 100%;
+}
+
+#side2 .list .commodity .content{
+    width: calc(85% - 91px);
+    height: calc(100% - 10px);
+    padding-top: 10px;
+    padding-left: 10px;
+
+}
+
+#side2 .list .commodity .content .title{
+    width: 60%;
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    /*限制div文字显示的行数并且将多余的已省略号显示*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;/*设置的行数*/
+    -webkit-box-orient: vertical;
+}
+
+#side2 .list .commodity .content .mcIntroduce{
+    width: 100%;
+    color: #666;
+    /*margin-top: 5px;*/
+    /*限制div文字显示的行数并且将多余的已省略号显示*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;/*设置的行数*/
+    -webkit-box-orient: vertical;
+}
+#side2 .list .commodity .more{
+    width: 15%;
+    height: 100%;
+    color: #f6b539;
+    line-height: 125px;
+    text-align: center;
+    background-image: url(../images/mine/more.png);
+    background-size: 26px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#side2 .list .singleDelete{
+    width: 15%;
+    height: 100%;
+    background-color: red;
+    position: absolute;
+    right: -15%;
+    top: 0px;
+    line-height: 60px;
+    text-align: center;
+    color: #fff;
+}
+
+#side2 .editWhole{
+    width: 100%;
+    height: 44px;
+    border-top: 1px solid #eee;
+    background-color: #f7f7f7;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+#side2 .editWhole .wholeDelete{
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    line-height: 44px;
+    text-align: center;
+    color: #fff;
+}
+
+/*我的上级*/
+
+/***********************顶部 **********************/
+.top{
+    width: 90%;
+    height: 44px;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #f7f7f7;
+    line-height: 44px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #333;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+    z-index:1;
+}
+
+.top .return{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    background-image: url(../images/storeDetails/returnTwo.png);
+    background-position:left;
+    background-size: 26px;
+    background-repeat: no-repeat;
+}
+
+.top .edit{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 5%;
+    font-size: 12px;
+}
+
+
+/***********************头像模块 **********************/
+
+.msHead{
+    width: 90%;
+    height: 77px;
+    background-color: #fff;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 23px;
+}
+
+.msHead .pic{
+    width: 50px;
+    height: 50px;
+    border:4px solid #DBDBDB;
+    border-radius: 50px;
+    background-color: #000;
+    float: left;
+}
+
+.msHead .name{
+    width: calc(100% - 68px);
+    height: 100%;
+    float: right;
+    padding-left: 10px;
+}
+
+.msHead .name span{
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    color: #333;
+}
+
+.msHead .name p{
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    color: #666;
+}
+
+/***********************上级资料 **********************/
+
+.superiorData{
+    width: 95%;
+    height: 123px;
+    background-color: #fff;
+    margin-top: 10px;
+    padding-left: 5%;
+    /*padding-right: 5%;*/
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+}
+
+.superiorData .msList{
+    width: 95%;
+    height: 40px;
+    border-bottom: 1px solid #eee;
+    padding-right: 5%;
+}
+
+.superiorData .msList .left{
+    width: 50%;
+    height: 100%;
+    float: left;
+    text-align: left;
+    line-height: 40px;
+    font-size: 14px;
+    color: #333;
+}
+
+.superiorData .msList .right{
+    width: 50%;
+    height: 100%;
+    float: left;
+    text-align: right;
+    line-height: 40px;
+    font-size: 12px;
+    color: #666;
+}
+
+
+/*我的钱包*/
+
+
+.mmTop{
+    width: 90%;
+    height: 44px;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #007CC3 ;
+    line-height: 44px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #fff;
+    font-size: 18px;
+    z-index:1;
+}
+
+.mmTop .return{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    background-image: url(../images/mine/back.png);
+    background-position:left;
+    background-size: 20px;
+    background-repeat: no-repeat;
+}
+
+.mmTop .mmBill{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 5%;
+    font-size: 12px;
+}
+
+/*********************** **********************/
+
+.totalAmount{
+    width: 95%;
+    height: 140px;
+    background-color: #007CC3 ;
+    color: #fff;
+    padding-left: 5%;
+}
+
+.totalAmount .title{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display:inline-block;
+    color: #eee;
+}
+
+.totalAmount .mmNumber{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 50px;
+}
+
+.moneyType{
+    width: 100%;
+    height: 55px;
+    /*padding-left: 5%;*/
+    /*padding-right: 5%;*/
+    background-color: #fff;
+}
+
+.moneyType .typeBox{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.moneyType .typeBox .number{
+    width: 100%;
+    height: 50%;
+    line-height: 30px;
+    font-size: 16px;
+    color: #EB4200;
+    text-align: center;
+}
+
+.moneyType .typeBox .typeNmae{
+    width: 100%;
+    height: 50%;
+    line-height: 20px;
+    font-size: 12px;
+    color: #666666;
+    text-align: center;
+}
+
+
+.walletBottom{
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    /*margin-top: 110px;*/
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+}
+
+.button{
+    width: 50%;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    float: left;
+    color: #007CC3;
+    font-size: 16px;
+}
+
+.recharge{
+    background-color: #007CC3;
+    color: #fff;
+}
+
+
+/*我的金豆*/
+
+
+/***********************顶部 **********************/
+.top{
+    width: 90%;
+    height: 44px;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #f7f7f7;
+    line-height: 44px;
+    text-align: center;
+    position: relative;
+    top: 0;
+    left: 0;
+    color: #333;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+}
+
+.top .return{
+    width: 40px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    background-image: url(../images/mine/return.png);
+    background-position:left;
+    background-size: 30px;
+    background-repeat: no-repeat;
+}
+
+
+
+.rechargeType{
+    width: 90%;
+    height: 200px;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color:#fff;
+    position: relative;
+}
+
+.rechargeType .typeBox{
+    width: 30%;
+    height: 100%;
+    float: left;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.rechargeType .typeBox .pic{
+    width: 100%;
+    height: 44px;
+    margin-top: 40px;
+    position: relative;
+}
+
+.rechargeType .typeBox .pic img{
+    width: 75px;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    margin-left: -37px;
+    top: 0px;
+}
+
+.rechargeType .typeBox .number{
+    width: 100%;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    margin-top: 18px;
+}
+
+.rechargeType .typeBox .name{
+    width: 100%;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-top: 11px;
+}
+
+.rechargeType .typeBox .operation{
+    width: 100%;
+    margin-top: 10%;
+    font-size: 12px;
+    color: #007cc3;
+    text-align: center;
+}
+
+.rechargeType .miLine{
+    width: 2px;
+    height: 100px;
+    background-color: #eee;
+    position: absolute;
+    left: 50%;
+    margin-left: -1px;
+    top: 50px;
+    z-index: 0;
+}
+
+
+.rechargeMoney{
+    width: 90%;
+    height: 34px;
+    padding-left: 5%;
+    padding-right: 5%;
+    line-height: 34px;
+    font-size: 14px;
+    color: #ccc;
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+.rechargeMoney .miHint{
+    width: 20%;
+    height: 100%;
+    color: #333;
+    float: left;
+}
+
+.rechargeMoney .import{
+    width: 80%;
+    height: 100%;
+    float: left;
+}
+
+.rechargeMoney .import input{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.rechargebtn{
+    width: 90%;
+    height: 40px;
+    background-color: #007cc3;
+    line-height: 40px;
+    font-size: 18px;
+    color: #fff;
+    margin-top: 100px;
+    margin-left: 5%;
+    border-radius: 5px;
+    text-align:center;
+}
+
+
+.rechargeMode{
+    width: 90%;
+    height: 195px;
+    padding-left: 5%;
+    padding-right: 5%;
+    position: fixed;
+    bottom: -195px;
+    left: 0;
+    z-index: 3;
+    background-color: #f7f7f7;
+}
+
+.rechargeMode .title{
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+}
+
+.rechargeMode .mode{
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    color: #666;
+}
+
+.rechargeMode .miLogo{
+    width: 22px;
+    height: 100%;
+    float: left;
+}
+
+.rechargeMode .miLogo img{
+    width: 100%;
+    margin-top: 7px;
+}
+
+.rechargeMode .name{
+    width: calc(100% - 32px);
+    height: 100%;
+    float: left;
+    padding-left: 10px;
+}
+
+.rechargeCancel{
+    width: 100%;
+    height: 44px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background-color: #fff;
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+    line-height: 44px;
+}
+
+.donation{
+    width: 80%;
+    height: 170px;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #fff;
+    border-radius: 5px;
+    position: fixed;
+    top: 50%;
+    margin-top: -95px;
+    left: 5%;
+    z-index: 3;
+    padding-top: 20px;
+    display: none;
+}
+
+.donationIn{
+    width: calc(100% - 10px);
+    height: 38px;
+    border:1px solid #eee;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #ccc;
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+.donationIn input{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.miCancel{
+    width: 45%;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 5px;
+    float: left;
+    line-height: 40px;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+}
+
+.confirm{
+    width: 45%;
+    height: 40px;
+    background-color: #007cc3;
+    border-radius: 5px;
+    float: right;
+    line-height: 40px;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+}
+
+.miMask{
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: none;
+}
+
+/*兑换金豆*/
+
+.top {
+    background-color: #f7f7f7;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+.ePic {
+    width: 100%;
+    height: 147px;
+    background-color: #fff;
+    background-image: url(../images/mine/ImazamoxT.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: 100px;
+    background-size: 100px;
+    margin-bottom: 10px;
+}
+.exBox {
+    width: 95%;
+    height: 40px;
+    line-height: 40px;
+    background-color: #fff;
+    padding-left: 5%;
+    font-size: 12px;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+.exBox span {
+    display: block;
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+.exBox input {
+    width: 80%;
+    height: 100%;
+    border: 0px;
+    float: left;
+}
+.exBtn {
+    width: 90%;
+    height: 40px;
+    background-color: #007cc3;
+    border-radius: 5px;
+    line-height: 40px;
+    text-align: center;
+    margin-left: 5%;
+    margin-top: 100px;
+    font-size: 18px;
+    color: #fff;
+}
+/*/!***********************վλ **********************!/*/
+/*.position {*/
+    /*width: 100%;*/
+/*}*/
+/*.positionBottom {*/
+    /*width: 100%;*/
+/*}*/
+
+
+/*购物*/
+
+.mine_warp {
+    width: 100%;
+    overflow: auto;
+}
+.mine_warp .logisticsMessage_area {
+    width: 100%;
+    height: 158px;
+    padding-top: 20px;
+}
+.mine_warp .logisticsMessage_area .logisticsMessage_area_date {
+    width: 122px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    margin: 0 auto;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #ccc;
+}
+.mine_warp .logisticsMessage_area .logisticsMessage_area_tidings {
+    width: 80%;
+    height: 105px;
+    padding: 5px 4% 0 4%;
+    margin: 20px auto;
+    box-shadow: 0px 0px 8px #bdbcbc;
+    border-radius: 5px;
+    background: #fff;
+}
+.mine_warp .logisticsMessage_area .logisticsMessage_area_tidings .logisticsMessage_area_detail {
+    width: 100%;
+    height: 100%;
+    margin-top: 10px;
+}
+.mine_warp .logisticsMessage_area .logisticsMessage_area_tidings .logisticsMessage_area_detail .banner {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    margin-right: 20px;
+    float: left;
+    background-color: #007cc3;
+}
+.mine_warp .logisticsMessage_area .logisticsMessage_area_tidings .logisticsMessage_area_detail span:nth-child(2) {
+    color: #666;
+    display: block;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+}
+.mine_warp .logisticsMessage_area .logisticsMessage_area_tidings .logisticsMessage_area_detail span:nth-child(3) {
+    color: #ccc;
+    display: block;
+    font-size: 12px;
+}
+.mine_warp .information_nav {
+    width: 90%;
+    height: 50px;
+    margin: 0 auto;
+    padding-top: 20px;
+    position: relative;
+}
+.mine_warp .information_nav .information_icon {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 20px;
+    background-size: cover;
+}
+.mine_warp .information_nav .information_txt {
+    width: 80%;
+    height: 100%;
+    padding-left: 20%;
+    font-size: 12px;
+    color: #666;
+}
+.mine_warp .information_nav .information_txt span:nth-child(1) {
+    font-size: 16px;
+    color: #333;
+}
+.mine_warp .information_nav .information_txt span:nth-child(3) {
+    display: block;
+    margin-top: 7px;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.mine_warp .information_nav .information_txt hr {
+    margin-top: 14px;
+    border: 0;
+    height: 1px;
+    background: #ccc;
+}
+.mine_warp .shoppingCart_wareArea {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareStore {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 36px;
+    color: #000;
+    font-size: .75rem;
+    line-height: 36px;
+    background: #ffffff;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareStore .quiet {
+    width: 30px;
+    height: 36px;
+    float: left;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("../images/store/quiet.png");
+    background-size: 8px 10px;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareStore span:nth-child(2) {
+    font-size: .875rem;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails {
+    width: 100%;
+    height: 100px;
+    background: #f7f7f7;
+    border-bottom: 1px solid #eee;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails .shoppingCart_wareDetailTxt {
+    width: 94%;
+    padding: 10px 3%;
+    height: 80px;
+    font-size: .75rem;
+    margin-right: 20px;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails .shoppingCart_wareDetailTxt .shoppingCart_wareTxt {
+    width: 95%;
+    height: 80px;
+    padding-left: 5%;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails .shoppingCart_wareDetailTxt .shoppingCart_wareTxt span {
+    margin-bottom: 10px;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails .shoppingCart_wareDetailTxt .shoppingCart_wareTxt .shoppingCart_price {
+    width: 100%;
+    line-height: 25px;
+    color: #E60012;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails .shoppingCart_wareDetailTxt .shoppingCart_wareTxt .shoppingCart_price span {
+    margin-bottom: 0;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails .shoppingCart_wareDetailTxt .shoppingCart_wareEditArea {
+    width: 95%;
+    height: 80px;
+    display: none;
+    background: #f7f7f7;
+    margin-left: 5%;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails .shoppingCart_wareDetailTxt .shoppingCart_wareEditArea .shoppingCart_wareContent {
+    width: 57%;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails .shoppingCart_wareDetailTxt .shoppingCart_wareEditArea .shoppingCart_wareContent .shoppingCart_digitalAddition {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    height: 40px;
+    line-height: 40px;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails .shoppingCart_wareDetailTxt .shoppingCart_wareEditArea .shoppingCart_wareContent .shoppingCart_digitalAddition .minus {
+    width: 25%;
+    height: 40px;
+    text-align: center;
+    margin-left: 2% ;
+    background-size: 20px 2px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("../images/store/minus.png");
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails .shoppingCart_wareDetailTxt .shoppingCart_wareEditArea .shoppingCart_wareContent .shoppingCart_digitalAddition .number {
+    text-align: center;
+    float: left;
+    width: 35%;
+    padding-left: 2%;
+    padding-right: 2%;
+    line-height: 20px;
+    height: 20px;
+    margin-top: 10px;
+    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails .shoppingCart_wareDetailTxt .shoppingCart_wareEditArea .shoppingCart_wareContent .shoppingCart_digitalAddition .plus {
+    width: 25%;
+    text-align: center;
+    height: 40px;
+    margin-right: 2%;
+    background-size: 20px 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("../images/store/min.png");
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails .shoppingCart_wareDetailTxt .shoppingCart_wareEditArea .shoppingCart_wareContent .shoppingCart_digitalAddition .down {
+    width: 10px;
+    height: 40px;
+    background-size: 10px 6px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("../images/store/down.png");
+    margin-right: 10px;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails .shoppingCart_wareDetailTxt .shoppingCart_wareEditArea .shoppingCart_wareDel {
+    width: 20%;
+    height: 110px;
+    color: #fff;
+    font-size: .75rem;
+    text-align: center;
+    line-height: 110px;
+    background: #e60012;
+    margin-right: -10px;
+    margin-top: -10px;
+}
+.mine_warp .shoppingCart_wareArea .shoppingCart_wareDetails .shoppingCart_wareDetailTxt .shoppingCart_wareEditArea .shoppingCart_wareDel span {
+    color: #ffffff;
+}
+.mine_warp .print {
+    width: 80px;
+    height: 80px;
+    float: left;
+    margin-right: 10px;
+    background: #eeeeee;
+    background-size: cover;
+}
+.mine_warp .choose {
+    width: 20px;
+    height: 35px;
+    float: left;
+    -webkit-background-size: 12px;
+    background-size: 12px;
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    background-image: url("../images/store/pitch.png");
+}
+.mine_warp .checkAll {
+    height: 45px;
+    width: 25px;
+    float: left;
+    -webkit-background-size: 10px;
+    background-size: 15px;
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    background-image: url(../images/store/pitch.png);
+}
+.mine_warp .selected {  background-image: url("../images/store/choose.png");  }
+.mine_warp .selecteds {  background-image: url("../images/store/choose.png");  }
+.mine_warp .arrange {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.mine_warp .shoppingCart_balanceAccounts {
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    height: 45px;
+    width: 95%;
+    font-size: .75rem;
+    line-height: 45px;
+    padding-left: 5%;
+}
+.mine_warp .shoppingCart_balanceAccounts .shoppingCart_balanceCount {
+    width: 75%;
+}
+.mine_warp .shoppingCart_balanceAccounts .shoppingCart_balanceCount span:nth-child(3) {
+    margin-top: 2px;
+}
+.mine_warp .shoppingCart_balanceAccounts .shoppingCart_count {
+    width: 25%;
+    height: 45px;
+    background: #eb6100;
+    text-align: center;
+    color: #ffffff;
+    line-height: 45px;
+}
+.mine_warp .shoppingCart_properties {
+    height: 360px;
+    position: fixed;
+    bottom: 44px;
+    width: 94%;
+    display: none;
+    padding-left: 3%;
+    padding-right: 3%;
+    background: #f7f7f7;
+}
+.mine_warp .shoppingCart_properties .properties_top {
+    height: 106px;
+    width: 57%;
+    font-size: .75rem;
+    padding-right: 3%;
+    padding-left: 110px;
+    position: relative;
+    border-bottom: 1px solid #eeeeee;
+}
+.mine_warp .shoppingCart_properties .properties_top .header {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    background: #ccc;
+}
+.mine_warp .shoppingCart_properties .properties_top span:first-child {
+    margin-bottom: 9px;
+    padding-top: 10px;
+}
+.mine_warp .shoppingCart_properties .properties_top span:nth-child(2) {
+    margin-bottom: 9px;
+    display: block;
+}
+.mine_warp .shoppingCart_properties .shoppingCart_quality {
+    width: 100%;
+    overflow: auto;
+    border-bottom: 1px solid #eee;
+}
+.mine_warp .shoppingCart_properties .shoppingCart_quality .shoppingCart_qualityArea {
+    margin-top: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    overflow: auto;
+    font-size: .75rem;
+    color: #000;
+}
+.mine_warp .shoppingCart_properties .shoppingCart_quality .shoppingCart_qualityArea .shoppingCart_qualityTop {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.mine_warp .shoppingCart_properties .shoppingCart_quality .shoppingCart_qualityArea .shoppingCart_qualityBtn {
+    width: 20%;
+    height: 20px;
+    float: left;
+    line-height: 20px;
+    text-align: center;
+}
+.mine_warp .shoppingCart_properties .shoppingCart_quality .shoppingCart_qualityArea .shoppingCart_qualityBtn .area {
+    width: 80%;
+    border-radius: 5px;
+    background: #dddddd;
+    margin: 0 auto;
+}
+.mine_warp .shoppingCart_properties .shoppingCart_quality .shoppingCart_qualityArea .shoppingCart_qualityBtn .unchecked {
+    color: #ccc;
+}
+.mine_warp .shoppingCart_properties .shoppingCart_quality .shoppingCart_qualityArea .shoppingCart_qualityBtn .pitchOn {
+    color: #fff;
+    background: #eb6100;
+}
+.mine_warp .shoppingCart_properties .shoppingCart_number {
+    width: 100%;
+    line-height: 40px;
+    height: 40px;
+    font-size: .75rem;
+    color: #000000;
+    border-bottom: 1px solid #eeeeee;
+}
+.mine_warp .shoppingCart_properties .shoppingCart_number .number {
+    width: 78px;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 10px;
+    background: #fff;
+    text-align: center;
+    margin-right: 30px;
+}
+.mine_warp .shoppingCart_properties .shoppingCart_number .number .symbol {
+    width: 25px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #666;
+    background: #dddddd;
+}
+.mine_warp .shoppingCart_properties .shoppingCart_number .number .min {
+    float: left;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+.mine_warp .shoppingCart_properties .shoppingCart_number .number .mix {
+    float: right;
+    font-size: 1.2rem;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+.mine_warp .shoppingCart_properties .shoppingCart_number .number .num {
+    width: 26px;
+    margin-left: 1px;
+}
+.mine_warp .shoppingCart_check {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+    height: 44px;
+    display: none;
+    line-height: 44px;
+    background: #eb6100;
+}
+.mine_warp .shoppingCart_black {
+    width: 100%;
+    display: none;
+    height: 100%;
+    background: #4a4a4a;
+    opacity: .7;
+    position: fixed;
+    top: 0;
+}
+.mine_warp .myOrder_selectArea {
+    height: 30px;
+    line-height: 30px;
+    font-size: .75rem;
+    background-color: #ffffff;
+}
+.mine_warp .myOrder_selectArea .myOrderOdd {
+    width: 20%;
+    text-align: center;
+    height: 30px;
+    position: relative;
+    line-height: 30px;
+}
+.mine_warp .myOrder_selectArea .myOrderOdd .odd {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -7.5px;
+    width: 15px;
+    height: 2px;
+    border-bottom: 1px solid #EB6100;
+}
+.mine_warp .myOrder_selectArea .selectArea {
+    color: #EB6100;
+}
+.mine_warp .shop {
+    width: 25px;
+    height: 35px;
+    float: left;
+    background-size: 15px;
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    background-image: url("../images/individual/shop.png");
+}
+.mine_warp .myOrder_settlementArea {
+    height: 35px;
+    text-align: right;
+    line-height: 35px;
+    font-size: .75rem;
+    background-color: #ffffff;
+}
+.mine_warp .myOrder_settlementArea .settlementBtn {
+    width: 80px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 13px;
+    height: 26px;
+    margin-left: 10px;
+    border: 1px solid #cccccc;
+}
+.mine_warp .myOrder_settlementArea .changeBtn {
+    color: #EB6100;
+    border: 1px solid #EB6100;
+}
+.mine_warp .myOrder_reveal {
+    font-size: .75rem;
+    color: #EB6100;
+}
+.mine_warp .myOrder_revealArea {
+    width: 52%;
+    height: 100%;
+}
+.mine_warp .myOrder_revealArea .myOrder_quality {
+    width: 60px;
+    text-align: center;
+    height: 16px;
+    font-size: .75rem;
+    color: #ff0000;
+    border: 1px solid #ff0000;
+    border-radius: 3px;
+    line-height: 16px;
+}
+.mine_warp .myOrder_reverlAreaL {
+    width: 20%;
+    color: #cccccc;
+    font-size: .75rem;
+    text-align: center;
+    height: 100%;
+}
+.mine_warp .myOrder_freight {
+    height: 42px;
+    padding-top: 8px;
+    font-size: .75rem;
+    color: #cccccc;
+    background-color: #ffffff;
+}
+.mine_warp .myOrder_freight .soft {
+    width: 30px;
+    height: 28px;
+    float: left;
+    background-size: 15px;
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    background-image: url("../images/individual/secur.png");
+}
+.mine_warp .viewLogistics_Viewing {
+    height: 72px;
+    padding-top: 8px;
+    font-size: .75rem;
+    background-color: #ffffff;
+}
+.mine_warp .viewLogistics_Viewing .viewingPic {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #ccc;
+}
+.mine_warp .viewLogistics_Viewing .viewingPic .pic {
+    width: 50px;
+    margin: 5px;
+    height: 50px;
+    background-color: #CCCCCC;
+    background-size: cover;
+}
+.mine_warp .viewLogistics_Viewing .viewingTxt {
+    padding-left: 80px;
+}
+.mine_warp .viewLogistics_Viewing .viewingTxt .txt {
+    color: #aaa ;
+}
+.mine_warp .viewLogistics_details {
+    background-color: #ffffff;
+    margin-top: 10px;
+    font-size: .75rem;
+    color: #aaaaaa;
+}
+.mine_warp .viewLogistics_details .details_imgArea {
+    width: 20px;
+    /*height: 280px;*/
+    margin-top: 10px;
+    background-image: url("../images/individual/xian.png");
+    background-repeat: repeat-y;
+    background-position: 50% 0;
+}
+.mine_warp .viewLogistics_details .details_imgArea .toBtn {
+    height: 8px;
+    width: 8px;
+    border-radius: 4px;
+    background-color: #ccc;
+    margin: 86px auto;
+}
+.mine_warp .viewLogistics_details .details_imgArea .toBtn:nth-child(1) {
+    width: 16px;
+    height: 16px;
+    margin: 0 auto;
+    background-color: #fff;
+    background-size: cover;
+    background-image: url("../images/individual/btn.png");
+}
+.mine_warp .viewLogistics_details .details_imgArea .selectedToBrn {
+    width: 16px;
+    height: 16px;
+    margin: 0 auto;
+    background-color: #fff;
+    background-size: cover;
+    background-image: url("../images/individual/btn.png");
+}
+.mine_warp .viewLogistics_details .details_txtArea {
+    padding-left: 35px;
+}
+.mine_warp .viewLogistics_details .details_txtArea .details_area {
+    padding-top: 10px;
+    height: 88px;
+    border-bottom: 1px solid #eee;
+    text-align: justify;
+}
+.mine_warp .viewLogistics_details .details_txtArea .details_area p {
+    margin-bottom: 10px;
+}
+.mine_warp .viewLogistics_details .details_txtArea .details_area:nth-child(1) p {
+    color: #638C0B;
+}
+.mine_warp .viewLogistics_details .details_txtArea .details_area:nth-child(1) p:nth-child(1) {
+    font-size: .875rem;
+}
+.mine_warp .viewLogistics_details .details_txtArea .details_area:nth-child(1) p:nth-child(2) {
+    font-size: .75rem;
+}
+.mine_warp .viewLogistics_details .details_txtArea .details_area:last-child {
+    border: 0;
+}
+.mine_warp .orderDetails_headline {
+    height: 82px;
+    padding-top: 18px;
+    padding-left: 10%;
+    font-size: .75rem;
+    position: relative;
+    padding-right: 3%;
+    background-size: cover;
+    background-image: url("../images/individual/headline.png");
+    color: #ffffff;
+}
+.mine_warp .orderDetails_headline p {
+    font-size: 1.125rem;
+    margin-bottom: 9px;
+}
+.mine_warp .orderDetails_headline .headline_ico {
+    width: 108px;
+    height: 48px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -24px;
+    background-size: cover;
+}
+.mine_warp .orderDetails_headline .headline_ico img {
+    background-size: cover;
+    width: 108px;
+    height: 74px;
+}
+.mine_warp .orderDetails_logistics {
+    background-color: #f7f7f7;
+    margin-bottom: 10px;
+    padding-left: 8%;
+    font-size: .75rem;
+    padding-right: 2%;
+}
+.mine_warp .orderDetails_logistics .insurance {
+    width: 30px;
+    height: 65px;
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    background-image: url("../images/individual/secur.png");
+}
+.mine_warp .orderDetails_logistics .logisticsArea {
+    padding-bottom: 8px;
+    margin-left: 30px;
+    padding-top: 8px;
+}
+.mine_warp .orderDetails_logistics .logisticsArea .skip {
+    width: 10px;
+    height: 65px;
+    background-repeat: no-repeat;
+    float: right;
+    background-position: center;
+    background-size: 9px 15px;
+    background-image: url("../images/individual/spit.png");
+}
+.mine_warp .orderDetails_numbers {
+    padding-bottom: 54px;
+    padding-top: 10px;
+    font-size: .75rem;
+    color: #CCCCCC;
+    padding-left: 15%;
+    background-color: #ffffff;
+}
+.mine_warp .orderDetails_numbers span {
+    display: block;
+}
+.mine_warp .evaluation_discuss {
+    font-size: .75rem;
+    color: #CCCCCC;
+    padding-top: 10px;
+    background-color: #ffffff;
+}
+.mine_warp .evaluation_discuss .cargoDrwaingArea {
+    height: 150px;
+    margin-bottom: 20px;
+}
+.mine_warp .evaluation_discuss .cargoDrwaingArea .discuss_cargoDrawing {
+    width: 50px;
+    height: 50px;
+    margin-right: 9px;
+    background-color: #eee;
+}
+.mine_warp .evaluation_discuss .cargoDrwaingArea .discuss_cargoDrawing img {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+}
+.mine_warp .evaluation_discuss .discuss_uploadMap {
+    overflow: hidden;
+}
+.mine_warp .evaluation_discuss .discuss_uploadMap .uploadMap {
+    width: 16%;
+    height: 60px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 50px;
+    margin-right: 4%;
+    font-size: 4rem;
+    overflow: hidden;
+    background-color: #eee;
+}
+.mine_warp .evaluation_discuss .discuss_uploadMap .uploadMap img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    background-size: cover;
+}
+.mine_warp .evaluation_discuss .discuss_uploadTxt {
+    height: 75px;
+    color: #ccc;
+}
+.mine_warp .evaluation_discuss .discuss_uploadTxt .flower {
+    width:33.3%;
+    height: 32px;
+    text-align: center;
+    background-size: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.mine_warp .evaluation_discuss .discuss_uploadTxt .nice {
+    background-image: url("../images/mine/nice.png");
+}
+.mine_warp .evaluation_discuss .discuss_uploadTxt .niceHot {
+    background-image: url("../images/mine/niceHot.png");
+}
+.mine_warp .evaluation_discuss .discuss_uploadTxt .centre {
+    background-image: url("../images/mine/centre.png");
+}
+.mine_warp .evaluation_discuss .discuss_uploadTxt .centreHot {
+    background-image: url("../images/mine/centreHot.png");
+}
+.mine_warp .evaluation_discuss .discuss_uploadTxt .mistake {
+    background-image: url("../images/mine/mistake.png");
+}
+.mine_warp .evaluation_discuss .discuss_uploadTxt .mistakeHot {
+    background-image: url("../images/mine/mistakeHot.png");
+}
+.mine_warp .evaluation_discuss .discuss_uploadTxt .uploadTxt {
+    width: 33.3%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+.mine_warp .evaluationGrade {
+    height: 144px;
+    background-color: #ffffff;
+    margin-top: 10px;
+}
+.mine_warp .evaluationGrade .gradeTxt {
+    height: 10px;
+    margin-bottom: 20px;
+    font-size: .75rem;
+}
+.mine_warp .evaluationGrade .gradeTxt .love {
+    width: 20px;
+    height: 20px;
+    margin-left: 7px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("../images/individual/noLove.png");
+}
+.mine_warp .evaluationGrade .gradeTxt .selectedLove {
+    background-image: url("../images/individual/cx.png");
+}
+.evaluationFoot {
+    height: 44px;
+    position: fixed;
+    bottom: 0;
+    background-color: #ffffff;
+    font-size: 1rem;
+    color: #ffffff;
+    width: 100%;
+    line-height: 44px;
+}
+.evaluationFoot .evaluationFoot_area {
+    width: 25%;
+    text-align: center;
+    background-color: #EB6100;
+}
+.orderDetails_foot {
+    height: 35px;
+    background-color: #ffffff;
+    position: fixed;
+    bottom: 0;
+    padding-top: 9px;
+    text-align: right;
+}
+.orderDetails_foot .footBtn {
+    width: 80px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 13px;
+    height: 25px;
+    color: #EB6100;
+    font-size: .875rem;
+    margin-left: 10px;
+    border: 1px solid #EB6100;
+}
+.orderDetails_foot .selectfoot {
+    color: #EB6100;
+    border: 1px solid #EB6100;
+}
+
+
+/*我的店铺*/
+
+/***********************头部 **********************/
+
+.distributionHead{
+    width: 100%;
+    height: 44px;
+    background-color: #007cc3;
+    text-align: center;
+    line-height: 44px;
+    color: #fff;
+    font-size: 18px;
+    background-image: url(../images/storeDistribution/back.png);
+    background-size: 26px;
+    background-position: 5% center;
+    background-repeat: no-repeat;
+}
+
+/***********************店铺介绍**********************/
+
+.storeIntroduce{
+    width: 95%;
+    height: 120px;
+    padding-left: 5%;
+    border-top: 1px solid #666666;
+    background: #fff;
+}
+
+.storeIntroduce .storeLogo{
+    width: 80px;
+    height: 80px;
+    background: #cccccc;
+    border-radius: 10px;
+    margin-top: 20px;
+    float: left;
+    /*background-image: url(../images/personalStore/logo.png);*/
+    /*background-size: 80px;*/
+    /*background-repeat: no-repeat;*/
+}
+.storeIntroduce .storeLogo img {border-radius: 10px;}
+.storeIntroduce .Introduce{
+    width: 65%;
+    height: 80px;
+    margin-top: 20px;
+    float: left;
+    padding-left: 15px;
+}
+
+.storeIntroduce .Introduce .storeName{
+    width: 100%;
+    font-weight: bold;
+    margin-top: 11px;
+    font-size: 18px;
+    color: #000;
+}
+
+.storeIntroduce .Introduce .storeIdentity{
+    width: 100%;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+}
+
+.storeIntroduce .Introduce .storeIndustry{
+    width: 100%;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #000;
+}
+
+.storeData{
+    width: 100%;
+    background: #fff;
+    margin-top: 10px;
+    border-bottom: 1px solid #ccc;
+
+}
+
+.storeData .dataDetails{
+    width: 50%;
+    height: 100px;
+    border-top:1px solid #ccc;
+    float: left;
+    background: #fff;
+    position: relative;
+}
+
+.storeData .dataDetails .detailsTitle{
+    width: 90%;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+    padding-left: 10%
+}
+
+.storeData .dataDetails .content{
+    width: 100%;
+    font-size: 30px;
+    color: #666;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow: hidden;
+}
+
+.line{
+    width: 1px;
+    height: 100px;
+    background: #cccccc;
+    position: absolute;
+    left:0px;
+    margin-left: -0.5px;
+    z-index: 8;
+}
+
+/*我的分销店铺*/
+
+
+/***********************分销头部 **********************/
+
+.distributionHead{
+    width: 100%;
+    height: 44px;
+    background-color: #007cc3;
+    text-align: center;
+    line-height: 44px;
+    color: #fff;
+    font-size: 18px;
+    background-image: url(../images/storeDistribution/back.png);
+    background-size: 26px;
+    background-position: 5% center;
+    background-repeat: no-repeat;
+}
+
+.storeTotal{
+    width: 95%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 5%;
+    color: #666666;
+    font-size: 16px;
+    background-color: #ffffff;
+}
+
+.storeList{
+    width: 100%;
+    margin-top: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.storeList .sdList{
+    width: 100%;
+    height: 40px;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.storeList .sdList .storeLogo{
+    width: 40px;
+    height: 40px;
+    background-color: #000;
+    border-radius: 20px;
+    margin-left: 5%;
+    float: left;
+    background-image: url(../images/storeDistribution/logo.png);
+    background-size: 40px;
+    background-position:center;
+    background-repeat: no-repeat;
+}
+
+.storeList .sdList .sdContent{
+    float: left;
+    font-size: 12px;
+    color: #cccccc;
+    margin-left: 10px;
+}
+
+.storeList .sdList .sdContent .storeName{
+    font-weight: bold;
+    font-size: 16px;
+    color: #666666;
+}
+
+.storeList .sdList .sdContent .sdStoreIntroduce{
+    margin-top: 5px;
+}
+
+.storeList .sdList .sdContent .sdStoreIntroduce .identity{
+    float: left;
+}
+
+.storeList .sdList .sdContent .sdStoreIntroduce .sdTime{
+    float: left;
+    margin-left: 23px;
+}
+
+.storeList .sdList .commissionPrompt{
+    width: 20%;
+    height: 60px;
+    float: right;
+    line-height: 85px;
+    font-size: 12px;
+    color: #cccccc;
+    text-align: center;
+    margin-top: -10px;
+    background-image: url(../images/storeDistribution/commission.png);
+    background-size: 20px;
+    background-position:center 10px;
+    background-repeat: no-repeat;
+
+}
+
+.storeList .sdList .commission{
+    width: 20%;
+    height: 60px;
+    background-color: red;
+    float: right;
+    margin-top: -10px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    display: none;
+}
+
+
+
+/*2017.06.06*/
+.mallShare_btn {width:180px;height:40px;background: #f54b31;border-radius: 8px;text-align: center;font-size: 18px;color: #fff;position: absolute;bottom:10px;left:50%;margin-left: -90px;line-height: 40px;}
+
+/*2017.06.22*/
+#shopSort span {display: inline-block;width:50px;height:20px;border-radius: 8px;background: #ddd;color:#000;font-size: 12px;margin: 0 5px;text-align: center;line-height: 20px;}
+#shopSort .actives {background: #eb6100;color: #fff;}
+#shopSorts span {display: inline-block;width:50px;height:20px;border-radius: 8px;background: #ddd;color:#000;font-size: 12px;margin: 0 5px;text-align: center;line-height: 20px;}
+#shopSorts .actives {background: #eb6100;color: #fff;}
+
+/*2017.07.10*/
+.BackOrder {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: #fff;
+    z-index: 99999;
+    display: none;
+}
+#BackOrder_02 {
+    position: relative;
+    margin: auto;
+    width:80%;
+    top:10%;
+    display: block;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 5%;
+    height:200px;
+}
+
+.chooseSort {
+    width:100%;
+    background: #fff;
+    height:40px;
+    line-height: 40px;
+    color: #333;
+    text-align: center;
+    font-size: 14px;
+}
+.chooseSort div {
+    width:30%;
+    display: inline-block;
+}
+.chooseList .lists {
+    border-bottom: 1px solid #eee;
+}
+.chooseList .lists div{
+    width:30%;
+    display: inline-block;
+    height:60px;
+    line-height: 60px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 14px;
+}
+.chooseList .lists .lists_03 {
+    position: relative;
+}
+.chooseList .lists .lists_03 p {
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+}
+.chooseList .lists .lists_03 p:first-child {
+    top:-8px;
+}
+.chooseList .lists .lists_03 p:last-child {
+    bottom:-10px;
+}

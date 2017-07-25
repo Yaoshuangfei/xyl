@@ -1,0 +1,36 @@
+
+使用框架之前 先在谷歌浏览器 上添加 --args --disable-web-security --user-data-dir
+
+添加步骤：选择谷歌 右击 ---- 属性  ----  目标(在.exe 后面添加 上面的命令)
+
+注：在运行此框架之前 都要先打开 添加过命令的谷歌浏览器
+
+
+
+
+
+在每个自定义 方法中  可以先加上 var self = this;
+
+backPage();  返回前一页
+
+dataSave('buyProduct', data);  -----存储需要在其它页面使用的数据  其功能 相当于 cooking，
+	格式 	dataSave('自定义名字'，要存储的数据)
+
+dataGet('buyProduct'); ------获取dataSave 存储的数据  括号里面填写 相对应的 名字
+
+
+JdataSave('buyProduct', data); 使用方法如同上面的  唯一不同的是 存储数据为 json 串 
+
+JdataGet('buyProduct');使用方法如同上面的
+
+
+
+
+给页面添加点击事件
+
+html案例 ：<div class="ui_btn" data-action="自定义名字"></div>
+
+js:自定义名字:function(btn){
+	var aa = btn;
+	在这个方法里面 就可以写 自己想要的js代码
+}

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="format-detection" content="email=no" />
+		<meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1, minimum-scale=1, width=device-width"; />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+
+		<title id="title"></title>
+		
+		<link rel="stylesheet" type="text/css" href="css/tool/comm.css" />
+		<link rel="stylesheet" type="text/css" href="css/tool/slides.css" />
+
+		<!-- <link rel="stylesheet" type="text/css" href="css/login.css" /> -->
+		<!-- 
+		<link rel="stylesheet" type="text/css" href="css/pageHome.css" />
+		<link rel="stylesheet" type="text/css" href="css/commPage.css" />
+		<link rel="stylesheet" type="text/css" href="css/service.css" />
+		<link rel="stylesheet" type="text/css" href="css/mine.css" />
+		<link rel="stylesheet" type="text/css" href="css/friendRequest.css" /> -->
+
+		<link rel="stylesheet" type="text/css" href="plugins/cropper/dist/cropper.css">
+	    <link rel="stylesheet" type="text/css" href="plugins/cropper/css/main.css">
+		<!-- <link rel="stylesheet" type="text/css" href="plugins/mobiscroll/slideUpDownRefresh_files/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="plugins/mobiscroll/slideUpDownRefresh_files/bootstrap-theme.css" /> -->
+		<link rel="stylesheet" type="text/css" href="plugins/mobiscroll/iosSelect.css" />
+		<link rel="stylesheet" type="text/css" href="plugins/mobiscroll/slideUpDownRefresh_files/iscroll.css" />
+
+		<link rel="stylesheet" type="text/css" href="plugins/layer/need/layer.css" />
+		<link rel="stylesheet" type="text/css" href="plugins/mobiscroll/date/css/mobiscroll.scroller.css"/>
+	    <link rel="stylesheet" type="text/css" href="plugins/mobiscroll/date/css/mobiscroll.scroller.sense-ui.css"/>
+  		
+		<!--项目文件-->
+
+		<link href="css/tool/jquery.city.css" rel="stylesheet" />
+		<link href="css/tool/animate.min.css" rel="stylesheet" />
+
+		<link rel="stylesheet" href="css/tool/LArea.css">
+
+		<link rel="stylesheet" href="css/initialize/normalize.css"/>
+		<link rel="stylesheet" href="css/initialize/style.css"/>
+		<link rel="stylesheet" href="css/public/style.css"/>
+		<link rel="stylesheet" href="css/public/publicTop.css"/>
+		<link rel="stylesheet" href="css/pageHome.css"/>
+		<link rel="stylesheet" href="css/tool/swiper.min.css"/>
+
+		<link rel="stylesheet" href="css/mine.css"/>
+		<link rel="stylesheet" href="css/tel.css"/>
+		<link rel="stylesheet" href="css/news.css"/>
+
+		<link rel="stylesheet" href="css/seach.css"/>
+
+		<link rel="stylesheet" href="css/dealer/raise.css"/>
+
+		<link rel="stylesheet" href="css/dealer/payment.css"/>
+
+		<link rel="stylesheet" href="css/classification.css"/>
+		<link rel="stylesheet" href="css/recharge.css"/>
+		<link rel="stylesheet" href="css/mineTwo.css"/>
+
+		<link rel="stylesheet" href="css/login.css"/>
+		<!--下拉加载-->
+		<link rel="stylesheet" href="css/dropload.css">
+		<link rel="stylesheet" href="css/LArea.css">
+		<link rel="stylesheet" href="css/nativeShare.css">
+		<link rel="stylesheet" href="css/a.css">
+		<link rel="stylesheet" href="css/b.css">
+
+	</head>
+	<body>
+		<div id="mainStage" style="width: 100%;"></div>
+
+		<div id="placeholder" style=" width: 100%; height: 50px"></div>
+
+		<div id="footNavBar" class="footNavBar">
+
+			<!--首页-->
+			<div class="index_warp" id="index">
+				<div class="index_footer">
+					<!--<div class="tel" onclick="tel_page()"></div>-->
+					<div class="tel" onclick="alertBtn()"><img src="images/index/tel.png" alt="" id="imgssss"></div>
+					<div class="item footer_area footer_index" style="float:left;" onclick="index_page()">
+						<img src="images/index/house_b.png" alt="" class="footer_area_log"/>
+						<div class="clear"></div>
+						<span>首页</span>
+					</div>
+					<div class="item footer_area warp_rg footer_mind" style=" float:right;" onclick="mine_page()">
+						<img src="images/index/people.png" alt="" class="footer_area_log"/>
+						<div class="clear"></div>
+						<span>我的</span>
+					</div>
+				</div>
+			</div>
+
+			<!--电话-->
+			<div class="keyboard">
+
+				<div class="dialList" style=" display: none;">
+					<div class="phoneBook yes fL">拨号</div>
+					<div class="dial fL ui_btn" onclick="tpDial()"></div>
+					<div class="tDelete fL">删除</div>
+				</div>
+
+				<div class="dialListT" style=" display: none " id="tel">
+					<div class="phoneBook yes fL" style="color: #007cc3;">拨号</div>
+					<div class="contacts fL" onclick="contacts()">联系人</div>
+					<div class="tRecharge fL"  onclick="tel_goInRecharge()">充值</div>
+					<div class="my fL" onclick="tel_goInMy()">我</div>
+				</div>
+
+
+				<div class="dialListT" style=" display: none " id="telTwo">
+					<div class="item contacts fL" onclick="dial()" style="background-image:url(images/personal/tel.png);">拨号</div>
+					<div class="item contacts fL" onclick="contacts()">联系人</div>
+					<div class="item tRecharge fL"  onclick="tel_goInRecharge()">充值</div>
+					<div class="item my fL" onclick="tel_goInMy()">我</div>
+				</div>
+
+			</div>
+
+			<!--慈善-->
+			<div class="cBottom" id="asd" style=" display: none">
+				<div class="item list one Aitem" onclick="crowd_page()">众筹捐款</div>
+				<div class="item list two Aitem"  onclick="on_page()">一对一</div>
+				<div class="item list three Aitem"  onclick="product_page()">公益产品</div>
+				<div class="item list four Aitem" onclick="mMine_page()">我的</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+            //慈善
+
+            function crowd_page(){
+                Views.raiseListView.willShow();
+                $('#tel').css('display','none');
+                $('#index').css('display','none');
+                $('#asd').css('display','block');
+            }
+
+            function product_page(){
+                Views.commodityListView.willShow();
+                $('#tel').css('display','none');
+                $('#index').css('display','none');
+                $('#asd').css('display','block');
+            }
+
+            function on_page(){
+                Views.oneOnOneView.willShow();
+            }
+
+            function mMine_page(){
+                Views.raiseListMineView.willShow();
+            }
+
+
+            //首页
+			function index_page() {
+                $('.footer_index img').attr('src','images/index/house_b.png');
+                $('.footer_mind img').attr('src','images/index/people.png');
+                var urlOne = WEB_URL + '/api/indexProductConf/app/list/one';//火爆商品
+                $.ajax({
+                    type:'POST',
+                    dataType:'json',
+                    url:urlOne,
+                    data:{},
+                    contentType:'application/json;charset=utf-8',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                    success:function(data){
+                        if(!data.success){
+                            console.log(data.msg);
+                            $('.index_fireStorm').remove();
+                        }else{
+                            var _length = data.data.listGoods;
+                            console.log(data.data);
+                            var styleId = data.data.styleId;
+                            dataSave('styleId',styleId);
+                            if(styleId==8){
+                                //蓝色
+                                $('.index_warp .index_top').css('background','#007cc3');
+                                $('.index_footer').css('background-color','#007cc3');
+                                $('.swiper2').show();
+                                $('.styleRed').hide();
+                                $('.styleBlack').hide();
+                                $('#imgssss').attr('src','images/index/tel.png');
+                            }else if(styleId==9){
+                                //黑色
+                                $('.index_warp .index_top').css('background','#333');
+                                $('.index_footer').css('background-color','#333');
+                                $('.swiper2').hide();
+                                $('.styleRed').hide();
+                                $('.styleBlack').show();
+                                $('#imgssss').attr('src','images/index/telblack.png');
+                            }else if(styleId==10){
+                                //红色
+                                $('.index_warp .index_top').css('background','#e64b42');
+                                $('.index_footer').css('background-color','#e64b42');
+                                $('.swiper2').hide();
+                                $('.styleRed').show();
+                                $('.styleBlack').hide();
+                                $('#imgssss').attr('src','images/index/telred.png');
+                            }
+                        }
+                        var swiper2 = new Swiper('.swiper2', {
+                            loop: false,
+                            freeMode : true,
+                            freeModeMomentumRatio :0.5,
+                            slidesPerView:2,
+                            spaceBetween:2,
+                        });
+                        $('#swiper_hot').find('img').addClass('advert');
+                    }
+                });
+				Views.indexView.willShow();
+			}
+
+			function tel_page() {
+				Views.telephoneView.willShow();
+			}
+
+			function mine_page() {
+                $('.footer_index img').attr('src','images/index/house.png');
+                $('.footer_mind img').attr('src','images/index/people_b.png');
+                var urlOne = WEB_URL + '/api/indexProductConf/app/list/one';//火爆商品
+                $.ajax({
+                    type:'POST',
+                    dataType:'json',
+                    url:urlOne,
+                    data:{},
+                    contentType:'application/json;charset=utf-8',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                    success:function(data){
+                        if(!data.success){
+                            console.log(data.msg);
+                            $('.index_fireStorm').remove();
+                        }else{
+                            var _length = data.data.listGoods;
+                            console.log(data.data);
+                            var styleId = data.data.styleId;
+                            dataSave('styleId',styleId);
+                            if(styleId==8){
+                                //蓝色
+                                $('.index_warp .index_top').css('background','#007cc3');
+                                $('.index_footer').css('background-color','#007cc3');
+                                $('.swiper2').show();
+                                $('.styleRed').hide();
+                                $('.styleBlack').hide();
+                                $('#imgssss').attr('src','images/index/tel.png');
+                            }else if(styleId==9){
+                                //黑色
+                                $('.index_warp .index_top').css('background','#333');
+                                $('.index_footer').css('background-color','#333');
+                                $('.swiper2').hide();
+                                $('.styleRed').hide();
+                                $('.styleBlack').show();
+                                $('#imgssss').attr('src','images/index/telblack.png');
+                            }else if(styleId==10){
+                                //红色
+                                $('.index_warp .index_top').css('background','#e64b42');
+                                $('.index_footer').css('background-color','#e64b42');
+                                $('.swiper2').hide();
+                                $('.styleRed').show();
+                                $('.styleBlack').hide();
+                                $('#imgssss').attr('src','images/index/telred.png');
+                            }
+                        }
+                        var swiper2 = new Swiper('.swiper2', {
+                            loop: false,
+                            freeMode : true,
+                            freeModeMomentumRatio :0.5,
+                            slidesPerView:2,
+                            spaceBetween:2,
+                        });
+                        $('#swiper_hot').find('img').addClass('advert');
+                    }
+                });
+                var url  = WEB_URL + "/api/core/selectLoginUser";
+                $.ajax({
+                    type:'POST',
+                    dataType:'json',
+                    url:url,
+                    data:{},
+                    contentType:'application/json;charset=utf-8',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest, textStatus, errorThrown);
+                    },
+                    success:function(data){
+                        if(!data.success) {
+                            console.log(data);
+                            if (data.codeEnum == 'OVERTIME') {
+                                Views.signInView.show();
+                            }else{
+                                alert(data.msg);
+                            }
+
+                        }else{
+                            var _self = data.data;
+                            // console.log(_self);
+                            Views.indexMineView.willShow();
+                        }
+                    }
+                });
+			}
+
+            //电话
+			function dial(){
+				Views.telephoneView.show();
+				$('#telTwo').hide();
+				$('#tel').show();
+			}
+
+			function tel_goInRecharge(){
+				Views.rechargeView.show();
+				$('#telTwo').show();
+				$('#tel').hide();
+			}
+
+			function tel_goInMy(){
+				Views.mineDialView.show();
+				$('#telTwo').show();
+				$('#tel').hide();
+
+			}
+
+			function contacts(){
+				Views.contactsView.show();
+				$('#telTwo').show();
+				$('#tel').hide();
+			}
+
+			function tpDial(){
+                $('.dialSettings').show();
+                $('.tpMask').show();
+			}
+
+
+		</script>
+		<script type="text/javascript" src="js/config/config.js"></script>
+		<script type="text/javascript" src="js/config/views-register.js"></script>
+		<script type="text/javascript" src="plugins/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="plugins/jquery.slides.min.js"></script>
+
+		<script type="text/javascript" src="plugins/template/template-native.js"></script>
+		<script type="text/javascript" src="plugins/fastclick.js"></script>
+		<script type="text/javascript" src="plugins/layer/layer.js"></script>
+		<script type="text/javascript" src="plugins/clipboard.min.js"></script>
+
+		<script type="text/javascript" src="js/tool/common.js"></script>
+		<script type="text/javascript" src="js/tool/util.js"></script>
+		<script type="text/javascript" src="js/tool/ui-layout.js"></script>
+
+		<script type="text/javascript" src="plugins/iscroll/iscroll.js"></script>
+
+
+
+		<script type="text/javascript" src="js/test/test.js"></script>
+		<script type="text/javascript" src="js/test/listTest.js"></script>
+		<script type="text/javascript" src="js/tool/app.js"></script>
+		<script type="text/javascript" src="js/tool/widget.js"></script>
+		<script type="text/javascript" src="js/pageHome.js"></script>
+		<!--<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+
+
+		<script src="plugins/mobiscroll/date/js/mobiscroll.core.js" type="text/javascript"></script>
+		<script src="plugins/mobiscroll/date/js/mobiscroll.scroller.js" type="text/javascript"></script>
+		<script src="plugins/mobiscroll/date/js/mobiscroll.datetime.js" type="text/javascript"></script>
+
+		<script type="text/javascript" src="plugins/mobiscroll/slideUpDownRefresh_files/iscroll.js"></script>
+		<script src="plugins/mobiscroll/iosSelect.js" type="text/javascript"></script>
+		<!-- 测试 -->
+		<script src="plugins/mobiscroll/areaData_v2.js" type="text/javascript"></script>
+
+		<script src="plugins/mobiscroll/date/js/mobiscroll.select.js" type="text/javascript"></script>
+		<script src="plugins/mobiscroll/date/js/mobiscroll.scroller.ios.js" type="text/javascript"></script>
+		<script src="plugins/mobiscroll/date/js/mobiscroll.scroller.android.js" type="text/javascript"></script>
+		<script src="plugins/mobiscroll/date/js/mobiscroll.scroller.android-ics.js" type="text/javascript"></script>
+		<script src="plugins/mobiscroll/date/js/mobiscroll.scroller.wp.js" type="text/javascript"></script>
+		<script src="plugins/mobiscroll/date/js/mobiscroll.i18n.zh.js" type="text/javascript"></script>
+
+		<script type='text/javascript' src='plugins/upFile/js/LocalResizeIMG.js'></script>
+		<script type='text/javascript' src='plugins/upFile/js/patch/mobileBUGFix.mini.js'></script>
+		<script type="text/javascript" src="plugins/cropper/dist/cropper.js"></script>
+
+		<script type="text/javascript" src="js/tool/upImg.js"></script>
+		<script type="text/javascript" src="js/jquery.attach.js"></script>
+		<script type="text/javascript" src="plugins/twoCode.js"></script>
+
+
+		<!--添加-->
+
+		<!--dz-->
+		<script src="js/tool/dz/LAreaData1.js"></script>
+		<script src="js/tool/dz/LAreaData2.js"></script>
+		<script src="js/tool/dz/LArea.js"></script>
+
+		<script src="js/tool/jquery.city.js"></script>
+
+		<script type="text/javascript" src="js/tool/LArea.js"></script>
+		<script type="text/javascript" src="js/tool/LAreaData1.js"></script>
+		<script type="text/javascript" src="js/tool/LAreaData2.js"></script>
+		<script type="text/javascript" src="js/tool/cropbox.js"></script>
+
+
+		<script type="text/javascript" src="js/myShareCommodity.js"></script>
+		<script type="text/javascript" src="js/tool/aggregate.js"></script>
+		<script type="text/javascript" src="js/tool/swiper.min.js"></script>
+
+		<script type="text/javascript" src="js/mine.js"></script>
+		<script type="text/javascript" src="js/news.js"></script>
+		<script type="text/javascript" src="js/keyboard.js"></script>
+
+		<script type="text/javascript" src="js/tel.js"></script>
+		<script type="text/javascript" src="js/sy/tong_js.js"></script>
+
+		<script type="text/javascript" src="js/seach.js"></script>
+
+
+		<script type="text/javascript" src="js/classification.js"></script>
+		<script type="text/javascript" src="js/recharge.js"></script>
+		<script type="text/javascript" src="js/charityGoods.js"></script>
+		<script type="text/javascript" src="js/tool/calendar/laydate.dev.js"></script>
+		<script type="text/javascript" src="js/payment.js"></script>
+
+		<script type="text/javascript" src="js/raise.js"></script>
+		<script type="text/javascript" src="js/login.js"></script>
+		<div id="ips" style="display: none;"><script type="text/javascript" src="http://ip.chinaz.com/getip.aspx"></script></div>
+		<!--下拉加载-->
+		<script src="js/dropload.js"></script>
+		<script src="js/api.js"></script>
+		<!--<script src="js/nativeShare.js"></script>-->
+		<script src="js/jquery.qrcode.min.js"></script>
+		<!--<script>-->
+			<!--index_page();-->
+		<!--</script>-->
+		<!--//获取ip-->
+		<script>
+			$(function(){
+			    var str = $('#ips').html().substring(78);
+			    var ip	=eval('('+str+')').ip;
+			    dataSave('ipAddress',ip);
+			});
+
+		</script>
+
+	</body>
+</html>

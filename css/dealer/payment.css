@@ -1,0 +1,479 @@
+.sweep_warp {
+    width: 100%;
+    overflow: auto;
+}
+.sweep_warp .sweepCode_install {
+    height: 54px;
+    line-height: 54px;
+    font-size: .875rem;
+}
+.sweep_warp input {
+    color: #cccccc;
+    border-left: 0 ;
+    border-right: 0 ;
+    outline: none;
+    background: #ffffff;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+.sweep_warp .sweepCode_moneyNum {
+    height: 80px;
+    line-height: 78px;
+    font-size: 1.875rem;
+}
+.sweep_warp .sweepCode_moneyNum::-webkit-input-placeholder {
+    font-size: 1.875rem;
+    color: #cccccc;
+}
+.sweep_warp .sweepCode_moneyTxt {
+    height: 30px;
+    font-size: .75rem;
+    margin-top: 10px;
+    line-height: 28px;
+}
+.sweep_warp .sweepCode_moneyTxt::-webkit-input-placeholder {
+    font-size: .75rem;
+    color: #cccccc;
+}
+.sweep_warp .sweepCode_nextStep {
+    width: 94%;
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 40px;
+    border-radius: 5px;
+    height: 40px;
+    text-align: center;
+    margin: 80px auto;
+    background: #007cc3;
+}
+.sweep_warp .sweepPaymentHome_info {
+    width: 100%;
+    text-align: center;
+    height: 170px;
+    padding-top: 30px;
+    background-color: #19a9c1;
+}
+.sweep_warp .sweepPaymentHome_info .info_codeLine {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    background-color: #ffffff;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-image: url("../../images/sweepPayment/sweep.png");
+    background-size: 45px;
+    background-position: center;
+}
+.sweep_warp .sweepPaymentHome_info .sweep {
+    display: block;
+    margin-top: 20px;
+    color: #f7f7f7;
+    font-size: .75rem;
+}
+.sweep_warp .sweepPaymentHome_domain {
+    height: 396px;
+    width: 94%;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 5px;
+    margin-top: -40px;
+    z-index: 1;
+    margin-bottom: 70px;
+    text-align: center;
+    font-size: .75rem;
+}
+.sweep_warp .sweepPaymentHome_domain .domainArea {
+    width: 49.83%;
+    height: 132px;
+    float: left;
+    text-align: center;
+}
+.sweep_warp .sweepPaymentHome_domain .domainArea .domainArea_logo {
+    width: 100%;
+    text-align: center;
+    height: 60px;
+    font-size: .75rem;
+    margin-top: 25px ;
+}
+.sweep_warp .sweepPaymentHome_domain .domainArea .domainArea_logo img {
+    width: 54px;
+    /*height: 50px;*/
+    background-size: cover;
+}
+.sweep_warp .accountBalance {
+    height: 154px;
+    width: 100%;
+    padding-top: 64px;
+    margin-top: 82px;
+    text-align: center;
+    font-size: .75rem;
+    background-position: center;
+    background-size: 218px;
+    background-repeat: no-repeat;
+    background-image: url("../../images/sweepPayment/hour.png");
+    position: relative;
+}
+.sweep_warp .accountBalance span {
+    color: #007CC3;
+    margin-left: 5px;
+    display: block;
+}
+.sweep_warp .accountBalance span:nth-child(2) {
+    height: 55px;
+    line-height: 55px;
+}
+.sweep_warp .accountBalance span:nth-child(3) {
+    color: #333;
+    position: absolute;
+    bottom:18px;
+    left:50%;
+    transform: translateX(-50%);
+}
+.sweep_warp .channerl_shade {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 33;
+    height: 100%;
+    background-color: #333333;
+    opacity: .8;
+    display: none;
+}
+.sweep_warp .channerl_news {
+    height: 94px;
+    width: 94%;
+    padding: 10px 3%;
+    font-size: .75rem;
+    border-bottom: 1px solid #eeeeee;
+    background-color: #ffffff;
+}
+.sweep_warp .channerl_news .channerl_newsArea {
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    margin-bottom: 5px;
+}
+.sweep_warp .channerl_news .channerl_newsArea span:nth-child(2) {
+    margin-left: 10px;
+}
+.sweep_warp .channerl_choose {
+    height: 54px;
+    line-height: 54px;
+    font-size: .875rem;
+}
+.sweep_warp .channerl_cost {
+    height: 116px;
+    width: 97%;
+    padding-left: 3%;
+    background: #ffffff;
+}
+.sweep_warp .channerl_cost .channerl_costServe {
+    width: 100%;
+    height: 50px;
+    padding-top: 8px;
+    font-size: .75rem;
+}
+.sweep_warp .channerl_cost .channerl_costServe b {
+    display: block;
+    margin-bottom: 5px;
+    font-size: .875rem;
+}
+.sweep_warp .immediate {
+    height: 92px;
+}
+.sweep_warp .immediate .immediate_area {
+    height: 45px;
+    padding-right: 3%;
+    width: 97%;
+    padding-top: 0;
+    line-height: 45px;
+}
+.sweep_warp .immediate .immediate_area input {
+    width: 80%;
+    height: 44px;
+    border: 0;
+    text-align: right;
+}
+.sweep_warp .immediate .immediate_area .immediate_btn {
+    width: 30px;
+    height: 45px;
+    background-image: url("../../images/sweepPayment/btnY.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+}
+.sweep_warp .immediate .immediate_area .iwSelected {
+    background-image: url("../../images/sweepPayment/btn.png");
+}
+.sweep_warp .immediate .immediate_area::-webkit-input-placeholder {
+    font-size: .75rem;
+    color: #cccccc;
+}
+.sweep_warp .small {
+    font-size: 1rem;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    right: 3%;
+}
+.sweep_warp .grayTxt {
+    color: #333333;
+}
+.sweep_warp .grayBr {
+    border-right: 1px solid #007cc3;
+}
+.sweep_warp .receiveDividents {
+    width: 100%;
+    height: 100px;
+    background: #ffffff;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+.sweep_warp .receiveDividents .receiveDividents_area {
+    width: 49.8%;
+    height: 60px;
+    text-align: center;
+    margin-top: 20px;
+}
+.sweep_warp .incomeDetails_ordinary {
+    width: 100%;
+    height: 34px;
+    background: #ffffff;
+    text-align: center;
+    line-height: 34px;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+}
+.sweep_warp .incomeDetails_ordinary .incomeDetails_ordinaryArea {
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    font-size: .875rem;
+}
+.sweep_warp .incomeDetails_ordinary .idSelected {
+    color: #ffffff;
+    background: #007cc3;
+}
+.sweep_warp .incomeDetails_source {
+    width: 100%;
+    height: 32px;
+    background: #ffffff;
+}
+.sweep_warp .incomeDetails_source .incomeDetails_sourceArea {
+    width: 24.75%;
+    text-align: center;
+    height: 24px;
+    color: #666;
+    font-size: .75rem;
+    line-height: 24px;
+    margin-top: 4px;
+    float: left;
+}
+.sweep_warp .incomeDetails_record {
+    height: 56px;
+    width: 100%;
+}
+.sweep_warp .incomeDetails_record .incomeDetails_recordArea {
+    width: 25%;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+.sweep_warp .incomeDetails_record .incomeDetails_recordArea .business {
+    width: 100%;
+    height: 48px;
+    font-size: .75rem;
+    margin-top: 8px;
+}
+.sweep_warp .incomeDetails_record .incomeDetails_recordArea .business span:nth-child(1) {
+    font-size: .875rem;
+    display: block;
+    margin-bottom: 4px;
+}
+.sweep_warp .incomeDetails_record .incomeDetails_recordArea .business span:nth-child(2) {
+    color: #666;
+}
+.sweep_warp .incomeDetails_record .nickname {
+    font-size: .875rem;
+    line-height: 56px;
+}
+.sweep_warp .duration {
+    width: 33%;
+}
+.sweep_warp .payment_aside {
+    width: 100%;
+    font-size: .75rem;
+    margin-top: 108px;
+    text-align: center;
+}
+.sweep_warp .payment_aside .payment_nav {
+    width: 160px;
+    height: 160px;
+    margin: 20px auto;
+    background: #000000;
+}
+.sweep_warp .collectionCode_primaryArea {
+    height: 478px;
+    width: 94%;
+    background: #ffffff;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 0 4px #cccccc;
+}
+.sweep_warp .collectionCode_primaryArea .primaryArea_top {
+    height: 110px;
+    width: 100%;
+    text-align: center;
+    line-height: 110px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    font-size: 2.25rem;
+    color: #ffffff;
+    background: #007cc3;
+}
+.sweep_warp .collectionCode_primaryArea .primaryArea_txt {
+    width: 200px;
+    height: 45px;
+    margin: 26px auto;
+    text-align: center;
+}
+.sweep_warp .collectionCode_primaryArea .primaryArea_txt .weixin {
+    width: 55px;
+    height: 45px;
+    float: left;
+    background-size: cover;
+}
+.sweep_warp .collectionCode_primaryArea .primaryArea_codeLine {
+    width: 200px;
+    height: 200px;
+    background: #000000;
+    margin: 20px auto;
+}
+.sweep_warp .allPayment {
+    margin-top: 64px;
+    height: 564px;
+    text-align: left;
+    margin-bottom: 35px;
+}
+.sweep_warp .gathering_top {
+    height: 78px;
+    width: 90%;
+    line-height: 78px;
+    margin: 0 auto;
+}
+.sweep_warp .gathering_top span {
+    width: 110px;
+    display: block;
+    float: left;
+    margin-top: 12px;
+    font-size: 1.5rem;
+}
+.sweep_warp .gathering_top img {
+    width: 36px;
+    height: 30px;
+    float: left;
+    margin-top: 35px;
+    background-size: cover;
+}
+.sweep_warp .gathering_txtArea {
+    margin: 20px auto;
+    text-align: justify;
+    width: 90%;
+    font-size: .75rem;
+}
+.sweep_warp .gathering_collections {
+    width: 100%;
+    text-align: center;
+    height: 250px;
+    padding-top: 20px;
+    background: #007cc3;
+}
+.sweep_warp .gathering_collections .codeArea {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    background-size: cover;
+    background-color: #f7f7f7;
+}
+.sweep_warp .gathering_collections span {
+    display: block;
+    color: #f7f7f7;
+    font-size: .75rem;
+}
+.personalStores_nickname {
+    width: 100%;
+    height: 140px;
+    padding-top: 30px;
+    text-align: center;
+}
+.personalStores_nickname .personalStores_nicknamePic {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    font-size: .75rem;
+    background: #19a9c1;
+    border-radius: 50px;
+}
+.personalStores_nickname span {
+    display: block;
+    margin-top: 5px;
+}
+.personalStores_certificate {
+    height: 362px;
+    width: 97%;
+    margin-top: 20px;
+    padding-left: 3%;
+    background: #ffffff;
+}
+.personalStores_certificate .personalStores_certificateAside {
+    height: 120px;
+    width: 100%;
+    line-height: 120px;
+}
+.personalStores_certificate .personalStores_certificateAside .certificate {
+    width: 100px;
+    height: 100px;
+    /*margin-top: 10px;*/
+    margin-right: 100px;
+    float: right;
+    background-size: cover;
+}
+.personalStores_certificate .personalStores_certificateAside .certificate img {
+    width: 100px;
+    height: 100px;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+.sweepPaymentHome_bottom {
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    font-size: .75rem;
+    color: #f7f7f7;
+    background: #007cc3;
+}
+.sweepPaymentHome_bottom .home_bottomArea {
+    width: 50%;
+    height: 60px;
+    float: left;
+    font-size: .75rem;
+}
+.sweepPaymentHome_bottom .home_bottomArea .bottom_chunk {
+    width: 90%;
+    height: 60px;
+    margin: 0 auto;
+}
+.sweepPaymentHome_bottom .home_bottomArea .bottom_chunk img {
+    width: 28px;
+    /*height: 26px;*/
+    margin-top: 10px;
+    background-size: cover;
+}
+.sweepPaymentHome_bottom .home_bottomArea .bottom_chunk span {
+    display: block;
+    color: #f7f7f7;
+}

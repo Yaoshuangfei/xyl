@@ -1,0 +1,181 @@
+
+	<div class="headOne" >
+		<div class="bgCircular return returnOne" onclick="backPage()"></div>
+		<div class="bgCircular more moreOne"></div>
+		<div class="bgCircular shoppingCart shoppingCartOne ui_btn" data-action="go_shoppingcar"></div>
+	</div>
+
+	<div class="headTwo" style="display: none;">
+		<div class="topTwo">
+			<div class="bgCircular return returnTwo" onclick="backPage()" ></div>
+			<div class="bgCircular more moreTwo"></div>
+			<div class="bgCircular shoppingCart shoppingCartTwo ui_btn" data-action="go_shoppingcar"></div>
+		</div>
+
+		<!--<div class="next">-->
+			<!--<div class="type" id="type1">宝贝</div>-->
+			<!--<div class="type" id="type2">评价</div>-->
+			<!--<div class="type" id="type3">详情</div>-->
+		<!--</div>-->
+
+	</div>
+
+	<!-- 导航 -->
+	<div class="new" id="sDNew" data-state="hide" style="top:45px;">
+		<div class="list" style="position: relative; height: 5px;">
+			<div class="triangle-down"></div>
+		</div>
+		<div class="list ui_btn" data-action="com_index" style="background-image: url(images/new/homePage.png); background-color: #666;">首页</div>
+		<div class="list ui_btn" data-action="com_customer" style="background-image: url(images/new/dp_01.png); background-color: #666;">客服</div>
+		<div class="list ui_btn" data-action="com_mine" style="background-image: url(images/new/dp_02.png); background-color: #666;">我的</div>
+		<div class="list ui_btn" data-action="com_dianpu" style="background-image: url(images/new/dp_03.png); background-color: #666;">店铺简介</div>
+		<div class="list ui_btn" data-action="com_fenxiang" id="newShare" style="background-image: url(images/new/dp_04.png); background-color: #666; border-bottom: 0;" >分享</div>
+	</div>
+	<!-- 导航 -->
+
+
+	<!-- 头图 -->
+	<div class="headFigure" style="max-height:414px;">
+
+		<div class="swiper-container swiper4" style="background: #fff;">
+			<div class="swiper-wrapper" id="bannerImg">
+				<!--<div class="swiper-slide index_head ui_btn" data-action="banner_link"><img src="images/commodityDetails/headFigure.png"></div>-->
+			</div>
+		</div>
+	</div>
+	<div class="ppjs" style="width:100%;position: relative;margin: auto;text-align: center;background: #fff;">
+		<p style="color: #666;font-size: 16px;padding: 25px 0;">品牌介绍</p>
+		<div id="ppjsImg" style="width:90%;position: relative;margin: auto;">
+			<img src="images/dpsq.jpg" alt="">
+		</div>
+
+	</div>
+
+	<div class="footNavBar" style="border-top: 1px solid #eee; border-bottom: 1px solid #eee;background: #eb6100;text-align: center;line-height: 60px;">
+			<div class=" ui_btn" data-action="discount" style="color: #fff;font-size: 16px;">立即购买</div>
+	</div>
+	<!--属性编辑-->
+	<div class="mine_warp" id="mine_warp_02">
+		<div class="shoppingCart_black" style="z-index: 999"></div>
+		<div class="shoppingCart_properties" style="z-index: 1000;background: #fff;">
+			<div class="properties_top">
+				<div class="header"></div>
+				<div class="a"> <span class="arrange" style="padding-top:40px;color: #eb6100;font-size: 16px;"></span></div>
+			</div>
+			<div class="shoppingCart_quality">
+				<p>身份类型</p>
+				<div id="shopSort" style="margin: 10px 0;">
+				</div>
+				<div id="shopSorts" style="margin: 10px 0;">
+				</div>
+			</div>
+			<div>
+				<textarea id="textarea" style="width: 96%;height: 150px; border: 1px solid #eee;margin-top: 20px;padding: 5px;" placeholder="请填写收货地址和件数，商家会按填写信息进行如实发货"></textarea>
+			</div>
+		</div>
+		<div class="shoppingCart_check ui_btn" data-action="shoppingCart_checks" style="z-index: 1000">确定</div>
+		<div id="yqm" style="background: #fff;
+    width: 300px;
+    height: 130px;
+    padding-top: 50px;
+    border-radius: 8px;
+    position: fixed;
+    top: 50%;
+    z-index: 999;
+    transform: translateY(-50%);
+    left: 50%;
+    margin-left: -150px;text-align: center;display: none;">
+			<input type="text" value="" id="txqyqm" style="width:228px;height:28px;border: 1px solid #666;padding-left: 20px;border-radius: 8px;" placeholder="请输入推荐人手机号或邮箱">
+			<div>
+				<span id="yqmQd" class="ui_btn" data-action="yqmQd" style="width:100px;height:30px;line-height: 30px;background: #007cc2;color: #fff;font-size: 14px;display: inline-block;margin: 30px 10px 0 10px;border-radius: 8px;">确定</span>
+				<span id="yqmQx" class="ui_btn" data-action="yqmQx" style="width:100px;height:30px;line-height: 30px;background: #007cc2;color: #fff;font-size: 14px;display: inline-block;margin: 30px 10px 0 10px;border-radius: 8px;">取消</span>
+			</div>
+		</div>
+
+
+	</div>
+
+
+	<div class="wantToRecharge_shady" style="display: none"></div>
+	<div class="wantToRecharge_payment" style="display: none;z-index: 999;">
+		<!--头部-->
+		<div class="wantToRechargeHeader breadth bB">
+			<div class="end" id="backs"></div>
+			<div class="end" id="backss" style="display: none;"></div>
+			<span>付款详情</span>
+		</div>
+		<!--付款方式-->
+		<div class="wantToRechargePay " >
+			<div class="wantToRechargeChangeArea bB"  style="background-image: url('images/recharge/start.png');">
+				<span style="font-size: 16px;color: #333;">付款方式</span>
+				<span class="warp_Rg" style="font-size: .75rem;margin-right:12px">微信</span>
+			</div>
+			<div class="wantToRechargeChangeArea">
+				需付款
+			</div>
+			<div class="withdraw_btn ui_btn" style="margin-top: 85px;" data-action="payFors">确认付款</div>
+		</div>
+		<!--支付选项-->
+		<div class="wantToRechargeChange bB" style="display: none" id="sdasda">
+			<div class="wantToRechargeChangeArea bB selecteds">
+				<div class="ChangeArea_btn warp_Lt"><img src="images/icon_wx.png" alt=""></div>
+				<span>微信</span>
+			</div>
+			<div class="wantToRechargeChangeArea wantToRecharge_balance " id="yue">
+				<div class="ChangeArea_btn warp_Lt"><img src="images/icon_ye.png" alt=""></div>
+				<span>余额支付</span>
+			</div>
+		</div>
+	</div>
+	<div style="position: fixed;top:0;left:0;width:100%;height:100%;background: #fff;z-index: -1;"></div>
+
+	<!--<div id="payFixed" style="position: fixed;top:0;left:0;width:100%;height:100%;z-index: 999999;background: rgba(0,0,0,.5);display: none;">-->
+		<!--<label style="display: block;-->
+    <!--width: 100%;-->
+    <!--height: 50px;-->
+    <!--color: #fff;">请输入你的密码：<input type="password" value="" id="passwords"></label>-->
+
+
+		<!--<div id="paySuccess" class="ui_btn" data-action="paySuccesssss" style="width:50px;height:50px;margin: auto;color: red;text-align: center;line-height: 50px;background:#fff;">确认支付</div>-->
+	<!--</div>-->
+
+
+	<div id="payFixed" style="position: fixed;top:0;left:0;width:100%;height:100%;z-index: 999999;background: rgba(0,0,0,.5);display: none;">
+		<div style="background: #fff;position: fixed;bottom: 0;left: 0;width: 100%;height: 320px;">
+			<p style="    text-align: center;
+    padding: 25px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;">请输入您的支付密码</p>
+			<label style="display: block;
+    width: 100%;
+    height: 50px;
+    color: #000;text-align: center;line-height: 50px;"><input type="password" value="" placeholder="请在这里输出密码" id="passwords" style="padding-left: 10px;    padding-left: 10px;
+    border: 1px solid #eee;
+    width: 80%;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 8px;text-align: center;"></label>
+			<div id="paySuccess" class="ui_btn" data-action="paySuccesssssd" style="width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;">确认支付</div>
+		</div>
+		<div id="cencalss" class="ui_btn" data-action="cencalss" style="    width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);">取消</div>
+	</div>
+
+

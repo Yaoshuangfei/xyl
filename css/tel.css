@@ -1,0 +1,1567 @@
+body{
+    background: #f7f7f7;
+    font-family: "微软雅黑";
+    font-size: 12px;
+    color: #333;
+}
+
+.tL{
+    text-align: left;
+}
+
+.tR{
+    text-align: right;
+}
+
+.tC{
+    text-align:center;
+}
+
+.fL{
+    float: left;
+}
+
+.fR{
+    float: right;
+}
+
+/***********************头部 **********************/
+
+.acHead{
+    width: 90%;
+    height: 44px;
+    background-color: #f7f7f7;
+    border-bottom:1px #eeeeee solid;
+    padding-left: 5%;
+    padding-right: 5%;
+    justify-content: center;
+    align-content: center;
+}
+
+.acHead .ach_in{
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+    line-height: 17px;
+    padding-top: 8px;
+}
+
+.acHead .tpReturn{
+    width: 25%;
+    color: #000;
+    height: 100%;
+    background-image: url(../images/dial/return.png);
+    background-position: 0px center;
+    background-size: 26px;
+    background-repeat: no-repeat;
+}
+
+.acHead .imazamox{
+    width: 25%;
+    height: 100%;
+    background-image: url(../images/dial/imazamox.png);
+    background-position: 10px center;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    line-height: 44px;
+}
+
+.acHead .imazamox .tpNumber{
+    width: calc(100% - 25px);
+    margin-left: 35px;
+    height: 100%;
+    color: #f6b539;
+    font-size: 14px;
+}
+
+.acHead .ach_in .acNumber{
+    color: #007cc3;
+    font-size: 18px;
+}
+
+.acHead .ach_in .acRegion{
+    color: #ccc;
+    font-size: 12px;
+}
+
+/***********************号码筛选 **********************/
+
+.numberScreen{
+    width: 100%;
+
+}
+
+.numberScreen .ns_in{
+    width: 90%;
+    height: 40px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px #eeeeee solid;
+}
+
+.numberScreen .ns_in .user{
+    margin-left: 10px;
+}
+
+.numberScreen .ns_in .user .userNumber{
+    color: #000;
+}
+
+.numberScreen .ns_in .user .userNumber .ur{
+    /*margin-left: 10px;*/
+    color: #ccc;
+}
+
+.numberScreen .ns_in .userLogo{
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+}
+
+.numberScreen .ns_in .userLogo img{
+    width: 100%;
+    height: 100%;
+}
+
+.numberScreen .ns_in .getInto{
+    width: 40px;
+    height: 40px;
+    background-image: url(../images/dial/getInto.png);
+    background-position: center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+}
+
+/***********************键盘 **********************/
+
+.keyboard{
+    width: 100%;
+    /*	height: 306px;*/
+    background-color: #f7f7f7;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+.keyboard .number{
+    width: 100%;
+    height: 246px;
+}
+
+.keyboard .number .number_in{
+    width: calc(100% / 3 - 1px);
+    height: 60px;
+    border-bottom: 1px solid #eee;
+    color: #000;
+    font-size: 30px;
+    text-align: center;
+    float: left;
+    border-left: 1px solid #eee;
+}
+
+.keyboard .number .number_in .nI{
+
+}
+
+.keyboard .number .number_in .letter{
+    color: #666666;
+    font-size:12px;
+}
+
+.keyboard .dialListT{
+    width: 100%;
+    height: 60px;
+    border-top: 1px solid #eee;
+}
+
+.keyboard .dialListT .phoneBook{
+    width: 25%;
+    height: 100%;
+    background-image: url(../images/dial/phoneBookT.png);
+    background-position: center 10px;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 95px;
+    color: #666;
+}
+
+.keyboard .dialListT .contacts{
+    width: 25%;
+    height: 100%;
+    background-image: url(../images/dial/contacts.png);
+    background-position: center 10px;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 95px;
+    color: #666;
+}
+
+.keyboard .dialListT .tRecharge{
+    width: 25%;
+    height: 100%;
+    background-image: url(../images/dial/recharge.png);
+    background-position: center 10px;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 95px;
+    color: #666;
+}
+
+.keyboard .dialListT .my{
+    width: 25%;
+    height: 100%;
+    background-image: url(../images/dial/my.png);
+    background-position: center 10px;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 95px;
+    color: #666;
+}
+.keyboard .dialListT .item.actives {color:#007cc3;}
+.keyboard .dialListT .contacts.actives {background-image:url('../images/dial/contacts_b.png');background-position: center 10px;background-repeat: no-repeat;}
+.keyboard .dialListT .tRecharge.actives {background-image:url('../images/dial/recharge_b.png');background-position: center 10px;background-repeat: no-repeat;}
+.keyboard .dialListT .my.actives {background-image:url('../images/dial/my_b.png');background-position: center 10px;background-repeat: no-repeat;}
+/*//*/
+.dialList{
+    width: 100%;
+    height: 60px;
+    border-top: 1px solid #eee;
+}
+
+.keyboard .dialList .phoneBook{
+    width: 25%;
+    height: 100%;
+    background-image: url(../images/dial/phoneBookT.png);
+    background-position: center 5px;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 95px;
+    color: #666;
+}
+
+.keyboard .dialList .dial{
+    width: 50%;
+    height: 100%;
+    background-color: #007cc3;
+    background-image: url(../images/dial/dial.png);
+    background-position: center;
+    background-size: 35px;
+    background-repeat: no-repeat;
+}
+
+.keyboard .dialList .tDelete{
+    width: 25%;
+    height: 100%;
+    background-image: url(../images/dial/delete.png);
+    background-position: center 5px;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 95px;
+    color: #666;
+}
+
+.dialSettings{
+    width: 90%;
+    height: 190px;
+    padding:15px  5% ;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 9999;
+    display: none;
+}
+
+.dialSettings .settingsList{
+    width: 100%;
+    height: 38px;
+    border:1px solid #eeeeee;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 16px;
+    color: #333333;
+}
+
+.dialSettings .cancel{
+    width: 100%;
+    height: 38px;
+    border:1px solid #eeeeee;
+    border-radius: 5px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    background-color: #666666;
+}
+
+.tpMask{
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.5;
+    z-index: 2;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    display: none;
+}
+
+
+/*联系人*/
+
+/***********************头部 **********************/
+
+.dHead{
+    width: 100%;
+    height: 44px;
+    background-color: #f7f7f7;
+    border-bottom:1px #eeeeee solid;
+}
+
+.dHead .h_in{
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+    line-height: 17px;
+    padding-top: 8px;
+}
+
+.dHead .h_in .number{
+    color: #007cc3;
+    font-size: 18px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow: hidden;
+}
+.number .number_in:active {
+    background: #007cc3;
+}
+
+.number .number_in:active div {
+    color:#fff;
+}
+
+.head .h_in .region{
+    color: #ccc;
+    font-size: 12px;
+}
+
+/***********************号码筛选 **********************/
+
+.numberScreen{
+    width: 100%;
+
+}
+
+.numberScreen .ns_in{
+    width: 90%;
+    height: 40px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px #eeeeee solid;
+}
+
+.numberScreen .ns_in .user{
+    margin-left: 10px;
+}
+
+.numberScreen .ns_in .user .name{
+    font-size: 18px;
+    color: #000;
+}
+
+.numberScreen .ns_in .user .userNumber{
+    color: #cccccc;
+}
+
+.numberScreen .ns_in .user .userNumber .ur{
+    margin-left: 10px;
+}
+
+.numberScreen .ns_in .userLogo{
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+}
+
+.numberScreen .ns_in .userLogo img{
+    width: 100%;
+    height: 100%;
+}
+
+.numberScreen .ns_in .getInto{
+    width: 40px;
+    height: 40px;
+    background-image: url(../images/dial/getInto.png);
+    background-position: center;
+    background-size: 40px;
+    background-repeat: no-repeat;
+}
+
+/***********************键盘 **********************/
+
+.keyboard{
+    width: 100%;
+    /*height: 306px;*/
+    background-color: #f7f7f7;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.keyboard .number{
+    width: 100%;
+    height: 304px;
+}
+
+.keyboard .number .number_in{
+    width: calc(100% / 3 - 1px);
+    height: 60px;
+    border-bottom: 1px solid #eee;
+    color: #000;
+    font-size: 30px;
+    text-align: center;
+    float: left;
+    border-left: 1px solid #eee;
+}
+
+.letter{
+    color: #666666;
+    font-size:12px;
+}
+
+.keyboard .dialList{
+    width: 100%;
+    height: 60px;
+    border-top: 1px solid #eee;
+}
+
+.keyboard .dialList .phoneBook{
+    width: 25%;
+    height: 100%;
+    background-image: url(../images/dial/phoneBook.png);
+    background-position: center 10px;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 90px;
+    color: #666;
+}
+
+.keyboard .dialList .dial{
+    width: 50%;
+    height: 100%;
+    background-color: #007cc3;
+    background-image: url(../images/dial/dial.png);
+    background-position: center;
+    background-size: 45px;
+    background-repeat: no-repeat;
+}
+
+.keyboard .dialList .acDelete{
+    width: 25%;
+    height: 100%;
+    background-image: url(../images/dial/delete.png);
+    background-position: center 10px;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 90px;
+    color: #666;
+}
+
+.personal_top {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+.personal_warp {
+    width: 100%;
+    overflow: auto;
+}
+.personal_warp .oneself_info {
+    height: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: #fff;
+    position: relative;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+.personal_warp .oneself_info .headPortrait {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 4px;
+    background: #ccc;
+}
+.personal_warp .oneself_info span:nth-child(2) {
+    font-size: 1rem;
+    padding-top: 4px;
+    display: block;
+}
+.personal_warp .oneself_info span:nth-child(3) {
+    font-size: .75rem;
+    color: #666;
+}
+.personal_warp .oneself_info .advance {
+    width: 40px;
+    height: 50px;
+    position: absolute;
+    right: 0;
+    top: 15px;
+    background-size: 8px 15px;
+    background-position: center;
+    background-image: url("../images/personal/advance.png");
+    background-repeat: no-repeat;
+}
+.personal_warp .oneself_recharge {
+    width: 95%;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    padding-left: 5%;
+    margin-top: 10px;
+    background: #ffffff;
+}
+.personal_warp .oneself_recharge .rechargeArea {
+    height: 60px;
+    line-height: 60px;
+    font-size: 1rem;
+    border-bottom: 1px solid #eee;
+}
+.personal_warp .oneself_recharge .rechargeArea:last-child {
+    border-bottom:0;
+}
+.personal_warp .oneself_recharge .rechargeArea .fund {
+    width: 50%;
+    height: 59px;
+}
+.personal_warp .oneself_recharge .rechargeArea .fund img {
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-top: 20px;
+    margin-right: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+footer {
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid #eeeeee;
+    background: #f7f7f7;
+}
+footer .lib {
+    width: 25%;
+    height: 100%;
+    float: left;
+    font-size: .75rem;
+    color: #666;
+}
+footer .lib .install {
+    width: 80%;
+    margin: 10px auto;
+}
+footer .lib .install img {
+    width: 26px;
+    height: 26px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 1px;
+}
+footer .lib .install span {
+    display: block;
+    margin-top: 3px;
+}
+.bill {
+    width: 40px;
+    height: 100%;
+    font-size: .75rem;
+    color: #666;
+    position: absolute;
+    top: 0;
+    right: 5%;
+}
+.account {
+    width: 25%;
+    height: 100%;
+    float: left;
+    font-size: 1rem;
+    color: #666;
+    text-align: right;
+    line-height: 52px;
+}
+.substance {
+    width: 70%;
+    float: right;
+    height: 52px;
+    font-size: 1rem;
+    line-height: 52px;
+}
+.hint {
+    width: 100%;
+    margin-top: 10px;
+    font-size: .75rem;
+    text-align: center;
+}
+
+/*我的话单*/
+
+
+/***********************头部 **********************/
+
+.top{
+    width: 100%;
+    height: 44px;
+    border-bottom: 1px solid #eee;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-left: 5%;
+    padding-right: 5%;
+    line-height: 44px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.top .return{
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/dial/return.png);
+    background-position:left;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 11px;
+}
+
+
+/*********************** **********************/
+
+.time{
+    width: 90%;
+    height: 45px;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-bottom: 1px solid #eee;
+}
+.time p{
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: 13px;
+}
+
+.time .start{
+    width: 100px;
+    height: 20px;
+    border:1px solid #eee;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-top: 11px;
+}
+
+.time .start input{
+    width: 100%;
+    height: 100%;
+}
+
+.time .end{
+    width: 100px;
+    height: 20px;
+    border:1px solid #eee;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-top: 11px;
+}
+
+.time .end input{
+    width: 100%;
+    height: 100%;
+}
+
+.time .find{
+    width: 50px;
+    height: 20px;
+    background-color: #007cc3;
+    border-radius: 5px;
+    margin-top: 11px;
+    background-image: url(../images/dial/seach.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+}
+
+.callLogRecord{
+    width: 90%;
+    background-color: #fff;
+    padding-right: 5%;
+    padding-left: 5%;
+    display: inline-block;
+}
+
+.callLogRecord .list{
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.callLogRecord .list .lTop{
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.callLogRecord .list .lBot{
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    color: #ccc;
+}
+
+/***********************站位 **********************/
+.position{
+    width: 100%;
+    height: 44px;
+}
+
+.positionBottom{
+    width: 100%;
+    height: 60px;
+}
+
+
+/*设置*/
+.top {
+    background-color: #fff;
+}
+.allSet {
+    width: 95%;
+    padding-left: 5%;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.allSet .type {
+    width: 95%;
+    height: 45px;
+    padding-right: 5%;
+    border-bottom: 1px solid #eee;
+}
+.allSet .type span {
+    line-height: 45px;
+}
+.allSet .type .tsGoIn {
+    width: 40px;
+    height: 40px;
+    background-image: url(../images/dial/getInto.png);
+    -webkit-background-size: 40px;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: right;
+    margin-top: 3px;
+}
+.allSet .type .switch {
+    width: 50px;
+    height: 25px;
+    float: right;
+    margin-top: 10px;
+    border-radius: 10px;
+    position: relative;
+}
+.allSet .type .switch .spn:after {
+    content: '';
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    border-radius: 100%;
+    left: 1px;
+    top: 1px;
+    background: #fff;
+}
+.allSet .type .psc {
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    width: 100%;
+    height: 100%;
+    z-index: 55;
+    cursor: pointer;
+    opacity: 0;
+}
+.allSet .type .psc:checked + .spn:after {
+    left: 25px;
+}
+.allSet .type .psc:checked:checked + .spn {
+    background-color: #22ac38;
+}
+.allSet .type .spn {
+    background: #e8eae7;
+    border-radius: 15px;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+.exitBtn {
+    width: 90%;
+    height: 44px;
+    font-size: 16px;
+    color: #fff;
+    line-height: 44px;
+    text-align: center;
+    margin-left: 5%;
+    background-color: #007cc3;
+    margin-top: 90px;
+    border-radius: 5px;
+}
+
+/*拨打设置*/
+
+.dsTtop {
+    background-color: #fff;
+}
+.setType {
+    width: 95%;
+    padding-left: 5%;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-top: 10px;
+    background-color: #fff;
+    font-size: 16px;
+    color: #333;
+}
+.setType .tppList {
+    width: 95%;
+    padding-right: 5%;
+    border-bottom: 1px solid #eee;
+    line-height: 44px;
+}
+.setType .tppList .choose {
+    width: 20px;
+    height: 20px;
+    float: right;
+    border-radius: 20px;
+    margin-top: 11px;
+    background-image: url(../images/dial/choose.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: 20px;
+    background-size: 20px;
+}
+.warmReminder {
+    width: 90%;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+.warmReminder .title {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    color: #eb6100;
+}
+.warmReminder .dsContent {
+    width: 100%;
+    font-size: 12px;
+    color: #666;
+}
+.warmReminder .content p {
+    margin-bottom: 5px;
+}
+
+/*一键拨号设置*/
+
+.top {
+    background-color: #fff;
+}
+.setNumber {
+    width: 95%;
+    padding-left: 5%;
+    display: inline-block;
+}
+.setNumber .numberBox {
+    width: 29% ;
+    height: 145px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 15px;
+    float: left;
+    border: 1px solid #eee;
+    margin-right: 3%;
+    -moz-box-shadow: 10px 10px 5px #888888;
+    box-shadow: 0px 5px 5px #d0cfcf;
+}
+.setNumber .numberBox .topNumber {
+    width: 100%;
+    height: 104px;
+    border-bottom: 1px solid #eee;
+    line-height: 104px;
+    text-align: center;
+    font-size: 60px;
+    color: #007cc3;
+}
+.setNumber .numberBox .add {
+    width: 100%;
+    height: 40px;
+    background-color: #f7f7f7;
+    background-image: url(../images/dial/up.png);
+    background-position: center;
+    -webkit-background-size: 30px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+}
+.setNumber .numberBox .phone {
+    width: 100%;
+    height: 40px;
+    color: #ccc;
+    font-size: 12px;
+    background-color: #f7f7f7;
+    text-align: center;
+}
+.setNumber .numberBox .phone span {
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.addMode {
+    width: 90%;
+    height: 140px;
+    padding: 15px  5% ;
+    position: fixed;
+    bottom: -170px;
+    left: 0;
+    background-color: #fff;
+    z-index: 3;
+}
+.addMode .modeList {
+    width: 100%;
+    height: 38px;
+    border: 1px solid #eeeeee;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 16px;
+    color: #333333;
+}
+.addMode .cancel {
+    width: 100%;
+    height: 38px;
+    border: 1px solid #eeeeee;
+    border-radius: 5px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    background-color: #666666;
+}
+.manualInput {
+    width: 90%;
+    background-color: #fff;
+    border: 1px solid #eeeeee;
+    border-radius: 10px;
+    position: fixed;
+    top: 25%;
+    left: 5%;
+    z-index: 10;
+}
+.manualInput .title {
+    width: 100%;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}
+.manualInput .addNumber {
+    width: 90%;
+    margin-left: 5%;
+}
+.manualInput .addNumber .box {
+    width: 97%;
+    height: 30px;
+    font-size: 12px;
+    color: #ccc;
+    border: 1px solid #eee;
+    padding-left: 3%;
+}
+.manualInput .addNumber .box input {
+    width: 100%;
+    height: 100%;
+    border: 0px;
+}
+.manualInput .btnBox {
+    width: 100%;
+    height: 51px;
+    border-top: 1px solid #eeeeee;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #007cc3;
+    line-height: 51px;
+}
+.manualInput .btnBox .no {
+    width: calc(49%);
+    height: 100%;
+    float: left;
+    text-align: center;
+    border-right: 1px solid #eeeeee;
+}
+.manualInput .btnBox .yes {
+    width: 50%;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+.oksPrompt {
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666666;
+}
+.oksMask {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.5;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+
+
+/*不清楚*/
+
+.about_hT {
+    height: 50px;
+}
+.password_txt {
+    height: 50px;
+    line-height: 50px;
+}
+.setUp_warp {
+    width: 100%;
+    overflow: auto;
+    font-size: 16px;
+}
+.setUp_warp .about_head {
+    width: 100%;
+    height: 200px;
+}
+.setUp_warp .displayBox {
+    height: 50px;
+    border-bottom: 1px solid #eeeeee;
+    line-height: 50px;
+    font-size: 1rem;
+    background: #ffffff;
+}
+
+.setUp_warp .displayBox:last-child {
+    border-bottom: 0;
+}
+
+.setUp_warp .displayBox .correct {
+    width: 40px;
+    height: 50px;
+    float: right;
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+    background-size: 10px;
+    background-image: url("../images/setUp/correct.png");
+}
+.setUp_warp .displayBox::-webkit-input-placeholder {
+    color: #CCCCCC;
+    font-size: 1rem;
+}
+.setUp_warp .area_aside {
+    width: 95%;
+    /*background-color: #ffffff;*/
+    padding-left: 5%;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+.setUp_warp .area_top {
+    height: 25px;
+    color: #999;
+    line-height: 25px;
+    font-size: .75rem;
+}
+.setUp_warp .area_degree {
+    font-size: .75rem;
+    color: #999;
+    height: 50px;
+    line-height: 50px;
+}
+.setUp_warp .cancel {
+    width: 90%;
+    background-color: #007cc3;
+    border-radius: 5px;
+    margin: 50px auto;
+    height: 44px;
+    font-size: 16px;
+    line-height: 44px;
+    color: #ffffff;
+    text-align: center;
+}
+.setUp_warp .accountSecurity_degree {
+    height: 50px;
+    padding-right: 6%;
+    background-size: 8px 15px;
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+    background-image: url(../images/personal/advance.png);
+    line-height: 50px;
+    font-size: .875rem;
+    color: #cccccc;
+}
+.setUp_warp .setBreadth {
+    width: 95%;
+    padding-right: 5%;
+    position: relative;
+}
+.setUp_warp .addedAddress_breadth {
+    padding-right: 3%;
+    padding-left: 25%;
+    position: relative;
+}
+.setUp_warp .addedAddress_breadth .entry {
+    height: 50px;
+    border: 0;
+    width: 100%;
+    font-size: .875rem;
+    outline: none;
+}
+.setUp_warp .addedAddress_breadth .entry_txt {
+    font-size: 14px;
+    line-height: 20px;
+    padding-top: 5px;
+    height: 45px;
+}
+.setUp_warp .addedAddress_breadth .entry::-webkit-input-placeholder {
+    font-size: .875rem;
+}
+.setUp_warp .addedAddress_breadth .added_txt {
+    position: absolute;
+    top: 0;
+    font-size: 1rem;
+    left: 0;
+    height: 50px;
+}
+.setUp_warp .setAside {
+    width: 95%;
+    background-color: #ffffff;
+    padding-left:5%;
+    border-bottom: 1px solid #eee;
+}
+.setUp_warp .added_prompt {
+    width: 72px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 50px;
+    border-radius: 5px;
+    height: 50px;
+    color: #ffffff;
+    left: 50%;
+    top: 42.5%;
+    text-align: center;
+    font-size: .75rem;
+    margin-left: -50px;
+    position: fixed;
+    background-size: 30px;
+    background-position: 50% 15px;
+    background-image: url("../images/setUp/gou.png");
+    background-repeat: no-repeat;
+    background-color: #5c5c5c;
+    display: none;
+}
+.setUp_warp .management_area {
+    height: 60px;
+}
+.setUp_warp .management_area .area {
+    width: 80%;
+    margin-top: 8px;
+    height: 52px;
+}
+.setUp_warp .management_area .area span {
+    display: block;
+}
+.setUp_warp .management_area .area span:nth-child(2) {
+    font-size: .75rem;
+    color: #999;
+    margin-top: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.setUp_warp .authentication_area {
+    height: 65px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.setUp_warp .authentication_area .headPic {
+    width: 65px;
+    margin-right: 20px;
+    height: 65px;
+    background-size: cover;
+}
+.setUp_warp .authentication_area span {
+    display: block;
+}
+.setUp_warp .authentication_area span:nth-child(2) {
+    margin-top: 5px;
+}
+.setUp_warp .authentication_area span:nth-child(4) {
+    font-size: .75rem;
+    color: #999;
+}
+.setUp_warp .authentication_area .attestation {
+    width: 45px;
+    height: 18px;
+    border-radius: 5px;
+    font-size: .75rem;
+    line-height: 18px;
+    text-align: center;
+    background-color: #0191e3;
+}
+.setUp_warp .defray {
+    width: 50px;
+    height: 25px;
+    margin-top: 12.5px;
+    border-radius: 12px;
+    background-color: #22ac38;
+}
+.setUp_warp .defray .set_circle {
+    width: 25px;
+    height: 25px;
+    background-color: #ffffff;
+    border-radius: 12.5px;
+}
+.setUp_warp .change {
+    background-color: #cccccc;
+}
+.setUp_warp .resetting {
+    height: 80px;
+    padding-top: 20px;
+    width: 100%;
+    background-color: #ffffff;
+    text-align: center;
+    color: #999999;
+    font-size: .75rem;
+}
+.setUp_warp .resetting span:nth-child(2) {
+    display: block;
+    margin-top: 14px ;
+}
+.setUp_warp .resetting .remember {
+    width: 50%;
+    line-height: 44px;
+    height: 44px;
+    font-size: 1rem;
+    color: #999;
+}
+.setUp_warp .resetting .remember .mind {
+    width: 80%;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    background-color: #ffffff;
+    height: 100%;
+    margin: 0 auto;
+}
+.setUp_warp .resetting .remember .forget {
+    background-color: #007cc3;
+    color: #ffffff;
+}
+.setUp_warp .remember_top {
+    width: 100%;
+    height: 66px;
+    line-height: 66px;
+    text-align: center;
+}
+.setUp_warp .remember_import {
+    width: 94%;
+    margin: 0 auto;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    line-height: 50px;
+}
+.setUp_warp .remember_import .import_area {
+    width: 16.2%;
+    outline: none;
+    text-align: center;
+    line-height: 50px;
+    font-size: 1rem;
+    height: 50px;
+}
+.setUp_warp .remember_import .import_circularLt {
+    width: 16.5%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.setUp_warp .remember_import .import_circularRg {
+    width: 16.5%;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.setUp_warp .passwordCode_import {
+    width: 80%;
+    margin: 0 auto;
+    height: 220px;
+}
+.setUp_warp .passwordCode_import .codeImport {
+    width: 16%;
+    margin-top: 30px;
+}
+.setUp_warp .passwordCode_import .codeImport .codeImport_area {
+    width: 90%;
+    text-align: center;
+    font-family: bold;
+    font-size: 50px;
+    height: 80px;
+    outline: none;
+    background-color: #f7f7f7;
+    margin: 0 auto;
+}
+.setUp_warp .passwordCode_import .codeImport .changeCode {
+    border-bottom: 1px solid #007cc3;
+}
+.setUp_warp .passwordCode_import .caution {
+    width: 100%;
+    height: 50px;
+    color: #999;
+    font-size: .75rem;
+    line-height: 50px;
+    text-align: center;
+}
+.setUp_warp .identityCard {
+    width: 80%;
+    font-size: .75rem;
+    color: #666;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 100px;
+    background-size: cover;
+}
+.setUp_warp .identityCard .wait {
+    width: 63px;
+    height: 100px;
+    background-size: cover;
+    margin-bottom: 20px;
+}
+.setUp_warp .identityCard .audit {
+    width: 93px;
+    height: 100px;
+    background-size: cover;
+    margin-bottom: 20px;
+}
+.setUp_warp .identityCard .accout {
+    width: 90px;
+    height: 90px;
+    background-size: cover;
+    margin-bottom: 20px;
+}
+.setUp_warp .identityCard .through {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    margin-bottom: 20px;
+}
+.setUp_warp .identityCard_account {
+    height: 42px;
+    background-color: #f7f7f7;
+    line-height: 42px;
+    font-size: .75rem;
+}
+.setUp_warp .uploadIdentityCard_Upload {
+    margin-bottom: 100px;
+    height: 215px;
+}
+.setUp_warp .uploadIdentityCard_Upload .upload_area {
+    width: 47%;
+    height: 98px;
+    text-align: center;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-size: 100% 98px;
+    background-color: #ccc;
+    margin-right: 3%;
+    margin-bottom: 15px;
+}
+.setUp_warp .uploadIdentityCard_Upload .upload_area .add {
+    width: 59%;
+    height: 98px;
+    margin: 0 auto;
+    background-size: cover;
+    background: url("../images/setUp/jia.png") no-repeat center;
+}
+.setUp_warp .uploadIdentityCard_Upload .idT {
+    background-image: url("../images/setUp/idT.png");
+}
+.setUp_warp .uploadIdentityCard_Upload .idF {
+    background-image: url("../images/setUp/idF.png");
+}
+.set_end {
+    width: 100%;
+    height: 44px;
+    position: fixed;
+    bottom: 0;
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 44px;
+    background-color: #ef4e4e;
+    text-align: center;
+}
+
+/*联系人*/
+
+/*************************联系人start***************************/
+
+.recharge_warp .movieRecharge_rechargeArea .contactArea {
+    background-color: #fff;
+}
+.recharge_warp .movieRecharge_rechargeArea .contactArea .contactsContent {
+    height: 60px;
+    width: 95%;
+    border-bottom: 1px solid #eeeeee;
+    margin-left: 5%;
+    font-size: 1.125rem;
+    line-height: 60px;
+}
+.recharge_warp .movieRecharge_rechargeArea .contactArea .contactsContent .contactsIcon {
+    width: 41px;
+    margin-top: 9px;
+    height: 41px;
+    margin-right: 20px;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+}
+.recharge_warp .movieRecharge_rechargeArea .contactArea .contactsContent .contactsIcon img {
+    width: 41px;
+    height: 41px;
+    background-size: cover;
+}
+
+
+.recharge_warp .contacts_nav input::-webkit-input-placeholder {
+    color: #CCCCCC;
+    font-size: .75rem;
+}
+.recharge_warp .contactAdd {
+    height: 20px;
+    width: 20px;
+    background-size: cover;
+    background-image: url("../images/recharge/add.png");
+    position: absolute;
+    top: 11px;
+    right: 12px;
+}
+/*************************联系人end***************************/
+
+
+/*2017.06.06*/
+.opacitys {position: fixed;top:0;left:0;width:100%;height:100%;background: rgba(0,0,0,0);display: none;z-index: 9;}
+.opacitys div {position: absolute;bottom:0;left:0;width:100%;height:170px;background: #eee;opacity: .6;}
+
+
+/*充值规则、2017.7.8*/
+.rechargerule {
+    width: 90%;
+    padding: 44px 5% 0 5%;
+    position: fixed;
+    margin: auto;
+    font-size: 16px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: rgba(255,255,255,1);
+    z-index: 9999;
+    display: none;
+}
+.rechargerule div {
+    position: relative;
+    top:10%;
+}
+.mr {
+    font-size: 12px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    color: #333;
+    width:30%;
+    padding-left: 5%;
+}
+.mr img {
+    width:14px;
+    height:14px;
+    vertical-align: sub;
+    margin-right: 5px;
+}
+#fixedssss {
+    position: fixed;
+    top:44px;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index: 99;
+    background: rgba(0,0,0,0);
+    display: none;
+}
+#fixedssss div {
+    position: relative;
+    margin: auto;
+    width:100%;
+    text-align: center;
+    top:50%;
+    font-size: 16px;
+}
+
+
+.bj_01 ,.bj_02 {
+    font-size: 12px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    color: #333;
+    padding-left: 5%;
+    position: absolute;
+    bottom:0;
+}
+.bj_01 img , .bj_02 img{
+    width: 14px;
+    height: 14px;
+    vertical-align: sub;
+    margin-right: 5px;
+}
+.bj_01 {
+    right:20%;
+}
+.bj_02 {
+    right:5%;
+}

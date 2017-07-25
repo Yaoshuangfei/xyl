@@ -1,0 +1,108 @@
+
+<div class="recharge_warp" style="background: #ffffff">
+  <div class="recharge_top">
+    <div class="end" onclick="backPage()"></div>
+    充值中心 </div>
+  <div class="voucherCenter_phoneArea mT">
+    <div class="phoneArea">
+      <input type="number" class="warp_Lt" id="mobileNum" placeholder="请输入号码"/>
+      <div class="user warp_Rg"></div>
+    </div>
+    <span id="error">默认号码</span> </div>
+  <div class="voucherCenter_exchangeArea">
+    <span style="margin-bottom: 20px;">充话费</span>
+    <!--<div id="voucherCenter_exchangeAreas"></div>-->
+    <div class="voucherCenter_telephoneArea" id="voucherCenter_telephoneAreas">
+      <!--<div class="voucherCenter_Area">-->
+        <!--<div class="telephoneFare"> <span>50元</span> <span>售价：45.00元</span> </div>-->
+      <!--</div>-->
+    </div>
+  </div>
+  <div class="voucherCenter_exchangeArea"> <span style="margin-bottom: 20px;">更多充值</span>
+    <div class="voucherCenter_telephoneArea">
+      <div class="voucherCenter_recharge ui_btn" data-action="goInchargeFlow"> <img src="images/recharge/flux.png" alt="" class="flux"/> <span>流量充值</span> </div>
+
+      <div class="voucherCenter_recharge" onclick="alertBtn()" data-action="goInEntertainmentRecharge"> <img src="images/recharge/photo.png" alt="" class="fuel"/> <span>影视充值</span> </div>
+
+      <div class="voucherCenter_recharge" onclick="alertBtn()" data-action="goInRefuelingCard"> <img src="images/recharge/fuel.png" alt="" class="flux"/> <span>油卡充值</span> </div>
+       </div>
+  </div>
+</div>
+<div class="rule"><span id="gz" class="ui_btn" data-action="gz">规则</span>|<span class="ui_btn" data-action="czjl">充值记录</span></div>
+<div class="wantToRecharge_shady" style="display: none"></div>
+<div class="wantToRecharge_payment" style="display: none">
+  <!--头部-->
+  <div class="wantToRechargeHeader breadth bB">
+    <div class="end" id="backs"></div>
+    <div class="end" id="backss" style="display: none;"></div>
+    <span>付款详情</span>
+  </div>
+  <!--付款方式-->
+  <div class="wantToRechargePay " style="display: none;">
+    <div class="wantToRechargeChangeArea bB"  style="background-image: url('images/recharge/start.png');">
+      <span style="font-size: 16px;color: #333;">付款方式</span>
+      <span class="warp_Rg" style="font-size: .75rem;margin-right:12px">微信</span>
+    </div>
+    <div class="wantToRechargeChangeArea">
+      需付款
+    </div>
+    <div class="withdraw_btn ui_btn" data-action="patSuuccess" style="margin-top: 85px;">确认付款</div>
+  </div>
+  <!--支付选项-->
+  <div class="wantToRechargeChange bB" style="display: none" id="sss">
+    <div class="wantToRechargeChangeArea bB selecteds">
+      <div class="ChangeArea_btn warp_Lt"><img src="images/icon_wx.png" alt=""></div>
+      <span>微信</span>
+    </div>
+    <div class="wantToRechargeChangeArea wantToRecharge_balance ">
+        <div class="ChangeArea_btn warp_Lt" ><img src="images/icon_ye.png" alt=""></div>
+      <span>余额支付</span>
+    </div>
+  </div>
+</div>
+
+<div style="position: fixed;top:0;left:0;width:100%;height:100%;background: #fff;z-index: -1;"></div>
+<div id="payFixed" style="position: fixed;top:0;left:0;width:100%;height:100%;z-index: 999999;background: rgba(0,0,0,.5);display: none;">
+  <div style="background: #fff;position: fixed;bottom: 0;left: 0;width: 100%;height: 320px;">
+    <p style="    text-align: center;
+    padding: 25px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;">请输入您的支付密码</p>
+    <label style="display: block;
+    width: 100%;
+    height: 50px;
+    color: #000;text-align: center;line-height: 50px;"><input type="password" value="" placeholder="请在这里输出密码" id="passwords" style="padding-left: 10px;    padding-left: 10px;
+    border: 1px solid #eee;
+    width: 80%;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 8px;text-align: center;"></label>
+    <div id="paySuccess" class="ui_btn" data-action="paySuccess01" style="width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;">确认支付</div>
+  </div>
+  <div id="cencalss" class="ui_btn" data-action="cencalss" style="    width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);">取消</div>
+</div>
+<div class="rechargerule ui_btn" data-action="rechargerule">
+  <div>
+    <p>1、24小时到账</p>
+    <p>2、普通98折，创客、创客商95折</p>
+    <p>3、分佣规则按照平台的分佣规则，分佣比为交易额的3%；普通会员不参与分佣；</p>
+  </div>
+</div>

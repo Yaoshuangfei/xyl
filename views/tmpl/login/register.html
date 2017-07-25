@@ -1,0 +1,60 @@
+
+    <div class="siTop">
+        <div class="return" onclick="backPage()"></div>
+        用户注册
+    </div>
+
+    <div class="dataBox">
+
+        <div class="rAccount">
+            <div class="textBox">
+                <div class="l_logo user_Icon"> </div>
+                <div class="r_input">
+                    <input type="text" placeholder="请输入你的手机号/邮箱" id="account"/>
+                </div>
+            </div>
+            <!--<div class="prompt">手机号／邮箱格式错误，请输入正确格式！</div>-->
+        </div>
+
+        <div class="rAccount">
+            <div class="textBox">
+                <div class="l_logo pw_Icon"> </div>
+                <div class="r_input">
+                    <input type="password" placeholder="请输入密码" id="password"/>
+                </div>
+            </div>
+            <!--<div class="prompt" style=" color: #ccc;">密码为6-18数字、字母组合，可含下划线！</div>-->
+        </div>
+
+        <div class="rAccount">
+            <div class="textBox">
+                <div class="l_logo pwT_Icon"> </div>
+                <div class="r_input">
+                    <input type="password" placeholder="请再次输入密码" id="passwords"/>
+                </div>
+            </div>
+            <!--<div class="prompt">两次输入密码不一致！</div>-->
+        </div>
+
+        <div class="rAccount">
+            <div class="textBox">
+                <div class="l_logo sys_Icon"> </div>
+                <div class="r_input">
+                    <input type="text" placeholder="请输入您的邀请码" id="yq_num"/>
+                </div>
+            </div>
+            <!--<div class="prompt">邀请码不存在，请核对后输入！</div>-->
+        </div>
+
+        <div class="verification">
+            <div class="verificationBox">
+                <input type="text" placeholder="请输入验证码" id="yan"/>
+            </div>
+            <input type="button" class="verificationBtn ui_btn" value="发送验证码" id="verify_code"  data-action="yans">
+        </div>
+        <!--<div class="vPrompt">验证码错误，请核对后输入！</div>-->
+        <input type="button" class="registerBtn ui_btn" data-action="registerBtns" value="注册"  style="margin-top: 30px;background: #26a5ff;" id="login_sub">
+    </div>
+
+
+    <div class="rPrompt">已有账号？<span class="ui_btn" data-action="goInsignIn" style=" color: #26a5ff">立即登录</span></div>

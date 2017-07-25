@@ -1,0 +1,175 @@
+
+	<div class="top">
+		<div class="return ui_btn" data-action="returns"></div>
+		我的金豆
+	</div>
+
+	<div class="position" style=" height: 44px;"></div>
+
+	<div class="rechargeType">
+		<div class="typeBox">
+			<div class="pic"><img src="images/mine/ticket.png"></div>
+			<div class="number" id="asdasdas">0张</div>
+			<div class="name">便付券</div>
+			<div class="operation"><span style="margin-right: 35px;" class="ui_btn" data-action="zhuanzheng">转赠</span><span class="ui_btn" data-action="lookup">查看</span></div>
+		</div>
+		<div class="miLine"></div>
+		<div class="typeBox">
+			<div class="pic"><img src="images/mine/ImazamoxT.png"></div>
+			<div class="number" id="douzi">0颗</div>
+			<div class="name">我的金豆</div>
+			<div class="operation ui_btn" data-action="exchange">兑换</div>
+		</div>
+	</div>
+
+
+	<div class="rechargeMoney">
+		<div class="miHint">金额</div>
+		<div class="import">
+			<input type="number" id="miRecharge" name="" placeholder="请输入金额" style="border: 1px solid #eee;">
+		</div>
+	</div>
+
+	<div class="rechargebtn ui_btn" data-action="handsel">我要充值</div>
+
+
+
+	<!-- 充值方式 -->
+	<div class="wantToRecharge_shady" style="display: none"></div>
+	<div class="wantToRecharge_payment" style="display: none">
+		<!--头部-->
+		<div class="wantToRechargeHeader breadth bB">
+			<div class="end" id="backs"></div>
+			<div class="end" id="backss" style="display: none;"></div>
+			<span>付款详情</span>
+		</div>
+		<!--付款方式-->
+		<div class="wantToRechargePay " >
+			<div class="wantToRechargeChangeArea bB"  style="background-image: url('images/recharge/start.png');">
+				<span style="font-size: 16px;color: #333;">付款方式</span>
+				<span class="warp_Rg" style="font-size: .75rem;margin-right:12px">微信</span>
+			</div>
+			<div class="wantToRechargeChangeArea">
+				需付款
+			</div>
+			<div class="withdraw_btn ui_btn" style="margin-top: 85px;" data-action="payFor">确认付款</div>
+		</div>
+		<!--支付选项-->
+		<div class="wantToRechargeChange bB" style="display: none" id="sdasda">
+			<div class="wantToRechargeChangeArea bB selecteds">
+				<div class="ChangeArea_btn warp_Lt"><img src="images/icon_wx.png" alt=""></div>
+				<span>微信</span>
+			</div>
+			<div class="wantToRechargeChangeArea wantToRecharge_balance " id="yue">
+				<div class="ChangeArea_btn warp_Lt"><img src="images/icon_ye.png" alt=""></div>
+				<span>余额支付</span>
+			</div>
+		</div>
+	</div>
+
+	<div style="position: fixed;top:0;left:0;width:100%;height:100%;background: #fff;z-index: -1;"></div>
+
+	<div id="payFixed" style="position: fixed;top:0;left:0;width:100%;height:100%;z-index: 999999;background: rgba(0,0,0,.5);display: none;">
+		<div style="background: #fff;position: fixed;bottom: 0;left: 0;width: 100%;height: 320px;">
+			<p style="    text-align: center;
+    padding: 25px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;">请输入您的支付密码</p>
+			<label style="display: block;
+    width: 100%;
+    height: 50px;
+    color: #000;text-align: center;line-height: 50px;"><input type="password" value="" placeholder="请在这里输出密码" id="passwords" style="padding-left: 10px;    padding-left: 10px;
+    border: 1px solid #eee;
+    width: 80%;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 8px;text-align: center;"></label>
+			<div id="paySuccess" class="ui_btn" data-action="paySuccessad" style="width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;">确认支付</div>
+		</div>
+		<div id="cencalss" class="ui_btn" data-action="cencalss" style="    width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);">取消</div>
+	</div>
+
+	<div id="payFixedyz" style="position: fixed;top:0;left:0;width:100%;height:100%;z-index: 999999;background: rgba(0,0,0,.5);display: none;">
+		<div style="background: #fff;position: fixed;bottom: 0;left: 0;width: 100%;height: 320px;">
+			<p style="    text-align: center;
+    padding: 25px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;">请输入您的支付密码</p>
+			<label style="display: block;
+    width: 100%;
+    height: 50px;
+    color: #000;text-align: center;line-height: 50px;"><input type="password" value="" placeholder="请在这里输出密码" id="passwordsyz" style="padding-left: 10px;    padding-left: 10px;
+    border: 1px solid #eee;
+    width: 80%;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 8px;text-align: center;"></label>
+			<div id="paySuccessyz" class="ui_btn" data-action="paySuccessadyz" style="width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;">确认支付</div>
+		</div>
+		<div id="cencalssyz" class="ui_btn" data-action="cencalss" style="    width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);">取消</div>
+	</div>
+
+	<!-- 转赠 -->
+	<div class="donation">
+		<div class="donationIn">
+			<input type="text" name="" placeholder="赠送人账号" id="donationIn_01">
+		</div>
+
+		<div class="donationIn">
+			<input type="text" name="" placeholder="赠送数量" id="donationIn_02">
+		</div>
+		<div class="miCancel ui_btn" data-action="cancel" >取消</div>
+		<div class="confirm ui_btn" data-action="confirm">赠送</div>
+	</div>
+
+
+	<!-- 遮罩 -->
+	<div class="miMask ui_btn" data-action="cancel_no"></div>
+
+	<!--<script src="js/tool/jquery-1.11.3.min.js"></script>-->
+	<!--<script src="js/tool/aggregate.js"></script>-->
+	<!--<script src="js/tong_js.js"></script>-->
+
+<div id="shopRoleDist" style="position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0,0,0,.3);display: none;" class="ui_btn" data-action="shopRoleDist">
+	<div style="text-align: center;margin-top: 150px;"><img src="images/mine/niu.png" style="width:210px;height:210px;" alt=""></div>
+	<div style="position: relative;margin: auto;text-align: center;" id="shopRoleDistdddd">
+		<div data-id="2" class="ui_btn" data-action="shopRoleDistdddd" style="display: inline-block;width:140px;height:40px;background:#f1c330;color: #fff;border-radius: 8px;text-align: center;line-height: 40px;font-size: 14px;margin: 0 5%; ">成为创客：100元</div>
+		<div data-id="3" class="ui_btn" data-action="shopRoleDistdddds" style="display: inline-block;width:140px;height:40px;background:#f1c330;color: #fff;border-radius: 8px;text-align: center;line-height: 40px;font-size: 14px;margin: 0 5%; ">成为创客商：5000元</div>
+	</div>
+</div>

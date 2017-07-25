@@ -1,0 +1,1342 @@
+*{
+    margin:0;
+    padding:0;
+    border:0;
+}
+
+body{
+    /*background-color: #eeeeee;*/
+    background: #f7f7f7;
+    font-family: "微软雅黑";
+    font-size: 12px;
+    color: #333;
+}
+
+.tL{
+    text-align: left;
+}
+
+.tR{
+    text-align: right;
+}
+
+.tC{
+    text-align:center;
+}
+
+.fL{
+    float: left;
+}
+
+.fR{
+    float: right;
+}
+
+/***********************ͷ�� **********************/
+
+.rHead{
+    width: 90%;
+    height: 44px;
+    border-bottom:1px #eeeeee solid;
+    padding-left: 5%;
+    padding-right: 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+.rHead .h_in{
+    width: 50%;
+    text-align: center;
+    line-height: 44px;
+    font-size: 18px;
+    color: #000;
+}
+
+.rHead .return{
+    width: 25%;
+    color: #000;
+    height: 100%;
+    background-image: url(../../images/dial/return.png);
+    background-position: 0px center;
+    background-size: 26px;
+    background-repeat: no-repeat;
+}
+
+.rHead .record{
+    width: 25%;
+    height: 100%;
+    line-height: 44px;
+    text-align: right;
+}
+
+/***********************ѡ�� **********************/
+.option{
+    width: 90%;
+    height: 30px;
+    border-bottom: 1px solid #eee;
+    background-color: #f7f7f7;
+    padding-left: 5%;
+    padding-right: 5%;
+    line-height: 30px;
+    position: relative;
+    position: fixed;
+    top: 44px;
+    left: 0px;
+}
+
+.option .still{
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    float: left;
+}
+
+.option .line{
+    width: 1px;
+    height: 80%;
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    margin-left: -0.5px;
+    background-color: #eee;
+}
+
+.option .complete{
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    float: left;
+}
+
+.fc{
+    color: #ec6941;
+}
+
+/***********************ѡ�� **********************/
+
+.items{
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 10px;
+}
+
+.items .pic{
+    width: 100%;
+}
+
+.items .pic img{
+    width: 100%;
+}
+
+.introduce{
+    width: 100%;
+    height: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;/*���õ�����*/
+    -webkit-box-orient: vertical;
+}
+
+.title{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    color: #000;
+    font-size: 16px;
+}
+
+.content{
+    width: 100%;
+    /*	height: 15;*/
+    font-size: 12px;
+    color: #666;
+    /*����div������ʾ���������ҽ��������ʡ�Ժ���ʾ*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;/*���õ�����*/
+    -webkit-box-orient: vertical;
+}
+
+.schedule{
+    width: 100%;
+    height: 5px;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: #cccccc;
+}
+
+.schedule .scheduleIn{
+    /*	width: 50%;*/
+    height: 100%;
+    background-color: #ec6941;
+    border-radius: 10px;
+}
+
+.data{
+    width: 100%;
+    height: 54px;
+    margin-top: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.data p{
+    font-size: 12px;
+    color: #666;
+}
+
+.number{
+    font-size: 18px;
+    color: #000;
+}
+
+.data .participant{
+    width: calc(100% / 3);
+    height: 100%;
+    text-align: left;
+}
+
+.data .amount{
+    width: calc(100% / 3);
+    height: 100%;
+    text-align: center;
+}
+
+.data .day{
+    width: calc(100% / 3);
+    height: 100%;
+    text-align: right;
+}
+
+/***********************�ײ� **********************/
+.cBottom{
+    width: 90%;
+    height: 60px;
+    border-top: 1px solid #eee;
+    padding-left: 5%;
+    padding-right:5%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    background-color: #fff;
+}
+
+.cBottom .list{
+    width: 25%;
+    height: 100%;
+    float:left;
+    background-position:center 8px;
+    background-repeat: no-repeat;
+    background-size: 26px;
+    text-align: center;
+    line-height: 95px;
+    color: #999999;
+}
+
+.cBottom .one{  background-image: url(../../images/commodityList/contacts.png);  }
+.cBottom .one.show {  background-image: url(../../images/commodityList/contacts_b.png); color: #eb6100; }
+
+.cBottom .two{  background-image: url(../../images/commodityList/oneOnOne.png);  }
+.cBottom .two.show{  background-image: url(../../images/commodityList/oneOnOne_b.png);  color: #eb6100;}
+
+.cBottom .three{  background-image: url(../../images/commodityList/publicWelfare.png);  }
+.cBottom .three.show{  background-image: url(../../images/commodityList/publicWelfare_b.png);  color: #eb6100;}
+
+.cBottom .four{  background-image: url(../../images/commodityList/my.png);  }
+.cBottom .four.show{  background-image: url(../../images/commodityList/my_b.png);  color: #eb6100;}
+
+
+/***********************վλ **********************/
+.position{
+    width: 100%;
+    height: 74px;
+}
+
+.positionBottom{
+    width: 100%;
+    height: 60px;
+}
+
+/*公益产品*/
+
+
+/***********************导航 **********************/
+
+.new{
+    width: 30%;
+    opacity: 0.8;
+    position:absolute;
+    right: 15px;
+    top: 35px;
+    z-index: 8;
+    display: none;
+}
+
+.new .list{
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid #7e7e7e;
+    line-height: 30px;
+    background-repeat: no-repeat;
+    background-position: 10%;
+    background-size: 20px;
+    color: #fff;
+    font-size: 12px;
+    text-indent: 35px;
+}
+
+.new .triangle-down {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #666666;
+    position: absolute;
+    right: 10px;
+    bottom:0px;
+}
+
+
+/***********************头部 **********************/
+
+.cgShopHead {
+    width: 100%;
+    height: 44px;
+    /*	background-image: url(../images/storeDetails/shopHead_bg.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        transition: height 0.6s;*/
+    background-color: #eeeeee;
+    position:fixed;
+    top: 0;
+    z-index: 6;
+}
+
+.cgShopHead .shopHead_top{
+    width: 100%;
+    height: 44px;
+}
+
+.cgShopHead .shopHead_top .back{
+    width: 22px;
+    height: 22px;
+    background-image: url(../../images/commodityList/returnTwo.png);
+    background-position: center;
+    background-size: 26px;
+    background-repeat: no-repeat;
+    float: left;
+    margin-top: 10px;
+    margin-left: 5%;
+}
+
+.cgShopHead .shopHead_top .search{
+    width: 60%;
+    height: 22px;
+    float: left;
+    margin-left:10%;
+    margin-top: 10px;
+    background-color: #fff;
+    border-radius: 25px;
+}
+
+.cgShopHead .shopHead_top .search input{
+    width: 80%;
+    margin-left: 10px;
+    font-size: 12px;
+    height: 100%;
+    display: block;
+    float: left;
+}
+
+.cgShopHead .shopHead_top .search .search_r{
+    width: 14%;
+    height: 100%;
+    float: right;
+    background-image: url(../../images/commodityList/seach.png);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position:center;
+}
+
+.cgShopHead .shopHead_top .more{
+    width: 22px;
+    height: 22px;
+    float:right;
+    margin-top: 10px;
+    margin-right: 5%;
+}
+
+.cgShopHead .shopHead_top .more span{
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
+    float: left;
+    margin-left: 2px;
+    margin-top: 8px;
+    background-color: #aaaaaa;
+    display: block;
+
+}
+
+/***********************排序 **********************/
+
+.cgSort{
+    width: 90%;
+    height: 31px;
+    padding-left: 5%;
+    padding-right: 5%;
+    border-bottom: 1px solid #ccc;
+    color: #666;
+    position: fixed;
+    top: 44px;
+    background: #fff;
+    z-index: 6;
+}
+
+.cgSort .left{
+    width: calc(80% - 1px);
+    height: 100%;
+    background-color: #fff;
+    border-right: 1px solid #ccc;
+}
+
+.cgSort .left .type{
+    width: calc(100% / 3);
+    height: 100%;
+    float: left;
+    text-align: center;
+    line-height: 31px;
+}
+
+
+.cgSort .right{
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    line-height: 31px;
+}
+
+
+
+
+.cgProduct{
+    width: 100%;
+    height: 131px;
+    background-color:#fff;
+}
+
+.cgProduct .productPic{
+    width: 40%;
+    height: 100%;
+    /*background-color: #000;*/
+}
+
+.cgProduct .productPic img{
+    width: 100%;
+    height: 100%;
+
+}
+
+.cgProduct .productDesc{
+    width: 55%;
+    border-bottom: 1px solid #ccc;
+    padding-top: 5%;
+    padding-right: 5%;
+}
+
+.descTitle{
+    width: 100%;
+    height: 35px;
+    /*限制div文字显示的行数并且将多余的已省略号显示*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;/*设置的行数*/
+    -webkit-box-orient: vertical;
+}
+
+.cgProduct .productDesc .descIp{
+    width: 100%;
+    margin-top: 3px;
+}
+
+.cgProduct .productDesc .descIp .express{
+    width: 35px;
+    height: 20px;
+    border-radius: 2px;
+    margin-top: 5px;
+    background-color: #ff0000;
+    line-height: 18px;
+    text-align: center;
+    color: #fff;
+}
+
+.cgProduct .productDesc .count{
+    width: 100%;
+    /*margin-top: 10px;*/
+}
+
+.cgProduct .productDesc .price{
+    padding: 5px;
+    color: #ff0000;
+    font-size: 16px;
+}
+
+.cgProduct .productDesc .price span{
+    font-size: 12px;
+}
+
+.cgProduct .productDesc .paymentNumber{
+    padding: 5px;
+    color: #cccccc;
+    margin-left: 5px;
+    line-height: 20px;
+}
+
+.cgProduct .productDesc .more{
+    width: 12px;
+    height: 12px;
+    background-image: url(../../images/commodityList/more.png);
+    background-position: center;
+    -webkit-background-size: 100%;
+    background-size: 15px;
+    margin-top: 10px;
+}
+/***********************筛选模块 **********************/
+.cgScreen{
+    width: 67%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index:999999;
+    background-color: #fff;
+    padding-left: 3%;
+    padding-top: 5%;
+    display: none;
+}
+
+.cgScreen .close{
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    line-height: 25px;
+    text-align: center;
+}
+
+.cgScreen .theme{
+    width: 100%;
+    /*根据里面的内容增加高度*/
+    display:inline-block;
+}
+
+.cgScreen .title {
+    width: 100%;
+    padding-bottom: 5%;
+}
+
+.cgScreen .theme .listName{
+    width: 30%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #eeeeee;
+    color: #666666;
+    margin-right: 3%;
+    float: left;
+    margin-bottom: 3%;
+}
+
+.cgScreen .line{
+    width: 97%;
+    height: 1px;
+    background-color: #ccc;
+    margin-bottom: 10px;
+}
+
+.selected{
+    width: 30%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #f4eee9;
+    color: #eb6100;
+    margin-right: 3%;
+    float: left;
+    margin-bottom: 3%;
+    position: relative;
+}
+
+
+.delete{
+    width: 30%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    /*background-color: #eb6100;*/
+    background-image: url(../images/commodityList/delete.png);
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    -webkit-background-size: 20px;
+    background-size: 20px;
+}
+
+.cgScreen .button{
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+
+.cgScreen .button .left{
+    width: 50%;
+    height: 100%;
+    background-color: #f1c330;
+}
+
+.cgScreen .button .right{
+    width: 50%;
+    height: 100%;
+    background-color: #eb6100;
+}
+
+.cgScreen .theme .most{
+    width: 30%;
+    height: 40px;
+    text-align: center;
+    background-color: #eeeeee;
+    color: #666666;
+    margin-right: 3%;
+    float: left;
+    margin-bottom: 3%;
+}
+
+.cgScreen .theme .choice{
+    width: calc(97% - 12px);
+    height: 22px;
+    padding: 4px 6px;
+    margin-bottom: 10px;
+    background-color: #eeeeee;
+}
+
+.cgScreen .theme .choice .minimum{
+    width: 40%;
+    height: 100%;
+    line-height: 22px;
+    text-align: center;
+    background-color: #fff;
+    color: #eeeeee;
+}
+
+.cgScreen .theme .choice .to{
+    width: 10%;
+    height: 2px;
+    background-color: #cccccc;
+    margin-top: 10px;
+    margin-left: 5%;
+}
+
+.cgScreen .theme .choice .highest{
+    width: 40%;
+    height: 100%;
+    line-height: 22px;
+    text-align: center;
+    background-color: #fff;
+    color: #b3b3b3;
+}
+
+.cgScreen .theme .most span{
+    width: 100%;
+    height: 50%;
+    display: block;
+    line-height: 20px;
+}
+/***********************遮罩 **********************/
+
+.cgMask{
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.6;
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+/*一对一助学*/
+
+
+.ooHead{
+    width: 90%;
+    height: 44px;
+    border-bottom:1px #eeeeee solid;
+    padding-left: 5%;
+    padding-right: 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+.ooHead .h_in{
+    width: 50%;
+    text-align: center;
+    line-height: 44px;
+    font-size: 18px;
+    color: #000;
+}
+
+.ooHead .ooReturn{
+    width: 25%;
+    color: #000;
+    height: 100%;
+    background-image: url(../../images/dial/return.png);
+    background-position: 0px center;
+    background-size: 26px;
+    background-repeat: no-repeat;
+}
+
+/***********************项目 **********************/
+.ooItem{
+    width: 100%;
+    border-bottom: 1px solid #eee;
+}
+
+.ooItem .ooTitle{
+    width: 90%;
+    height: 50px;
+    padding-left: 5%;
+    padding-right: 5%;
+    line-height: 50px;
+    font-size: 16px;
+    color: #ec6941;
+    background-color: #f7f7f7;
+}
+
+.ooItem .itemList{
+    width: 85%;
+    height: 70px;
+    padding: 5% 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.ooItem .itemList .pic{
+    width: 30%;
+    height: 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.ooItem .itemList .pic img{
+    width: 100%;
+    vertical-align:middle
+}
+
+.ooItem .itemList .ooContent{
+    width: 47%;
+    height: 100%;
+    padding-left: 3%;
+}
+
+.ooItem .itemList .ooContent .titleT{
+    width: 100%;
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.ooItem .itemList .ooContent .ooIntroduce{
+    width: 100%;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 20px;
+    /*限制div文字显示的行数并且将多余的已省略号显示*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;/*设置的行数*/
+    -webkit-box-orient: vertical;
+}
+
+.ooItem .itemList .helpTA{
+    width: 17%;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 3%;
+    background-color: #ec6941;
+    line-height: 30px;
+    font-size: 12px;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+}
+
+/*一对一助学 详情*/
+
+
+.odHead{
+    width: 90%;
+    height: 44px;
+    border-bottom:1px #eeeeee solid;
+    padding-left: 5%;
+    padding-right: 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 9;
+}
+
+.odHead .h_in{
+    width: 50%;
+    text-align: center;
+    line-height: 44px;
+    font-size: 18px;
+    color: #000;
+}
+
+.odHead .odReturn{
+    width: 25%;
+    color: #000;
+    height: 100%;
+    background-image: url(../../images/dial/return.png);
+    background-position: 0px center;
+    background-size: 25%;
+    background-repeat: no-repeat;
+}
+
+.odHead .odReturn{
+    width: 25%;
+    height: 100%;
+    line-height: 44px;
+    text-align: center;
+}
+
+/*********************** 数据 **********************/
+
+.picture{
+    width: 100%;
+}
+
+.picture img{
+    width: 100%;
+}
+
+
+.schedule{
+    width: 100%;
+    height: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #cccccc;
+}
+
+.schedule .scheduleIn{
+    /*	width: 50%;*/
+    height: 100%;
+    background-color: #f39800;
+    border-radius: 10px;
+}
+
+.content{
+    width: 90%;
+    /*margin-top: 20px;*/
+    /*padding-left: 5%;*/
+    /*padding-right: 5%;*/
+}
+
+.content .data{
+    width: 100%;
+    height: 54px;
+    /*	padding-left: 5%;
+        padding-right: 5%;*/
+    /*	border-bottom: 1px solid #eee;*/
+}
+
+.content .data p{
+    font-size: 12px;
+    color: #666;
+}
+
+.number{
+    font-size: 18px;
+    color: #000;
+}
+
+.content .data .participant{
+    width: calc(100% / 3);
+    height: 100%;
+    text-align: left;
+}
+
+.content .data .amount{
+    width: calc(100% / 3);
+    height: 100%;
+    text-align: center;
+}
+
+.content .data .day{
+    width: calc(100% / 3);
+    height: 100%;
+    text-align: right;
+}
+
+/***********************详情 **********************/
+.itemDetails{
+    width: 100%;
+    /*	padding-left: 5%;
+        padding-right: 5%;*/
+}
+
+.box{
+    width: 100%;
+    background-color: #eeeeee;
+}
+
+.itemDetails .title{
+    width: 90%;
+    padding-left:5%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    color: #000;
+    margin-top: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.itemDetails .introduction{
+    width: 90%;
+    height: 15px;
+    font-size: 14px;
+    color: #000;
+    line-height: 15px;
+    padding-left: 5px;
+    border-left: 2px solid #ff0000;
+    margin-top: 10px;
+    margin-left: 5%;
+    background-color: #fff;
+}
+
+.itemDetails .introductionText{
+    width: 90%;
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+    margin-left: 5%;
+    background-color: #fff;
+}
+
+.explain{
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+    color: #666;
+}
+.explain .context p {margin: 2% 0;}
+.explain img{
+    width: 100%;
+    margin-top: 5px;
+}
+
+.explain .twoTitle{
+    width: 90%;
+    padding-left: 5%;
+    margin-top: 20px;
+
+    margin-bottom: 10px;
+}
+
+.itemDetails .button{
+    width: 90%;
+    height: 30px;
+    background-color: #f39800;
+    margin-left: 5%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    font-size: 16px;
+}
+
+/*公益我的*/
+
+.mHead{
+    width: 90%;
+    height: 44px;
+    border-bottom:1px #eeeeee solid;
+    padding-left: 5%;
+    padding-right: 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.mHead .h_in{
+    width: 50%;
+    text-align: center;
+    line-height: 44px;
+    font-size: 18px;
+    color: #000;
+}
+
+.mHead .mReturn{
+    width: 25%;
+    color: #000;
+    height: 100%;
+    background-image: url(../../images/mine/return.png);
+    background-position: 0px center;
+    background-size: 25%;
+    background-repeat: no-repeat;
+}
+
+.mHead .record{
+    width: 25%;
+    height: 100%;
+    line-height: 44px;
+    text-align: center;
+}
+
+/***********************登录注册 **********************/
+
+.loginModular{
+    width: 100%;
+    height: 164px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.loginModular .picture{
+    width: 70px;
+    height: 70px;
+    background-color: #ccc;
+    border-radius: 70px;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    margin-top: 20px;
+}
+
+.loginModular .picture img{
+    width: 100%;
+    border-radius: 35px;
+}
+
+.loginModular .button{
+    width: 80%;
+    height: 32px;
+    border-radius: 5px;
+    border: 1px solid #ec6941;
+    font-size: 14px;
+    line-height: 32px;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    margin-left: -40%;
+    margin-top: 105px;
+    color: #ec6941;
+}
+
+/***********************类型 **********************/
+
+.mType{
+    width: 90%;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+.mType .typeIn{
+    width: 100%;
+    height: 44px;
+    border-top: 1px solid #eee;
+    line-height: 44px;
+}
+
+.mType .typeIn .getInto{
+    width: 40px;
+    height: 40px;
+    margin-top: 2px;
+    background-image: url(../../images/mine/point.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/*我的捐赠*/
+
+
+.mmHead{
+    width: 90%;
+    height: 44px;
+    border-bottom:1px #eeeeee solid;
+    padding-left: 5%;
+    padding-right: 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.mmHead .h_in{
+    width: 50%;
+    text-align: center;
+    line-height: 44px;
+    font-size: 18px;
+    color: #000;
+}
+
+.mmHead .mmReturn{
+    width: 25%;
+    color: #000;
+    height: 100%;
+    background-image: url(../../images/mine/return.png);
+    background-position: 0px center;
+    background-size: 25%;
+    background-repeat: no-repeat;
+}
+
+.mmHead .record{
+    width: 25%;
+    height: 100%;
+    line-height: 44px;
+    text-align: center;
+}
+/***********************项目 **********************/
+.whole{
+    width: 90%;
+    padding: 0px 5%;
+}
+
+.whole .mmItem{
+    width: 100%;
+    height: 116px;
+    margin-top: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.whole .mmItem .pic{
+    width: 40%;
+    height: 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.whole .mmItem .pic img{
+    width: 100%;
+
+}
+
+.whole .mmItem .mmContent{
+    width: calc(60% - 10px);
+    height: 100%;
+    padding-left: 10px;
+}
+
+.whole .mmItem .mmContent .mmTitle{
+    width: 100%;
+    font-size: 14px;
+    color: #000;
+}
+
+.whole .mmItem .mmContent .mmIntroduce{
+    width: 100%;
+    color: #666;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    /*限制div文字显示的行数并且将多余的已省略号显示*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;/*设置的行数*/
+    -webkit-box-orient: vertical;
+}
+
+.whole .mmItem .mmContent  .finishTime{
+    width: 100%;
+    color: #666;
+    font-size: 12px;
+}
+
+.whole .mmItem .mmContent  .finishTime p:first-child{
+    color: #ec6941;
+}
+
+.mdColor{
+    color: #666;
+}
+/*我的分享*/
+
+/*筹集完成*/
+
+
+/***********************头部 **********************/
+
+.rcHead{
+    width: 90%;
+    height: 44px;
+    border-bottom:1px #eeeeee solid;
+    padding-left: 5%;
+    padding-right: 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+.rcHead .h_in{
+    width: 50%;
+    text-align: center;
+    line-height: 44px;
+    font-size: 18px;
+    color: #000;
+}
+
+.rcHead .return{
+    width: 25%;
+    color: #000;
+    height: 100%;
+    background-image: url(../../images/dial/return.png);
+    background-position: 0px center;
+    background-size: 26px;
+    background-repeat: no-repeat;
+}
+
+/*.head .record{
+    width: 25%;
+    height: 100%;
+	line-height: 44px;
+	text-align: center;
+}*/
+
+/***********************选项 **********************/
+/*.option{*/
+    /*width: 90%;*/
+    /*height: 30px;*/
+    /*border-bottom: 1px solid #eee;*/
+    /*background-color: #f7f7f7;*/
+    /*padding-left: 5%;*/
+    /*padding-right: 5%;*/
+    /*line-height: 30px;*/
+    /*position: relative;*/
+    /*position: fixed;*/
+    /*top: 44px;*/
+    /*left: 0px;*/
+/*}*/
+
+/*.option .still{*/
+    /*width: 50%;*/
+    /*height: 100%;*/
+    /*text-align: center;*/
+    /*float: left;*/
+/*}*/
+
+/*.option .line{*/
+    /*width: 1px;*/
+    /*height: 80%;*/
+    /*position: absolute;*/
+    /*left: 50%;*/
+    /*top: 10%;*/
+    /*margin-left: -0.5px;*/
+    /*background-color: #eee;*/
+/*}*/
+
+/*.option .complete{*/
+    /*width: 50%;*/
+    /*height: 100%;*/
+    /*text-align: center;*/
+    /*float: left;*/
+    /*color: #ec6941;*/
+/*}*/
+
+/***********************项目 **********************/
+.whole{
+    width: 90%;
+    padding: 0px 5%;
+}
+
+.whole .rcItem{
+    width: 100%;
+    height: 116px;
+    margin-top: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.whole .rcItem .pic{
+    width: 50%;
+    height: 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.whole .rcItem .pic img{
+    width: 100%;
+
+}
+
+.whole .rcItem .rcContent{
+    width: calc(50% - 10px);
+    height: 100%;
+    padding-left: 10px;
+}
+
+.whole .rcItem .rcContent .rcTitle{
+    width: 100%;
+    font-size: 14px;
+    color: #000;
+}
+
+.whole .rcItem .rcContent .rcIntroduce{
+    width: 100%;
+    color: #666;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    /*限制div文字显示的行数并且将多余的已省略号显示*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;/*设置的行数*/
+    -webkit-box-orient: vertical;
+}
+
+.whole .rcItem .rcContent  .finishTime{
+    width: 100%;
+    color: #666;
+    font-size: 12px;
+}
+
+
+
+/*2017.06.07*/
+/*助学基金顶部阴影*/
+.box_shadow {box-shadow: 0 4px 7px rgba(204,204,204,.8); }

@@ -1,0 +1,23 @@
+
+<div class="recharge_warp">
+    <div class="recharge_top" style="background-color:#fff;">
+        <div class="end" onclick="backPage()"></div>
+        提现
+    </div>
+    <div class="withdraw_card breadth grayMt bT bB ui_btn" data-action="goInSelectBankCard">
+        <div class="withdraw_log warp_Lt"></div>
+        <p></p>
+        <span style="color: #ccc;font-size: .75rem"></span>
+    </div>
+    <div class="withdraw_money breadth bT bB">
+        <p id="asdd"></p>
+        <div class="withdraw_enter bB">
+            <span class="warp_Lt">¥</span>
+            <input id="money" type="text" class="warp_Lt">
+        </div>
+        <p style="margin-top: 5px;">可用余额 <span id="available"></span> 元 <span id="wPrompt" style="color:#FF0000; display: none">金额已超过可提现余额</span><span id="wWhole" style="color:#007CC3" class="warp_Rg">全部提现</span></p>
+    </div>
+    <div class="withdraw_btn ui_btn" data-action="withdraw_btn">
+        两小时内到账，确认提现
+    </div>
+</div>

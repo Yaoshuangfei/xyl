@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/css/classification.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/css/mine.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/css/pageHome.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/css/recharge.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/css/seach.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/css/tel.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/js/tool/citydata.json" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/views/tmpl/tel/mine.html" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

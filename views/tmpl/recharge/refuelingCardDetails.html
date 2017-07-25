@@ -1,0 +1,111 @@
+
+<div class="recharge_warp">
+  <div class="store_top" style="background-color: #fff;border-bottom: 1px solid #eee;">
+    <div class="end" onclick="backPage()"></div>
+    中国石化 </div>
+  <div class="details_Fill" style="margin-top: 54px;">
+    <div class="details_fillTxt"><span style="letter-spacing: 3px;">姓&nbsp;名:</span>
+      <input type="text" id="name"/>
+    </div>
+    <div class="details_fillTxt"><span style="letter-spacing: 0.5px;">身份证:</span>
+      <input type="text" id="idCard"/>
+    </div>
+    <div class="details_fillTxt"><span style="letter-spacing: 3px;">卡&nbsp;号:</span>
+      <input type="text" id="cardNumber"/>
+    </div>
+  </div>
+  <div class="details_amountArea">
+    <div class="details_amountAreaTxt"> <span class="warp_Lt">充值金额：</span> <span class="rcd">选择充值金额</span>
+      <div class="down  warp_Rg"></div>
+    </div>
+      <div id="details_amountAreaTxt">
+
+      </div>
+
+  </div>
+  <div class="details_Btn ui_btn" data-action="submitData">确定</div>
+</div>
+<div class="wantToRecharge_shady" style="display: none"></div>
+<div class="wantToRecharge_payment" style="display: none">
+    <!--头部-->
+    <div class="wantToRechargeHeader breadth bB">
+        <div class="end" id="backs"></div>
+        <div class="end" id="backss" style="display: none;"></div>
+        <span>付款详情</span>
+    </div>
+    <!--付款方式-->
+    <div class="wantToRechargePay " style="display: none;">
+        <div class="wantToRechargeChangeArea bB"  style="background-image: url('images/recharge/start.png');">
+            <span style="font-size: 16px;color: #333;">付款方式</span>
+            <span class="warp_Rg" style="font-size: .75rem;margin-right:12px">微信</span>
+        </div>
+        <div class="wantToRechargeChangeArea">
+            需付款
+        </div>
+        <div class="withdraw_btn ui_btn" data-action="patSuuccess" style="margin-top: 85px;">确认付款</div>
+    </div>
+    <!--支付选项-->
+    <div class="wantToRechargeChange bB" style="display: none" id="sss">
+        <div class="wantToRechargeChangeArea bB selecteds">
+            <div class="ChangeArea_btn warp_Lt"></div>
+            <span>微信</span>
+        </div>
+        <div class="wantToRechargeChangeArea wantToRecharge_balance ">
+            <div class="ChangeArea_btn warp_Lt" style="margin-top: 9px;"></div>
+            <span>余额支付</span>
+        </div>
+    </div>
+</div>
+
+<div style="position: fixed;top:0;left:0;width:100%;height:100%;background: #fff;z-index: -1;"></div>
+<div id="payFixed" style="position: fixed;top:0;left:0;width:100%;height:100%;z-index: 999999;background: rgba(0,0,0,.5);display: none;">
+    <div style="background: #fff;position: fixed;bottom: 0;left: 0;width: 100%;height: 320px;">
+        <p style="    text-align: center;
+    padding: 25px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;">请输入您的支付密码</p>
+        <label style="display: block;
+    width: 100%;
+    height: 50px;
+    color: #000;text-align: center;line-height: 50px;"><input type="password" value="" placeholder="请在这里输出密码" id="passwords" style="padding-left: 10px;    padding-left: 10px;
+    border: 1px solid #eee;
+    width: 80%;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 8px;text-align: center;"></label>
+        <div id="paySuccess" class="ui_btn" data-action="paySuccess" style="width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;">确认支付</div>
+    </div>
+    <div id="cencalss" class="ui_btn" data-action="cencalss" style="    width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);">取消</div>
+</div>
+<div class="rule"><span id="gz" class="ui_btn" data-action="gz">规则</span>|<span class="ui_btn" data-action="czjl">充值记录</span></div>
+<div class="rechargerule">
+    <div>
+        <p>1、充值到账时间T+2，如逾期未到账，请点击反馈，填写相关凭证，身份证，油卡卡号，付款凭证；</p>
+        <p>2、每张油卡一个月最多可充值1万元；</p>
+        <p>3、创客商每月充值总金额最多1千元，合作商充值金额不限；</p>
+        <p>4、普通会员享98折优惠，但只可享受一次1000元油卡充值，创客、创客商享受95折优惠；</p>
+        <p>5、分佣规则按照平台的分佣规则，分佣比为交易额的2%；</p>
+        <p>6、普通会员不参与分佣；</p>
+        <p>7、充值额度分别为1000元、3000元、5000元和10000元；</p>
+        <p>8、充值时间16：00之前；</p>
+        <p>目前业务中石化卡不支持地区:陕西、甘肃、青海、辽宁、新疆、吉林、黑龙江、内蒙古、宁夏</p>
+    </div>
+</div>
