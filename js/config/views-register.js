@@ -180,7 +180,9 @@ var Views = {
 		videoRechargeDetails:'views/tmpl/recharge/videoRechargeDetails.html:影视充值:#ffffff',
 		activationCode:'views/tmpl/recharge/activationCode.html:激活码充值:#f7f7f7',
 
-
+        /********磁疗贴  花想容等 千人千面  路由存放位置*************/
+        hxmine:'views/tmpl/hxr/hxmySuperior.html:我的上级:#f7f7f7',
+        /********磁疗贴  花想容等 千人千面  路由存放位置结束*************/
 
 
 

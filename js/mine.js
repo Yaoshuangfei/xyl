@@ -8316,7 +8316,7 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                     var _thisData       = data.data;
 
                     // 分佣线区分店铺
-                    if(_thisData.store.commissionLine == 2){
+                    if(_thisData.store.commissionLine == 2){ //花想容
 
                         var _thisName       = _thisData.store.name;//店铺名称
                         var _thisLogo       = _thisData.store.logo;//店铺Logo
@@ -8354,7 +8354,11 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                             var str = '';
                             var shopRole = _thisData.shopRole;
                             if(shopRole.length!==0){
-                                $('.become').html('<div class="becomeLefts ui_btn" data-action="becomeSort">补货区</div>');
+                                if(_thisData.identity == '金卡'){
+                                    $('.become').html('<div class="becomeLeft ui_btn" data-action="becomeSort" style="width:100%;">' +shopRole[1].name+'</div>');
+                                }else if (_thisData.identity == '钻卡'){
+                                    $('.become').html('<div class="becomeLefts" data-action="becomeSort">您的身份已经为钻卡</div>');
+                                }
                             }else{
                                 $('.become').html('暂时不能补货')
                             }
@@ -8492,10 +8496,14 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
     // 会员信息  跳转
     vipinformation:function(btn){
         var storeId = dataGet('storeId');  //根据店铺id 查找会员信息   花想容为3，磁疗贴 为15
-        if(storeId == 3){
-            alert('这是进花想容的')
-        }else if(storeId == 15){
-            alert('这是进磁疗贴的')
+        if(dataGet('idCode')==0){
+            alert('您未开通店铺身份，无法进入！')
+        }else{
+            if(storeId == 3){
+                Views.hxmineView.show();
+            }else if(storeId == 15){
+                alert('这是进磁疗贴的')
+            }
         }
     },
     windowBottomLeft:function(){

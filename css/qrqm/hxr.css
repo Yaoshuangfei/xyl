@@ -1,0 +1,16 @@
+#hxr .top{  background: transparent;  border-bottom: transparent;  }
+#hxr .msHead {  width:100%;  height:244px;  text-align: center;  padding-left: 0;  padding-right: 0;  }
+#hxr #more {  float:right;  }
+#hxr #more img {  width: 20px;  height:5px;  }
+#hxr .msHead img {  margin-top: 47px;  width:70px;  height:70px;  }
+#hxr .msHead #name {  margin-top: 20px; }
+#hxr .msHead #mineSf {  margin-top: 20px; }
+#hxr .information {width:100%;background: #fff;height:60px;text-align: center;color: #333;}
+#hxr .information div {  width:50%;height:100%;float:left;line-height: 30px; }
+#hxr .information div p:first-child { font-size: 16px; }
+#hxr .information div p:last-child { font-size: 12px; }
+#hxr .superiorData {width:100%;padding-left: 0;height:inherit;border-bottom: transparent;}
+#hxr .msList {width:100%;padding-left: 0;line-height: 40px;font-size: 16px;color: #333;}
+#hxr .msList img {width:7px;height:12px;}
+#hxr .msList div:first-child{float:left;padding-left: 5%;}
+#hxr .msList div:last-child{float:right;padding-right: 5%;}
