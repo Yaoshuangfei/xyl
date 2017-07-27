@@ -181,7 +181,14 @@ var Views = {
 		activationCode:'views/tmpl/recharge/activationCode.html:激活码充值:#f7f7f7',
 
         /********磁疗贴  花想容等 千人千面  路由存放位置*************/
-        hxmine:'views/tmpl/hxr/hxmySuperior.html:我的上级:#f7f7f7',
+        hxmine:'views/tmpl/hxr/hxmySuperior.html:会员信息:#f7f7f7',
+        myTj:'views/tmpl/hxr/myTjSuperior.html:我的推荐人:#f7f7f7',
+        myhxCircleOfFriends:'views/tmpl/hxr/myhxCircleOfFriends.html:我邀请的人:#f7f7f7',
+        myhxBill:'views/tmpl/hxr/myhxBill.html:我的分佣:#fff',
+        myhxzdBill:'views/tmpl/hxr/myhxzdBill.html:我的账单:#fff',
+        exhxchangeRecord:'views/tmpl/hxr/exhxchangeRecord.html:积分来源:#f7f7f7',
+        myhxWallet:'views/tmpl/hxr/myhxWallet.html:我的钱包:#f7f7f7',
+        hxaccountBalance:'views/tmpl/hxr/hxaccountBalance.html:账户余额:#f7f7f7',
         /********磁疗贴  花想容等 千人千面  路由存放位置结束*************/
 
 

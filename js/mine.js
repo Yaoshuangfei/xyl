@@ -2865,6 +2865,13 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
                         $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
                     }else{
                         for(var i=0;i<_length.length;i++){
+                            var date = new Date(_length[i].createTime);
+                            Y = date.getFullYear() + '.';
+                            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '.';
+                            D = date.getDate() + ' ';
+                            h = date.getHours() + ':';
+                            m = date.getMinutes() + ':';
+                            s = date.getSeconds();
                             if(_length[i].headImg ==null){
                                 Img ='images/storeDetails/head.png';
                             }else{
@@ -2878,7 +2885,7 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
                                 +'<div class="name">'+_length[i].nickName+'</div>'
                                 +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
                                 +'</div>'
-                                +'<div class="cfTime fR">2017.03.04</div>'
+                                +'<div class="cfTime fR">'+Y+M+D+'</div>'
                                 +'</div>'
                         }
                         $('.list_sort').html(str);
@@ -3267,6 +3274,13 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
                             $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
                         }else{
                             for(var i=0;i<_length.length;i++){
+                                var date = new Date(_length[i].createTime);
+                                Y = date.getFullYear() + '.';
+                                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '.';
+                                D = date.getDate() + ' ';
+                                h = date.getHours() + ':';
+                                m = date.getMinutes() + ':';
+                                s = date.getSeconds();
                                 if(_length[i].headImg ==null){
                                     Img ='images/storeDetails/head.png';
                                 }else{
@@ -3280,7 +3294,7 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
                                     +'<div class="name">'+_length[i].nickName+'</div>'
                                     +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
                                     +'</div>'
-                                    +'<div class="cfTime fR">2017.03.04</div>'
+                                    +'<div class="cfTime fR">'+Y+M+D+'</div>'
                                     +'</div>'
                             }
                             $('.list_sort').html(str);
@@ -3323,6 +3337,7 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
                             $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
                         }else{
                             for(var i=0;i<_length.length;i++){
+
                                 if(_length[i].headImg ==null){
                                     Img ='images/storeDetails/head.png';
                                 }else{
@@ -8314,7 +8329,8 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                 }else{
                     console.log(data);
                     var _thisData       = data.data;
-
+                    //店长信息
+                    dataSave('dzUserId',_thisData.store.userId)
                     // 分佣线区分店铺
                     if(_thisData.store.commissionLine == 2){ //花想容
 
