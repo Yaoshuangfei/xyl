@@ -1,0 +1,36 @@
+.clt_img_div{
+    width: 100%;
+    height: 300px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+.clt_img_div img{
+    width: 80px;
+    margin-top: 80px;
+    margin-left: 166px;
+}
+.ncwz{
+    text-align: center;
+    margin-top: 20px;
+}
+.jbrs{
+    margin-top: 40px;
+    margin-left: 60px;
+}
+.gyq{
+    margin-left: 140px;
+}
+.clt_yq{
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+}
+.clt_yq li{
+    background: #fff;
+    height: 60px;
+    border-bottom: 1px solid #eee;
+}
+.clt_yq img{
+    width: 40px;
+    margin-top: 10px;
+    margin-left: 20px;
+}

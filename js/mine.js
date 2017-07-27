@@ -8309,6 +8309,7 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
             contentType:'application/json;charset=utf-8',
             error: function (XMLHttpRequest, textStatus, errorThrown) {},
             success:function(data){
+
                 if(!data.success){
                     console.log(data.msg);
                 }else{
@@ -8381,18 +8382,62 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                             }
                         });
                     }else if(_thisData.store.commissionLine == 3){
+                        $('#information').show();//花想容会员信息
+                        // alert('这是磁疗贴!')
+
+                        console.log(data)
                         var _thisName       = _thisData.store.name;//店铺名称
                         var _thisLogo       = _thisData.store.logo;//店铺Logo
                         var _thisIdentity   = _thisData.identity;//当前登录身份
                         var _thisIdCode     = _thisData.idCode;//店铺身份
                         dataSave('idCode', _thisIdCode);//存储当前身份 1(有身份) / 0
-                        $('#information').show();//花想容会员信息
-                        if(_thisLogo == null ){
-                            _thisLogo = 'images/headT.png'
+                        $('.sdbLogo').css('background-image','url('+_thisLogo+')');
+                        $('.shopName .name').html(_thisName);
+                        $('.shopName .identity').html('我的店铺身份：'+_thisIdentity);
+                        _thisData.coreCollection!=null?$('#collection').html('取消收藏'):$('#collection').html('收藏')
+                        if(_thisData.coreCollection!=null){
+                            dataSave('collectionIds',_thisData.coreCollection.id);
                         }else{
-                            _thisLogo = _thisLogo;
+
                         }
-                        alert('这是磁疗贴!')
+                        if(_thisIdCode == 0){
+                            var str ='';
+                            var strs ='';
+                            var shopRole = _thisData.shopRole;
+                            if(shopRole.length!==0){
+                                for (var i=shopRole.length-1;i>=0;i--){
+                                    str += '<div class="becomeLeft ui_btn" data-action="becomeSort">' +shopRole[i].name+'</div>'
+                                }
+                                $('.become').html(str)
+                            }else{
+                                $('.become').html('该店铺目前还没有合伙人!')
+                            }
+                        }else if(_thisIdCode == 1) {
+                            var str = '';
+                            var shopRole = _thisData.shopRole;
+                            if(shopRole.length!==0){
+                                $('.become').html('<div class="becomeLefts" data-action="becomeSort">该店铺没有补货区</div>');
+                            }else{
+                                $('.become').html('暂时不能补货')
+                            }
+                        }else if(_thisIdCode == 2){
+                            var str ='';
+                            var strs ='';
+                            var shopRole = _thisData.shopRole;
+                            if(shopRole.length!==0){
+                                for (var i=shopRole.length-1;i>=0;i--){
+                                    str += '<div class="becomeLeft" data-action="becomeSort">' +shopRole[i].name+'</div>'
+                                }
+                                $('.become').html(str)
+                            }else{
+                                $('.become').html('该店铺目前还没有合伙人!')
+                            }
+                        }
+                        $('.become div').each(function(){
+                            if($(this).index()%2 !== 0){
+                                $(this).css({borderRight:'inherit',width:'50%'});
+                            }
+                        });
                     }else {
 
                         var _thisName       = _thisData.store.name;//店铺名称
@@ -8502,7 +8547,8 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
             if(storeId == 3){
                 Views.hxmineView.show();
             }else if(storeId == 15){
-                alert('这是进磁疗贴的')
+                Views.clmineView.show();
+                // alert('这是进磁疗贴的')
             }
         }
     },

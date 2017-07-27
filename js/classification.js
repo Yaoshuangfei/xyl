@@ -910,6 +910,60 @@ Views.becomeDetailsView = $.extend({}, Views.PanelView, {
                         });
                     }else if (data.data.store.commissionLine == '3'){//磁疗贴
                         alert('磁疗贴')
+                        var url     = WEB_URL + '/api/shopRole/selectOne';
+                        var data    ={storeId:parseInt(dataGet('storeId')),introType:parseInt(dataGet('idCode'))};
+                        console.log(data)
+                        $.ajax({
+                            type:'POST',
+                            dataType:'json',
+                            url:url,
+                            data: JSON.stringify(data),
+                            contentType:'application/json;charset=utf-8',
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                            success:function(data){
+                                if(!data.success){
+                                    alert(data.msg);
+                                }else{
+                                    console.log(data);
+                                    var _thisData       = data.data;
+                                    var _thisBanner     = _thisData.pictureUrl;//店铺详情轮播图
+                                    var _thisShopRoles  = _thisData.shopRoles;//店铺身份分类
+                                    //店铺详情轮播图赋值
+                                    var strBanner = '';
+                                    // for(var i=0;i<_thisBanner.length;i++){
+                                    //     strBanner +='<div class="swiper-slide ui_btn">'
+                                    //         +'<img src="'+_thisBanner[i]+'" alt="" style="min-height: 300px;">'
+                                    //         +'</div>'
+                                    // }
+                                    $('#bannerImg').html(strBanner);
+                                    var swiper1 = new Swiper('.swiper4', {
+                                        loop: true,
+                                        autoplay: 3000,
+
+                                    });
+
+                                    //店铺分类赋值
+                                    var strShop = '';
+                                    // for (var i=_thisShopRoles.length-1;i>=0;i--){
+                                    strShop += '<span data-icon="'+_thisShopRoles[0].icon
+                                        +'" data-id="'+_thisShopRoles[0].id
+                                        +'" data-price="'+_thisShopRoles[0].price+'">'+_thisShopRoles[0].name+'</span>'
+                                    // }
+                                    $('#shopSort').hide();
+                                    $('#shopSorts').html(strShop);
+                                    // $('#shopSorts span').each(function(){
+                                    //     if($(this).text()==dataGet('data-name')){
+                                    $('#shopSorts span').addClass('actives');
+                                    $('.header').html('<img src="'+$('#shopSorts span').data('icon')+'" style="height:100%;" alt="">');
+                                    $('.arrange').html('￥'+$('#shopSorts span').data('price'));
+                                    dataSave('roleId',$('#shopSorts span').data('id'));
+                                    // }
+                                    // })
+                                }
+                            }
+                        });
+
+
                     }else {
                         if(data.data.identity=='暂无身份'){
                             var url     = WEB_URL + '/api/shopRole/selectOne';
