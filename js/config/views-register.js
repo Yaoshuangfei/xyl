@@ -11,6 +11,7 @@ var Views = {
         clmine:'views/tmpl/clt/clmySuperior.html:我的上级:#f7f7f7',
 		// 钱包
         cltWallet:'views/tmpl/clt/myWallet.html:我的钱包:#f7f7f7',
+        cltBill:'views/tmpl/clt/myBill.html:我的账单:#fff',
 		// 我的上级
         clSuperior:'views/tmpl/clt/mySuperior.html:我的上级:#f7f7f7',
         clmyYq:'views/tmpl/clt/clmyYq.html:我的朋友圈:#f7f7f7',

@@ -1,29 +1,100 @@
 
-	<div class="position" style="height: 44px;"></div>
-	<!-- 头部 -->
-	<div class="mmTop">
-		<div class="return" onclick="backPage()"></div>
-		我的钱包
-		<div class="mmBill ui_btn" data-action="zd">账单</div>
-	</div>
+<div class="position" style="height: 44px;"></div>
+<!-- 头部 -->
+<div class="mmTop">
+	<div class="return" onclick="backPage()"></div>
+	我的钱包
+	<div class="mmBill ui_btn" data-action="zd">账单</div>
+</div>
 
-	<div class="totalAmount">
-		<div class="title">总金额(元)</div>
-		<div class="mmNumber"></div>
+<div class="totalAmount">
+	<div class="title">总金额(元)</div>
+	<div class="mmNumber"></div>
+</div>
+<div class="walletBottom">
+	<div class="button ui_btn" data-action="goInWithdraw">转出</div>
+	<div class="button recharge" data-action="goInWantToRecharge">转入</div>
+</div>
+<div id="payFixed" style="position: fixed;top:0;left:0;width:100%;height:100%;z-index: 999999;background: rgba(0,0,0,.5);display: none;">
+	<div style="background: #fff;position: fixed;bottom: 0;left: 0;width: 100%;height: 310px;">
+		<p style="    text-align: center;
+    padding: 25px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;">请输入您需要转出的金额</p>
+		<label style="display: block;
+    width: 100%;
+    height: 50px;
+    color: #000;text-align: center;line-height: 50px;"><input type="text" value="" placeholder="请在这里转出金额" id="money" style="padding-left: 10px;    padding-left: 10px;
+    border: 1px solid #eee;
+    width: 80%;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 8px;text-align: center;"></label>
+		<div id="paySuccess" class="ui_btn" data-action="paySuccesss" style="width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;">确认转出</div>
 	</div>
-
-	<div class="moneyType">
-		<div class="typeBox">
-			<div class="number" id="ky"></div>
-			<div class="typeNmae">可提现余额</div>
-		</div>
-		<div class="typeBox">
-			<div class="number" id="dj"></div>
-			<div class="typeNmae">冻结余额</div>
-		</div>
+	<div id="cencalss" class="ui_btn" data-action="cencalss" style="    width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);">取消</div>
+</div>
+<div id="hxpayFixed" style="position: fixed;top:0;left:0;width:100%;height:100%;z-index: 999999;background: rgba(0,0,0,.5);display: none;">
+	<div style="background: #fff;position: fixed;bottom: 0;left: 0;width: 100%;height: 365px;">
+		<p style="    text-align: center;
+    padding: 25px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;">请输入您的密码和验证码</p>
+		<label style="display: block;
+    width: 100%;
+    height: 50px;
+    color: #000;text-align: center;line-height: 50px;"><input type="text" value="" placeholder="请在这里输入验证码" id="hxyan" style="padding-left: 10px;    padding-left: 10px;
+    border: 1px solid #eee;
+    width: 80%;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 8px;text-align: center;"></label>
+		<label style="display: block;
+    width: 100%;
+    height: 50px;
+    color: #000;text-align: center;line-height: 50px;"><input type="password" value="" placeholder="请在这里密码" id="hxmoney" style="padding-left: 10px;    padding-left: 10px;
+    border: 1px solid #eee;
+    width: 80%;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 8px;text-align: center;"></label>
+		<div id="hxpaySuccess" class="ui_btn" data-action="hxpaySuccesss" style="width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;">确认转出</div>
 	</div>
-
-	<div class="walletBottom">
-		<div class="button ui_btn" data-action="goInWithdraw">提现</div>
-		<div class="button recharge ui_btn" data-action="goInWantToRecharge">转入</div>
-	</div>
+	<div id="hxcencalss" class="ui_btn" data-action="hxcencalss" style="    width: 90%;
+    margin: 50px auto 0;
+    border-radius: 5px;
+    line-height: 40px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #007CC3;
+    height: 40px;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);">取消</div>
+</div>
