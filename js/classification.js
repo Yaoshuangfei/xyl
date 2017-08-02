@@ -79,6 +79,7 @@ Views.commodityDetailsView = $.extend({}, Views.PanelView, {
         addEventListener();
         dataSave('sssssssss',0);
         dataSave('areaHtml','');
+        dataSave('shenfen','');
 
         var urlTwo = WEB_URL + '/api/goods/selectOne' ;//根据id 获取商品
         var commodityUuid = parseInt(dataGet('commodityUuid'));
@@ -516,10 +517,7 @@ Views.commodityDetailsView = $.extend({}, Views.PanelView, {
 
     },
     shppping:function(){
-        // var isLoginFlag = isLogin();
-        // if(!isLoginFlag) {
-        //     return;
-        // }
+        dataSave('countId',1);
         if(dataGet('sssssssss')==0){
             $('#mine_warp_02 .shoppingCart_black').show();
             $('#mine_warp_02 .shoppingCart_properties').show();
@@ -857,6 +855,8 @@ Views.becomeDetailsView = $.extend({}, Views.PanelView, {
                     dataSave('data-name',data.data.identity);
                     dataSave('commissionLine',data.data.store.commissionLine);
                     if(data.data.store.commissionLine == '2'){//花想容
+                        $('#sjqyqm').show();
+                        $('#sjqyqm_01').show();
                         var url     = WEB_URL + '/api/shopRole/selectOne';
                         var data    ={storeId:parseInt(dataGet('storeId')),introType:parseInt(dataGet('idCode'))};
                         console.log(data)
@@ -900,11 +900,12 @@ Views.becomeDetailsView = $.extend({}, Views.PanelView, {
                                         $('#shopSort').html(strShop);
                                         $('#shopSorts').hide();
                                     }else{
+                                        $('#sjqyqm_01').hide();
                                         var strShop = '';
                                         // for (var i=_thisShopRoles.length-1;i>=0;i--){
-                                        strShop += '<span data-icon="'+_thisShopRoles[1].icon
-                                            +'" data-id="'+_thisShopRoles[1].id
-                                            +'" data-price="'+_thisShopRoles[1].price+'">'+_thisShopRoles[1].name+'</span>'
+                                        strShop += '<span data-icon="'+_thisShopRoles[0].icon
+                                            +'" data-id="'+_thisShopRoles[0].id
+                                            +'" data-price="'+_thisShopRoles[0].price+'">'+_thisShopRoles[0].name+'</span>'
                                         // }
                                         $('#shopSort').hide();
                                         $('#shopSorts').html(strShop);
@@ -921,7 +922,10 @@ Views.becomeDetailsView = $.extend({}, Views.PanelView, {
                             }
                         });
                     }else if (data.data.store.commissionLine == '3'){//磁疗贴
+<<<<<<< HEAD
                         // alert('磁疗贴')
+=======
+>>>>>>> b0ae9267b356800d2cc50ed902e3786994a8e2bc
                         var url     = WEB_URL + '/api/shopRole/selectOne';
                         var data    ={storeId:parseInt(dataGet('storeId')),introType:parseInt(dataGet('idCode'))};
                         console.log(data)
@@ -1058,6 +1062,9 @@ Views.becomeDetailsView = $.extend({}, Views.PanelView, {
                                         //店铺分类赋值
                                         var strShop = '';
                                         for (var i=_thisShopRoles.length-1;i>=0;i--){
+                                            if(_thisShopRoles[i].addPrice ==null){
+                                                _thisShopRoles[i].addPrice = 0
+                                            }
                                             strShop += '<span data-icon="'+_thisShopRoles[i].icon
                                                 +'" data-id="'+_thisShopRoles[i].id
                                                 +'" data-price="'+_thisShopRoles[i].addPrice+'">'+_thisShopRoles[i].name+'</span>'
@@ -1180,6 +1187,9 @@ Views.becomeDetailsView = $.extend({}, Views.PanelView, {
 
     },
     // 各链接跳转
+    btnClick:function(btn){
+        dataSave('radio',$(btn).attr('data-id'))
+    },
     // 首页
     com_index:function(){
         Views.indexView.show();
@@ -1193,11 +1203,113 @@ Views.becomeDetailsView = $.extend({}, Views.PanelView, {
         }else if (dataGet('commissionLine')=='3'){
             alert('磁疗贴身份')
         }else{
-            if(dataGet('idCode')==1){
-                var url         = WEB_URL + '/api/orderMall/selectOfConfirm';
-                var orderType   =8;
-                var orderGoods  =[{specId:dataGet('roleId'),quantity:1}];
-                var data        ={orderType:orderType,orderGoods:orderGoods};
+            // if(dataGet('idCode')==1){
+            //     var url         = WEB_URL + '/api/orderMall/selectOfConfirm';
+            //     var orderType   =8;
+            //     var orderGoods  =[{specId:dataGet('roleId'),quantity:1}];
+            //     var data        ={orderType:orderType,orderGoods:orderGoods};
+            //     $.ajax({
+            //         type:'POST',
+            //         dataType:'json',
+            //         url:url,
+            //         data: JSON.stringify(data),
+            //         contentType:'application/json;charset=utf-8',
+            //         error: function (XMLHttpRequest, textStatus, errorThrown) {},
+            //         success:function(data){
+            //             if(!data.success){
+            //                 console.log(data.msg);
+            //                 $(".shoppingCart_properties").hide();
+            //                 $(".shoppingCart_check").hide();
+            //                 $(".shoppingCart_black").hide();
+            //                 $(".wantToRecharge_shady").hide();
+            //                 $('#yqm').hide();
+            //                 Views.storeDetailsView.show();
+            //
+            //             }else{
+            //                 console.log(data);
+            //                 $('.mine_warp').hide();
+            //                 var EMbile = '';
+            //                 if(dataGet('mobile')==''){
+            //                     EMbile = dataGet('user_name')
+            //                 }else{
+            //                     EMbile = dataGet('mobile');
+            //                 }
+            //                 var EMail = '';
+            //                 if(dataGet('zipCode') ==''){
+            //                     EMail = '000000'
+            //                 }else{
+            //                     EMail = dataGet('zipCode');
+            //                 }
+            //                 var url         = WEB_URL + '/api/orderMall/addRole';
+            //                 var storeId     = dataGet('storeId'); //店铺id
+            //                 var orderType   = dataGet('idCode')==0?6:8; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
+            //                 var consignee   =dataGet('realNames'); //地址信息   当为3购买平台身份时不必填  当为1或2时地址信息必填
+            //                 var mobile = EMbile; //电话
+            //                 var zipCode = EMail;//邮编
+            //                 var province = dataGet('cityCode');//省id
+            //                 var provinceName = dataGet('cityText');//省名称
+            //                 var city = dataGet('provinceCode');//市id
+            //                 var cityName = dataGet('provinceText');//市名称
+            //                 var county = dataGet('countyCode');//区id
+            //                 var countyName = dataGet('countyText');//区名称
+            //                 var address = dataGet('address');//详细地址信息
+            //                 var buyerMess   =$('#textarea').val();
+            //                 var shopRoleDist={roleId:dataGet('roleId')};
+            //                 var datas        ={storeId:storeId,orderType:orderType,consignee:consignee,mobile:mobile,zipCode:zipCode,province:province,provinceName:provinceName,city:city,cityName:cityName,county:county,countyName:countyName,address:address,buyerMess:buyerMess,shopRoleDist:shopRoleDist};
+            //                 console.log(datas);
+            //                 if(datas.address == null){
+            //                     alert('请先设置收货地址！');
+            //                     Views.addedAddressView.show();
+            //                 }else{
+            //                     $.ajax({
+            //                         type:'POST',
+            //                         dataType:'json',
+            //                         url:url,
+            //                         data: JSON.stringify(datas),
+            //                         contentType:'application/json;charset=utf-8',
+            //                         error: function (XMLHttpRequest, textStatus, errorThrown) {},
+            //                         success:function(data){
+            //                             if(!data.success){
+            //                                 console.log(data.msg);
+            //                                 $(".shoppingCart_properties").hide();
+            //                                 $(".shoppingCart_check").hide();
+            //                                 $(".shoppingCart_black").hide();
+            //                                 $(".wantToRecharge_shady").hide();
+            //                                 $('#yqm').hide();
+            //                                 Views.storeDetailsView.show();
+            //                             }else{
+            //                                 console.log(data);
+            //                                 dataSave('payIdsss',data.data.id);
+            //                                 $(".wantToRecharge_shady").show();
+            //                                 $(".wantToRecharge_payment").slideToggle();
+            //                                 $(".wantToRechargePay").show();
+            //                             }
+            //                         }
+            //                     });
+            //                 }
+            //             }
+            //         }
+            //     });
+            //
+            // }else{
+                $(".shoppingCart_properties").hide();
+                $(".shoppingCart_check").hide();
+                $(".wantToRecharge_shady").show();
+                $('#yqm').show();
+            // }
+        }
+    },
+
+    yqmQd:function(){
+        if(dataGet('commissionLine')=='2'){
+            if($('#txqyqm').val()=='' ||  $('#sjqyqm').val() == '') {
+                alert('邀请码或上级必填！');
+            }else{
+                var url          = WEB_URL + '/api/orderMall/validateRole';
+                var storeId      = dataGet('storeId');
+                var orderType    = 6;
+                var shopRoleDist = {roleId:dataGet('roleId'),invitedNum:$('#txqyqm').val(),roleName:$('#sjqyqm').val(),invitedName:dataGet('radio')}
+                var data         = {storeId:storeId,orderType:orderType,shopRoleDist:shopRoleDist}
                 $.ajax({
                     type:'POST',
                     dataType:'json',
@@ -1207,224 +1319,279 @@ Views.becomeDetailsView = $.extend({}, Views.PanelView, {
                     error: function (XMLHttpRequest, textStatus, errorThrown) {},
                     success:function(data){
                         if(!data.success){
-                            console.log(data.msg);
-                            $(".shoppingCart_properties").hide();
-                            $(".shoppingCart_check").hide();
-                            $(".shoppingCart_black").hide();
-                            $(".wantToRecharge_shady").hide();
-                            $('#yqm').hide();
-                            Views.storeDetailsView.show();
-
+                            console.log(data.msg)
+                            if(data.msg == '邀请码不合法：未找到邀请人的用户信息'){
+                                alert(data.msg);
+                                $('#txqyqm').val('')
+                            }else if(data.msg == '邀请码不合法：未找到邀请人的身份'){
+                                alert(data.msg);
+                                $('#txqyqm').val('')
+                            }else {
+                                alert(data.msg);
+                                $('#sjqyqm').val('')
+                            }
                         }else{
-                            console.log(data);
-                            $('.mine_warp').hide();
-                            var EMbile = '';
-                            if(dataGet('mobile')==''){
-                                EMbile = dataGet('user_name')
-                            }else{
-                                EMbile = dataGet('mobile');
-                            }
-                            var EMail = '';
-                            if(dataGet('zipCode') ==''){
-                                EMail = '000000'
-                            }else{
-                                EMail = dataGet('zipCode');
-                            }
-                            var url         = WEB_URL + '/api/orderMall/addRole';
-                            var storeId     = dataGet('storeId'); //店铺id
-                            var orderType   = dataGet('idCode')==0?6:8; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
-                            var consignee   =dataGet('realNames'); //地址信息   当为3购买平台身份时不必填  当为1或2时地址信息必填
-                            var mobile = EMbile; //电话
-                            var zipCode = EMail;//邮编
-                            var province = dataGet('cityCode');//省id
-                            var provinceName = dataGet('cityText');//省名称
-                            var city = dataGet('provinceCode');//市id
-                            var cityName = dataGet('provinceText');//市名称
-                            var county = dataGet('countyCode');//区id
-                            var countyName = dataGet('countyText');//区名称
-                            var address = dataGet('address');//详细地址信息
-                            var buyerMess   =$('#textarea').val();
-                            var shopRoleDist={roleId:dataGet('roleId')};
-                            var datas        ={storeId:storeId,orderType:orderType,consignee:consignee,mobile:mobile,zipCode:zipCode,province:province,provinceName:provinceName,city:city,cityName:cityName,county:county,countyName:countyName,address:address,buyerMess:buyerMess,shopRoleDist:shopRoleDist};
-                            console.log(datas);
-                            if(datas.address == null){
-                                alert('请先设置收货地址！');
-                                Views.addedAddressView.show();
-                            }else{
-                                $.ajax({
-                                    type:'POST',
-                                    dataType:'json',
-                                    url:url,
-                                    data: JSON.stringify(datas),
-                                    contentType:'application/json;charset=utf-8',
-                                    error: function (XMLHttpRequest, textStatus, errorThrown) {},
-                                    success:function(data){
-                                        if(!data.success){
-                                            console.log(data.msg);
-                                            $(".shoppingCart_properties").hide();
-                                            $(".shoppingCart_check").hide();
-                                            $(".shoppingCart_black").hide();
-                                            $(".wantToRecharge_shady").hide();
-                                            $('#yqm').hide();
-                                            Views.storeDetailsView.show();
+
+                            var urlTwo         = WEB_URL + '/api/orderMall/selectOfConfirm';
+                            var orderType   =6;
+                            var orderGoods  =[{specId:dataGet('roleId'),quantity:1}];
+                            var dataTwo        ={orderType:orderType,orderGoods:orderGoods};
+                            $.ajax({
+                                type:'POST',
+                                dataType:'json',
+                                url:urlTwo,
+                                data: JSON.stringify(dataTwo),
+                                contentType:'application/json;charset=utf-8',
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                                success:function(data){
+                                    if(!data.success){
+                                        console.log(data.msg);
+                                    }else{
+                                        console.log(data);
+                                        dataSave('shenfen','1');
+                                        dataSave('invitedNum',$('#txqyqm').val());//邀请人
+                                        dataSave('roleName',$('#sjqyqm').val());//上级
+                                        dataSave('areaUuid',data.data.stores[0].shopRoles[0].id)
+                                        if(data.data.address == null){
+                                            dataSave('addressnull','')
                                         }else{
-                                            console.log(data);
-                                            dataSave('payIdsss',data.data.id);
-                                            $(".wantToRecharge_shady").show();
-                                            $(".wantToRecharge_payment").slideToggle();
-                                            $(".wantToRechargePay").show();
+                                            dataSave('addressnull',1)
                                         }
+                                        Views.successOrderView.show();
+
                                     }
-                                });
-                            }
+                                }
+                            });
                         }
                     }
                 });
-
-            }else{
-                $(".shoppingCart_properties").hide();
-                $(".shoppingCart_check").hide();
-                $(".wantToRecharge_shady").show();
-                $('#yqm').show();
             }
-        }
-    },
-
-    yqmQd:function(){
-        if(dataGet('commissionLine')=='2'){
-            $(".shoppingCart_properties").hide();
-            $(".shoppingCart_check").hide();
-            $(".shoppingCart_black").hide();
-            $('#yqm').hide();
-            var EMbile = '';
-            if(dataGet('mobile')==''){
-                EMbile = dataGet('user_name')
-            }else{
-                EMbile = dataGet('mobile');
-            }
-            var EMail = '';
-            if(dataGet('zipCode') ==''){
-                EMail = '000000'
-            }else{
-                EMail = dataGet('zipCode');
-            }
-            var url         = WEB_URL + '/api/orderMall/addRole';
-            var storeId     = dataGet('storeId'); //店铺id
-            var orderType   = 6; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
-            var consignee   =dataGet('realNames'); //地址信息   当为3购买平台身份时不必填  当为1或2时地址信息必填
-            var mobile = EMbile; //电话
-            var zipCode = EMail;//邮编
-            var province = dataGet('cityCode');//省id
-            var provinceName = dataGet('cityText');//省名称
-            var city = dataGet('provinceCode');//市id
-            var cityName = dataGet('provinceText');//市名称
-            var county = dataGet('countyCode');//区id
-            var countyName = dataGet('countyText');//区名称
-            var address = dataGet('address');//详细地址信息
-            var buyerMess   =$('#textarea').val();
-            var shopRoleDist={roleId:dataGet('roleId'),invitedNum:$('#txqyqm').val()};
-            var data        ={storeId:storeId,orderType:orderType,consignee:consignee,mobile:mobile,zipCode:zipCode,province:province,provinceName:provinceName,city:city,cityName:cityName,county:county,countyName:countyName,address:address,buyerMess:buyerMess,shopRoleDist:shopRoleDist};
-            console.log(data);
-            $.ajax({
-                type:'POST',
-                dataType:'json',
-                url:url,
-                data: JSON.stringify(data),
-                contentType:'application/json;charset=utf-8',
-                error: function (XMLHttpRequest, textStatus, errorThrown) {},
-                success:function(data){
-                    if(!data.success){
-                        if(data.msg == '请填写收货人'){
-                            alert(data.msg);
-                            Views.addedAddressView.show();
-                        } else{
-                            alert(data.msg);
-                            $(".shoppingCart_properties").hide();
-                            $(".shoppingCart_check").hide();
-                            $(".shoppingCart_black").hide();
-                            $(".wantToRecharge_shady").hide();
-                            $('#yqm').hide();
-                            Views.storeDetailsView.show();
-                        }
-
-
-                    }else{
-                        console.log(data);
-                        dataSave('payIdsss',data.data.id);
-                        $(".wantToRecharge_shady").show();
-                        $(".wantToRecharge_payment").slideToggle();
-                        $(".wantToRechargePay").show();
-                    }
-                }
-            });
+            // $(".shoppingCart_properties").hide();
+            // $(".shoppingCart_check").hide();
+            // $(".shoppingCart_black").hide();
+            // $('#yqm').hide();
+            // var EMbile = '';
+            // if(dataGet('mobile')==''){
+            //     EMbile = dataGet('user_name')
+            // }else{
+            //     EMbile = dataGet('mobile');
+            // }
+            // var EMail = '';
+            // if(dataGet('zipCode') ==''){
+            //     EMail = '000000'
+            // }else{
+            //     EMail = dataGet('zipCode');
+            // }
+            // var url         = WEB_URL + '/api/orderMall/addRole';
+            // var storeId     = dataGet('storeId'); //店铺id
+            // var orderType   = 6; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
+            // var consignee   =dataGet('realNames'); //地址信息   当为3购买平台身份时不必填  当为1或2时地址信息必填
+            // var mobile = EMbile; //电话
+            // var zipCode = EMail;//邮编
+            // var province = dataGet('cityCode');//省id
+            // var provinceName = dataGet('cityText');//省名称
+            // var city = dataGet('provinceCode');//市id
+            // var cityName = dataGet('provinceText');//市名称
+            // var county = dataGet('countyCode');//区id
+            // var countyName = dataGet('countyText');//区名称
+            // var address = dataGet('address');//详细地址信息
+            // var buyerMess   =$('#textarea').val();
+            // var shopRoleDist={roleId:dataGet('roleId'),invitedNum:$('#txqyqm').val()};
+            // var data        ={storeId:storeId,orderType:orderType,consignee:consignee,mobile:mobile,zipCode:zipCode,province:province,provinceName:provinceName,city:city,cityName:cityName,county:county,countyName:countyName,address:address,buyerMess:buyerMess,shopRoleDist:shopRoleDist};
+            // console.log(data);
+            // $.ajax({
+            //     type:'POST',
+            //     dataType:'json',
+            //     url:url,
+            //     data: JSON.stringify(data),
+            //     contentType:'application/json;charset=utf-8',
+            //     error: function (XMLHttpRequest, textStatus, errorThrown) {},
+            //     success:function(data){
+            //         if(!data.success){
+            //             if(data.msg == '请填写收货人'){
+            //                 alert(data.msg);
+            //                 Views.addedAddressView.show();
+            //             } else{
+            //                 alert(data.msg);
+            //                 $(".shoppingCart_properties").hide();
+            //                 $(".shoppingCart_check").hide();
+            //                 $(".shoppingCart_black").hide();
+            //                 $(".wantToRecharge_shady").hide();
+            //                 $('#yqm').hide();
+            //                 Views.storeDetailsView.show();
+            //             }
+            //
+            //
+            //         }else{
+            //             console.log(data);
+            //             dataSave('payIdsss',data.data.id);
+            //             $(".wantToRecharge_shady").show();
+            //             $(".wantToRecharge_payment").slideToggle();
+            //             $(".wantToRechargePay").show();
+            //         }
+            //     }
+            // });
         }else if (dataGet('commissionLine')=='3'){
 
         }else {
-            $(".shoppingCart_properties").hide();
-            $(".shoppingCart_check").hide();
-            $(".shoppingCart_black").hide();
-            $('#yqm').hide();
-            var EMbile = '';
-            if(dataGet('mobile')==''){
-                EMbile = dataGet('user_name')
+            if($('#txqyqm').val()=='') {
+                alert('邀请码或上级必填！');
             }else{
-                EMbile = dataGet('mobile');
-            }
-            var EMail = '';
-            if(dataGet('zipCode') ==''){
-                EMail = '000000'
-            }else{
-                EMail = dataGet('zipCode');
-            }
-            var url         = WEB_URL + '/api/orderMall/addRole';
-            var storeId     = dataGet('storeId'); //店铺id
-            var orderType   = dataGet('idCode')==0?6:8; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
-            var consignee   =dataGet('realNames'); //地址信息   当为3购买平台身份时不必填  当为1或2时地址信息必填
-            var mobile = EMbile; //电话
-            var zipCode = EMail;//邮编
-            var province = dataGet('cityCode');//省id
-            var provinceName = dataGet('cityText');//省名称
-            var city = dataGet('provinceCode');//市id
-            var cityName = dataGet('provinceText');//市名称
-            var county = dataGet('countyCode');//区id
-            var countyName = dataGet('countyText');//区名称
-            var address = dataGet('address');//详细地址信息
-            var buyerMess   =$('#textarea').val();
-            var shopRoleDist={roleId:dataGet('roleId'),invitedNum:$('#txqyqm').val()};
-            var data        ={storeId:storeId,orderType:orderType,consignee:consignee,mobile:mobile,zipCode:zipCode,province:province,provinceName:provinceName,city:city,cityName:cityName,county:county,countyName:countyName,address:address,buyerMess:buyerMess,shopRoleDist:shopRoleDist};
-            console.log(data);
-            $.ajax({
-                type:'POST',
-                dataType:'json',
-                url:url,
-                data: JSON.stringify(data),
-                contentType:'application/json;charset=utf-8',
-                error: function (XMLHttpRequest, textStatus, errorThrown) {},
-                success:function(data){
-                    if(!data.success){
-                        if(data.msg == '请填写收货人'){
-                            alert(data.msg);
-                            Views.addedAddressView.show();
-                        } else{
-                            alert(data.msg);
-                            $(".shoppingCart_properties").hide();
-                            $(".shoppingCart_check").hide();
-                            $(".shoppingCart_black").hide();
-                            $(".wantToRecharge_shady").hide();
-                            $('#yqm').hide();
-                            Views.storeDetailsView.show();
+                var url          = WEB_URL + '/api/orderMall/validateRole';
+                var storeId      = dataGet('storeId');
+                var orderType    = dataGet('idCode')==0?6:8; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
+                var shopRoleDist = {roleId:dataGet('roleId'),invitedNum:$('#txqyqm').val()}
+                var data         = {storeId:storeId,orderType:orderType,shopRoleDist:shopRoleDist}
+                $.ajax({
+                    type:'POST',
+                    dataType:'json',
+                    url:url,
+                    data: JSON.stringify(data),
+                    contentType:'application/json;charset=utf-8',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                    success:function(data){
+                        if(!data.success){
+                            alert(data.msg)
+                            $('#txqyqm').val('');
+                        }else{
+                            console.log(data)
+                            var urlTwo = WEB_URL + '/api/orderMall/selectOfConfirm';
+                            var orderType = dataGet('idCode')==0?6:8;
+                            var orderGoods = [{specId: dataGet('roleId'), quantity: 1}];
+                            var dataTwo = {orderType: orderType, orderGoods: orderGoods};
+                            $.ajax({
+                                type: 'POST',
+                                dataType: 'json',
+                                url: urlTwo,
+                                data: JSON.stringify(dataTwo),
+                                contentType: 'application/json;charset=utf-8',
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                },
+                                success: function (data) {
+                                    if (!data.success) {
+                                        alert(data.msg);
+                                    } else {
+                                        console.log(data);
+                                        dataSave('shenfen', '1');
+                                        dataSave('invitedNum', $('#txqyqm').val());//邀请人
+                                        dataSave('areaUuid', data.data.stores[0].shopRoles[0].id)
+                                        if (data.data.address == null) {
+                                            dataSave('addressnull', '')
+                                        } else {
+                                            dataSave('addressnull', 1)
+                                        }
+                                        Views.successOrderView.show();
+
+                                    }
+                                }
+                            });
                         }
-
-
-                    }else{
-                        console.log(data);
-                        dataSave('payIdsss',data.data.id);
-                        $(".wantToRecharge_shady").show();
-                        $(".wantToRecharge_payment").slideToggle();
-                        $(".wantToRechargePay").show();
                     }
-                }
-            });
+                });
+            }
+            // var EMbile = '';
+            // if(dataGet('mobile')==''){
+            //     EMbile = dataGet('user_name')
+            // }else{
+            //     EMbile = dataGet('mobile');
+            // }
+            // var EMail = '';
+            // if(dataGet('zipCode') ==''){
+            //     EMail = '000000'
+            // }else{
+            //     EMail = dataGet('zipCode');
+            // }
+            //     // var url         = WEB_URL + '/api/orderMall/selectOfConfirm';
+            //     // var orderType   =6;
+            //     // var orderGoods  =[{specId:dataGet('roleId'),quantity:1}];
+            //     // var data        ={orderType:orderType,orderGoods:orderGoods};
+            //     // $.ajax({
+            //     //     type:'POST',
+            //     //     dataType:'json',
+            //     //     url:url,
+            //     //     data: JSON.stringify(data),
+            //     //     contentType:'application/json;charset=utf-8',
+            //     //     error: function (XMLHttpRequest, textStatus, errorThrown) {},
+            //     //     success:function(data){
+            //     //         if(!data.success){
+            //     //             alert(data.msg);
+            //     //             $(".shoppingCart_properties").hide();
+            //     //             $(".shoppingCart_check").hide();
+            //     //             $(".shoppingCart_black").hide();
+            //     //             $(".wantToRecharge_shady").hide();
+            //     //             $('#yqm').hide();
+            //     //             Views.storeDetailsView.show();
+            //     //
+            //     //         }else{
+            //     //             console.log(data);
+            //     //             dataSave('shenfen','1');
+            //     //             dataSave('invitedNum',$('#txqyqm').val());//邀请人
+            //     //             dataSave('areaUuid',data.data.stores[0].shopRoles[0].id)
+            //     //             if(data.data.address == null){
+            //     //                 dataSave('addressnull','')
+            //     //             }else{
+            //     //                 dataSave('addressnull',1)
+            //     //             }
+            //     //             Views.successOrderView.show();
+            //     //
+            //     //         }
+            //     //     }
+            //     // });
+            // if(dataGet('cityCode') == ''){
+            //     alert('请先设置收货地址！');
+            //     Views.addedAddressView.show();
+            // }else{
+            //     var url         = WEB_URL + '/api/orderMall/addRole';
+            //     var storeId     = dataGet('storeId'); //店铺id
+            //     var orderType   = dataGet('idCode')==0?6:8; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
+            //     var consignee   =dataGet('realNames'); //地址信息   当为3购买平台身份时不必填  当为1或2时地址信息必填
+            //     var mobile = EMbile; //电话
+            //     var zipCode = EMail;//邮编
+            //     var province = dataGet('cityCode');//省id
+            //     var provinceName = dataGet('cityText');//省名称
+            //     var city = dataGet('provinceCode');//市id
+            //     var cityName = dataGet('provinceText');//市名称
+            //     var county = dataGet('countyCode');//区id
+            //     var countyName = dataGet('countyText');//区名称
+            //     var address = dataGet('address');//详细地址信息
+            //     var buyerMess   =$('#textarea').val();
+            //     var shopRoleDist={roleId:dataGet('roleId'),invitedNum:$('#txqyqm').val()};
+            //     var data        ={storeId:storeId,orderType:orderType,consignee:consignee,mobile:mobile,zipCode:zipCode,province:province,provinceName:provinceName,city:city,cityName:cityName,county:county,countyName:countyName,address:address,buyerMess:buyerMess,shopRoleDist:shopRoleDist};
+            //     console.log(data);
+            //     $.ajax({
+            //         type:'POST',
+            //         dataType:'json',
+            //         url:url,
+            //         data: JSON.stringify(data),
+            //         contentType:'application/json;charset=utf-8',
+            //         error: function (XMLHttpRequest, textStatus, errorThrown) {},
+            //         success:function(data){
+            //             if(!data.success){
+            //                 if(data.msg == '请填写收货人'){
+            //                     alert(data.msg);
+            //                     Views.addedAddressView.show();
+            //                 } else{
+            //                     alert(data.msg);
+            //                     $(".shoppingCart_properties").hide();
+            //                     $(".shoppingCart_check").hide();
+            //                     $(".shoppingCart_black").hide();
+            //                     $(".wantToRecharge_shady").hide();
+            //                     $('#yqm').hide();
+            //                     // Views.storeDetailsView.show();
+            //                 }
+            //
+            //
+            //             }else{
+            //                 console.log(data);
+            //                 dataSave('payIdsss',data.data.id);
+            //                 $(".wantToRecharge_shady").show();
+            //                 $(".wantToRecharge_payment").slideToggle();
+            //                 $(".wantToRechargePay").show();
+            //             }
+            //         }
+            //     });
+            //
+            // }
         }
     },
     yqmQx:function(){
@@ -1605,7 +1772,7 @@ Views.becomeDetailsView = $.extend({}, Views.PanelView, {
         //     success:function(data){
         //         if(!data.success){
         //             alert(data.msg);
-        //             Views.storeDetailsView.show();
+        //             // Views.storeDetailsView.show();
         //
         //         }else{
         //             console.log(data);
@@ -1647,13 +1814,13 @@ Views.successOrderView = $.extend({}, Views.PanelView, {
     didShow: function () {
         addEventListener();
 
-        if(dataGet('countId')==1){
+
+        if(dataGet('shenfen')==1){//购买身份生成订单
             var urlTwo = WEB_URL + '/api/orderMall/selectOfConfirm' ;//app确认订单页面所需数据查询
             var areaUuid = dataGet('areaUuid');//id
-            var areaNum = dataGet('areaNum');//数量
-            var areaHtml = dataGet('areaHtml');//参数
+            var areaNum = 1;//数量
             var arr = [{'specId':areaUuid,'quantity':areaNum}];
-            var data   = {orderType:5,orderGoods:arr};
+            var data   = {orderType:6,orderGoods:arr};
             $.ajax({
                 type:'POST',
                 dataType:'json',
@@ -1667,8 +1834,136 @@ Views.successOrderView = $.extend({}, Views.PanelView, {
                     }else{
                         console.log(data);
                         var _thisData = data.data;
+                        console.log(data.data);
+                        if(_thisData.address == null || _thisData.address == '' ){
+                            $('.logisticsArea').html('未设置收货地址');
+                            dataSave('addressnull','')
+                        }else{
+                            dataSave('addressnull',1)
+                            $('#logisticsAreaName').html(_thisData.address.realName +'  '+_thisData.address.contact); //收货人
+                            $('#logisticsAddress').html(_thisData.address.provinceName+' '+_thisData.address.cityName+' '+_thisData.address.countyName+' '+_thisData.address.address);//地址
+                        }
+                        var _length = _thisData.stores;
+                        var str =   '';
+                        for (var i=0;i<_length.length;i++){
+                            if(_length[i].logo == null){
+                                _length[i].logo == 'images/null.png'
+                            }else{
+                                _length[i].logo =_length[i].logo
+                            }
+                            str +='<div class="shoppingCart_wareArea" data-storeid="'+_length[i].id+'" data-productid="'+_length[i].shopRoles[0].storeId+'" data-specid="'+_length[i].shopRoles[0].id+'" data-quantity="1">'
+                            // str +='<div class="shoppingCart_wareArea" >'
+                                // <!--头部店铺选择-->
+                                +'<div class="shoppingCart_wareStore"> <div class="shop"></div> <span class="warp_Lt">'+_length[i].name+'</span> <div class="quiet"></div> <span class="warp_Rg myOrder_reveal" >等待买家付款</span> </div>'
+                                // <!--商品属性展示区-->
+                                +'<div class="shoppingCart_wareDetails">'
+                                +'<div class="shoppingCart_wareDetailTxt">'
+                                +'<div class="print"><img src="'+_length[i].shopRoles[0].icon+'" style="height:80px;" alt=""></div>'
+                                +'<div class="shoppingCart_wareTxt"> <div class="myOrder_revealArea warp_Lt"> <span class="warp_lC" style="height: 30px;">'+_length[i].shopRoles[0].name+'</span> <span style="color: #cccccc;display: block" id="colors"></span> <div class="myOrder_quality">七天包退</div> </div> <div class="myOrder_reverlAreaL warp_Rg"> <span style="color:#E60012" id="monrys">￥'+_length[i].shopRoles[0].price+'</span> <span style="text-decoration:line-through;">￥400.00</span> <br/><br/> <span id="numss">X 1</span> </div> </div>'
+                                +'</div>'
+                                +'</div>'
+                                // <!--结算区-->
+                                +'<div class="myOrder_freight bB" style="padding-left: 10%;padding-right: 3%;color: #333"> <p>运费险<span style="font-size: .875rem;" class="warp_Rg">¥0.00</span></p> <p style="margin-top: 3px;">实付（含运费）<span class="warp_Rg" style="color: #EB6100">￥<span style="font-size: .9375rem" id="shijiMoney">'+_length[i].shopRoles[0].price+'</span></span></p> </div>'
+                                +'</div>'
+
+
+                        }
+                        $('.pendingReceipt').html(str);
+                        $('.setUp_warp').hide();
+                        $('#sumMoney').html($('#shijiMoney').html());
+                        var arr =[];
+                        $('.shoppingCart_wareArea').each(function(){
+                            arr.push({storeId:dataGet('styleId'),buyerMess:'',expressValue:0,isGold:0,discount:0,consignee:$('#logisticsAreaName').text(),mobile:dataGet('mobile'),zipCode:dataGet('zipCode'),province:dataGet('cityCode'),provinceName:dataGet('cityText'),city:dataGet('provinceCode'),cityName:dataGet('provinceText'),county:dataGet('countyCode'),countyName:dataGet('countyText'),address:dataGet('address'),shopRoleDist:[{specId:$(this).data('specid'),invitedNum:dataGet('invitedNum')}]})
+                            console.log(arr)
+                        });
+                    }
+                }
+            });
+        }else{
+            if(dataGet('countId')==1){
+                var urlTwo = WEB_URL + '/api/orderMall/selectOfConfirm' ;//app确认订单页面所需数据查询
+                var areaUuid = dataGet('areaUuid');//id
+                var areaNum = dataGet('areaNum');//数量
+                var areaHtml = dataGet('areaHtml');//参数
+                var arr = [{'specId':areaUuid,'quantity':areaNum}];
+                var data   = {orderType:5,orderGoods:arr};
+                $.ajax({
+                    type:'POST',
+                    dataType:'json',
+                    url:urlTwo,
+                    data: JSON.stringify(data),
+                    contentType:'application/json;charset=utf-8',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                    success:function(data){
+                        if(!data.success){
+                            alert(data.msg);
+                        }else{
+                            console.log(data);
+                            var _thisData = data.data;
                             console.log(data.data)
                             $('#logisticsAreaName').html(_thisData.address.realName +'  '+_thisData.address.contact); //收货人
+                            $('#logisticsAddress').html(_thisData.address.provinceName+' '+_thisData.address.cityName+' '+_thisData.address.countyName+' '+_thisData.address.address);//地址
+                            var _length = _thisData.stores;
+                            var str =   '';
+                            for (var i=0;i<_length.length;i++){
+                                if(_length[i].goodsList[0].carouselPicture == null){
+                                    _length[i].goodsList[0].carouselPicture == 'images/null.png'
+                                }else{
+                                    _length[i].goodsList[0].carouselPicture =_length[i].goodsList[0].carouselPicture
+                                }
+                                str +='<div class="shoppingCart_wareArea" data-storeid="'+_length[i].id+'" data-productid="'+_length[i].goodsList[0].goodsSpecs[0].goodsId+'" data-specid="'+_length[i].goodsList[0].goodsSpecs[0].id+'" data-quantity="'+_length[i].goodsList[0].goodsSpecs[0].buyNum+'">'
+                                    // <!--头部店铺选择-->
+                                    +'<div class="shoppingCart_wareStore"> <div class="shop"></div> <span class="warp_Lt">'+_length[i].name+'</span> <div class="quiet"></div> <span class="warp_Rg myOrder_reveal" >等待买家付款</span> </div>'
+                                    // <!--商品属性展示区-->
+                                    +'<div class="shoppingCart_wareDetails">'
+                                    +'<div class="shoppingCart_wareDetailTxt">'
+                                    +'<div class="print"><img src="'+_length[i].goodsList[0].carouselPicture+'" style="height:80px;" alt=""></div>'
+                                    +'<div class="shoppingCart_wareTxt"> <div class="myOrder_revealArea warp_Lt"> <span class="warp_lC" style="height: 30px;">'+_length[i].goodsList[0].name+'</span> <span style="color: #cccccc;display: block" id="colors"></span> <div class="myOrder_quality">七天包退</div> </div> <div class="myOrder_reverlAreaL warp_Rg"> <span style="color:#E60012" id="monrys">￥'+_length[i].goodsList[0].price+'</span> <span style="text-decoration:line-through;">￥400.00</span> <br/><br/> <span id="numss">X'+_length[i].goodsList[0].goodsSpecs[0].buyNum+'</span> </div> </div>'
+                                    +'</div>'
+                                    +'</div>'
+                                    // <!--结算区-->
+                                    +'<div class="myOrder_freight bB" style="padding-left: 10%;padding-right: 3%;color: #333"> <p>运费险<span style="font-size: .875rem;" class="warp_Rg">¥0.00</span></p> <p style="margin-top: 3px;">实付（含运费）<span class="warp_Rg" style="color: #EB6100">￥<span style="font-size: .9375rem" id="shijiMoney">'+_length[i].goodsList[0].price*_length[i].goodsList[0].goodsSpecs[0].buyNum+'</span></span></p> </div>'
+                                    +'</div>'
+
+
+                            }
+                            $('.pendingReceipt').html(str);
+                            var arr =[];
+                            var nums=0;
+                            $('.shoppingCart_wareArea').each(function(){
+                                nums +=parseFloat($(this).find('#shijiMoney').text());
+                                arr.push({storeId:$(this).data('storeid'),expressValue:0,isGold:0,discount:0,consignee:$('#logisticsAreaName').text(),mobile:dataGet('mobile'),zipCode:dataGet('zipCode'),province:dataGet('cityCode'),provinceName:dataGet('cityText'),city:dataGet('provinceCode'),cityName:dataGet('provinceText'),county:dataGet('countyCode'),countyName:dataGet('countyText'),address:dataGet('address'),orderGoods:[{productId:$(this).data('productid'),specId:$(this).data('specid'),quantity:$(this).data('quantity'),mode:0}]})
+                            });
+                            // 金豆抵扣
+                            var bindA = parseInt(dataGet('goldBind'))-_thisData.goldSumFrozen;//可使用金豆
+                            var bindB =parseInt(_thisData.stores[0].goodsList[0].goodsSpecs[0].deductibleImazamox);//抵扣金豆
+                            var bind = bindA - bindB;
+                            $('#sumMoney').html((nums-bindB));
+                            dataSave('orderarr',JSON.stringify(arr));
+                            dataSave('bind',bindB)
+                            dataSave('numsMoney',nums)
+                        }
+                    }
+                });
+            }else{
+                var urlTwo = WEB_URL + '/api/orderMall/selectOfConfirm' ;//app确认订单页面所需数据查询
+                var arr = eval('('+dataGet('arr')+')');
+                var data   = {orderType:5,orderGoods:arr};
+                console.log(data)
+                $.ajax({
+                    type:'POST',
+                    dataType:'json',
+                    url:urlTwo,
+                    data: JSON.stringify(data),
+                    contentType:'application/json;charset=utf-8',
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                    success:function(data){
+                        if(!data.success){
+                            alert(data.msg);
+                        }else{
+                            var _thisData = data.data;
+                            console.log(data)
+                            $('#logisticsAreaName').html(_thisData.address.realName); //收货人
                             $('#logisticsAddress').html(_thisData.address.provinceName+' '+_thisData.address.cityName+' '+_thisData.address.countyName+' '+_thisData.address.address);//地址
                             var _length = _thisData.stores;
                             var str =   '';
@@ -1699,100 +1994,113 @@ Views.successOrderView = $.extend({}, Views.PanelView, {
                             var nums=0;
                             $('.shoppingCart_wareArea').each(function(){
                                 nums +=parseFloat($(this).find('#shijiMoney').text());
-                                arr.push({storeId:$(this).data('storeid'),expressValue:0,isGold:0,discount:0,consignee:$('#logisticsAreaName').text(),mobile:dataGet('mobile'),zipCode:dataGet('zipCode'),province:dataGet('cityCode'),provinceName:dataGet('cityText'),city:dataGet('provinceCode'),cityName:dataGet('provinceText'),county:dataGet('countyCode'),countyName:dataGet('countyText'),address:dataGet('address'),orderGoods:[{productId:$(this).data('productid'),specId:$(this).data('specid'),quantity:$(this).data('quantity'),mode:0}]})
-                            });
-                            // 金豆抵扣
-                            var bindA = parseInt(dataGet('goldBind'))-_thisData.goldSumFrozen;//可使用金豆
-                            var bindB =parseInt(_thisData.stores[0].goodsList[0].goodsSpecs[0].deductibleImazamox);//抵扣金豆
-                            var bind = bindA - bindB;
-                            $('#sumMoney').html((nums-bindB));
-                            dataSave('orderarr',JSON.stringify(arr));
-                            dataSave('bind',bindB)
-                        dataSave('numsMoney',nums)
-                    }
-                }
-            });
-        }else{
-            var urlTwo = WEB_URL + '/api/orderMall/selectOfConfirm' ;//app确认订单页面所需数据查询
-            var arr = eval('('+dataGet('arr')+')');
-            var data   = {orderType:5,orderGoods:arr};
-            console.log(data)
-            $.ajax({
-                type:'POST',
-                dataType:'json',
-                url:urlTwo,
-                data: JSON.stringify(data),
-                contentType:'application/json;charset=utf-8',
-                error: function (XMLHttpRequest, textStatus, errorThrown) {},
-                success:function(data){
-                    if(!data.success){
-                        alert(data.msg);
-                    }else{
-                        var _thisData = data.data;
-                            console.log(data)
-                            $('#logisticsAreaName').html(_thisData.address.realName); //收货人
-                            $('#logisticsAddress').html(_thisData.address.provinceName+' '+_thisData.address.cityName+' '+_thisData.address.countyName+' '+_thisData.address.address);//地址
-                            var _length = _thisData.stores;
-                            var str =   '';
-                            for (var i=0;i<_length.length;i++){
-                                if(_length[i].goodsList[0].carouselPicture == null){
-                                    _length[i].goodsList[0].carouselPicture == 'images/null.png'
-                                }else{
-                                    _length[i].goodsList[0].carouselPicture =_length[i].goodsList[0].carouselPicture
-                                }
-                                str +='<div class="shoppingCart_wareArea" data-storeid="'+_length[i].id+'" data-productid="'+_length[i].goodsList[0].goodsSpecs[0].goodsId+'" data-specid="'+_length[i].goodsList[0].goodsSpecs[0].id+'" data-quantity="'+_length[i].goodsList[0].goodsSpecs[0].buyNum+'">'
-                                    // <!--头部店铺选择-->
-                                        +'<div class="shoppingCart_wareStore"> <div class="shop"></div> <span class="warp_Lt">'+_length[i].name+'</span> <div class="quiet"></div> <span class="warp_Rg myOrder_reveal" >等待买家付款</span> </div>'
-                                    // <!--商品属性展示区-->
-                                        +'<div class="shoppingCart_wareDetails">'
-                                        +'<div class="shoppingCart_wareDetailTxt">'
-                                        +'<div class="print"><img src="'+_length[i].goodsList[0].carouselPicture+'" alt=""></div>'
-                                        +'<div class="shoppingCart_wareTxt"> <div class="myOrder_revealArea warp_Lt"> <span class="warp_lC" style="height: 30px;">'+_length[i].goodsList[0].name+'</span> <span style="color: #cccccc;display: block" id="colors"></span> <div class="myOrder_quality">七天包退</div> </div> <div class="myOrder_reverlAreaL warp_Rg"> <span style="color:#E60012" id="monrys">￥'+_length[i].goodsList[0].price+'</span> <span style="text-decoration:line-through;">￥400.00</span> <br/><br/> <span id="numss">X'+_length[i].goodsList[0].goodsSpecs[0].buyNum+'</span> </div> </div>'
-                                        +'</div>'
-                                        +'</div>'
-                                    // <!--结算区-->
-                                        +'<div class="myOrder_freight bB" style="padding-left: 10%;padding-right: 3%;color: #333"> <p>运费险<span style="font-size: .875rem;" class="warp_Rg">¥0.00</span></p> <p style="margin-top: 3px;">实付（含运费）<span class="warp_Rg" style="color: #EB6100">￥<span style="font-size: .9375rem" id="shijiMoney">'+_length[i].goodsList[0].price*_length[i].goodsList[0].goodsSpecs[0].buyNum+'</span></span></p> </div>'
-                                        +'</div>'
-
-
-                            }
-                            $('.pendingReceipt').html(str);
-                            var arr =[];
-                            var nums=0;
-                            $('.shoppingCart_wareArea').each(function(){
-                                nums +=parseFloat($(this).find('#shijiMoney').text());
                                 arr.push({storeId:$(this).data('storeid'),expressValue:0,isGold:1,discount:0,consignee:$('#logisticsAreaName').text(),mobile:dataGet('mobile'),zipCode:dataGet('zipCode'),province:dataGet('cityCode'),provinceName:dataGet('cityText'),city:dataGet('provinceCode'),cityName:dataGet('provinceText'),county:dataGet('countyCode'),countyName:dataGet('countyText'),address:dataGet('address'),orderGoods:[{productId:$(this).data('productid'),specId:$(this).data('specid'),quantity:$(this).data('quantity'),mode:0}]})
                             })
                             $('#sumMoney').html((nums-_thisData.goldSumFrozen));
                             dataSave('orderarr',JSON.stringify(arr));
-                        dataSave('bind',_thisData.goldSumFrozen)
-                        dataSave('numsMoney',nums)
+                            dataSave('bind',_thisData.goldSumFrozen)
+                            dataSave('numsMoney',nums)
+                        }
                     }
-                }
-            });
+                });
+            }
         }
 
 
-        $('.selectfoot').click(function(){
-            var urlThree = WEB_URL + '/api/orderMall/add' ;//生成订单
-            var data     =dataGet('orderarr')
-            $.ajax({
-                type:'POST',
-                dataType:'json',
-                url:urlThree,
-                data: data,
-                contentType:'application/json;charset=utf-8',
-                error: function (XMLHttpRequest, textStatus, errorThrown) {},
-                success:function(data){
-                    if(!data.success){
-                        alert(data.msg);
-                    }else{
 
-                        dataSave('PayId', data.data[0].id);//支付商品id
-                        console.log(data.data);
-                    }
-                }
-            });
+        $('.selectfoot').click(function(){
+            if(dataGet('addressnull') == ''){
+                alert('请先设置收货地址！');
+                Views.addedAddressView.show();
+                return;
+            }
+            // if(dataGet('shenfen')==1){
+            //     if(dataGet('commissionLine')==2){
+            //         var EMbile = '';
+            //         if(dataGet('mobile')==''){
+            //             EMbile = dataGet('user_name')
+            //         }else{
+            //             EMbile = dataGet('mobile');
+            //         }
+            //         var EMail = '';
+            //         if(dataGet('zipCode') ==''){
+            //             EMail = '000000'
+            //         }else{
+            //             EMail = dataGet('zipCode');
+            //         }
+            //         var url         = WEB_URL + '/api/orderMall/addRole';
+            //         var storeId     = dataGet('storeId'); //店铺id
+            //         var orderType   = 6; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
+            //         var consignee   =dataGet('realNames'); //地址信息   当为3购买平台身份时不必填  当为1或2时地址信息必填
+            //         var mobile = EMbile; //电话
+            //         var zipCode = EMail;//邮编
+            //         var province = dataGet('cityCode');//省id
+            //         var provinceName = dataGet('cityText');//省名称
+            //         var city = dataGet('provinceCode');//市id
+            //         var cityName = dataGet('provinceText');//市名称
+            //         var county = dataGet('countyCode');//区id
+            //         var countyName = dataGet('countyText');//区名称
+            //         var address = dataGet('address');//详细地址信息
+            //         var buyerMess   =$('#textarea').val();
+            //         var shopRoleDist={roleId:dataGet('roleId'),invitedNum:dataGet('invitedNum'),roleName:dataGet('roleName'),invitedName:dataGet('radio')};
+            //         var datas        ={storeId:storeId,orderType:orderType,consignee:consignee,mobile:mobile,zipCode:zipCode,province:province,provinceName:provinceName,city:city,cityName:cityName,county:county,countyName:countyName,address:address,buyerMess:buyerMess,shopRoleDist:shopRoleDist};
+            //         console.log(datas);
+            //         if(datas.address == null){
+            //             alert('请先设置收货地址！');
+            //             Views.addedAddressView.show();
+            //         }else{
+            //             $.ajax({
+            //                 type:'POST',
+            //                 dataType:'json',
+            //                 url:url,
+            //                 data: JSON.stringify(datas),
+            //                 contentType:'application/json;charset=utf-8',
+            //                 error: function (XMLHttpRequest, textStatus, errorThrown) {},
+            //                 success:function(data){
+            //                     if(!data.success){
+            //                         alert(data.msg);
+            //                         $(".shoppingCart_properties").hide();
+            //                         $(".shoppingCart_check").hide();
+            //                         $(".shoppingCart_black").hide();
+            //                         $(".wantToRecharge_shady").hide();
+            //                         $('#yqm').hide();
+            //                         Views.storeDetailsView.show();
+            //                     }else{
+            //                         console.log(data);
+            //                         dataSave('PayId',data.data.id);
+            //                         // $(".wantToRecharge_shady").show();
+            //                         // $(".wantToRecharge_payment").slideToggle();
+            //                         // $(".wantToRechargePay").show();
+            //                     }
+            //                 }
+            //             });
+            //         }
+            //     }else if (dataGet('commissionLine')==3){
+            //         alert('这是磁疗贴')
+            //     }else {
+            //
+            //     }
+            // }else{
+            //     var urlThree = WEB_URL + '/api/orderMall/add' ;//生成订单
+            //     var data     =dataGet('orderarr');
+            //     $.ajax({
+            //         type:'POST',
+            //         dataType:'json',
+            //         url:urlThree,
+            //         data: data,
+            //         contentType:'application/json;charset=utf-8',
+            //         error: function (XMLHttpRequest, textStatus, errorThrown) {},
+            //         success:function(data){
+            //             if(!data.success){
+            //                 alert(data.msg);
+            //             }else{
+            //
+            //                 dataSave('PayId', data.data[0].id);//支付商品id
+            //                 console.log(data.data);
+            //             }
+            //         }
+            //     });
+            // }
             if($(this).attr('class') == 'voucherCenter_Area first'){
                 console.log($(this))
                 $(this).children().removeClass('rSelected');
@@ -1881,35 +2189,260 @@ Views.successOrderView = $.extend({}, Views.PanelView, {
                         console.log(data);
                         if(data.data.payPassword == null){
                             alert('请先设置支付密码！');
-                            Views.fillinNewPasswordView.show();
+                            Views.szfillinNewPasswordView.show();
                         }else{
-
-                            var urlTwos = WEB_URL + '/api/orderMall/payment' ;//发起支付
-                            var payId  ='';
-                            var payType = 3;
-                            var id = dataGet('PayId');//id
-                            var orderMalls = [{id:id}];
-                            var data = {payId:payId,payType:payType,orderMalls:orderMalls};
-                            $.ajax({
-                                type:'POST',
-                                dataType:'json',
-                                url:urlTwos,
-                                data: JSON.stringify(data),
-                                contentType:'application/json;charset=utf-8',
-                                error: function (XMLHttpRequest, textStatus, errorThrown) {},
-                                success:function(data){
-                                    if(!data.success){
-                                        console.log(data.msg);
-                                    }else{
-                                        console.log(data.data);
-                                        dataSave('payIds', data.data.payId);//支付商品id
+                            if (dataGet('shenfen') == 1) {
+                                if (dataGet('commissionLine') == 2) {
+                                    var EMbile = '';
+                                    if (dataGet('mobile') == '') {
+                                        EMbile = dataGet('user_name')
+                                    } else {
+                                        EMbile = dataGet('mobile');
+                                    }
+                                    var EMail = '';
+                                    if (dataGet('zipCode') == '') {
+                                        EMail = '000000'
+                                    } else {
+                                        EMail = dataGet('zipCode');
+                                    }
+                                    var url = WEB_URL + '/api/orderMall/addRole';
+                                    var storeId = dataGet('storeId'); //店铺id
+                                    var orderType = 6; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
+                                    var consignee = dataGet('realNames'); //地址信息   当为3购买平台身份时不必填  当为1或2时地址信息必填
+                                    var mobile = EMbile; //电话
+                                    var zipCode = EMail;//邮编
+                                    var province = dataGet('cityCode');//省id
+                                    var provinceName = dataGet('cityText');//省名称
+                                    var city = dataGet('provinceCode');//市id
+                                    var cityName = dataGet('provinceText');//市名称
+                                    var county = dataGet('countyCode');//区id
+                                    var countyName = dataGet('countyText');//区名称
+                                    var address = dataGet('address');//详细地址信息
+                                    var buyerMess = $('#textarea').val();
+                                    var shopRoleDist = {
+                                        roleId: dataGet('roleId'),
+                                        invitedNum: dataGet('invitedNum'),
+                                        roleName: dataGet('roleName'),
+                                        invitedName: dataGet('radio')
+                                    };
+                                    var datas = {
+                                        storeId: storeId,
+                                        orderType: orderType,
+                                        consignee: consignee,
+                                        mobile: mobile,
+                                        zipCode: zipCode,
+                                        province: province,
+                                        provinceName: provinceName,
+                                        city: city,
+                                        cityName: cityName,
+                                        county: county,
+                                        countyName: countyName,
+                                        address: address,
+                                        buyerMess: buyerMess,
+                                        shopRoleDist: shopRoleDist
+                                    };
+                                    console.log(datas);
+                                    if (datas.address == null) {
+                                        alert('请先设置收货地址！');
+                                        Views.addedAddressView.show();
+                                    } else {
+                                        $.ajax({
+                                            type: 'POST',
+                                            dataType: 'json',
+                                            url: url,
+                                            data: JSON.stringify(datas),
+                                            contentType: 'application/json;charset=utf-8',
+                                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                            },
+                                            success: function (data) {
+                                                if (!data.success) {
+                                                    alert(data.msg);
+                                                    $(".shoppingCart_properties").hide();
+                                                    $(".shoppingCart_check").hide();
+                                                    $(".shoppingCart_black").hide();
+                                                    $(".wantToRecharge_shady").hide();
+                                                    $('#yqm').hide();
+                                                    Views.storeDetailsView.show();
+                                                } else {
+                                                    console.log(data);
+                                                    dataSave('PayId', data.data.id);
+                                                    // $(".wantToRecharge_shady").show();
+                                                    // $(".wantToRecharge_payment").slideToggle();
+                                                    // $(".wantToRechargePay").show();
+                                                    var urlTwos = WEB_URL + '/api/orderMall/payment';//发起支付
+                                                    var payId = '';
+                                                    var payType = 3;
+                                                    var id = dataGet('PayId');//id
+                                                    var orderMalls = [{id: id}];
+                                                    var data = {payId: payId, payType: payType, orderMalls: orderMalls};
+                                                    $.ajax({
+                                                        type: 'POST',
+                                                        dataType: 'json',
+                                                        url: urlTwos,
+                                                        data: JSON.stringify(data),
+                                                        contentType: 'application/json;charset=utf-8',
+                                                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                                        },
+                                                        success: function (data) {
+                                                            if (!data.success) {
+                                                                console.log(data.msg);
+                                                            } else {
+                                                                console.log(data.data);
+                                                                dataSave('payIds', data.data.payId);//支付商品id
+                                                                $('#payFixed').show();
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        });
+                                    }
+                                } else if (dataGet('commissionLine') == 3) {
+                                    alert('这是磁疗贴')
+                                } else {
+                                    var EMbile = '';
+                                    if (dataGet('mobile') == '') {
+                                        EMbile = dataGet('user_name')
+                                    } else {
+                                        EMbile = dataGet('mobile');
+                                    }
+                                    var EMail = '';
+                                    if (dataGet('zipCode') == '') {
+                                        EMail = '000000'
+                                    } else {
+                                        EMail = dataGet('zipCode');
+                                    }
+                                    var url = WEB_URL + '/api/orderMall/addRole';
+                                    var storeId = dataGet('storeId'); //店铺id
+                                    var orderType = dataGet('idCode')==0?6:8; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
+                                    var consignee = dataGet('realNames'); //地址信息   当为3购买平台身份时不必填  当为1或2时地址信息必填
+                                    var mobile = EMbile; //电话
+                                    var zipCode = EMail;//邮编
+                                    var province = dataGet('cityCode');//省id
+                                    var provinceName = dataGet('cityText');//省名称
+                                    var city = dataGet('provinceCode');//市id
+                                    var cityName = dataGet('provinceText');//市名称
+                                    var county = dataGet('countyCode');//区id
+                                    var countyName = dataGet('countyText');//区名称
+                                    var address = dataGet('address');//详细地址信息
+                                    var buyerMess = $('#textarea').val();
+                                    var shopRoleDist = {
+                                        roleId: dataGet('roleId'),
+                                        invitedNum: dataGet('invitedNum'),
+                                    };
+                                    var datas = {
+                                        storeId: storeId,
+                                        orderType: orderType,
+                                        consignee: consignee,
+                                        mobile: mobile,
+                                        zipCode: zipCode,
+                                        province: province,
+                                        provinceName: provinceName,
+                                        city: city,
+                                        cityName: cityName,
+                                        county: county,
+                                        countyName: countyName,
+                                        address: address,
+                                        buyerMess: buyerMess,
+                                        shopRoleDist: shopRoleDist
+                                    };
+                                    console.log(datas);
+                                    if (datas.address == null) {
+                                        alert('请先设置收货地址！');
+                                        Views.addedAddressView.show();
+                                    } else {
+                                        $.ajax({
+                                            type: 'POST',
+                                            dataType: 'json',
+                                            url: url,
+                                            data: JSON.stringify(datas),
+                                            contentType: 'application/json;charset=utf-8',
+                                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                            },
+                                            success: function (data) {
+                                                if (!data.success) {
+                                                    console.log(data.msg);
+                                                } else {
+                                                    console.log(data);
+                                                    dataSave('PayId', data.data.id);
+                                                    // $(".wantToRecharge_shady").show();
+                                                    // $(".wantToRecharge_payment").slideToggle();
+                                                    // $(".wantToRechargePay").show();
+                                                    var urlTwos = WEB_URL + '/api/orderMall/payment';//发起支付
+                                                    var payId = '';
+                                                    var payType = 3;
+                                                    var id = dataGet('PayId');//id
+                                                    var orderMalls = [{id: id}];
+                                                    var data = {payId: payId, payType: payType, orderMalls: orderMalls};
+                                                    $.ajax({
+                                                        type: 'POST',
+                                                        dataType: 'json',
+                                                        url: urlTwos,
+                                                        data: JSON.stringify(data),
+                                                        contentType: 'application/json;charset=utf-8',
+                                                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                                        },
+                                                        success: function (data) {
+                                                            if (!data.success) {
+                                                                console.log(data.msg);
+                                                            } else {
+                                                                console.log(data.data);
+                                                                dataSave('payIds', data.data.payId);//支付商品id
+                                                                $('#payFixed').show();
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        });
                                     }
                                 }
-                            });
+                            } else {
+                                var urlThree = WEB_URL + '/api/orderMall/add';//生成订单
+                                var dataThree = dataGet('orderarr');
+                                $.ajax({
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    url: urlThree,
+                                    data: dataThree,
+                                    contentType: 'application/json;charset=utf-8',
+                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                    },
+                                    success: function (data) {
+                                        if (!data.success) {
+                                            alert(data.msg);
+                                        } else {
 
-
-
-                            $('#payFixed').show();
+                                            dataSave('PayId', data.data[0].id);//支付商品id
+                                            console.log(data.data);
+                                            var urlTwos = WEB_URL + '/api/orderMall/payment';//发起支付
+                                            var payId = '';
+                                            var payType = 3;
+                                            var id = dataGet('PayId');//id
+                                            var orderMalls = [{id: id}];
+                                            var data = {payId: payId, payType: payType, orderMalls: orderMalls};
+                                            $.ajax({
+                                                type: 'POST',
+                                                dataType: 'json',
+                                                url: urlTwos,
+                                                data: JSON.stringify(data),
+                                                contentType: 'application/json;charset=utf-8',
+                                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                                },
+                                                success: function (data) {
+                                                    if (!data.success) {
+                                                        console.log(data.msg);
+                                                    } else {
+                                                        console.log(data.data);
+                                                        dataSave('payIds', data.data.payId);//支付商品id
+                                                        $('#payFixed').show();
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+                            }
                         }
                     }
                 }
@@ -1932,72 +2465,378 @@ Views.successOrderView = $.extend({}, Views.PanelView, {
                             alert('请先设置支付密码！');
                             Views.fillinNewPasswordView.show();
                         }else{
-
-                            var urlTwos = WEB_URL + '/api/orderMall/payment' ;//发起支付
-                            var payId  ='';
-                            var payType = 0;
-                            var id = dataGet('PayId');//id
-                            var orderMalls = [{id:id}];
-                            var data = {payId:payId,payType:payType,orderMalls:orderMalls};
-                            $.ajax({
-                                type:'POST',
-                                dataType:'json',
-                                url:urlTwos,
-                                data: JSON.stringify(data),
-                                contentType:'application/json;charset=utf-8',
-                                error: function (XMLHttpRequest, textStatus, errorThrown) {},
-                                success:function(data){
-                                    if(!data.success){
-                                        console.log(data.msg);
-                                    }else{
-                                        console.log(data.data);
-                                        dataSave('payIds', data.data.payId);//支付商品id
-                                        var url  = WEB_URL + "/api/coreMoney/wxpay";
+                            if (dataGet('shenfen') == 1) {
+                                if (dataGet('commissionLine') == 2) {
+                                    var EMbile = '';
+                                    if (dataGet('mobile') == '') {
+                                        EMbile = dataGet('user_name')
+                                    } else {
+                                        EMbile = dataGet('mobile');
+                                    }
+                                    var EMail = '';
+                                    if (dataGet('zipCode') == '') {
+                                        EMail = '000000'
+                                    } else {
+                                        EMail = dataGet('zipCode');
+                                    }
+                                    var url = WEB_URL + '/api/orderMall/addRole';
+                                    var storeId = dataGet('storeId'); //店铺id
+                                    var orderType = 6; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
+                                    var consignee = dataGet('realNames'); //地址信息   当为3购买平台身份时不必填  当为1或2时地址信息必填
+                                    var mobile = EMbile; //电话
+                                    var zipCode = EMail;//邮编
+                                    var province = dataGet('cityCode');//省id
+                                    var provinceName = dataGet('cityText');//省名称
+                                    var city = dataGet('provinceCode');//市id
+                                    var cityName = dataGet('provinceText');//市名称
+                                    var county = dataGet('countyCode');//区id
+                                    var countyName = dataGet('countyText');//区名称
+                                    var address = dataGet('address');//详细地址信息
+                                    var buyerMess = $('#textarea').val();
+                                    var shopRoleDist = {
+                                        roleId: dataGet('roleId'),
+                                        invitedNum: dataGet('invitedNum'),
+                                        roleName: dataGet('roleName'),
+                                        invitedName: dataGet('radio')
+                                    };
+                                    var datas = {
+                                        storeId: storeId,
+                                        orderType: orderType,
+                                        consignee: consignee,
+                                        mobile: mobile,
+                                        zipCode: zipCode,
+                                        province: province,
+                                        provinceName: provinceName,
+                                        city: city,
+                                        cityName: cityName,
+                                        county: county,
+                                        countyName: countyName,
+                                        address: address,
+                                        buyerMess: buyerMess,
+                                        shopRoleDist: shopRoleDist
+                                    };
+                                    console.log(datas);
+                                    if (datas.address == null) {
+                                        alert('请先设置收货地址！');
+                                        Views.addedAddressView.show();
+                                    } else {
                                         $.ajax({
-                                            type:'POST',
-                                            dataType:'json',
-                                            url:url,
-                                            data:JSON.stringify({tradeNo:data.data.payId}),
-                                            contentType:'application/json;charset=utf-8',
+                                            type: 'POST',
+                                            dataType: 'json',
+                                            url: url,
+                                            data: JSON.stringify(datas),
+                                            contentType: 'application/json;charset=utf-8',
                                             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                                alert(XMLHttpRequest, textStatus, errorThrown);
                                             },
-                                            success:function(data){
-                                                if (data.codeEnum == 'OVERTIME') {
-                                                    Views.signInView.show();
-                                                }else{
-                                                    var _responseText;
-                                                    try {
-                                                        _responseText = JSON.parse(JSON.stringify(data));
-                                                    } catch(error) {
-                                                        _responseText = {success:true};
-                                                    }
-                                                    if (false == _responseText.success) {
-                                                        alert(_responseText.msg);
-                                                    }else{
-                                                        //调起支付
-                                                        var wxPay = api.require('wxPay');
-                                                        wxPay.payOrder(_responseText, function(ret, err) {
-                                                            if (ret.status) {
-                                                                //支付成功
-                                                                alert('支付成功');
-                                                                //......
+                                            success: function (data) {
+                                                if (!data.success) {
+                                                    alert(data.msg);
+                                                    $(".shoppingCart_properties").hide();
+                                                    $(".shoppingCart_check").hide();
+                                                    $(".shoppingCart_black").hide();
+                                                    $(".wantToRecharge_shady").hide();
+                                                    $('#yqm').hide();
+                                                    Views.storeDetailsView.show();
+                                                } else {
+                                                    console.log(data);
+                                                    dataSave('PayId', data.data.id);
+                                                    // $(".wantToRecharge_shady").show();
+                                                    // $(".wantToRecharge_payment").slideToggle();
+                                                    // $(".wantToRechargePay").show();
+                                                    var urlTwos = WEB_URL + '/api/orderMall/payment' ;//发起微信支付
+                                                    var payId  ='';
+                                                    var payType = 0;
+                                                    var id = dataGet('PayId');//id
+                                                    var orderMalls = [{id:id}];
+                                                    var data = {payId:payId,payType:payType,orderMalls:orderMalls};
+                                                    $.ajax({
+                                                        type:'POST',
+                                                        dataType:'json',
+                                                        url:urlTwos,
+                                                        data: JSON.stringify(data),
+                                                        contentType:'application/json;charset=utf-8',
+                                                        error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                                                        success:function(data){
+                                                            if(!data.success){
+                                                                console.log(data.msg);
+                                                            }else{
+                                                                console.log(data.data);
+                                                                dataSave('payIds', data.data.payId);//支付商品id
+                                                                var url  = WEB_URL + "/api/coreMoney/wxpay";
+                                                                $.ajax({
+                                                                    type:'POST',
+                                                                    dataType:'json',
+                                                                    url:url,
+                                                                    data:JSON.stringify({tradeNo:data.data.payId}),
+                                                                    contentType:'application/json;charset=utf-8',
+                                                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                                                        alert(XMLHttpRequest, textStatus, errorThrown);
+                                                                    },
+                                                                    success:function(data){
+                                                                        if (data.codeEnum == 'OVERTIME') {
+                                                                            Views.signInView.show();
+                                                                        }else{
+                                                                            var _responseText;
+                                                                            try {
+                                                                                _responseText = JSON.parse(JSON.stringify(data));
+                                                                            } catch(error) {
+                                                                                _responseText = {success:true};
+                                                                            }
+                                                                            if (false == _responseText.success) {
+                                                                                alert(_responseText.msg);
+                                                                            }else{
+                                                                                //调起支付
+                                                                                var wxPay = api.require('wxPay');
+                                                                                wxPay.payOrder(_responseText, function(ret, err) {
+                                                                                    if (ret.status) {
+                                                                                        //支付成功
+                                                                                        alert('支付成功');
+                                                                                        //......
 
-                                                            } else {
-                                                                alert(JSON.stringify(err));
+                                                                                    } else {
+                                                                                        alert(JSON.stringify(err));
+                                                                                    }
+                                                                                });
+                                                                            }
+                                                                        }
+
+                                                                    }
+                                                                });
                                                             }
-                                                        });
-                                                    }
+                                                        }
+                                                    });
                                                 }
+                                            }
+                                        });
+                                    }
+                                } else if (dataGet('commissionLine') == 3) {
+                                    alert('这是磁疗贴')
+                                } else {
+                                    var EMbile = '';
+                                    if (dataGet('mobile') == '') {
+                                        EMbile = dataGet('user_name')
+                                    } else {
+                                        EMbile = dataGet('mobile');
+                                    }
+                                    var EMail = '';
+                                    if (dataGet('zipCode') == '') {
+                                        EMail = '000000'
+                                    } else {
+                                        EMail = dataGet('zipCode');
+                                    }
+                                    var url = WEB_URL + '/api/orderMall/addRole';
+                                    var storeId = dataGet('storeId'); //店铺id
+                                    var orderType = dataGet('idCode')==0?6:8; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
+                                    var consignee = dataGet('realNames'); //地址信息   当为3购买平台身份时不必填  当为1或2时地址信息必填
+                                    var mobile = EMbile; //电话
+                                    var zipCode = EMail;//邮编
+                                    var province = dataGet('cityCode');//省id
+                                    var provinceName = dataGet('cityText');//省名称
+                                    var city = dataGet('provinceCode');//市id
+                                    var cityName = dataGet('provinceText');//市名称
+                                    var county = dataGet('countyCode');//区id
+                                    var countyName = dataGet('countyText');//区名称
+                                    var address = dataGet('address');//详细地址信息
+                                    var buyerMess = $('#textarea').val();
+                                    var shopRoleDist = {
+                                        roleId: dataGet('roleId'),
+                                        invitedNum: dataGet('invitedNum'),
+                                    };
+                                    var datas = {
+                                        storeId: storeId,
+                                        orderType: orderType,
+                                        consignee: consignee,
+                                        mobile: mobile,
+                                        zipCode: zipCode,
+                                        province: province,
+                                        provinceName: provinceName,
+                                        city: city,
+                                        cityName: cityName,
+                                        county: county,
+                                        countyName: countyName,
+                                        address: address,
+                                        buyerMess: buyerMess,
+                                        shopRoleDist: shopRoleDist
+                                    };
+                                    console.log(datas);
+                                    if (datas.address == null) {
+                                        alert('请先设置收货地址！');
+                                        Views.addedAddressView.show();
+                                    } else {
+                                        $.ajax({
+                                            type: 'POST',
+                                            dataType: 'json',
+                                            url: url,
+                                            data: JSON.stringify(datas),
+                                            contentType: 'application/json;charset=utf-8',
+                                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                            },
+                                            success: function (data) {
+                                                if (!data.success) {
+                                                    alert(data.msg);
+                                                    $(".shoppingCart_properties").hide();
+                                                    $(".shoppingCart_check").hide();
+                                                    $(".shoppingCart_black").hide();
+                                                    $(".wantToRecharge_shady").hide();
+                                                    $('#yqm').hide();
+                                                    Views.storeDetailsView.show();
+                                                } else {
+                                                    console.log(data);
+                                                    dataSave('PayId', data.data.id);
+                                                    // $(".wantToRecharge_shady").show();
+                                                    // $(".wantToRecharge_payment").slideToggle();
+                                                    // $(".wantToRechargePay").show();
+                                                    var urlTwos = WEB_URL + '/api/orderMall/payment' ;//发起微信支付
+                                                    var payId  ='';
+                                                    var payType = 0;
+                                                    var id = dataGet('PayId');//id
+                                                    var orderMalls = [{id:id}];
+                                                    var data = {payId:payId,payType:payType,orderMalls:orderMalls};
+                                                    $.ajax({
+                                                        type:'POST',
+                                                        dataType:'json',
+                                                        url:urlTwos,
+                                                        data: JSON.stringify(data),
+                                                        contentType:'application/json;charset=utf-8',
+                                                        error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                                                        success:function(data){
+                                                            if(!data.success){
+                                                                console.log(data.msg);
+                                                            }else{
+                                                                console.log(data.data);
+                                                                dataSave('payIds', data.data.payId);//支付商品id
+                                                                var url  = WEB_URL + "/api/coreMoney/wxpay";
+                                                                $.ajax({
+                                                                    type:'POST',
+                                                                    dataType:'json',
+                                                                    url:url,
+                                                                    data:JSON.stringify({tradeNo:data.data.payId}),
+                                                                    contentType:'application/json;charset=utf-8',
+                                                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                                                        alert(XMLHttpRequest, textStatus, errorThrown);
+                                                                    },
+                                                                    success:function(data){
+                                                                        if (data.codeEnum == 'OVERTIME') {
+                                                                            Views.signInView.show();
+                                                                        }else{
+                                                                            var _responseText;
+                                                                            try {
+                                                                                _responseText = JSON.parse(JSON.stringify(data));
+                                                                            } catch(error) {
+                                                                                _responseText = {success:true};
+                                                                            }
+                                                                            if (false == _responseText.success) {
+                                                                                alert(_responseText.msg);
+                                                                            }else{
+                                                                                //调起支付
+                                                                                var wxPay = api.require('wxPay');
+                                                                                wxPay.payOrder(_responseText, function(ret, err) {
+                                                                                    if (ret.status) {
+                                                                                        //支付成功
+                                                                                        alert('支付成功');
+                                                                                        //......
 
+                                                                                    } else {
+                                                                                        alert(JSON.stringify(err));
+                                                                                    }
+                                                                                });
+                                                                            }
+                                                                        }
+
+                                                                    }
+                                                                });
+                                                            }
+                                                        }
+                                                    });
+                                                }
                                             }
                                         });
                                     }
                                 }
-                            });
+                            } else {
+                                var urlThree = WEB_URL + '/api/orderMall/add';//生成订单
+                                var data = dataGet('orderarr');
+                                $.ajax({
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    url: urlThree,
+                                    data: data,
+                                    contentType: 'application/json;charset=utf-8',
+                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                    },
+                                    success: function (data) {
+                                        if (!data.success) {
+                                            alert(data.msg);
+                                        } else {
 
+                                            dataSave('PayId', data.data[0].id);//支付商品id
+                                            console.log(data.data);
+                                            var urlTwos = WEB_URL + '/api/orderMall/payment' ;//发起微信支付
+                                            var payId  ='';
+                                            var payType = 0;
+                                            var id = dataGet('PayId');//id
+                                            var orderMalls = [{id:id}];
+                                            var data = {payId:payId,payType:payType,orderMalls:orderMalls};
+                                            $.ajax({
+                                                type:'POST',
+                                                dataType:'json',
+                                                url:urlTwos,
+                                                data: JSON.stringify(data),
+                                                contentType:'application/json;charset=utf-8',
+                                                error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                                                success:function(data){
+                                                    if(!data.success){
+                                                        console.log(data.msg);
+                                                    }else{
+                                                        console.log(data.data);
+                                                        dataSave('payIds', data.data.payId);//支付商品id
+                                                        var url  = WEB_URL + "/api/coreMoney/wxpay";
+                                                        $.ajax({
+                                                            type:'POST',
+                                                            dataType:'json',
+                                                            url:url,
+                                                            data:JSON.stringify({tradeNo:data.data.payId}),
+                                                            contentType:'application/json;charset=utf-8',
+                                                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                                                alert(XMLHttpRequest, textStatus, errorThrown);
+                                                            },
+                                                            success:function(data){
+                                                                if (data.codeEnum == 'OVERTIME') {
+                                                                    Views.signInView.show();
+                                                                }else{
+                                                                    var _responseText;
+                                                                    try {
+                                                                        _responseText = JSON.parse(JSON.stringify(data));
+                                                                    } catch(error) {
+                                                                        _responseText = {success:true};
+                                                                    }
+                                                                    if (false == _responseText.success) {
+                                                                        alert(_responseText.msg);
+                                                                    }else{
+                                                                        //调起支付
+                                                                        var wxPay = api.require('wxPay');
+                                                                        wxPay.payOrder(_responseText, function(ret, err) {
+                                                                            if (ret.status) {
+                                                                                //支付成功
+                                                                                alert('支付成功');
+                                                                                //......
 
+                                                                            } else {
+                                                                                alert(JSON.stringify(err));
+                                                                            }
+                                                                        });
+                                                                    }
+                                                                }
 
+                                                            }
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
+                            }
                         }
                     }
                 }
@@ -2048,6 +2887,9 @@ Views.successOrderView = $.extend({}, Views.PanelView, {
     },
     orderDetails_logistics:function(){
         Views.addressManagementView.show();
+    },
+    end:function(){
+        dataSave('shenfen','')
     }
 
 })

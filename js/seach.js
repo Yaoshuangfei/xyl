@@ -227,6 +227,7 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                         }else{
                             var str   ='';
                             for (var i=0;i<_slef.length;i++){
+                                var strs   ='';
                                 if (_slef[i].logo == null){
                                     _slef[i].logo = 'images/storeDetails/head.png'
                                 }else{
@@ -237,6 +238,13 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                                 }else{
                                     _slef[i].orderSum=_slef[i].orderSum;
                                 }
+                                for(var j=0;j<_slef[i].goodsList.length;j++){
+                                    if(_slef[i].goodsList.length == 0){
+                                        strs +='<div class="picBox">暂无图片</div>'
+                                    }else{
+                                        strs +='<div class="picBox"><img src="'+_slef[i].goodsList[j].carouselPicture+'"></div>'
+                                    }
+                                }
                                 str +='<div class="ss_shop">'
                                     +'<div class="shopData">'
                                     +'<div class="pic"><img src="'+_slef[i].logo+'"/></div>'
@@ -246,8 +254,9 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                                     +'</div>'
                                     +'<div class="goIn ui_btn" data-action="jindian" data-dpid="'+_slef[i].id+'">进店</div>'
                                     +'</div>'
-                                    +'<div class="shopPic"> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> </div>'
+                                    +'<div class="shopPic">'+strs+'</div>'
                                     +'</div>'
+                                // '+_slef[i].goodsList[i].carouselPicture+'
                             }
                             $('#ss_shop').html(str);
                         }

@@ -41,6 +41,7 @@ var Views = {
 		resetLogin:'views/tmpl/mine/resetLogin.html:重置登录密码:#f7f7f7',
 		verificationCodeTT:'views/tmpl/mine/verificationCodeTT.html:重置密码验证:#f7f7f7',
 		fillinNewPassword:'views/tmpl/mine/fillinNewPassword.html:填写新密码:#f7f7f7',
+		szfillinNewPassword:'views/tmpl/mine/szfillinNewPassword.html:设置密码:#f7f7f7',
 		remember:'views/tmpl/mine/remember.html:重置密码(记得):#f7f7f7',
 
 		resetPay:'views/tmpl/mine/resetPay.html:重置支付密码:#f7f7f7',
