@@ -921,7 +921,7 @@ Views.becomeDetailsView = $.extend({}, Views.PanelView, {
                             }
                         });
                     }else if (data.data.store.commissionLine == '3'){//磁疗贴
-                        alert('磁疗贴')
+                        // alert('磁疗贴')
                         var url     = WEB_URL + '/api/shopRole/selectOne';
                         var data    ={storeId:parseInt(dataGet('storeId')),introType:parseInt(dataGet('idCode'))};
                         console.log(data)
@@ -1191,7 +1191,7 @@ Views.becomeDetailsView = $.extend({}, Views.PanelView, {
             $(".wantToRecharge_shady").show();
             $('#yqm').show();
         }else if (dataGet('commissionLine')=='3'){
-            alert('磁疗贴')
+            alert('磁疗贴身份')
         }else{
             if(dataGet('idCode')==1){
                 var url         = WEB_URL + '/api/orderMall/selectOfConfirm';
