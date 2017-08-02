@@ -76,7 +76,7 @@
 		<div class="shoppingCart_check ui_btn" data-action="shoppingCart_checks" style="z-index: 1000">确定</div>
 		<div id="yqm" style="background: #fff;
     width: 300px;
-    height: 130px;
+    padding-bottom: 30px;
     padding-top: 50px;
     border-radius: 8px;
     position: fixed;
@@ -86,6 +86,11 @@
     left: 50%;
     margin-left: -150px;text-align: center;display: none;">
 			<input type="text" value="" id="txqyqm" style="width:228px;height:28px;border: 1px solid #666;padding-left: 20px;border-radius: 8px;" placeholder="请输入推荐人手机号或邮箱">
+			<input type="text" value="" id="sjqyqm" style="display:none;width:228px;height:28px;border: 1px solid #666;padding-left: 20px;border-radius: 8px;margin-top: 20px;" placeholder="请输入上级账号">
+			<div style="text-align: center;margin-top: 10px;display:none;" id="sjqyqm_01">
+				<label for="a" style="margin: 0 10px;"><input type="radio" checked="checked" name="left" id="a" class="btnClick ui_btn" data-action="btnClick" data-id="1">左区</label>
+				<label for="b" style="margin: 0 10px;"><input type="radio" name="left" id="b" class="btnClick ui_btn" data-action="btnClick" data-id="2">右区</label>
+			</div>
 			<div>
 				<span id="yqmQd" class="ui_btn" data-action="yqmQd" style="width:100px;height:30px;line-height: 30px;background: #007cc2;color: #fff;font-size: 14px;display: inline-block;margin: 30px 10px 0 10px;border-radius: 8px;">确定</span>
 				<span id="yqmQx" class="ui_btn" data-action="yqmQx" style="width:100px;height:30px;line-height: 30px;background: #007cc2;color: #fff;font-size: 14px;display: inline-block;margin: 30px 10px 0 10px;border-radius: 8px;">取消</span>

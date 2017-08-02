@@ -226,7 +226,7 @@ Views.voucherCenterView = $.extend({}, Views.PanelView, {
                                                                     _responseText = {success:true};
                                                                 }
                                                                 if (false == _responseText.success) {
-                                                                    alert(_responseText.msg);
+                                                                   alert(_responseText.msg);
                                                                 }else{
                                                                     //调起支付
                                                                     var wxPay = api.require('wxPay');
@@ -464,7 +464,7 @@ Views.chargeFlowView = $.extend({}, Views.PanelView, {
                 }else{
                     var _self   = data.data;
                     console.log(data.data)
-                    dataSave('rechargeId',_self[1].id);
+                    dataSave('rechargeId',_self[2].id);
                     var url     = WEB_URL +'/api/rechargeConfig/recharge/goodsList';
                     var dataTwo    ={id:dataGet('rechargeId')};
                     $.ajax({

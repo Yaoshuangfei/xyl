@@ -2990,6 +2990,7 @@
     margin-right: 10px;
     background: #eeeeee;
     background-size: cover;
+    text-align: center;
 }
 .mine_warp .choose {
     width: 20px;
@@ -3868,4 +3869,7 @@
 }
 .chooseList .lists .lists_03 p:last-child {
     bottom:-10px;
+}
+.print img {
+    height:100%;
 }

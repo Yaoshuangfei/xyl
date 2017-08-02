@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>图片上传预览</title>
+    <script type="text/javascript" src="plugins/jquery-1.11.1.min.js"></script>
 </head>
 <body>
 <script>
-    var date = new Date();
-    Y = date.getFullYear() + '-';
-    M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-    D = date.getDate() + ' ';
-    h = date.getHours() + ':';
-    m = date.getMinutes() + ':';
-    s = date.getSeconds();
-    console.log(date.getTime());//当前时间
-//
-    console.log(86400000+1500600574000)
+    $.ajax({
+        type:'POST',
+        dataType:'json',
+        url:'http://192.168.0.102:8080//api/shopMember/selectListByRole',
+        data:JSON.stringify({pageNum:1,size:10,storeId:3}),
+        contentType:'application/json;charset=utf-8',
+        error: function (XMLHttpRequest, textStatus, errorThrown) {},
+        success:function(data){
+            if(!data.success){
+                alert(data.msg)
+            }else{
+                console.log(data)
+                var list	= data.data
+            }
+        }
+    });
 </script>
 </body>
 </html>

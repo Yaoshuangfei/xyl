@@ -328,6 +328,18 @@ Views.setUpView = $.extend({}, Views.PanelView, {
         dataSave('user_password', '');
         dataSave('user_token', '');
 
+
+        //清空收货地址
+        dataSave('provinceText', '');
+        dataSave('provinceCode', '');
+
+        dataSave('cityText', '');
+        dataSave('cityCode', '');
+
+        dataSave('countyText', '');
+        dataSave('countyCode', '');
+
+
         var urlOne = WEB_URL + '/api/core/logout';//退出
         $.ajax({
             type:'POST',
@@ -1028,6 +1040,55 @@ Views.fillinNewPasswordView = $.extend({}, Views.PanelView, {
 })
 /***********************填写新密码startend**********************/
 
+
+/***********************设置支付密码start**********************/
+Views.szfillinNewPasswordView = $.extend({}, Views.PanelView, {
+    options: {
+        tmpl: 'szfillinNewPassword',
+        //hasFootNav: true,
+        //footItemOrder: 0, // hasFootNav设置true才有效   表示现在远着的是底部第几个菜单 0开始
+        //itemClass: 'item'
+    },
+
+    willShow: function (param, isBackPage) {
+        this.show(param, isBackPage);
+    },
+
+    didShow: function () {
+        addEventListener();
+    },
+    cancelssD:function(){
+        if($('#passwordD').val()==$('#passwordDNew').val()){
+            var url     = WEB_URL + '/api/coreUser/payPasswordConf';
+            var data    = {payPassword:$('#passwordD').val()};
+            $.ajax({
+                type:'POST',
+                dataType:'json',
+                url:url,
+                data:JSON.stringify(data),
+                contentType:'application/json;charset=utf-8',
+                error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                success:function(data){
+                    if(!data.success){
+                        alert(data.msg);
+                    }else{
+                        var _length = data.data;
+                        console.log(_length);
+                        backPage();
+                    }
+                }
+            });
+        }else{
+            alert('两次密码输入不一致!');
+            $('#passwordD').val('');
+            $('#passwordDNew').val('');
+        }
+    }
+
+})
+/***********************设置支付密码startend**********************/
+
+
 /***********************账户安全start**********************/
 Views.accountSecurityView = $.extend({}, Views.PanelView, {
     options: {
@@ -1612,6 +1673,7 @@ Views.addedAddressView = $.extend({}, Views.PanelView, {
                         dataSave('address',address);
                         dataSave('zipCode',zipCode);
                         dataSave('realNames',realName);
+                        dataSave('mobile',contact);
                         javascript:history.go(-1);
                         $("html,body").animate({scrollTop:0}, 500);
                     }
@@ -2386,7 +2448,15 @@ Views.personalDataView = $.extend({}, Views.PanelView, {
                     var constellation   = _self.constellation;    //星座
                     var height          = _self.height;    //身高
                     var weight          = _self.weight;    //体重
-                    $('#preview').attr('src',headImg == null?'images/mine/head.png':headImg);
+                    if(headImg == null){
+                        $('#preview').attr('src','images/mine/head.png');
+                    }else if(headImg == 'images/mine/head.png'){
+                        $('#preview').attr('src','images/mine/head.png');
+                        dataSave('json_url','images/mine/head.png');
+                    }else {
+                        $('#preview').attr('src',headImg);
+                    }
+
                     $('#name').val(nickName);
                     $('#sex').val(gender == 1?'男':'女');
                     $('#demo1').html(address);
@@ -2427,7 +2497,14 @@ Views.personalDataView = $.extend({}, Views.PanelView, {
     },
     pd_preservations:function(){
         var url           = WEB_URL + '/api/coreUser/update';
-        var headImg       = WEB_URL + dataGet('json_url');
+        if(dataGet('json_url') == ''){
+            var headImg       = 'images/mine/head.png';
+        }else if (dataGet('json_url') == 'images/mine/head.png'){
+            var headImg       = 'images/mine/head.png';
+        } else{
+            var headImg       = WEB_URL + dataGet('json_url');
+        }
+
         var nickName      = $('#name').val();
         var gender        = $('#sex').val()=='男'?1:2;
         var address       = $('#demo1').val();
@@ -2838,7 +2915,7 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
         addEventListener();
         dataSave('findUsertype',2);
         //页面进入默认展示一级
-        var urlTwo         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=20&type=2';
+        var urlTwo         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=50&type=2';
         var pageNum     =1;
         var pageSize    =20;
         var type        =2;
@@ -2920,325 +2997,6 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
                 }
             }
         });
-
-        // // 进入默认创客（一级）
-        // $('#leaveOne').click(function(){
-        //     var url         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=20&type='+dataGet('findUsertype');
-        //     var pageNum     =1;
-        //     var pageSize    =20;
-        //     var type        =parseInt(dataGet('findUsertype'));
-        //     var data        ={pageNum:pageNum,pageSize:pageSize,type:type};
-        //     if(type ==2){
-        //         $.ajax({
-        //             type:'POST',
-        //             dataType:'json',
-        //             url:url,
-        //             data:JSON.stringify(data),
-        //             contentType:'application/json;charset=utf-8',
-        //             error: function (XMLHttpRequest, textStatus, errorThrown) {
-        //                 alert(XMLHttpRequest, textStatus, errorThrown);
-        //             },
-        //             success:function(data){
-        //                 if(!data.success) {
-        //                     alert(data.msg);
-        //                 }else{
-        //                     var _self   = data.data;
-        //                     console.log(_self);
-        //                     var _length = _self.list;
-        //                     var str     = '';
-        //                     var Img     ='';
-        //                     if(_length.length ==0){
-        //                         $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
-        //                     }else{
-        //                         for(var i=0;i<_length.length;i++){
-        //                             if(_length[i].headImg ==null){
-        //                                 Img ='images/storeDetails/head.png';
-        //                             }else{
-        //                                 Img = _length[i].headImg;
-        //                             }
-        //                             str +='<div class="cList">'
-        //                                 +'<div class="cfHead fL">'
-        //                                 +'<img src="'+Img+'">'
-        //                                 +'</div>'
-        //                                 +'<div class="cfData fL">'
-        //                                 +'<div class="name">'+_length[i].nickName+'</div>'
-        //                                 +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
-        //                                 +'</div>'
-        //                                 +'<div class="cfTime fR">2017.03.04</div>'
-        //                                 +'</div>'
-        //                         }
-        //                         $('.list_sort').html(str);
-        //                     }
-        //
-        //                 }
-        //             }
-        //         });
-        //     }else{
-        //         $.ajax({
-        //             type:'POST',
-        //             dataType:'json',
-        //             url:url,
-        //             data:JSON.stringify(data),
-        //             contentType:'application/json;charset=utf-8',
-        //             error: function (XMLHttpRequest, textStatus, errorThrown) {
-        //                 alert(XMLHttpRequest, textStatus, errorThrown);
-        //             },
-        //             success:function(data){
-        //                 if(!data.success) {
-        //                     alert(data.msg);
-        //                 }else{
-        //                     var _self   = data.data;
-        //                     console.log(_self);
-        //                     var _length = _self.list;
-        //                     var str     ='';
-        //                     var Img     ='';
-        //                     var inv     ='';
-        //                     if(_length.length ==0){
-        //                         $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
-        //                     }else{
-        //                         for(var i=0;i<_length.length;i++){
-        //                             if(_length[i].headImg ==null){
-        //                                 Img ='images/storeDetails/head.png';
-        //                             }else{
-        //                                 Img = _length[i].headImg;
-        //                             };
-        //                             if(_length[i].inviteTotal ==null){
-        //                                 inv ='<div class="coSee no fR">查看店铺</div>';
-        //                             }else{
-        //                                 inv ='<div class="coSee fR">查看店铺</div>';
-        //                             };
-        //                             str +='<div class="cList">'
-        //                                 +'<div class="cfHead fL">'
-        //                                 +'<img src="'+Img+'">'
-        //                                 +'</div>'
-        //                                 +'<div class="cfData fL">'
-        //                                 +'<div class="name">'+_length[i].nickName+'</div>'
-        //                                 +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
-        //                                 +'</div>'
-        //                                 +inv
-        //                                 +'</div>'
-        //                         }
-        //                         $('.list_sort').html(str);
-        //                     }
-        //
-        //                 }
-        //             }
-        //         });
-        //     }
-        // });
-        //
-        // // 进入默认创客（二级）
-        // $('#leaveTwo').click(function(){
-        //     var url         = WEB_URL + '/api/coreUser/findUserRetailT?pageNum=1&pageSize=20&type='+dataGet('findUsertype');
-        //     var pageNum     =1;
-        //     var pageSize    =20;
-        //     var type        =parseInt(dataGet('findUsertype'));
-        //     var data        ={pageNum:pageNum,pageSize:pageSize,type:type};
-        //     if(type ==2){
-        //         $.ajax({
-        //             type:'POST',
-        //             dataType:'json',
-        //             url:url,
-        //             data:JSON.stringify(data),
-        //             contentType:'application/json;charset=utf-8',
-        //             error: function (XMLHttpRequest, textStatus, errorThrown) {
-        //                 alert(XMLHttpRequest, textStatus, errorThrown);
-        //             },
-        //             success:function(data){
-        //                 if(!data.success) {
-        //                     alert(data.msg);
-        //                 }else{
-        //                     var _self   = data.data;
-        //                     console.log(_self);
-        //                     var _length = _self.list;
-        //                     var str     = '';
-        //                     var Img     ='';
-        //                     if(_length.length ==0){
-        //                         $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
-        //                     }else{
-        //                         for(var i=0;i<_length.length;i++){
-        //                             if(_length[i].headImg ==null){
-        //                                 Img ='images/storeDetails/head.png';
-        //                             }else{
-        //                                 Img = _length[i].headImg;
-        //                             }
-        //                             str +='<div class="cList">'
-        //                                 +'<div class="cfHead fL">'
-        //                                 +'<img src="'+Img+'">'
-        //                                 +'</div>'
-        //                                 +'<div class="cfData fL">'
-        //                                 +'<div class="name">'+_length[i].nickName+'</div>'
-        //                                 +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
-        //                                 +'</div>'
-        //                                 +'<div class="cfTime fR">2017.03.04</div>'
-        //                                 +'</div>'
-        //                         }
-        //                         $('.list_sort').html(str);
-        //                     }
-        //
-        //                 }
-        //             }
-        //         });
-        //     }else{
-        //         $.ajax({
-        //             type:'POST',
-        //             dataType:'json',
-        //             url:url,
-        //             data:JSON.stringify(data),
-        //             contentType:'application/json;charset=utf-8',
-        //             error: function (XMLHttpRequest, textStatus, errorThrown) {
-        //                 alert(XMLHttpRequest, textStatus, errorThrown);
-        //             },
-        //             success:function(data){
-        //                 if(!data.success) {
-        //                     alert(data.msg);
-        //                 }else{
-        //                     var _self   = data.data;
-        //                     console.log(_self);
-        //                     var _length = _self.list;
-        //                     var str     ='';
-        //                     var Img     ='';
-        //                     var inv     ='';
-        //                     if(_length.length ==0){
-        //                         $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
-        //                     }else{
-        //                         for(var i=0;i<_length.length;i++){
-        //                             if(_length[i].headImg ==null){
-        //                                 Img ='images/storeDetails/head.png';
-        //                             }else{
-        //                                 Img = _length[i].headImg;
-        //                             };
-        //                             if(_length[i].inviteTotal ==null){
-        //                                 inv ='<div class="coSee no fR">查看店铺</div>';
-        //                             }else{
-        //                                 inv ='<div class="coSee fR">查看店铺</div>';
-        //                             };
-        //                             str +='<div class="cList">'
-        //                                 +'<div class="cfHead fL">'
-        //                                 +'<img src="'+Img+'">'
-        //                                 +'</div>'
-        //                                 +'<div class="cfData fL">'
-        //                                 +'<div class="name">'+_length[i].nickName+'</div>'
-        //                                 +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
-        //                                 +'</div>'
-        //                                 +inv
-        //                                 +'</div>'
-        //                         }
-        //                         $('.list_sort').html(str);
-        //                     }
-        //
-        //                 }
-        //             }
-        //         });
-        //     }
-        // });
-        //
-        // // 进入默认创客（三级）
-        // $('#leaveThree').click(function(){
-        //     var url         = WEB_URL + '/api/coreUser/findUserRetailTH?pageNum=1&pageSize=20&type='+dataGet('findUsertype');
-        //     var pageNum     =1;
-        //     var pageSize    =20;
-        //     var type        =parseInt(dataGet('findUsertype'));
-        //     var data        ={pageNum:pageNum,pageSize:pageSize,type:type};
-        //     if(type ==2){
-        //         $.ajax({
-        //             type:'POST',
-        //             dataType:'json',
-        //             url:url,
-        //             data:JSON.stringify(data),
-        //             contentType:'application/json;charset=utf-8',
-        //             error: function (XMLHttpRequest, textStatus, errorThrown) {
-        //                 alert(XMLHttpRequest, textStatus, errorThrown);
-        //             },
-        //             success:function(data){
-        //                 if(!data.success) {
-        //                     alert(data.msg);
-        //                 }else{
-        //                     var _self   = data.data;
-        //                     console.log(_self);
-        //                     var _length = _self.list;
-        //                     var str     = '';
-        //                     var Img     ='';
-        //                     if(_length.length ==0){
-        //                         $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
-        //                     }else{
-        //                         for(var i=0;i<_length.length;i++){
-        //                             if(_length[i].headImg ==null){
-        //                                 Img ='images/storeDetails/head.png';
-        //                             }else{
-        //                                 Img = _length[i].headImg;
-        //                             }
-        //                             str +='<div class="cList">'
-        //                                 +'<div class="cfHead fL">'
-        //                                 +'<img src="'+Img+'">'
-        //                                 +'</div>'
-        //                                 +'<div class="cfData fL">'
-        //                                 +'<div class="name">'+_length[i].nickName+'</div>'
-        //                                 +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
-        //                                 +'</div>'
-        //                                 +'<div class="cfTime fR">2017.03.04</div>'
-        //                                 +'</div>'
-        //                         }
-        //                         $('.list_sort').html(str);
-        //                     }
-        //
-        //                 }
-        //             }
-        //         });
-        //     }else{
-        //         $.ajax({
-        //             type:'POST',
-        //             dataType:'json',
-        //             url:url,
-        //             data:JSON.stringify(data),
-        //             contentType:'application/json;charset=utf-8',
-        //             error: function (XMLHttpRequest, textStatus, errorThrown) {
-        //                 alert(XMLHttpRequest, textStatus, errorThrown);
-        //             },
-        //             success:function(data){
-        //                 if(!data.success) {
-        //                     alert(data.msg);
-        //                 }else{
-        //                     var _self   = data.data;
-        //                     console.log(_self);
-        //                     var _length = _self.list;
-        //                     var str     ='';
-        //                     var Img     ='';
-        //                     var inv     ='';
-        //                     if(_length.length ==0){
-        //                         $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
-        //                     }else{
-        //                         for(var i=0;i<_length.length;i++){
-        //                             if(_length[i].headImg ==null){
-        //                                 Img ='images/storeDetails/head.png';
-        //                             }else{
-        //                                 Img = _length[i].headImg;
-        //                             };
-        //                             if(_length[i].inviteTotal ==null){
-        //                                 inv ='<div class="coSee no fR">查看店铺</div>';
-        //                             }else{
-        //                                 inv ='<div class="coSee fR">查看店铺</div>';
-        //                             };
-        //                             str +='<div class="cList">'
-        //                                 +'<div class="cfHead fL">'
-        //                                 +'<img src="'+Img+'">'
-        //                                 +'</div>'
-        //                                 +'<div class="cfData fL">'
-        //                                 +'<div class="name">'+_length[i].nickName+'</div>'
-        //                                 +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
-        //                                 +'</div>'
-        //                                 +inv
-        //                                 +'</div>'
-        //                         }
-        //                         $('.list_sort').html(str);
-        //                     }
-        //
-        //                 }
-        //             }
-        //         });
-        //     }
-        // });
-
     },
     cTitle:function(btn){
         if($(btn).attr('data-core') ==2){
@@ -3247,7 +3005,7 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
             dataSave('findUsertype',2);
             $('.cGrade div').removeClass('sc');
             $('#leaveOne').addClass('sc');
-            var url         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=20&type=2';
+            var url         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=50&type=2';
             var pageNum     =1;
             var pageSize    =20;
             var type        =parseInt(dataGet('findUsertype'));
@@ -3309,7 +3067,7 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
             dataSave('findUsertype',3);
             $('.cGrade div').removeClass('sc');
             $('#leaveOne').addClass('sc');
-            var url         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=20&type=3';
+            var url         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=50&type=3';
             var pageNum     =1;
             var pageSize    =20;
             var type        =parseInt(dataGet('findUsertype'));
@@ -3371,7 +3129,7 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
         $('.cGrade div').removeClass('sc');
         $(btn).addClass('sc');
         if($(btn).attr('data-side') == 1){
-            var url         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=20&type='+dataGet('findUsertype');
+            var url         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=50&type='+dataGet('findUsertype');
             var pageNum     =1;
             var pageSize    =20;
             var type        =parseInt(dataGet('findUsertype'));
@@ -3475,7 +3233,7 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
                 });
             }
         }else if ($(btn).attr('data-side') == 2){
-            var url         = WEB_URL + '/api/coreUser/findUserRetailT?pageNum=1&pageSize=20&type='+dataGet('findUsertype');
+            var url         = WEB_URL + '/api/coreUser/findUserRetailT?pageNum=1&pageSize=50&type='+dataGet('findUsertype');
             var pageNum     =1;
             var pageSize    =20;
             var type        =parseInt(dataGet('findUsertype'));
@@ -3579,7 +3337,7 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
                 });
             }
         }else{
-            var url         = WEB_URL + '/api/coreUser/findUserRetailTH?pageNum=1&pageSize=20&type='+dataGet('findUsertype');
+            var url         = WEB_URL + '/api/coreUser/findUserRetailTH?pageNum=1&pageSize=50&type='+dataGet('findUsertype');
             var pageNum     =1;
             var pageSize    =20;
             var type        =parseInt(dataGet('findUsertype'));
