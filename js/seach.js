@@ -15,7 +15,8 @@ Views.rakeThroughView = $.extend({}, Views.PanelView, {
     },
 
     didShow: function () {
-            $(".eye").click(function(){
+
+                $(".eye").click(function(){
                 if($(this).hasClass("seSelected")) {
                     $(this).removeClass("seSelected");
                     $(this).parent().parent().find(".searchInput").hide();
@@ -26,7 +27,6 @@ Views.rakeThroughView = $.extend({}, Views.PanelView, {
                     $(this).parent().parent().find(".rankThrough_record").hide();
                 }
             });
-
 
         var urlSS         = WEB_URL + '/api/indexSearch/select/list';
         $.ajax({
@@ -44,7 +44,6 @@ Views.rakeThroughView = $.extend({}, Views.PanelView, {
                     if(data.data==null){
                         $('#rankThrough_record').html('<div class="rankThrough_historyIcon ui_btn">暂无历史记录</div>');
                     }else{
-                        console.log(data)
                         var _length = data.data.searchStore.records;
                         var strA    = '';
                         if(_length.length ==0){
@@ -54,14 +53,72 @@ Views.rakeThroughView = $.extend({}, Views.PanelView, {
                             for (var i=0;i<_length.length;i++){
                                 strA +='<div class="rankThrough_historyIcon ui_btn" data-action="shopping_list" data-id="'+_length[i].id+'">'+_length[i].content+'</div>'
                             }
-                            $('#rankThrough_record').html(strA);
+                            // $('#rankThrough_record').html(strA);
+                            // console.log(strA);
                         }
-
+                        var _lengths = data.data.searchProduct.records;
+                        var strB    = '';
+                        if(_lengths.length ==0 && _length.length ==0){
+                            $('.rankThrough_historyTop').hide();
+                            $('.history').html('<p style="text-align: center"><img src="images/null.png"></p>')
+                        }else{
+                            for (var j=0;j<_lengths.length;j++){
+                                strB +='<div class="rankThrough_historyIcon ui_btn" data-action="shopping_list" data-id="'+_lengths[j].id+'">'+_lengths[j].content+'</div>'
+                            }
+                            // $('#rankThrough_record').html(strA);
+                            console.log(strB);
+                        }
+                        $('#rankThrough_record').html(strA+strB);
                     }
                 }
             }
         });
-
+//绑定输入框，这里只能 是ID
+        $("#searchdd").keydown(function(event){
+            event=document.all?window.event:event;
+            if((event.keyCode || event.which)==13){
+                if($('#searchdd').val() == ''){
+                    alert('请输入您需要搜索的商品或店铺')
+                }else{
+                    var names        =$('#searchdd').val();
+                    dataSave('proName',$('#searchdd').val());
+                    if($('#searchSel_demo').text() === '商家'){
+                        var url         = WEB_URL + '/api/indexSearch/store/search';
+                        var name        =names;
+                        var isVolume    =true;
+                        var isAvgEva    =true;
+                        var pageNum     =1;
+                        var size        =20;
+                        var data        ={name:name,isVolume:isVolume,isAvgEva:isAvgEva,pageNum:pageNum,size:size};
+                        Views.searchShopView.show();
+                    }else{
+                        var urlTwo      = WEB_URL + '/api/indexSearch/product/search';
+                        var name        =names;
+                        var isVolume    =true;
+                        var isAvgEva    =true;
+                        var pageNum     =1;
+                        var size        =20;
+                        var data        ={name:name,isVolume:isVolume,isAvgEva:isAvgEva,pageNum:pageNum,size:size};
+                        Views.sCommodityListView.show();
+                        // $.ajax({
+                        //     type:'POST',
+                        //     dataType:'json',
+                        //     url:urlTwo,
+                        //     data: JSON.stringify(data),
+                        //     contentType:'application/json;charset=utf-8',
+                        //     error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                        //     success:function(data){
+                        //         if(!data.success){
+                        //             console.log(data.msg);
+                        //         }else{
+                        //             Views.sCommodityListView.show();
+                        //         }
+                        //     }
+                        // });
+                    }
+                }
+            }
+        });
     },
     del:function(){
         $('#fixed_close').show();
@@ -76,18 +133,46 @@ Views.rakeThroughView = $.extend({}, Views.PanelView, {
             $('#PPPP').show();
         }else{
             $(btn).find('.new').hide();
-            $('#PPPP').css('display','none');
+            $('#PPPP').hide();
         }
-        // if($('#sDNew').css('display')=='none'){
-        //     $('#sDNew').show();
-        // }else{
-        //     $('#sDNew').hide();
-        // }
     },
     asdasdas:function(btn){
         $('#searchSel_demo').html($(btn).html()+'<span style="float:right;margin-right: 20%;"><img src="images/index/icon_01.png" alt=""></span>');
 
         $('#PPPP').hide()
+        if($(btn).html()=='商家'){
+            var urlSS         = WEB_URL + '/api/indexSearch/select/list';
+            $.ajax({
+                type:'POST',
+                dataType:'json',
+                url:urlSS,
+                data: {},
+                contentType:'application/json;charset=utf-8',
+                error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                success:function(data){
+                    if(!data.success){
+                        alert(data.msg);
+                    }else{
+                    }
+                }
+            });
+        }else{
+            var urlSS         = WEB_URL + '/api/indexSearch/select/list';
+            $.ajax({
+                type:'POST',
+                dataType:'json',
+                url:urlSS,
+                data: {},
+                contentType:'application/json;charset=utf-8',
+                error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                success:function(data){
+                    if(!data.success){
+                        alert(data.msg);
+                    }else{
+                    }
+                }
+            });
+        }
         // $(btn).parent().css('display','none');
     },
     scearchssss:function(){
@@ -105,22 +190,6 @@ Views.rakeThroughView = $.extend({}, Views.PanelView, {
                 var size        =20;
                 var data        ={name:name,isVolume:isVolume,isAvgEva:isAvgEva,pageNum:pageNum,size:size};
                 Views.searchShopView.show();
-                // $.ajax({
-                //     type:'POST',
-                //     dataType:'json',
-                //     url:url,
-                //     data: JSON.stringify(data),
-                //     contentType:'application/json;charset=utf-8',
-                //     error: function (XMLHttpRequest, textStatus, errorThrown) {},
-                //     success:function(data){
-                //         if(!data.success){
-                //             alert(data.msg);
-                //         }else{
-                //             // alert(data.data.list[0].name);
-                //
-                //         }
-                //     }
-                // });
             }else{
                 var urlTwo      = WEB_URL + '/api/indexSearch/product/search';
                 var name        =names;
@@ -266,6 +335,77 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
             });
 
 
+        //绑定输入框，这里只能 是ID
+        $(".search input").keydown(function(event){
+            event=document.all?window.event:event;
+            if((event.keyCode || event.which)==13){
+                if($('.search input').val() == ''){
+                    alert('请输入您需要搜索的商品或店铺')
+                }else{
+                    dataSave('proName',$('.search input').val());
+                    var url         = WEB_URL + '/api/indexSearch/store/search';
+                    var name        =$('.search input').val();
+                    var isVolume    =true;
+                    var isAvgEva    =true;
+                    var pageNum     =1;
+                    var size        =20;
+                    var data        ={name:name,isVolume:isVolume,isAvgEva:isAvgEva,pageNum:pageNum,size:size};
+                    $.ajax({
+                        type:'POST',
+                        dataType:'json',
+                        url:url,
+                        data: JSON.stringify(data),
+                        contentType:'application/json;charset=utf-8',
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                        success:function(data){
+                            if(!data.success){
+                                alert(data.msg);
+                            }else{
+                                // alert(data.data.list[0].name);
+                                // Views.searchShopView.show();
+                                console.log(data.data)
+                                var _slef = data.data.list;
+                                var str   ='';
+                                for (var i=0;i<_slef.length;i++){
+                                    var strs   ='';
+                                    if (_slef[i].logo == null){
+                                        _slef[i].logo = 'images/storeDetails/head.png'
+                                    }else{
+                                        _slef[i].logo =_slef[i].logo;
+                                    };
+                                    if(_slef[i].orderSum == null){
+                                        _slef[i].orderSum = 0
+                                    }else{
+                                        _slef[i].orderSum=_slef[i].orderSum;
+                                    }
+                                    for(var j=0;j<_slef[i].goodsList.length;j++){
+                                        if(_slef[i].goodsList.length == 0){
+                                            strs +='<div class="picBox">暂无图片</div>'
+                                        }else{
+                                            strs +='<div class="picBox"><img src="'+_slef[i].goodsList[j].carouselPicture+'"></div>'
+                                        }
+                                    }
+                                    str +='<div class="ss_shop">'
+                                        +'<div class="shopData">'
+                                        +'<div class="pic"><img src="'+_slef[i].logo+'"/></div>'
+                                        +'<div class="sdData">'
+                                        +'<div class="name">'+_slef[i].name+'</div>'
+                                        +'<div class="number">销量：'+_slef[i].orderSum+'</div>'
+                                        +'</div>'
+                                        +'<div class="goIn ui_btn" data-action="jindian" data-dpid="'+_slef[i].id+'">进店</div>'
+                                        +'</div>'
+                                        +'<div class="shopPic"> '+strs+'</div>'
+                                        +'</div>'
+                                }
+                                $('#ss_shop').html(str);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+
 
             //导航条的显示隐藏
             $('#more').click(function(){
@@ -389,6 +529,7 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                     var _slef = data.data.list;
                     var str   ='';
                     for (var i=0;i<_slef.length;i++){
+                        var strs   ='';
                         if (_slef[i].logo == null){
                             _slef[i].logo = 'images/storeDetails/head.png'
                         }else{
@@ -399,6 +540,13 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                         }else{
                             _slef[i].orderSum=_slef[i].orderSum;
                         }
+                        for(var j=0;j<_slef[i].goodsList.length;j++){
+                            if(_slef[i].goodsList.length == 0){
+                                strs +='<div class="picBox">暂无图片</div>'
+                            }else{
+                                strs +='<div class="picBox"><img src="'+_slef[i].goodsList[j].carouselPicture+'"></div>'
+                            }
+                        }
                         str +='<div class="ss_shop">'
                             +'<div class="shopData">'
                             +'<div class="pic"><img src="'+_slef[i].logo+'"/></div>'
@@ -408,7 +556,7 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                             +'</div>'
                             +'<div class="goIn ui_btn" data-action="jindian" data-dpid="'+_slef[i].id+'">进店</div>'
                             +'</div>'
-                            +'<div class="shopPic"> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> </div>'
+                            +'<div class="shopPic">'+strs+' </div>'
                             +'</div>'
                     }
                     $('#ss_shop').html(str);
@@ -440,6 +588,7 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                     var _slef = data.data.list;
                     var str   ='';
                     for (var i=0;i<_slef.length;i++){
+                        var strs   ='';
                         if (_slef[i].logo == null){
                             _slef[i].logo = 'images/storeDetails/head.png'
                         }else{
@@ -450,6 +599,13 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                         }else{
                             _slef[i].orderSum=_slef[i].orderSum;
                         }
+                        for(var j=0;j<_slef[i].goodsList.length;j++){
+                            if(_slef[i].goodsList.length == 0){
+                                strs +='<div class="picBox">暂无图片</div>'
+                            }else{
+                                strs +='<div class="picBox"><img src="'+_slef[i].goodsList[j].carouselPicture+'"></div>'
+                            }
+                        }
                         str +='<div class="ss_shop">'
                             +'<div class="shopData">'
                             +'<div class="pic"><img src="'+_slef[i].logo+'"/></div>'
@@ -459,7 +615,7 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                             +'</div>'
                             +'<div class="goIn ui_btn" data-action="jindian" data-dpid="'+_slef[i].id+'">进店</div>'
                             +'</div>'
-                            +'<div class="shopPic"> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> </div>'
+                            +'<div class="shopPic"> '+strs+'</div>'
                             +'</div>'
                     }
                     $('#ss_shop').html(str);
@@ -491,6 +647,7 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                     var _slef = data.data.list;
                     var str   ='';
                     for (var i=0;i<_slef.length;i++){
+                        var strs   ='';
                         if (_slef[i].logo == null){
                             _slef[i].logo = 'images/storeDetails/head.png'
                         }else{
@@ -501,6 +658,13 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                         }else{
                             _slef[i].orderSum=_slef[i].orderSum;
                         }
+                        for(var j=0;j<_slef[i].goodsList.length;j++){
+                            if(_slef[i].goodsList.length == 0){
+                                strs +='<div class="picBox">暂无图片</div>'
+                            }else{
+                                strs +='<div class="picBox"><img src="'+_slef[i].goodsList[j].carouselPicture+'"></div>'
+                            }
+                        }
                         str +='<div class="ss_shop">'
                             +'<div class="shopData">'
                             +'<div class="pic"><img src="'+_slef[i].logo+'"/></div>'
@@ -510,7 +674,7 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                             +'</div>'
                             +'<div class="goIn ui_btn" data-action="jindian" data-dpid="'+_slef[i].id+'">进店</div>'
                             +'</div>'
-                            +'<div class="shopPic"> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> </div>'
+                            +'<div class="shopPic"> '+strs+'</div>'
                             +'</div>'
                     }
                     $('#ss_shop').html(str);
@@ -545,6 +709,7 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                     var _slef = data.data.list;
                     var str   ='';
                     for (var i=0;i<_slef.length;i++){
+                        var strs   ='';
                         if (_slef[i].logo == null){
                             _slef[i].logo = 'images/storeDetails/head.png'
                         }else{
@@ -555,6 +720,13 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                         }else{
                             _slef[i].orderSum=_slef[i].orderSum;
                         }
+                        for(var j=0;j<_slef[i].goodsList.length;j++){
+                            if(_slef[i].goodsList.length == 0){
+                                strs +='<div class="picBox">暂无图片</div>'
+                            }else{
+                                strs +='<div class="picBox"><img src="'+_slef[i].goodsList[j].carouselPicture+'"></div>'
+                            }
+                        }
                         str +='<div class="ss_shop">'
                             +'<div class="shopData">'
                             +'<div class="pic"><img src="'+_slef[i].logo+'"/></div>'
@@ -564,7 +736,7 @@ Views.searchShopView = $.extend({}, Views.PanelView, {
                             +'</div>'
                             +'<div class="goIn ui_btn" data-action="jindian" data-dpid="'+_slef[i].id+'">进店</div>'
                             +'</div>'
-                            +'<div class="shopPic"> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> <div class="picBox"> <img src="images/storeDetails/sharePic.png" alt=""/> </div> </div>'
+                            +'<div class="shopPic"> '+strs+'</div>'
                             +'</div>'
                     }
                     $('#ss_shop').html(str);

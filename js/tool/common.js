@@ -385,3 +385,22 @@ function alertBtn(){
     alert('暂未开通该功能！');
     return false;
 }
+
+//判断是否是微信内部浏览器
+function is_weixn(){
+    var ua = navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+
+function getQueryString(e) {
+    var t = new RegExp("(^|&)" + e + "=([^&]*)(&|$)");
+    var a = window.location.search.substr(1).match(t);
+    if (a != null) return decodeURI(a[2]);
+    return ""
+}

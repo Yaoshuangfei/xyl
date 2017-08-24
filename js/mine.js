@@ -48,6 +48,7 @@ Views.indexMineView = $.extend({}, Views.PanelView, {
                         var availableIncome     = _self.availableIncome; //用户余额
                         var integral            = _self.integral; //用户金豆
                         dataSave('crade',_self.crade);
+                        dataSave('headImg',_self.headImg);
                         dataSave('nickName',_self.nickName);
                         dataSave('mobile',_self.mobile);
                         dataSave('goldBind',_self.integral);
@@ -152,7 +153,7 @@ Views.indexMineView = $.extend({}, Views.PanelView, {
             background: "#ffffff", //二维码的后景色
             foreground: "#000000", //二维码的前景色
             //text: "minwuyou://" + JSON.stringify(data)
-            text: 'http://www.51att.cn/sm666/fenxiang.html?'+dataGet('mobile')
+            text: "http://admina.51att.cn/sm666/fenxiang.html?mobile="+dataGet('mobile')
         });
     },
     goInSetUp:function(){
@@ -195,7 +196,7 @@ Views.indexMineView = $.extend({}, Views.PanelView, {
         //path:'http://www.51att.cn/sm666/fenxiang.html?mobile='+dataGet('mobile')
         sharedModule.share({
             type:'text',
-            text:"http://123.206.115.18:8084/sm666/fenxiang.html?mobile="+dataGet('mobile')
+            text:"http://admina.51att.cn/sm666/fenxiang.html?mobile="+dataGet('mobile')
         });
         $('.masks').hide();
         $('.fenxiangs').hide();
@@ -522,9 +523,13 @@ Views.resetPayView = $.extend({}, Views.PanelView, {
                     alert(data.msg);
                 }else{
                     var _self = data.data;
-                    console.log(_self);
-                    $("#mobile").html(data.data.email.substring(0, 3) + "****" + data.data.mobile.substring(7, 11));
-                    $('#inputs').val(data.data.mobile);
+                    console.log(_self.mobile !== null);
+                    if(_self.mobile !== null){
+                        $("#mobile").html(_self.mobile.substring(0, 3) + "****" + _self.mobile.substring(7, 11));
+                        $('#inputs').val(_self.mobile);
+                    }
+
+
                 }
             }
         });
@@ -579,15 +584,16 @@ Views.rememberTaView = $.extend({}, Views.PanelView, {
     },
 
     subBtns:function(){
-        var url         =   WEB_URL +'/api/coreUser/resetPassword';
+        var url         =   WEB_URL +'/api/coreUser/resetPayPassword';
         var type        =2;
         var password    =$('#new_yans').val();
         var newPassword =$('#new_yanss').val();
+        var data        = {type:type,password:password,newPassword:newPassword}
         $.ajax({
             type:'POST',
             dataType:'json',
             url:url,
-            data:{},
+            data:JSON.stringify(data),
             contentType:'application/json;charset=utf-8',
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert(XMLHttpRequest, textStatus, errorThrown);
@@ -595,10 +601,12 @@ Views.rememberTaView = $.extend({}, Views.PanelView, {
             success:function(data){
                 if(!data.success) {
                     alert(data.msg);
+                    console.log(data.msg);
                 }else{
                     var _self = data.data;
                     console.log(_self);
                     alert('修改成功');
+                    Views.passwordResetView.show();
                 }
             }
         });
@@ -691,12 +699,12 @@ Views.verificationCodeTaView = $.extend({}, Views.PanelView, {
         });
     },
     paySuccess:function(){
-        var url  = WEB_URL + "/api/coreUser/resetPayPassword";
+        var urlWWW  = WEB_URL + "/api/coreUser/resetPayPassword";
         var datas = {type:1,vecode:$('#new_yans').val(),newPassword:$('.passwords').val()};
         $.ajax({
             type:'POST',
             dataType:'json',
-            url:url,
+            url:urlWWW,
             data:JSON.stringify(datas),
             contentType:'application/json;charset=utf-8',
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -2720,69 +2728,101 @@ Views.addBankCardView = $.extend({}, Views.PanelView, {
     didShow: function () {
         addEventListener();
 
-        var one = false , two = false;
+        // 用户头像 昵称
+        var url = WEB_URL + "/api/core/selectLoginUser";
+        $.ajax({
+            type:'POST',
+            dataType:'json',
+            url:url,
+            data:{},
+            contentType:'application/json;charset=utf-8',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {},
+            success:function(data){
+                if(!data.success) {
+                    alert(data.msg);
+                }else{
+                    var _self    = data.data;
+                    console.log(_self);
+                    $('#BankCardPhone').val(_self.mobile);
+                    if(_self.mobile == null || _self.mobile == ''){
+                        alert('您是邮箱注册用户,请去设置区绑定您的手机号,');
+                        javascript:history.go(-1);
+                        $("html,body").animate({scrollTop:0}, 500);
+                    }else{
 
-        $('.addClear').click(function(){
-            $(this).siblings('input').val('');
+                        var one = false , two = false;
+
+                        $('.addClear').click(function(){
+                            $(this).siblings('input').val('');
+                        });
+                        $('#BankCardNumber').blur(function(){
+                            var reg = /^[0-9]+.?[0-9]*$/;
+                            if (reg.test($(this).val())) {
+                                one = true;
+                                dataSave('true',1)
+                            }else{
+                                alert('请输入正确银行卡');
+                                $(this).val('')
+                            }
+                        });
+                        // $('#BankCardPhone').blur(function(){
+                        //     var reg = /^[0-9]+.?[0-9]*$/;
+                        //     if(!reg.test($(this).val())){
+                        //         alert('请输入正确手机号');
+                        //         $(this).val('');
+                        //         two = false;
+                        //     }else if(!($(this).val().length==11)){
+                        //         alert('确认手机号码为11位');
+                        //         $(this).val('');
+                        //         two = false;
+                        //     }else{
+                        //         dataSave('true',1)
+                        //     }
+                        // })
+                    }
+                }
+            }
         });
-        $('#BankCardNumber').blur(function(){
-            var reg = /^[0-9]+.?[0-9]*$/;
-            if (reg.test($(this).val())) {
-                one = true
-            }else{
-                alert('请输入正确银行卡');
-                $(this).val('')
-            }
-        })
-        $('#BankCardPhone').blur(function(){
-            var reg = /^[0-9]+.?[0-9]*$/;
-            if(!reg.test($(this).val())){
-                    alert('请输入正确手机号');
-                    $(this).val('');
-                    two = false;
-            }else if(!($(this).val().length==11)){
-                    alert('确认手机号码为11位');
-                    $(this).val('');
-                    two = false;
-            }else{
-                    dataSave('true',1)
-            }
-        })
     },
 
 
 
     goInAddSuccess:function(){
-        if(dataGet('true')==1){
-            var url         = WEB_URL + '/api/userBank/add';
-            var realName    = $('#BankCardName').val();
-            var bankCode    = $('#BankCardNumber').val();
-            var bankName    = $('#BankCardBank').val();
-            var mobile      = $('#BankCardPhone').val();
 
-            if(realName==''&&bankCode==''&&bankName==''&&mobile==''){
-                alert('所属信息有未填项')
-            }else{
-                var data        = {realName:realName,bankCode:bankCode,bankName:bankName,mobile:mobile};
-                $.ajax({
-                    type:'POST',
-                    dataType:'json',
-                    url:url,
-                    data: JSON.stringify(data),
-                    contentType:'application/json;charset=utf-8',
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {},
-                    success:function(data){
-                        if(!data.success) {
-                            alert(data.msg);
-                        }else{
-                            alert('添加成功！');
-                            Views.myBankCardView.show();
-                        }
-                    }
-                });
-            }
+        if($('#BankCardName').val()==''){
+            alert('请不要忘记持卡人姓名')
         }else{
-            alert('所填信息有误')
+            if(dataGet('true')==1){
+                var url         = WEB_URL + '/api/userBank/add';
+                var realName    = $('#BankCardName').val();
+                var bankCode    = $('#BankCardNumber').val();
+                var bankName    = $('#BankCardBank').val();
+                var mobile      = $('#BankCardPhone').val();
+
+                if(realName==''&&bankCode==''&&bankName==''&&mobile==''){
+                    alert('所属信息有未填项')
+                }else{
+                    var data        = {realName:realName,bankCode:bankCode,bankName:bankName,mobile:mobile};
+                    $.ajax({
+                        type:'POST',
+                        dataType:'json',
+                        url:url,
+                        data: JSON.stringify(data),
+                        contentType:'application/json;charset=utf-8',
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                        success:function(data){
+                            if(!data.success) {
+                                alert(data.msg);
+                            }else{
+                                alert('添加成功！');
+                                Views.myBankCardView.show();
+                            }
+                        }
+                    });
+                }
+            }else{
+                alert('所填信息有误')
+            }
         }
     }
 
@@ -2915,11 +2955,12 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
         addEventListener();
         dataSave('findUsertype',2);
         //页面进入默认展示一级
-        var urlTwo         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=50&type=2';
+        var urlTwo         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=20&type=&id=';
         var pageNum     =1;
         var pageSize    =20;
-        var type        =2;
-        var datas        ={pageNum:pageNum,pageSize:pageSize,type:type};
+        var type        ='';
+        var id          ='';
+        var datas       ={pageNum:pageNum,pageSize:pageSize,type:type,id:id};
         $.ajax({
             type:'POST',
             dataType:'json',
@@ -2954,7 +2995,7 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
                             }else{
                                 Img = _length[i].headImg;
                             }
-                            str +='<div class="cList">'
+                            str +='<div class="cList ui_btn"  data-action="cList" data-id="'+_length[i].id+'">'
                                 +'<div class="cfHead fL">'
                                 +'<img src="'+Img+'">'
                                 +'</div>'
@@ -2998,455 +3039,68 @@ Views.myCircleOfFriendsView = $.extend({}, Views.PanelView, {
             }
         });
     },
-    cTitle:function(btn){
-        if($(btn).attr('data-core') ==2){
-            $('.cType div').removeClass('sc');
-            $(btn).addClass('sc');
-            dataSave('findUsertype',2);
-            $('.cGrade div').removeClass('sc');
-            $('#leaveOne').addClass('sc');
-            var url         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=50&type=2';
-            var pageNum     =1;
-            var pageSize    =20;
-            var type        =parseInt(dataGet('findUsertype'));
-            var data        ={pageNum:pageNum,pageSize:pageSize,type:type};
-            $.ajax({
-                type:'POST',
-                dataType:'json',
-                url:url,
-                data:JSON.stringify(data),
-                contentType:'application/json;charset=utf-8',
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert(XMLHttpRequest, textStatus, errorThrown);
-                },
-                success:function(data){
-                    if(!data.success) {
-                        console.log(data.msg);
-                    }else{
-                        var _self   = data.data;
-                        console.log(_self);
-                        var _length = _self.list;
-                        var str     = '';
-                        var Img     ='';
-                        if(_length.length ==0){
-                            $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
-                        }else{
-                            for(var i=0;i<_length.length;i++){
-                                var date = new Date(_length[i].createTime);
-                                Y = date.getFullYear() + '.';
-                                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '.';
-                                D = date.getDate() + ' ';
-                                h = date.getHours() + ':';
-                                m = date.getMinutes() + ':';
-                                s = date.getSeconds();
-                                if(_length[i].headImg ==null){
-                                    Img ='images/storeDetails/head.png';
-                                }else{
-                                    Img = _length[i].headImg;
-                                }
-                                str +='<div class="cList">'
-                                    +'<div class="cfHead fL">'
-                                    +'<img src="'+Img+'">'
-                                    +'</div>'
-                                    +'<div class="cfData fL">'
-                                    +'<div class="name">'+_length[i].nickName+'</div>'
-                                    +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
-                                    +'</div>'
-                                    +'<div class="cfTime fR">'+Y+M+D+'</div>'
-                                    +'</div>'
-                            }
-                            $('.list_sort').html(str);
-                        }
-
-                    }
-                }
-            });
-        }else{
-            $('.cType div').removeClass('sc');
-            $(btn).addClass('sc');
-            dataSave('findUsertype',3);
-            $('.cGrade div').removeClass('sc');
-            $('#leaveOne').addClass('sc');
-            var url         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=50&type=3';
-            var pageNum     =1;
-            var pageSize    =20;
-            var type        =parseInt(dataGet('findUsertype'));
-            var data        ={pageNum:pageNum,pageSize:pageSize,type:type};
-            $.ajax({
-                type:'POST',
-                dataType:'json',
-                url:url,
-                data:JSON.stringify(data),
-                contentType:'application/json;charset=utf-8',
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert(XMLHttpRequest, textStatus, errorThrown);
-                },
-                success:function(data){
-                    if(!data.success) {
-                        console.log(data.msg);
-                    }else{
-                        var _self   = data.data;
-                        console.log(_self);
-                        var _length = _self.list;
-                        var str     ='';
-                        var Img     ='';
-                        var inv     ='';
-                        if(_length.length ==0){
-                            $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
-                        }else{
-                            for(var i=0;i<_length.length;i++){
-
-                                if(_length[i].headImg ==null){
-                                    Img ='images/storeDetails/head.png';
-                                }else{
-                                    Img = _length[i].headImg;
-                                };
-                                if(_length[i].inviteTotal ==null){
-                                    inv ='<div class="coSee no fR">查看店铺</div>';
-                                }else{
-                                    inv ='<div class="coSee fR ui_btn" data-action="coSee" data-id="'+_length[i].showStoreId+'">查看店铺</div>';
-                                };
-                                str +='<div class="cList">'
-                                    +'<div class="cfHead fL">'
-                                    +'<img src="'+Img+'">'
-                                    +'</div>'
-                                    +'<div class="cfData fL">'
-                                    +'<div class="name">'+_length[i].nickName+'</div>'
-                                    +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
-                                    +'</div>'
-                                    +inv
-                                    +'</div>'
-                            }
-                            $('.list_sort').html(str);
-                        }
-
-                    }
-                }
-            });
-        }
-    },
-    gradeType:function(btn){
-        $('.cGrade div').removeClass('sc');
-        $(btn).addClass('sc');
-        if($(btn).attr('data-side') == 1){
-            var url         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=50&type='+dataGet('findUsertype');
-            var pageNum     =1;
-            var pageSize    =20;
-            var type        =parseInt(dataGet('findUsertype'));
-            var data        ={pageNum:pageNum,pageSize:pageSize,type:type};
-            console.log(data)
-            if(type ==2){
-                $.ajax({
-                    type:'POST',
-                    dataType:'json',
-                    url:url,
-                    data:JSON.stringify(data),
-                    contentType:'application/json;charset=utf-8',
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert(XMLHttpRequest, textStatus, errorThrown);
-                    },
-                    success:function(data){
-                        if(!data.success) {
-                            console.log(data.msg);
-                        }else{
-                            var _self   = data.data;
-                            console.log(_self);
-                            var _length = _self.list;
-                            var str     = '';
-                            var Img     ='';
-                            if(_length.length ==0){
-                                $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
-                            }else{
-                                for(var i=0;i<_length.length;i++){
-                                    if(_length[i].headImg ==null){
-                                        Img ='images/storeDetails/head.png';
-                                    }else{
-                                        Img = _length[i].headImg;
-                                    }
-                                    str +='<div class="cList">'
-                                        +'<div class="cfHead fL">'
-                                        +'<img src="'+Img+'">'
-                                        +'</div>'
-                                        +'<div class="cfData fL">'
-                                        +'<div class="name">'+_length[i].nickName+'</div>'
-                                        +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
-                                        +'</div>'
-                                        +'<div class="cfTime fR">2017.03.04</div>'
-                                        +'</div>'
-                                }
-                                $('.list_sort').html(str);
-                            }
-
-                        }
-                    }
-                });
-            }else{
-                $.ajax({
-                    type:'POST',
-                    dataType:'json',
-                    url:url,
-                    data:JSON.stringify(data),
-                    contentType:'application/json;charset=utf-8',
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert(XMLHttpRequest, textStatus, errorThrown);
-                    },
-                    success:function(data){
-                        if(!data.success) {
-                            console.log(data.msg);
-                        }else{
-                            var _self   = data.data;
-                            console.log(_self);
-                            var _length = _self.list;
-                            var str     ='';
-                            var Img     ='';
-                            var inv     ='';
-                            if(_length.length ==0){
-                                $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
-                            }else{
-                                for(var i=0;i<_length.length;i++){
-                                    if(_length[i].headImg ==null){
-                                        Img ='images/storeDetails/head.png';
-                                    }else{
-                                        Img = _length[i].headImg;
-                                    };
-                                    if(_length[i].inviteTotal ==null){
-                                        inv ='<div class="coSee no fR">查看店铺</div>';
-                                    }else{
-                                        inv ='<div class="coSee fR">查看店铺</div>';
-                                    };
-                                    str +='<div class="cList">'
-                                        +'<div class="cfHead fL">'
-                                        +'<img src="'+Img+'">'
-                                        +'</div>'
-                                        +'<div class="cfData fL">'
-                                        +'<div class="name">'+_length[i].nickName+'</div>'
-                                        +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
-                                        +'</div>'
-                                        +inv
-                                        +'</div>'
-                                }
-                                $('.list_sort').html(str);
-                            }
-
-                        }
-                    }
-                });
-            }
-        }else if ($(btn).attr('data-side') == 2){
-            var url         = WEB_URL + '/api/coreUser/findUserRetailT?pageNum=1&pageSize=50&type='+dataGet('findUsertype');
-            var pageNum     =1;
-            var pageSize    =20;
-            var type        =parseInt(dataGet('findUsertype'));
-            var data        ={pageNum:pageNum,pageSize:pageSize,type:type};
-            console.log(data)
-            if(type ==2){
-                $.ajax({
-                    type:'POST',
-                    dataType:'json',
-                    url:url,
-                    data:JSON.stringify(data),
-                    contentType:'application/json;charset=utf-8',
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert(XMLHttpRequest, textStatus, errorThrown);
-                    },
-                    success:function(data){
-                        if(!data.success) {
-                            console.log(data.msg);
-                        }else{
-                            var _self   = data.data;
-                            console.log(_self);
-                            var _length = _self.list;
-                            var str     = '';
-                            var Img     ='';
-                            if(_length.length ==0){
-                                $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
-                            }else{
-                                for(var i=0;i<_length.length;i++){
-                                    if(_length[i].headImg ==null){
-                                        Img ='images/storeDetails/head.png';
-                                    }else{
-                                        Img = _length[i].headImg;
-                                    }
-                                    str +='<div class="cList">'
-                                        +'<div class="cfHead fL">'
-                                        +'<img src="'+Img+'">'
-                                        +'</div>'
-                                        +'<div class="cfData fL">'
-                                        +'<div class="name">'+_length[i].nickName+'</div>'
-                                        +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
-                                        +'</div>'
-                                        +'<div class="cfTime fR">2017.03.04</div>'
-                                        +'</div>'
-                                }
-                                $('.list_sort').html(str);
-                            }
-
-                        }
-                    }
-                });
-            }else{
-                $.ajax({
-                    type:'POST',
-                    dataType:'json',
-                    url:url,
-                    data:JSON.stringify(data),
-                    contentType:'application/json;charset=utf-8',
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert(XMLHttpRequest, textStatus, errorThrown);
-                    },
-                    success:function(data){
-                        if(!data.success) {
-                            console.log(data.msg);
-                        }else{
-                            var _self   = data.data;
-                            console.log(_self);
-                            var _length = _self.list;
-                            var str     ='';
-                            var Img     ='';
-                            var inv     ='';
-                            if(_length.length ==0){
-                                $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
-                            }else{
-                                for(var i=0;i<_length.length;i++){
-                                    if(_length[i].headImg ==null){
-                                        Img ='images/storeDetails/head.png';
-                                    }else{
-                                        Img = _length[i].headImg;
-                                    };
-                                    if(_length[i].inviteTotal ==null){
-                                        inv ='<div class="coSee no fR">查看店铺</div>';
-                                    }else{
-                                        inv ='<div class="coSee fR">查看店铺</div>';
-                                    };
-                                    str +='<div class="cList">'
-                                        +'<div class="cfHead fL">'
-                                        +'<img src="'+Img+'">'
-                                        +'</div>'
-                                        +'<div class="cfData fL">'
-                                        +'<div class="name">'+_length[i].nickName+'</div>'
-                                        +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
-                                        +'</div>'
-                                        +inv
-                                        +'</div>'
-                                }
-                                $('.list_sort').html(str);
-                            }
-
-                        }
-                    }
-                });
-            }
-        }else{
-            var url         = WEB_URL + '/api/coreUser/findUserRetailTH?pageNum=1&pageSize=50&type='+dataGet('findUsertype');
-            var pageNum     =1;
-            var pageSize    =20;
-            var type        =parseInt(dataGet('findUsertype'));
-            var data        ={pageNum:pageNum,pageSize:pageSize,type:type};
-            console.log(data)
-            if(type ==2){
-                $.ajax({
-                    type:'POST',
-                    dataType:'json',
-                    url:url,
-                    data:JSON.stringify(data),
-                    contentType:'application/json;charset=utf-8',
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert(XMLHttpRequest, textStatus, errorThrown);
-                    },
-                    success:function(data){
-                        if(!data.success) {
-                            console.log(data.msg);
-                        }else{
-                            var _self   = data.data;
-                            console.log(_self);
-                            var _length = _self.list;
-                            var str     = '';
-                            var Img     ='';
-                            if(_length.length ==0){
-                                $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
-                            }else{
-                                for(var i=0;i<_length.length;i++){
-                                    if(_length[i].headImg ==null){
-                                        Img ='images/storeDetails/head.png';
-                                    }else{
-                                        Img = _length[i].headImg;
-                                    }
-                                    str +='<div class="cList">'
-                                        +'<div class="cfHead fL">'
-                                        +'<img src="'+Img+'">'
-                                        +'</div>'
-                                        +'<div class="cfData fL">'
-                                        +'<div class="name">'+_length[i].nickName+'</div>'
-                                        +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
-                                        +'</div>'
-                                        +'<div class="cfTime fR">2017.03.04</div>'
-                                        +'</div>'
-                                }
-                                $('.list_sort').html(str);
-                            }
-
-                        }
-                    }
-                });
-            }else{
-                $.ajax({
-                    type:'POST',
-                    dataType:'json',
-                    url:url,
-                    data:JSON.stringify(data),
-                    contentType:'application/json;charset=utf-8',
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert(XMLHttpRequest, textStatus, errorThrown);
-                    },
-                    success:function(data){
-                        if(!data.success) {
-                            console.log(data.msg);
-                        }else{
-                            var _self   = data.data;
-                            console.log(_self);
-                            var _length = _self.list;
-                            var str     ='';
-                            var Img     ='';
-                            var inv     ='';
-                            if(_length.length ==0){
-                                $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
-                            }else{
-                                for(var i=0;i<_length.length;i++){
-                                    if(_length[i].headImg ==null){
-                                        Img ='images/storeDetails/head.png';
-                                    }else{
-                                        Img = _length[i].headImg;
-                                    };
-                                    if(_length[i].inviteTotal ==null){
-                                        inv ='<div class="coSee no fR">查看店铺</div>';
-                                    }else{
-                                        inv ='<div class="coSee fR">查看店铺</div>';
-                                    };
-                                    str +='<div class="cList">'
-                                        +'<div class="cfHead fL">'
-                                        +'<img src="'+Img+'">'
-                                        +'</div>'
-                                        +'<div class="cfData fL">'
-                                        +'<div class="name">'+_length[i].nickName+'</div>'
-                                        +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
-                                        +'</div>'
-                                        +inv
-                                        +'</div>'
-                                }
-                                $('.list_sort').html(str);
-                            }
-
-                        }
-                    }
-                });
-            }
-        }
-
-    },
     coSee:function(btn){
         dataSave('storeId',$(btn).attr('data-id'));
         Views.storeDetailsView.show();
+    },
+    cList:function(btn){
+        var urlTwo         = WEB_URL + '/api/coreUser/findUserRetailO?pageNum=1&pageSize=20&type=&id='+$(btn).attr('data-id');
+        var pageNum     =1;
+        var pageSize    =20;
+        var type        ='';
+        var id          =$(btn).attr('data-id');
+        var datas       ={pageNum:pageNum,pageSize:pageSize,type:type,id:id};
+        $.ajax({
+            type:'POST',
+            dataType:'json',
+            url:urlTwo,
+            data:JSON.stringify(datas),
+            contentType:'application/json;charset=utf-8',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest, textStatus, errorThrown);
+            },
+            success:function(data){
+                if(!data.success) {
+                    alert(data.msg);
+                }else{
+                    var _self   = data.data;
+                    console.log(_self);
+                    var _length = _self.list;
+                    var str     = '';
+                    var Img     ='';
+                    if(_length.length ==0){
+                        $('.list_sort').html('<img src="images/null.png" alt="" style="position: relative;    transform: translateX(-50%);left:50%;">');
+                    }else{
+                        for(var i=0;i<_length.length;i++){
+                            var date = new Date(_length[i].createTime);
+                            Y = date.getFullYear() + '.';
+                            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '.';
+                            D = date.getDate() + ' ';
+                            h = date.getHours() + ':';
+                            m = date.getMinutes() + ':';
+                            s = date.getSeconds();
+                            if(_length[i].headImg ==null){
+                                Img ='images/storeDetails/head.png';
+                            }else{
+                                Img = _length[i].headImg;
+                            }
+                            str +='<div class="cList ui_btn"  data-action="cList" data-id="'+_length[i].id+'">'
+                                +'<div class="cfHead fL">'
+                                +'<img src="'+Img+'">'
+                                +'</div>'
+                                +'<div class="cfData fL">'
+                                +'<div class="name">'+_length[i].nickName+'</div>'
+                                +'<div class="howManyPeople">共邀请'+_length[i].inviterNo+'人</div>'
+                                +'</div>'
+                                +'<div class="cfTime fR">'+Y+M+D+'</div>'
+                                +'</div>'
+                        }
+                        $('.list_sort').html(str);
+                    }
 
+                }
+            }
+        });
     }
 
 })
@@ -3873,8 +3527,116 @@ Views.myBillView = $.extend({}, Views.PanelView, {
         var pageNum     =1;
         var pageSize    =31;
         var myDate      =new Date();
-        var selectTime  =time1;
-        var data        ={pageNum:pageNum,pageSize:pageSize,selectTime:selectTime};
+        var selectTime  =$('#startTime').val();
+        var endTime     =$('#endTime').val();
+        var data        ={pageNum:pageNum,pageSize:pageSize,selectTime:selectTime,endTime:endTime};
+        $.ajax({
+            type:'POST',
+            dataType:'json',
+            url:url,
+            data:JSON.stringify(data),
+            contentType:'application/json;charset=utf-8',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest, textStatus, errorThrown);
+            },
+            success:function(data){
+                if(!data.success) {
+                    alert(data.msg);
+                }else{
+                    var _self   = data.data;
+                    console.log(_self.list)
+                    var _length = _self.list;
+                    var str     ='';
+                    var img = '';
+                    for (var i=0;i<_length.length;i++){
+                        if(_self.list[i].pmType ==0){
+                            _self.list[i].pmType = '-'
+                        }else{
+                            _self.list[i].pmType = '+'
+                        }
+                        if(_self.list[i].type == 1){
+                            if(_self.list[i].withdrawalType==null){
+                                _self.list[i].withdrawalType = ''
+                            }else if (_self.list[i].withdrawalType ==1){
+                                _self.list[i].withdrawalType = '申请中'
+                            }else if (_self.list[i].withdrawalType ==2){
+                                _self.list[i].withdrawalType = '完成'
+                            }else if (_self.list[i].withdrawalType ==3){
+                                _self.list[i].withdrawalType = '提现失败'
+                            }
+                        }else{
+                            _self.list[i].withdrawalType = ''
+                        }
+
+                        var date = new Date(_self.list[i].createTime);
+                        Y = date.getFullYear() + '-';
+                        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                        D = date.getDate() + ' ';
+                        h = date.getHours() + ':';
+                        m = date.getMinutes() + ':';
+                        s = date.getSeconds();
+
+                        if(dataGet('headImg') == 'null'){
+                            img = 'images/mine/head.png'
+                        }else{
+                            img = dataGet('headImg');
+                        }
+                        str +='<div class="myBillArea ui_btn" data-action="goInBillingDetails" data-uuids="'+_self.list[i].id+'">'
+                                +'<div class="myBillAreaDetails bB">'
+                                +'<div class="myBill_dateHead warp_Lt" style="font-size: 12px;">'
+                                +'<span>'+Y+M+D+'</span>'
+                                +'<span>'+h+m+s+'</span>'
+                                +'</div>'
+                                +'<div class="myBill_dateHead warp_Lt">'
+                                +'<div class="myBill_datePic"><img style="border-radius: 25px;" src="'+img+'" alt=""></div>'
+                                +'</div>'
+                                +'<div class="myBillDetails" style="position: relative;">'
+                                +'<span style="position: absolute;top:5px;right:0;color: #ffbd1d;">'+_self.list[i].withdrawalType+'</span>'
+                                +'<p>'+_self.list[i].pmType+_self.list[i].quota+'</p>'
+                                +'<span class="warp_lC" style="-webkit-line-clamp:1">'+_self.list[i].remark+'</span>'
+                                +'</div>'
+                                +'</div>'
+                                +'</div>'
+                    }
+                    $('#myBillArea').html(str);
+                }
+            }
+        });
+        ;!function(){
+            laydate({
+                elem: '#endTime'
+            })
+        }();
+    },
+
+    goInBillingDetails:function(btn){
+        dataSave('goInBilling',$(btn).data('uuids'));
+        Views.billingDetailsAView.show();
+    },
+    Time:function(){
+        Date.prototype.Format = function (fmt) { //author: meizz
+            var o = {
+                "M+": this.getMonth() + 1, //月份
+                "d+": this.getDate(), //日
+                "h+": this.getHours(), //小时
+                "m+": this.getMinutes(), //分
+                "s+": this.getSeconds(), //秒
+                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                "S": this.getMilliseconds() //毫秒
+            };
+            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            for (var k in o)
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+        }
+        var time1 = new Date().Format("yyyy-MM");
+        var url         = WEB_URL + '/api/userCashFlow/selectList';
+        var pageNum     =1;
+        var pageSize    =31;
+        var myDate      =new Date();
+        var selectTime  =$('#startTime').val();
+        var endTime     =$('#endTime').val();
+        var data        ={pageNum:pageNum,pageSize:pageSize,selectTime:selectTime,endTime:endTime};
         $.ajax({
             type:'POST',
             dataType:'json',
@@ -3898,6 +3660,20 @@ Views.myBillView = $.extend({}, Views.PanelView, {
                         }else{
                             _self.list[i].pmType = '+'
                         }
+                        if(_self.list[i].type == 1){
+                            if(_self.list[i].withdrawalType==null){
+                                _self.list[i].withdrawalType = ''
+                            }else if (_self.list[i].withdrawalType ==1){
+                                _self.list[i].withdrawalType = '申请中'
+                            }else if (_self.list[i].withdrawalType ==2){
+                                _self.list[i].withdrawalType = '完成'
+                            }else if (_self.list[i].withdrawalType ==3){
+                                _self.list[i].withdrawalType = '提现失败'
+                            }
+                        }else{
+                            _self.list[i].withdrawalType = ''
+                        }
+
                         var date = new Date(_self.list[i].createTime);
                         Y = date.getFullYear() + '-';
                         M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
@@ -3906,31 +3682,26 @@ Views.myBillView = $.extend({}, Views.PanelView, {
                         m = date.getMinutes() + ':';
                         s = date.getSeconds();
                         str +='<div class="myBillArea ui_btn" data-action="goInBillingDetails" data-uuids="'+_self.list[i].id+'">'
-                                +'<div class="myBillAreaDetails bB">'
-                                +'<div class="myBill_dateHead warp_Lt" style="font-size: 12px;">'
-                                +'<span>'+Y+M+D+'</span>'
-                                +'<span>'+h+m+s+'</span>'
-                                +'</div>'
-                                +'<div class="myBill_dateHead warp_Lt">'
-                                +'<div class="myBill_datePic"></div>'
-                                +'</div>'
-                                +'<div class="myBillDetails">'
-                                +'<p>'+_self.list[i].pmType+_self.list[i].quota+'</p>'
-                                +'<span class="warp_lC" style="-webkit-line-clamp:1">'+_self.list[i].remark+'</span>'
-                                +'</div>'
-                                +'</div>'
-                                +'</div>'
+                            +'<div class="myBillAreaDetails bB">'
+                            +'<div class="myBill_dateHead warp_Lt" style="font-size: 12px;">'
+                            +'<span>'+Y+M+D+'</span>'
+                            +'<span>'+h+m+s+'</span>'
+                            +'</div>'
+                            +'<div class="myBill_dateHead warp_Lt">'
+                            +'<div class="myBill_datePic"></div>'
+                            +'</div>'
+                            +'<div class="myBillDetails" style="position: relative;">'
+                            +'<span style="position: absolute;top:5px;right:0;color: #ffbd1d;">'+_self.list[i].withdrawalType+'</span>'
+                            +'<p>'+_self.list[i].pmType+_self.list[i].quota+'</p>'
+                            +'<span class="warp_lC" style="-webkit-line-clamp:1">'+_self.list[i].remark+'</span>'
+                            +'</div>'
+                            +'</div>'
+                            +'</div>'
                     }
                     $('#myBillArea').html(str);
                 }
             }
         });
-
-    },
-
-    goInBillingDetails:function(btn){
-        dataSave('goInBilling',$(btn).data('uuids'));
-        Views.billingDetailsAView.show();
     }
 
 })
@@ -3994,7 +3765,22 @@ Views.billingDetailsAView = $.extend({}, Views.PanelView, {
                     h = date.getHours() + ':';
                     m = date.getMinutes() + ':';
                     s = date.getSeconds();
-                    $('#dataContent_05').html(_self.orderGoods.productName);
+                    var PP = '';
+                    if(_self.orderGoods == null){
+                        PP = '';
+                    }else{
+                        PP = _self.orderGoods.productName;
+                    }
+
+                    var img = '';
+                    if(dataGet('headImg') == 'null'){
+                        img = 'images/mine/head.png'
+                    }else{
+                        img = dataGet('headImg');
+                    }
+
+                    $('.pic').html('<img style="width:30px;height:30px;border-radius: 50%;" src="'+img+'">');
+                    $('#dataContent_05').html(PP);
                     $('.transactionQuota').html(ll+_self.quota);
                     $('#dataContent_01').html(_self.payType);
                     $('#dataContent_02').html(_self.pmType==0?'付款':'收款');
@@ -4025,13 +3811,72 @@ Views.XXbillingDetailsAView = $.extend({}, Views.PanelView, {
 
     didShow: function () {
         addEventListener();
-
-        if(dataGet('notifyType')==3){
-            $('.bdTop span').html('分佣明细');
+        if(dataGet('notifyType')==6){
+            $('.bdTop span').html('平台钱包提现通知');
+            var url = WEB_URL + '/api/userWithdrawal/selectOne';
+            var id  = parseInt(dataGet('goInBilling'));
+            var data={id:id};
+            $.ajax({
+                type:'POST',
+                dataType:'json',
+                url:url,
+                data:JSON.stringify(data),
+                contentType:'application/json;charset=utf-8',
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest, textStatus, errorThrown);
+                },
+                success:function(data){
+                    if(!data.success) {
+                        console.log(data.msg);
+                    }else{
+                        var _self   = data.data;
+                        console.log(data);
+                        var str = '';
+                        if(_self.status == 1){
+                            _self.status = '申请中'
+                        }else if (_self.status == 2){
+                            _self.status = '提现完成'
+                        }else if (_self.status == 3){
+                            _self.status = '提现失败'
+                        }
+                        var date = new Date(_self.createTime);
+                        Y = date.getFullYear() + '-';
+                        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                        D = date.getDate() + ' ';
+                        h = date.getHours() + ':';
+                        m = date.getMinutes() + ':';
+                        s = date.getSeconds();
+                        str ='<div class="bdHead"> <div class="bdBox"> <div class="pic"></div> </div> <div class="bdBox" id="dataContent_05">'+(_self.realName==null?"昵称是空的":_self.realName)+'</div> </div>'
+                                +'<div class="transactionQuota">+'+_self.amount+'</div> <div class="transactionHints">'+_self.status+'</div>'
+                                +'<div class="transactionData"> <div class="dataTitle">提现说明</div> <div class="dataContent">提现</div> </div>'
+                                +'<div class="transactionData"> <div class="dataTitle">处理进度</div> <div class="dataContent" style="color: #007cc3;">暂无信息</div> </div>'
+                                +'<div class="transactionData"> <div class="dataTitle">提现到</div> <div class="dataContent">'+_self.bankName+(_self.realName==null?"昵称是空的":_self.realName)+'</div> </div>'
+                                +'<div class="dividingLine"></div>'
+                                +'<div class="transactionData"> <div class="dataTitle">创建时间</div> <div class="dataContent">'+Y+M+D+h+m+s+'</div> </div>'
+                                +'<div class="transactionData"> <div class="dataTitle">订单号</div> <div class="dataContent">暂无信息</div> </div>'
+                        $('#xinxi').html(str);
+                        // if(_self.payType ==0){
+                        //     _self.payType = '微信支付'
+                        // }else if(_self.payType ==1){
+                        //     _self.payType = '支付宝支付'
+                        // }else if(_self.payType ==2){
+                        //     _self.payType = '银联支付'
+                        // }else if(_self.payType ==3){
+                        //     _self.payType = '余额支付'
+                        // }else if(_self.payType ==4){
+                        //     _self.payType = '余额金豆混合支付'
+                        // }else if(_self.payType ==5){
+                        //     _self.payType = '金豆支付'
+                        // };
+                    }
+                }
+            });
+        }
+        else if(dataGet('notifyType')==3){
+            $('.bdTop span').html('分佣通知');
             var url = WEB_URL + '/api/userCentCommission/selectOne';
             var id  = parseInt(dataGet('goInBilling'));
             var data={id:id};
-            console.log(data)
             $.ajax({
                 type:'POST',
                 dataType:'json',
@@ -4047,20 +3892,69 @@ Views.XXbillingDetailsAView = $.extend({}, Views.PanelView, {
                     }else{
                         var _self   = data.data;
                         console.log(_self);
-                        // if(_self.payType ==0){
-                        //     _self.payType = '微信支付'
-                        // }else if(_self.payType ==1){
-                        //     _self.payType = '支付宝支付'
-                        // }else if(_self.payType ==2){
-                        //     _self.payType = '银联支付'
-                        // }else if(_self.payType ==3){
-                        //     _self.payType = '余额支付'
-                        // }else if(_self.payType ==4){
-                        //     _self.payType = '余额金豆混合支付'
-                        // }else if(_self.payType ==5){
-                        //     _self.payType = '金豆支付'
-                        // };
-                        // var ll =_self.pmType==0?'-':'+'
+                        var str = '';
+                        if(_self.status == 1){
+                            _self.status = '冻结中'
+                        }else if (_self.status == 2){
+                            _self.status = '已解冻'
+                        }else if (_self.status == 3){
+                            _self.status = '退款作废'
+                        }
+
+                        var img = '';
+                        if(_self.headImg == null){
+                            img = 'images/mine/head.png'
+                        }else{
+                            img = _self.headImg;
+                        }
+
+                        var date = new Date(_self.createTime);
+                        Y = date.getFullYear() + '-';
+                        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                        D = date.getDate() + ' ';
+                        h = date.getHours() + ':';
+                        m = date.getMinutes() + ':';
+                        s = date.getSeconds();
+                        str ='<div class="bdHead"> <div class="bdBox"> <div class="pic"><img style="width:30px;height:30px;border-radius: 50%;" src="'+img+'" alt=""></div> </div> <div class="bdBox" id="dataContent_05">'+(dataGet('nickName')==null?"昵称是空的":dataGet('nickName'))+'</div> </div>'
+                            +'<div class="transactionQuota">+'+_self.totalMoney+'</div> <div class="transactionHints">'+_self.status+'</div>'
+                            +'<div class="transactionData"> <div class="dataTitle">佣金来源</div> <div class="dataContent">'+_self.remarks+'</div> </div>'
+                            +'<div class="transactionData"> <div class="dataTitle">提现到</div> <div class="dataContent">暂无信息</div> </div>'
+                            +'<div class="dividingLine"></div>'
+                            +'<div class="transactionData"> <div class="dataTitle">创建时间</div> <div class="dataContent">'+Y+M+D+h+m+s+'</div> </div>'
+                            +'<div class="transactionData"> <div class="dataTitle">订单号</div> <div class="dataContent">暂无信息</div> </div>'
+                        $('#xinxi').html(str);
+                    }
+                }
+            });
+        }
+        else if(dataGet('notifyType')==9){
+            $('.bdTop span').html('商品消息');
+            var url = WEB_URL + '/api/goods/selectOne';
+            var id  = parseInt(dataGet('goInBilling'));
+            var data={id:id};
+            $.ajax({
+                type:'POST',
+                dataType:'json',
+                url:url,
+                data:JSON.stringify(data),
+                contentType:'application/json;charset=utf-8',
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest, textStatus, errorThrown);
+                },
+                success:function(data){
+                    if(!data.success) {
+                        console.log(data.msg);
+                    }else{
+                        var _self   = data.data;
+                        console.log(data);
+                        // var str = '';
+                        // if(_self.status == 1){
+                        //     _self.status = '冻结中'
+                        // }else if (_self.status == 2){
+                        //     _self.status = '已解冻'
+                        // }else if (_self.status == 3){
+                        //     _self.status = '退款作废'
+                        // }
                         // var date = new Date(_self.createTime);
                         // Y = date.getFullYear() + '-';
                         // M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
@@ -4068,16 +3962,166 @@ Views.XXbillingDetailsAView = $.extend({}, Views.PanelView, {
                         // h = date.getHours() + ':';
                         // m = date.getMinutes() + ':';
                         // s = date.getSeconds();
-                        // $('#dataContent_05').html(_self.orderGoods.productName);
-                        // $('.transactionQuota').html(ll+_self.quota);
-                        // $('#dataContent_01').html(_self.payType);
-                        // $('#dataContent_02').html(_self.pmType==0?'付款':'收款');
-                        // $('#dataContent_03').html(Y+M+D+h+m+s);
-                        // $('#dataContent_04').html(_self.orderMallId);
+                        // str ='<div class="bdHead"> <div class="bdBox"> <div class="pic"></div> </div> <div class="bdBox" id="dataContent_05">'+(_self.realName==null?"昵称是空的":_self.realName)+'</div> </div>'
+                        //     +'<div class="transactionQuota">+'+_self.totalMoney+'</div> <div class="transactionHints">'+_self.status+'</div>'
+                        //     +'<div class="transactionData"> <div class="dataTitle">佣金来源</div> <div class="dataContent">（参数:）'+_self.commissionType+'(接口文档不清晰)</div> </div>'
+                        //     +'<div class="transactionData"> <div class="dataTitle">提现到</div> <div class="dataContent">接口上没有提现文档</div> </div>'
+                        //     +'<div class="dividingLine"></div>'
+                        //     +'<div class="transactionData"> <div class="dataTitle">创建时间</div> <div class="dataContent">'+Y+M+D+h+m+s+'</div> </div>'
+                        //     +'<div class="transactionData"> <div class="dataTitle">订单号</div> <div class="dataContent">接口上没有</div> </div>'
+                        // $('#xinxi').html(str);
                     }
                 }
             });
-        }else if(dataGet('notifyType')==13){
+        }
+        else if(dataGet('notifyType')==7 || dataGet('notifyType')==14 || dataGet('notifyType')==16){
+            $('.bdTop span').html('金豆记录');
+            var url = WEB_URL + '/api/userCashFlow/selectOne';
+            var id  = parseInt(dataGet('goInBilling'));
+            var data={id:id};
+            $.ajax({
+                type:'POST',
+                dataType:'json',
+                url:url,
+                data:JSON.stringify(data),
+                contentType:'application/json;charset=utf-8',
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest, textStatus, errorThrown);
+                },
+                success:function(data){
+                    if(!data.success) {
+                        console.log(data.msg);
+                    }else{
+                        var _self   = data.data;
+                        console.log(_self);
+                        var str = '';
+                        if(_self.payType == 0){
+                            _self.payType = '微信支付'
+                        }else if (_self.payType == 1){
+                            _self.payType = '支付宝支付'
+                        }else if (_self.payType == 2){
+                            _self.payType = '银联支付'
+                        }else if (_self.payType == 3){
+                            _self.payType = '余额支付'
+                        }else if (_self.payType == 4){
+                            _self.payType = '余额金豆混合支付'
+                        }else if (_self.payType == 5){
+                            _self.payType = '金豆支付'
+                        }
+                        if(_self.pmType == 0){
+                            _self.pmType = '-'
+                        }else{
+                            _self.pmType = '+'
+                        }
+
+
+
+                        if(_self.type == 5 && _self.quotaType == 2){
+                            _self.type = '便付劵兑换的金豆'
+                        }else if(_self.type == 7 && _self.quotaType == 2){
+                            _self.type = '平台身份购买获得金豆'
+                        }else if(_self.type == 9 && _self.quotaType == 2){
+                            _self.type = '充值的金豆'
+                        }else {
+                            _self.type = '暂无消息'
+                        }
+
+
+                        var img = '';
+                        if(dataGet('headImg') == 'null'){
+                            img = 'images/mine/head.png'
+                        }else{
+                            img = dataGet('headImg');
+                        }
+
+                        if(_self.orderMallId == null ){
+                            _self.orderMallId = '暂无信息'
+                        }
+
+                        var date = new Date(_self.createTime);
+                        Y = date.getFullYear() + '-';
+                        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                        D = date.getDate() + ' ';
+                        h = date.getHours() + ':';
+                        m = date.getMinutes() + ':';
+                        s = date.getSeconds();
+                        str ='<div class="bdHead"> <div class="bdBox"> <div class="pic"><img style="width:30px;height:30px;border-radius: 50%;" src="'+img+'" alt=""></div> </div> <div class="bdBox" id="dataContent_05">'+dataGet('nickName')+'</div> </div>'
+                            +'<div class="transactionQuota">'+_self.pmType+_self.quota+'</div> <div class="transactionHints">'+_self.remark+'</div>'
+                            +'<div class="transactionData"> <div class="dataTitle">金豆来源</div> <div class="dataContent">'+_self.remark+'</div> </div>'
+                            // +'<div class="transactionData"> <div class="dataTitle">提现到</div> <div class="dataContent">接口上没有提现文档</div> </div>'
+                            +'<div class="dividingLine"></div>'
+                            +'<div class="transactionData"> <div class="dataTitle">创建时间</div> <div class="dataContent">'+Y+M+D+h+m+s+'</div> </div>'
+                            +'<div class="transactionData"> <div class="dataTitle">订单号</div> <div class="dataContent">'+_self.orderMallId+'</div> </div>'
+                        $('#xinxi').html(str);
+                    }
+                }
+            });
+        }
+        else if(dataGet('notifyType')==17){
+            $('.bdTop span').html('便付劵');
+            var url = WEB_URL + '/api/userCashFlow/selectOne';
+            var id  = parseInt(dataGet('goInBilling'));
+            var data={id:id};
+            $.ajax({
+                type:'POST',
+                dataType:'json',
+                url:url,
+                data:JSON.stringify(data),
+                contentType:'application/json;charset=utf-8',
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest, textStatus, errorThrown);
+                },
+                success:function(data){
+                    if(!data.success) {
+                        console.log(data.msg);
+                    }else{
+                        var _self   = data.data;
+                        console.log(_self);
+                        var str = '';
+                        if(_self.payType == 0){
+                            _self.payType = '微信支付'
+                        }else if (_self.payType == 1){
+                            _self.payType = '支付宝支付'
+                        }else if (_self.payType == 2){
+                            _self.payType = '银联支付'
+                        }else if (_self.payType == 3){
+                            _self.payType = '余额支付'
+                        }else if (_self.payType == 4){
+                            _self.payType = '余额金豆混合支付'
+                        }else if (_self.payType == 5){
+                            _self.payType = '金豆支付'
+                        }
+                        if(_self.pmType == 0){
+                            _self.pmType = '-'
+                        }else{
+                            _self.pmType = '+'
+                        }
+                        var img = '';
+                        if(dataGet('headImg') == 'null'){
+                            img = 'images/mine/head.png'
+                        }else{
+                            img = dataGet('headImg');
+                        }
+                        var date = new Date(_self.createTime);
+                        Y = date.getFullYear() + '-';
+                        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                        D = date.getDate() + ' ';
+                        h = date.getHours() + ':';
+                        m = date.getMinutes() + ':';
+                        s = date.getSeconds();
+                        str ='<div class="bdHead"> <div class="bdBox"> <div class="pic"><img style="width:30px;height:30px;border-radius: 50%;" src="'+img+'" alt=""></div> </div> <div class="bdBox" id="dataContent_05">'+dataGet('nickName')+'</div> </div>'
+                            +'<div class="transactionQuota">'+_self.pmType+_self.quota+'</div> <div class="transactionHints">'+_self.payType+'</div>'
+                            +'<div class="transactionData"> <div class="dataTitle">便付劵来源</div> <div class="dataContent">暂无信息</div> </div>'
+                            // +'<div class="transactionData"> <div class="dataTitle">提现到</div> <div class="dataContent">接口上没有提现文档</div> </div>'
+                            +'<div class="dividingLine"></div>'
+                            +'<div class="transactionData"> <div class="dataTitle">创建时间</div> <div class="dataContent">'+Y+M+D+h+m+s+'</div> </div>'
+                            +'<div class="transactionData"> <div class="dataTitle">订单号</div> <div class="dataContent">'+_self.orderMallId+'</div> </div>'
+                        $('#xinxi').html(str);
+                    }
+                }
+            });
+        }
+        else if(dataGet('notifyType')==13){
             $('.bdTop span').html('充值明细');
             var url = WEB_URL + '/api/orderMall/selectListAll';
             var data={pageNum:1,size:1,orderId:parseInt(dataGet('goInBilling'))};
@@ -4096,7 +4140,7 @@ Views.XXbillingDetailsAView = $.extend({}, Views.PanelView, {
                         console.log(data.msg);
                     }else{
                         var _self   = data.data.list[0];
-                        console.log(_self);
+                        console.log(_self)
                         if(_self.payMethod ==0){
                             _self.payMethod = '微信支付'
                         }else if(_self.payMethod ==1){
@@ -4111,6 +4155,32 @@ Views.XXbillingDetailsAView = $.extend({}, Views.PanelView, {
                             _self.payMethod = '金豆支付'
                         };
                         // var ll =_self.pmType==0?'-':'+'
+
+                        if(_self.orderGoods[0].orderStatus == 1){
+                            _self.orderGoods[0].orderStatus = '支付中'
+                        }else if(_self.orderGoods[0].orderStatus == 2){
+                            _self.orderGoods[0].orderStatus = '支付成功'
+                        }else if(_self.orderGoods[0].orderStatus == 3){
+                            _self.orderGoods[0].orderStatus = '支付失败'
+                        }else if(_self.orderGoods[0].orderStatus == 4){
+                            _self.orderGoods[0].orderStatus = '已取消'
+                        }else if(_self.orderGoods[0].orderStatus == 8){
+                            _self.orderGoods[0].orderStatus = '交易完成'
+                        }else if(_self.orderGoods[0].orderStatus == 9){
+                            _self.orderGoods[0].orderStatus = '售后处理'
+                        }else if(_self.orderGoods[0].orderStatus == 10){
+                            _self.orderGoods[0].orderStatus = '已删除（已完成后）'
+                        }else if(_self.orderGoods[0].orderStatus == 11){
+                            _self.orderGoods[0].orderStatus = '业务充值审核中'
+                        }
+
+                        var img = '';
+                        if(dataGet('headImg') == 'null'){
+                            img = 'images/mine/head.png'
+                        }else{
+                            img = dataGet('headImg');
+                        }
+
                         var date = new Date(_self.createTime);
                         Y = date.getFullYear() + '-';
                         M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
@@ -4118,18 +4188,18 @@ Views.XXbillingDetailsAView = $.extend({}, Views.PanelView, {
                         h = date.getHours() + ':';
                         m = date.getMinutes() + ':';
                         s = date.getSeconds();
-                        $('#dataContent_05').html('充值');
-                        $('.transactionQuota').html('-'+_self.orderGoods[0].productPrice);
-                        $('#dataContent_01').html(_self.payMethod);
-                        $('#dataContent_02').html('付款');
-                        $('#dataContent_03').html(Y+M+D+h+m+s);
-                        $('#dataContent_04').html(_self.orderGoods[0].id);
+                        str ='<div class="bdHead"> <div class="bdBox"> <div class="pic"><img style="width:30px;height:30px;border-radius: 50%;" src="'+img+'" alt=""></div> </div> <div class="bdBox" id="dataContent_05">'+dataGet('nickName')+'</div> </div>'
+                            +'<div class="transactionQuota">-'+_self.productValue+'</div> <div class="transactionHints">'+_self.orderGoods[0].orderStatus+'</div>'
+                            +'<div class="transactionData"> <div class="dataTitle">充值方式</div> <div class="dataContent">'+_self.payMethod+'</div> </div>'
+                            // +'<div class="transactionData"> <div class="dataTitle">提现到</div> <div class="dataContent">接口上没有提现文档</div> </div>'
+                            +'<div class="dividingLine"></div>'
+                            +'<div class="transactionData"> <div class="dataTitle">创建时间</div> <div class="dataContent">'+Y+M+D+h+m+s+'</div> </div>'
+                            +'<div class="transactionData"> <div class="dataTitle">订单号</div> <div class="dataContent">'+_self.tradeNo+'</div> </div>'
+                        $('#xinxi').html(str);
                     }
                 }
             });
         }
-
-
     },
 
 })
@@ -4182,7 +4252,31 @@ Views.myWalletView = $.extend({}, Views.PanelView, {
     },
 
     goInWithdraw:function(){
-        Views.withdrawView.show();
+        var url = WEB_URL +'/api/userBank/selectOne';
+        $.ajax({
+            type:'POST',
+            dataType:'json',
+            url:url,
+            data: {},
+            contentType:'application/json;charset=utf-8',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {},
+            success:function(data){
+                if(!data.success) {
+                    alert(data.msg);
+                }else{
+                    console.log(data);
+                    var _self = data.data;
+
+                    if(data.data==null){
+                        alert('请先设置您的银行卡');
+                        Views.addBankCardView.show();
+                    }else{
+                        Views.withdrawView.show();
+                    }
+
+                }
+            }
+        });
     },
 
     goInWantToRecharge:function(){
@@ -4319,7 +4413,6 @@ Views.withdrawView = $.extend({}, Views.PanelView, {
 
     didShow: function () {
         addEventListener();
-
         var url = WEB_URL +'/api/userBank/selectOne';
         $.ajax({
             type:'POST',
@@ -4333,15 +4426,17 @@ Views.withdrawView = $.extend({}, Views.PanelView, {
                     alert(data.msg);
                 }else{
                     console.log(data);
+                    var _self = data.data;
+
                     if(data.data==null){
                         alert('请先设置您的银行卡');
                         Views.addBankCardView.show();
                     }else{
-                        var _self = data.data;
                         $('.withdraw_card p').html(_self.bankName);
                         $('.withdraw_card span').html(_self.bankCode);
                         $('#asdd').html('您的卡号：'+_self.bankCode);
                         dataSave('BangIdsss',_self.id);
+                        dataSave('TXmobile',_self.mobile);//用户提现获取验证码的手机号
                     }
 
                 }
@@ -4393,15 +4488,15 @@ Views.withdrawView = $.extend({}, Views.PanelView, {
         Views.selectBankCardView.show();
     },
     withdraw_btn:function(){
-        var urlTwo = WEB_URL +'/api/userWithdrawal/add';
+        // var urlTwo = WEB_URL +'/api/userWithdrawal/add';
         var reg    =   /^[0-9]+.?[0-9]*$/;
         if(reg.test($('#money').val())){
-            var data    ={userBankId:dataGet('BangIdsss'),amount:$('#money').val()};
+            var urlYZ   = WEB_URL + '/api/coreUser/sendMsmOrEmail/8'
             $.ajax({
                 type:'POST',
                 dataType:'json',
-                url:urlTwo,
-                data: JSON.stringify(data),
+                url:urlYZ,
+                data: {},
                 contentType:'application/json;charset=utf-8',
                 error: function (XMLHttpRequest, textStatus, errorThrown) {},
                 success:function(data){
@@ -4409,8 +4504,7 @@ Views.withdrawView = $.extend({}, Views.PanelView, {
                         alert(data.msg);
                     }else{
                         console.log(data);
-                        alert('您的提现申请已经提交，休息一下！');
-                        Views.myWalletView.show();
+                        $('#hxpayFixed').show();
                     }
                 }
             });
@@ -4418,7 +4512,35 @@ Views.withdrawView = $.extend({}, Views.PanelView, {
             alert('金额请输入数字！');
             $('#money').val('')
         }
-
+    },
+    hxpaySuccesss:function(){
+        var url  = WEB_URL + '/api/userWithdrawal/add'
+        var data = {userBankId: dataGet('BangIdsss'), amount: $('#money').val(),vecode:$('#hxyan').val(),payPassword:$('#hxmoney').val()};
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: url,
+            data: JSON.stringify(data),
+            contentType: 'application/json;charset=utf-8',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+            },
+            success: function (data) {
+                if (!data.success) {
+                    alert(data.msg);
+                } else {
+                    console.log(data);
+                    alert('您的提现申请已经提交，休息一下！');
+                    Views.myWalletView.show();
+                }
+            }
+        });
+    },
+    hxcencalss:function(){
+        $('#hxpayFixed').hide();
+    },
+    end:function(){
+        Views.indexMineView.show();
+        $("html,body").animate({scrollTop:0}, 500);
     }
 
 })
@@ -4701,11 +4823,12 @@ Views.myImazamoxView = $.extend({}, Views.PanelView, {
         });
 
         var cradeLeave = dataGet('crade');//判断身份
-        cradeLeave ==1?$('#shopRoleDist').show():$('#shopRoleDist').hide();
+        cradeLeave ==1?$('#shopRoleDistsssss').show():$('#shopRoleDistsssss').hide();
         $('.wantToRecharge_shady').click(function (){
             $(this).hide();
             $(".wantToRecharge_payment").slideUp();
             $(".wantToRechargeChange").slideUp();
+            $('#shopRoleDistdddd div').addClass('ui_btn')
         });
         $(".wantToRechargeChangeArea").eq(0).click(function () {
             $(".wantToRechargePay").hide();
@@ -4746,62 +4869,16 @@ Views.myImazamoxView = $.extend({}, Views.PanelView, {
 
     //我的金豆
     shopRoleDistdddd:function(btn){
-        var pLeave      =parseInt($(btn).attr('data-id'));//购买平台身份
-        var url         = WEB_URL + '/api/orderMall/addRole';
-        var storeId     = 1; //店铺id
-        var orderType   = dataGet('crade')==1?7:9; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
-        var shopRoleDist={roleLevel:pLeave};
-        var data        ={storeId:storeId,orderType:orderType,shopRoleDist:shopRoleDist};
-        console.log(data);
-
-        $.ajax({
-            type:'POST',
-            dataType:'json',
-            url:url,
-            data: JSON.stringify(data),
-            contentType:'application/json;charset=utf-8',
-            error: function (XMLHttpRequest, textStatus, errorThrown) {},
-            success:function(data){
-                if(!data.success){
-                    console.log(data.msg);
-                }else{
-                    console.log(data);
-                    dataSave('payIdsss',data.data.id);
-                    // $('#shopRoleDist').hide();
-                    $('.wantToRecharge_shady').show();
-                    $('.wantToRecharge_payment').show();
-                }
-            }
-        });
+        $('.wantToRecharge_shady').show();
+        $('.wantToRecharge_payment').show();
+        dataSave('pLeave',$(btn).attr('data-id'));
+        $('#shopRoleDistdddd div').removeClass('ui_btn')
     },
     shopRoleDistdddds:function(btn){
-        var pLeave      =parseInt($(btn).attr('data-id'));//购买平台身份
-        var url         = WEB_URL + '/api/orderMall/addRole';
-        var storeId     = 1; //店铺id
-        var orderType   = dataGet('crade')==1?7:9; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
-        var shopRoleDist={roleLevel:pLeave};
-        var data        ={storeId:storeId,orderType:orderType,shopRoleDist:shopRoleDist};
-        console.log(data);
-
-        $.ajax({
-            type:'POST',
-            dataType:'json',
-            url:url,
-            data: JSON.stringify(data),
-            contentType:'application/json;charset=utf-8',
-            error: function (XMLHttpRequest, textStatus, errorThrown) {},
-            success:function(data){
-                if(!data.success){
-                    console.log(data.msg);
-                }else{
-                    console.log(data);
-                    dataSave('payIdsss',data.data.id);
-                    // $('#shopRoleDist').hide();
-                    $('.wantToRecharge_shady').show();
-                    $('.wantToRecharge_payment').show();
-                }
-            }
-        });
+        $('.wantToRecharge_shady').show();
+        $('.wantToRecharge_payment').show();
+        dataSave('pLeave',$(btn).attr('data-id'));
+        $('#shopRoleDistdddd div').removeClass('ui_btn')
     },
     zhuanzheng:function (){
         $('.miMask , .donation').show();
@@ -4936,30 +5013,61 @@ Views.myImazamoxView = $.extend({}, Views.PanelView, {
                         Views.fillinNewPasswordView.show();
                     }else{
                         if($('.wantToRechargePay .warp_Rg').text()=='余额支付'){
-                            var url         = WEB_URL + '/api/orderMall/payment';
-                            var payId       ='';
-                            var payType     =3;
-                            var orderMalls  =[{id:dataGet('payIdsss')}];
-                            var data        ={payId:payId,payType:payType,orderMalls:orderMalls};
-
+                            var pLeave      =parseInt(dataGet('pLeave'));//购买平台身份
+                            var urlT         = WEB_URL + '/api/orderMall/addRole';
+                            var storeId     = 1; //店铺id
+                            var orderType   = dataGet('crade')==1?7:9; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
+                            var shopRoleDist={roleLevel:pLeave};
+                            var dataT        ={storeId:storeId,orderType:orderType,shopRoleDist:shopRoleDist};
+                            console.log(dataT)
                             $.ajax({
                                 type:'POST',
                                 dataType:'json',
-                                url:url,
-                                data: JSON.stringify(data),
+                                url:urlT,
+                                data: JSON.stringify(dataT),
                                 contentType:'application/json;charset=utf-8',
                                 error: function (XMLHttpRequest, textStatus, errorThrown) {},
                                 success:function(data){
                                     if(!data.success){
-                                        console.log(data.msg);
+                                        alert(data.msg);
+                                        $('#shopRoleDistdddd div').addClass('ui_btn');
+                                        $('.wantToRecharge_payment').hide();
+                                        $('.wantToRecharge_shady').hide();
                                     }else{
                                         console.log(data);
-                                        dataSave('PayIdss',data.data.payId);
-                                        $('#payFixed').show();
+                                        dataSave('payIdsss',data.data.id);
+                                        // $('#shopRoleDist').hide();
+                                        // $('.wantToRecharge_shady').show();
+                                        // $('.wantToRecharge_payment').show();
+                                        var url         = WEB_URL + '/api/orderMall/payment';
+                                        var payId       ='';
+                                        var payType     =3;
+                                        var orderMalls  =[{id:dataGet('payIdsss')}];
+                                        var data        ={payId:payId,payType:payType,orderMalls:orderMalls};
+
+                                        $.ajax({
+                                            type:'POST',
+                                            dataType:'json',
+                                            url:url,
+                                            data: JSON.stringify(data),
+                                            contentType:'application/json;charset=utf-8',
+                                            error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                                            success:function(data){
+                                                if(!data.success){
+                                                    console.log(data.msg);
+                                                }else{
+                                                    console.log(data);
+                                                    dataSave('PayIdss',data.data.payId);
+                                                    $('#payFixed').show();
+                                                }
+                                            }
+                                        });
                                     }
                                 }
                             });
-                        }else{
+
+                        }
+                        else{
                             var patwodd = WEB_URL + '/api/core/selectLoginUser';
                             $.ajax({
                                 type:'POST',
@@ -4977,70 +5085,91 @@ Views.myImazamoxView = $.extend({}, Views.PanelView, {
                                             alert('请先设置支付密码！');
                                             Views.fillinNewPasswordView.show();
                                         }else{
-
-                                            var urlTwos = WEB_URL + '/api/orderMall/payment' ;//发起支付
-                                            var payId  ='';
-                                            var payType = 3;
-                                            var id = dataGet('payIdsss');//id
-                                            var orderMalls = [{id:id}];
-                                            var data = {payId:payId,payType:payType,orderMalls:orderMalls};
+                                            var pLeave      =parseInt(dataGet('pLeave'));//购买平台身份
+                                            var urlT         = WEB_URL + '/api/orderMall/addRole';
+                                            var storeId     = 1; //店铺id
+                                            var orderType   = dataGet('crade')==1?7:9; //订单类型3业务充值 4余额充值 6店铺身份购买 7平台身份购买 8补货 9金豆充值
+                                            var shopRoleDist={roleLevel:pLeave};
+                                            var dataT        ={storeId:storeId,orderType:orderType,shopRoleDist:shopRoleDist};
+                                            console.log(dataT)
                                             $.ajax({
                                                 type:'POST',
                                                 dataType:'json',
-                                                url:urlTwos,
-                                                data: JSON.stringify(data),
+                                                url:urlT,
+                                                data: JSON.stringify(dataT),
                                                 contentType:'application/json;charset=utf-8',
                                                 error: function (XMLHttpRequest, textStatus, errorThrown) {},
                                                 success:function(data){
                                                     if(!data.success){
-                                                        console.log(data.msg);
+                                                        alert(data.msg);
                                                     }else{
-                                                        console.log(data.data);
-                                                        dataSave('payIds', data.data.payId);//支付商品id
-                                                        var url  = WEB_URL + "/api/coreMoney/wxpay";
+                                                        console.log(data);
+                                                        dataSave('payIdsss',data.data.id);
+                                                        var urlTwos = WEB_URL + '/api/orderMall/payment' ;//发起支付
+                                                        var payId  ='';
+                                                        var payType = 3;
+                                                        var id = dataGet('payIdsss');//id
+                                                        var orderMalls = [{id:id}];
+                                                        var data = {payId:payId,payType:payType,orderMalls:orderMalls};
                                                         $.ajax({
                                                             type:'POST',
                                                             dataType:'json',
-                                                            url:url,
-                                                            data:JSON.stringify({tradeNo:data.data.payId}),
+                                                            url:urlTwos,
+                                                            data: JSON.stringify(data),
                                                             contentType:'application/json;charset=utf-8',
-                                                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                                                alert(XMLHttpRequest, textStatus, errorThrown);
-                                                            },
+                                                            error: function (XMLHttpRequest, textStatus, errorThrown) {},
                                                             success:function(data){
-                                                                if (data.codeEnum == 'OVERTIME') {
-                                                                    Views.signInView.show();
+                                                                if(!data.success){
+                                                                    console.log(data.msg);
                                                                 }else{
-                                                                    var _responseText;
-                                                                    try {
-                                                                        _responseText = JSON.parse(JSON.stringify(data));
-                                                                    } catch(error) {
-                                                                        _responseText = {success:true};
-                                                                    }
-                                                                    if (false == _responseText.success) {
-                                                                        alert(_responseText.msg);
-                                                                    }else{
-                                                                        //调起支付
-                                                                        var wxPay = api.require('wxPay');
-                                                                        wxPay.payOrder(_responseText, function(ret, err) {
-                                                                            if (ret.status) {
-                                                                                //支付成功
-                                                                                alert('支付成功');
-                                                                                //......
+                                                                    console.log(data.data);
+                                                                    dataSave('payIds', data.data.payId);//支付商品id
+                                                                    var url = WEB_URL + "/api/coreMoney/wxpay";
+                                                                    $.ajax({
+                                                                        type: 'POST',
+                                                                        dataType: 'json',
+                                                                        url: url,
+                                                                        data: JSON.stringify({tradeNo: data.data.payId}),
+                                                                        contentType: 'application/json;charset=utf-8',
+                                                                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                                                            alert(XMLHttpRequest, textStatus, errorThrown);
+                                                                        },
+                                                                        success: function (data) {
+                                                                            if (data.codeEnum == 'OVERTIME') {
+                                                                                Views.signInView.show();
+                                                                            } else {
+                                                                                var _responseText;
+                                                                                try {
+                                                                                    _responseText = JSON.parse(JSON.stringify(data));
+                                                                                } catch (error) {
+                                                                                    _responseText = {success: true};
+                                                                                }
+                                                                                if (false == _responseText.success) {
+                                                                                    alert(_responseText.msg);
+                                                                                    $('#shopRoleDistdddd div').addClass('ui_btn')
+                                                                                } else {
+                                                                                    //调起支付
+                                                                                    var wxPay = api.require('wxPay');
+                                                                                    wxPay.payOrder(_responseText, function (ret, err) {
+                                                                                        if (ret.status) {
+                                                                                            //支付成功
+                                                                                            alert('支付成功');
+                                                                                            //......
+                                                                                        }
+                                                                                        Views.myOrderView.show();
+                                                                                    });
+                                                                                    $('#shopRoleDistdddd div').addClass('ui_btn')
+                                                                                }
                                                                             }
-                                                                            Views.myOrderView.show();
-                                                                        });
-                                                                    }
-                                                                }
 
+                                                                        }
+                                                                    });
+                                                                }
                                                             }
                                                         });
                                                     }
                                                 }
                                             });
-
-
-
                                         }
                                     }
                                 }
@@ -5073,6 +5202,7 @@ Views.myImazamoxView = $.extend({}, Views.PanelView, {
                     alert(data.msg);
                     $('.wantToRecharge_shady').hide();
                     $('.wantToRecharge_payment').hide();
+                    $('#shopRoleDistdddd div').addClass('ui_btn')
                 }else{
                     console.log(data);
                     alert('您已支付成功！');
@@ -5080,6 +5210,7 @@ Views.myImazamoxView = $.extend({}, Views.PanelView, {
                     $('.wantToRecharge_payment').hide();
                     Views.indexMineView.show();
                     $('#payFixed').hide();
+                    $('#shopRoleDistdddd div').addClass('ui_btn')
                 }
             }
         });
@@ -5091,6 +5222,7 @@ Views.myImazamoxView = $.extend({}, Views.PanelView, {
         $('#payFixed').hide();
         $('#payFixedyz').hide();
         $('.miMask').hide();
+        $('#shopRoleDistdddd div').addClass('ui_btn')
     },
     // 转赠
     paySuccessadyz:function(){
@@ -5777,38 +5909,64 @@ Views.myOrderView = $.extend({}, Views.PanelView, {
                             };
                             if (_self[i].orderGoods[0].orderStatus == 1){
                                 _self[i].orderGoods[0].orderStatus = '待付款'
-                                if(_self[i].orderGoods[0].isVirtual ==1){
-                                    stast =  '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
-                                        + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionfk">付款</div>'
-                                        + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionNullM" data-mobile="'+_self[i].store.id+'">联系卖家</div>'
-                                        +'</div>'
+                                if(_self[i].orderType == 3){
+                                    if(_self[i].orderGoods[0].isVirtual ==1){
+                                        stast =  '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
+                                            + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionfk">付款</div>'
+                                            +'</div>'
+                                    }else{
+                                        stast =  '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
+                                            + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionfk">付款</div>'
+                                            // + '<div class="settlementBtn warp_Rg ui_btn" data-action="backOrder" data-orders="'+_self[i].id+'">取消订单</div>'
+                                            +'</div>'
+                                    }
                                 }else{
-                                    stast =  '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
-                                        + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionfk">付款</div>'
-                                        + '<div class="settlementBtn warp_Rg ui_btn" data-action="backOrder" data-orders="'+_self[i].id+'">取消订单</div>'
-                                        + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionNullM" data-mobile="'+_self[i].store.id+'">联系卖家</div>'
-                                        +'</div>'
+                                    if(_self[i].orderGoods[0].isVirtual ==1){
+                                        stast =  '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
+                                            + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionfk">付款</div>'
+                                            + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionNullM" data-mobile="'+_self[i].store.id+'">联系卖家</div>'
+                                            +'</div>'
+                                    }else{
+                                        stast =  '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
+                                            + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionfk">付款</div>'
+                                            // + '<div class="settlementBtn warp_Rg ui_btn" data-action="backOrder" data-orders="'+_self[i].id+'">取消订单</div>'
+                                            + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionNullM" data-mobile="'+_self[i].store.id+'">联系卖家</div>'
+                                            +'</div>'
+                                    }
                                 }
+
 
                             }else if (_self[i].orderGoods[0].orderStatus == 2){
                                 _self[i].orderGoods[0].orderStatus = '待发货'
-                                if(_self[i].orderGoods[0].isVirtual ==1){
-                                    stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
-                                        + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionNullM" data-mobile="'+_self[i].store.id+'">联系卖家</div>'
-                                        + '</div>'
+                                if(_self[i].orderType == 3){
+                                    if(_self[i].orderGoods[0].isVirtual ==1){
+                                        stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
+                                            + '</div>'
+                                    }else{
+                                        stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
+                                            // + '<div class="settlementBtn warp_Rg ui_btn" data-action="backOrder" data-orders="'+_self[i].id+'">取消订单</div>'
+                                            + '</div>'
+                                    }
                                 }else{
-                                    stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
-                                        + '<div class="settlementBtn warp_Rg ui_btn" data-action="backOrder" data-orders="'+_self[i].id+'">取消订单</div>'
-                                        + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionNullM" data-mobile="'+_self[i].store.id+'">联系卖家</div>'
-                                        + '</div>'
+                                    if(_self[i].orderGoods[0].isVirtual ==1){
+                                        stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
+                                            + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionNullM" data-mobile="'+_self[i].store.id+'">联系卖家</div>'
+                                            + '</div>'
+                                    }else{
+                                        stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
+                                            // + '<div class="settlementBtn warp_Rg ui_btn" data-action="backOrder" data-orders="'+_self[i].id+'">取消订单</div>'
+                                            + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionNullM" data-mobile="'+_self[i].store.id+'">联系卖家</div>'
+                                            + '</div>'
+                                    }
                                 }
+
 
                             }else if (_self[i].orderGoods[0].orderStatus == 3){
                                 _self[i].orderGoods[0].orderStatus = '支付失败'
                             }else if (_self[i].orderGoods[0].orderStatus == 4){
                                 _self[i].orderGoods[0].orderStatus = '订单取消'
                                 stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
-                                    + '<div class="settlementBtn warp_Rg" data-action="functionNull">已取消</div>'
+                                    + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionDel" data-id="'+_self[i].id+'">删除该订单</div>'
                                     + '</div>'
                             }else if (_self[i].orderGoods[0].orderStatus == 5){
                                 _self[i].orderGoods[0].orderStatus = '待收货'
@@ -6031,22 +6189,33 @@ Views.myOrderView = $.extend({}, Views.PanelView, {
                                 }else{
                                     stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
                                         + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionfk">付款</div>'
-                                        + '<div class="settlementBtn warp_Rg ui_btn" data-action="backOrder" data-orders="'+_self[i].id+'">取消订单</div>'
+                                        // + '<div class="settlementBtn warp_Rg ui_btn" data-action="backOrder" data-orders="'+_self[i].id+'">取消订单</div>'
                                         + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionNullM" data-mobile="'+_self[i].store.id+'">联系卖家</div>'
                                         + '</div>'
                                 }
 
                             }else if (_self[i].orderGoods[0].orderStatus == 2){
                                 _self[i].orderGoods[0].orderStatus = '待发货'
-                                if(_self[i].orderGoods[0].isVirtual ==1){
-                                    stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
-                                        + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionNullM" data-mobile="'+_self[i].store.id+'">联系卖家</div>'
-                                        + '</div>'
+                                if(_self[i].orderType == 3){
+                                    if(_self[i].orderGoods[0].isVirtual ==1){
+                                        stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
+                                            + '</div>'
+                                    }else{
+                                        stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
+                                            // + '<div class="settlementBtn warp_Rg ui_btn" data-action="backOrder" data-orders="'+_self[i].id+'">取消订单</div>'
+                                            + '</div>'
+                                    }
                                 }else{
-                                    stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
-                                        + '<div class="settlementBtn warp_Rg ui_btn" data-action="backOrder" data-orders="'+_self[i].id+'">取消订单</div>'
-                                        + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionNullM" data-mobile="'+_self[i].store.id+'">联系卖家</div>'
-                                        + '</div>'
+                                    if(_self[i].orderGoods[0].isVirtual ==1){
+                                        stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
+                                            + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionNullM" data-mobile="'+_self[i].store.id+'">联系卖家</div>'
+                                            + '</div>'
+                                    }else{
+                                        stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
+                                            // + '<div class="settlementBtn warp_Rg ui_btn" data-action="backOrder" data-orders="'+_self[i].id+'">取消订单</div>'
+                                            + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionNullM" data-mobile="'+_self[i].store.id+'">联系卖家</div>'
+                                            + '</div>'
+                                    }
                                 }
 
 
@@ -6054,11 +6223,14 @@ Views.myOrderView = $.extend({}, Views.PanelView, {
                                 _self[i].orderGoods[0].orderStatus = '支付失败'
                             }else if (_self[i].orderGoods[0].orderStatus == 4){
                                 _self[i].orderGoods[0].orderStatus = '订单取消'
+                                stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
+                                    + '<div class="settlementBtn warp_Rg ui_btn" data-action="functionDel" data-id="'+_self[i].id+'">删除该订单</div>'
+                                    + '</div>'
                             }else if (_self[i].orderGoods[0].orderStatus == 5){
                                 _self[i].orderGoods[0].orderStatus = '待收货'
                                 stast = '<div class="myOrder_settlementArea breadth" style="padding-top: 3px;height: 32px;">'
                                     + '<div class="settlementBtn warp_Rg ui_btn" data-picture="'+_self[i].orderGoods[0].picture+'" data-expressName="'+_self[i].orderGoods[0].expressName+'"  data-expressCode="'+_self[i].orderGoods[0].expressCode+'" data-expno="'+_self[i].orderGoods[0].expno+'" data-action="logistics">查看物流</div>'
-                                    + '<div class="settlementBtn warp_Rg ui_btn" data-action="qrsh" data-id="'+_self[i].orderGoods[0].id+'">确认收货</div>'
+                                    + '<div class="settlementBtn warp_Rg ui_btn" data-action="qrsh" data-id="'+_self[i].id+'">确认收货</div>'
                                     + '</div>'
                             }else if (_self[i].orderGoods[0].orderStatus == 6){
                                 _self[i].orderGoods[0].orderStatus = '已收货(未评价)'
@@ -6383,7 +6555,27 @@ Views.myOrderView = $.extend({}, Views.PanelView, {
         Views.evaluationView.show();
     },
 
-    //查看物流
+    //删除订单
+    functionDel:function(btn){
+        var url             = WEB_URL +'/api/orderMall/deleteByUser';
+        $.ajax({
+            type:'POST',
+            dataType:'json',
+            url:url,
+            data: JSON.stringify([{id:parseInt($(btn).attr('data-id'))}]),
+            contentType:'application/json;charset=utf-8',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {},
+            success:function(data){
+                if(!data.success){
+                    console.log(data.msg);
+                }else{
+                    console.log(data);
+                    alert('订单已删除');
+                    Views.myOrderView.show();
+                }
+            }
+        });
+    },
     //取消订单
     backOrder:function(btn){
         dataSave('Orderid',$(btn).attr('data-orders'));//订单id
@@ -6434,10 +6626,10 @@ Views.myOrderView = $.extend({}, Views.PanelView, {
         $('.wantToRecharge_shady').hide();
     },
     payshouhuo:function(){
-        var url             = WEB_URL +'/api/orderMall/receipt';
+        var url             = WEB_URL +'/api/orderMall/receiptTwo';
         var payPassword     =  $('#passwordss').val();
-        var orderGoodsId    = parseInt(dataGet('orderGoodsId'));
-        var data            ={payPassword:payPassword,orderGoodsId:orderGoodsId}
+        var orderId    = parseInt(dataGet('orderGoodsId'));
+        var data            ={payPassword:payPassword,orderId:orderId}
         console.log(data)
         $.ajax({
             type:'POST',
@@ -6476,6 +6668,34 @@ Views.pendingPaymentDetailsView = $.extend({}, Views.PanelView, {
 
     didShow: function () {
         addEventListener();
+
+        var urlTwo = WEB_URL + '/api/systemConfig/select';
+        $.ajax({
+            type:'GET',
+            dataType:'json',
+            url:urlTwo,
+            data:{},
+            contentType:'application/json;charset=utf-8',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {},
+            success:function(data){
+                if(!data.success){
+                    alert(data.msg);
+                }else{
+                    console.log(data);
+                    dataSave('receiptDay',data.data.receiptDay);//订单自动收货时间
+                    dataSave('refundDay',data.data.refundDay);//自动退款日期
+                    dataSave('cancelHour',data.data.cancelHour);//订单自动取消时间
+                    dataSave('evaluateDay',data.data.evaluateDay);//订单自动评价时间
+                    dataSave('rightsDay',data.data.rightsDay);//订单收货后维权期
+                }
+            }
+        });
+
+
+
+
+
+
         var url     =   WEB_URL +'/api/orderMall/selectListAll';
         var pageNum =1;
         var size    =1;
@@ -6554,7 +6774,7 @@ Views.pendingPaymentDetailsView = $.extend({}, Views.PanelView, {
                         });
                         orderDetails_numbers = '<span>订单编号：'+_self.id+'</span><span>创建时间：'+Y+M+D +h+m+s+'</span><span>交易号：'+_self.tradeNo+'</span>';
                         orderDetails_foot   ='<div class="footBtn warp_Rg selectfoot ui_btn" data-action="qrsh" data-id="'+_self.orderGoods[0].id+'">确认收货</div><div class="footBtn warp_Rg selectfoot ui_btn" data-action="wuliu" data-expno="'+_self.orderGoods[0].expno+'" data-expresscode="'+_self.orderGoods[0].expressCode+'">查看物流</div>'
-                    }else if(_self.orderGoods[0].orderStatus == 6){
+                    }else if(_self.orderGoods[0].orderStatus == 6 ){
                         detailTop   +='<p>交易成功</p>  <div class="headline_ico"><img src="images/individual/gift.png" alt=""/></div>'
                         orderStast = '待评价';
                         var urlTwo      = WEB_URL + '/api/orderMall/orderTraces';
@@ -6587,7 +6807,7 @@ Views.pendingPaymentDetailsView = $.extend({}, Views.PanelView, {
                         });
                         orderDetails_foot   ='<div class="footBtn warp_Rg selectfoot ui_btn" data-action="pingjia" data-ordersgoodsid="'+_self.orderGoods[0].id+'" data-goodsid="'+_self.orderGoods[0].productId+'" data-orderid="'+_self.id+'">评价</div>'
                     }
-                    else if(_self.orderGoods[0].orderStatus == 7){
+                    else if(_self.orderGoods[0].orderStatus == 7 || _self.orderGoods[0].orderStatus == 8){
                         detailTop   +='<p>交易成功</p>  <div class="headline_ico"><img src="images/individual/gift.png" alt=""/></div>'
                         var urlTwo      = WEB_URL + '/api/orderMall/orderTraces';
                         var expno       =_self.orderGoods[0].expno;
@@ -6653,13 +6873,22 @@ Views.pendingPaymentDetailsView = $.extend({}, Views.PanelView, {
                     // 倒计时
                     var dateTime = new Date();//当前时间
                     var timer='';
-                    if(_self.orderGoods[0].orderStatus == 5){
-                        timer    =86400000;//24小时转换成毫秒
-                    }else{
+                    if(_self.orderGoods[0].orderStatus == 5){//自动收货时间
+                        timer    =parseInt(dataGet('receiptDay'))*24*60*60*1000;//24小时转换成毫秒
+                        var intDiff = parseInt((_self.createTime+timer-new Date().getTime())/1000);//倒计时总秒数量
+                    }else if(_self.orderGoods[0].orderStatus == 1){//待付款取消时间
+                        timer    =parseInt(dataGet('cancelHour'))*60*60*1000;//24小时转换成毫秒
+                        var intDiff = parseInt((_self.createTime+timer-new Date().getTime())/1000);//倒计时总秒数量
+                    }else if(_self.orderGoods[0].orderStatus == 2){//自动退款时间
+                        timer    =parseInt(dataGet('refundDay'))*24*60*60*1000;//24小时转换成毫秒
+                        var intDiff = parseInt((_self.createTime+timer-new Date().getTime())/1000);//倒计时总秒数量
+                    }
+                    else{
                         timer    =259200000;//24小时转换成毫秒
+                        var intDiff = parseInt((_self.createTime+86400000-new Date().getTime())/1000);//倒计时总秒数量
                     }
                     var nowTime  =_self.createTime;//数据库时间戳
-                    var intDiff = parseInt((_self.createTime+86400000-new Date().getTime())/1000);//倒计时总秒数量
+
                     var day=0,
 
                         hour=0,
@@ -6684,15 +6913,6 @@ Views.pendingPaymentDetailsView = $.extend({}, Views.PanelView, {
 
                     if (second <= 9) second = '0' + second;
                         $('#timess').html(day+"天"+hour+'时'+minute+'分'+second+'秒')
-                    // $('#day_show').html(day+"天");
-                    //
-                    // $('#hour_show').html('<s id="h"></s>'+hour+'时');
-                    //
-                    // $('#minute_show').html('<s></s>'+minute+'分');
-                    //
-                    // $('#second_show').html('<s></s>'+second+'秒');
-
-
                 }
             }
         });
@@ -7466,7 +7686,7 @@ Views.personalStoreView = $.extend({}, Views.PanelView, {
                 }else{
                     var _self = data.data;
                     console.log(_self);
-                    $('.storeLogo').html(_self.store.logo==null?'<img src="images/personalStore/logo.png" >':'<img src="'+_self.store.logo+'" >');
+                    $('.storeLogo').html(_self.store.logo==null?'<img style="width:100%;height:100%" src="images/personalStore/logo.png" >':'<img style="width:100%;height:100%" src="'+_self.store.logo+'"  >');
                     $('.storeName').html(_self.store.name);
                     $('.storeIdentity').html('我的店铺身份：'+_self.identity);
                     $('#content_01').html(_self.orderNumber);
@@ -7512,6 +7732,7 @@ Views.storeDistributionView = $.extend({}, Views.PanelView, {
                 alert(XMLHttpRequest, textStatus, errorThrown);
             },
             success:function(data){
+                console.log(data)
                 if(data.msg == '没有开通店铺!'){
                     var url = WEB_URL +'/api/shopConfig/selectAllByUser';
                     $.ajax({
@@ -7532,117 +7753,135 @@ Views.storeDistributionView = $.extend({}, Views.PanelView, {
                                 if(_self.store == undefined){
                                     $('#storeList_03').hide();
                                     var str = '';
-                                    for (var i=0 ;i<_self.shopConfigs.length;i++){
-                                        if(_self.shopConfigs[i]==null){
-                                            $('#storeList_01').hide();
-                                        }else{
-                                            var date = new Date(_self.shopConfigs[i].createTime);
-                                            Y = date.getFullYear() + '.';
-                                            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
-                                                    date.getMonth()+1) + '.';
-                                            D = date.getDate() + ' ';
-                                            h = date.getHours() + ':';
-                                            m = date.getMinutes() + ':';
-                                            s = date.getSeconds();
-                                            str +='<div class="sdList">'
-                                                +'<div class="storeLogo" style="background-image: url('+(_self.shopConfigs[i].store.logo==null?'images/headT.png':_self.shopConfigs[i].store.logo)+')"></div>'
-                                                +'<div class="sdContent ui_btn" data-action="goInStoreDetails">'
-                                                +'<div class="storeName">'+_self.shopConfigs[i].store.name+'</div>'
-                                                +'<div class="sdStoreIntroduce">'
-                                                +'<div class="identity">店铺身份：'+_self.shopConfigs[i].shopRoleName+'</div>'
-                                                +'<div class="sdTime">'+Y+M+D+'</div>'
-                                                +'</div>'
-                                                +'</div>'
-                                                +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
-                                                +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopConfigs[i].totalMoney==null?0:_self.shopConfigs[i].totalMoney)+'</div>'
-                                                +'</div>'
+                                    if(_self.shopConfigs.length == 0){
+                                        $('#storeList_01').hide();
+                                    }else{
+                                        for (var i=0 ;i<_self.shopConfigs.length;i++){
+                                            if(_self.shopConfigs[i]==null){
+                                                $('#storeList_01').hide();
+                                            }else{
+                                                var date = new Date(_self.shopConfigs[i].createTime);
+                                                Y = date.getFullYear() + '.';
+                                                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
+                                                        date.getMonth()+1) + '.';
+                                                D = date.getDate() + ' ';
+                                                h = date.getHours() + ':';
+                                                m = date.getMinutes() + ':';
+                                                s = date.getSeconds();
+                                                str +='<div class="sdList ui_btn" >'
+                                                    +'<div class="storeLogo" style="background-image: url('+(_self.shopConfigs[i].store.logo==null?'images/headT.png':_self.shopConfigs[i].store.logo)+')"></div>'
+                                                    +'<div class="sdContent ui_btn"  data-action="tiaozhuan" data-id="'+_self.shopConfigs[i].store.id+'">'
+                                                    +'<div class="storeName">'+_self.shopConfigs[i].store.name+'</div>'
+                                                    +'<div class="sdStoreIntroduce">'
+                                                    +'<div class="identity">店铺身份：'+_self.shopConfigs[i].shopRoleName+'</div>'
+                                                    +'<div class="sdTime">'+Y+M+D+'</div>'
+                                                    +'</div>'
+                                                    +'</div>'
+                                                    +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
+                                                    +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopConfigs[i].totalMoney==null?0:_self.shopConfigs[i].totalMoney)+'</div>'
+                                                    +'</div>'
+                                            }
+                                            $('#storeList_01').html(str);
                                         }
-                                        $('#storeList_01').html(str);
                                     }
+
                                     var strTwo = '';
-                                    for (var j=0 ;j<_self.shopMembers.length;j++){
-                                        if(_self.shopMembers[i]==null){
-                                            $('#storeList_02').hide();
-                                        }else{
-                                            var dateTwo = new Date(_self.shopMembers[j].createTime);
-                                            Y = date.getFullYear() + '.';
-                                            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
-                                                    date.getMonth()+1) + '.';
-                                            D = date.getDate() + ' ';
-                                            h = date.getHours() + ':';
-                                            m = date.getMinutes() + ':';
-                                            s = date.getSeconds();
-                                            strTwo +='<div class="sdList">'
-                                                +'<div class="storeLogo" style="background-image: url('+(_self.shopMembers[j].store.logo==null?'images/headT.png':_self.shopMembers[j].store.logo)+')"></div>'
-                                                +'<div class="sdContent ui_btn" data-action="goInStoreDetails">'
-                                                +'<div class="storeName">'+_self.shopMembers[j].store.name+'</div>'
-                                                +'<div class="sdStoreIntroduce">'
-                                                +'<div class="identity">店铺身份：'+_self.shopMembers[j].shopRoleName+'</div>'
-                                                +'<div class="sdTime">'+Y+M+D+'</div>'
-                                                +'</div>'
-                                                +'</div>'
-                                                +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
-                                                +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopMembers[j].totalMoney==null?0:_self.shopMembers[j].totalMoney)+'</div>'
-                                                +'</div>'
+                                    if(_self.shopMembers.length ==0){
+                                        $('#storeList_02').hide();
+                                    }else{
+                                        for (var j=0 ;j<_self.shopMembers.length;j++){
+                                            if(_self.shopMembers[i]==null || _self.shopMembers[i]==''){
+                                                $('#storeList_02').hide();
+                                            }else{
+                                                var dateTwo = new Date(_self.shopMembers[j].createTime);
+                                                Y = date.getFullYear() + '.';
+                                                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
+                                                        date.getMonth()+1) + '.';
+                                                D = date.getDate() + ' ';
+                                                h = date.getHours() + ':';
+                                                m = date.getMinutes() + ':';
+                                                s = date.getSeconds();
+                                                strTwo +='<div class="sdList ui_btn" >'
+                                                    +'<div class="storeLogo" style="background-image: url('+(_self.shopMembers[j].store.logo==null?'images/headT.png':_self.shopMembers[j].store.logo)+')"></div>'
+                                                    +'<div class="sdContent ui_btn" data-action="tiaozhuan" data-id="'+_self.shopMembers[i].store.id+'">'
+                                                    +'<div class="storeName">'+_self.shopMembers[j].store.name+'</div>'
+                                                    +'<div class="sdStoreIntroduce">'
+                                                    +'<div class="identity">店铺身份：'+_self.shopMembers[j].shopRoleName+'</div>'
+                                                    +'<div class="sdTime">'+Y+M+D+'</div>'
+                                                    +'</div>'
+                                                    +'</div>'
+                                                    +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
+                                                    +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopMembers[j].totalMoney==null?0:_self.shopMembers[j].totalMoney)+'</div>'
+                                                    +'</div>'
+                                            }
+                                            $('#storeList_02').html(strTwo);
                                         }
-                                        $('#storeList_02').html(strTwo);
                                     }
-                                }else{
+                                }
+                                else{
                                     var str = '';
-                                    for (var i=0 ;i<_self.shopConfigs.length;i++){
-                                        if(_self.shopConfigs[i]==null){
-                                            $('#storeList_01').hide();
-                                        }else{
-                                            var date = new Date(_self.shopConfigs[i].createTime);
-                                            Y = date.getFullYear() + '.';
-                                            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
-                                                    date.getMonth()+1) + '.';
-                                            D = date.getDate() + ' ';
-                                            h = date.getHours() + ':';
-                                            m = date.getMinutes() + ':';
-                                            s = date.getSeconds();
-                                            str +='<div class="sdList">'
-                                                +'<div class="storeLogo" style="background-image: url('+(_self.shopConfigs[i].store.logo==null?'images/headT.png':_self.shopConfigs[i].store.logo)+')"></div>'
-                                                +'<div class="sdContent ui_btn" data-action="goInStoreDetails">'
-                                                +'<div class="storeName">'+_self.shopConfigs[i].store.name+'</div>'
-                                                +'<div class="sdStoreIntroduce">'
-                                                +'<div class="identity">店铺身份：'+_self.shopConfigs[i].shopRoleName+'</div>'
-                                                +'<div class="sdTime">'+Y+M+D+'</div>'
-                                                +'</div>'
-                                                +'</div>'
-                                                +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
-                                                +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopConfigs[i].totalMoney==null?0:_self.shopConfigs[i].totalMoney)+'</div>'
-                                                +'</div>'
+                                    if(_self.shopConfigs.length == 0){
+                                        $('#storeList_01').hide();
+                                    }else{
+                                        for (var i=0 ;i<_self.shopConfigs.length;i++){
+                                            if(_self.shopConfigs[i]==null){
+                                                $('#storeList_01').hide();
+                                            }else{
+                                                var date = new Date(_self.shopConfigs[i].createTime);
+                                                Y = date.getFullYear() + '.';
+                                                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
+                                                        date.getMonth()+1) + '.';
+                                                D = date.getDate() + ' ';
+                                                h = date.getHours() + ':';
+                                                m = date.getMinutes() + ':';
+                                                s = date.getSeconds();
+                                                str +='<div class="sdList ui_btn" >'
+                                                    +'<div class="storeLogo" style="background-image: url('+(_self.shopConfigs[i].store.logo==null?'images/headT.png':_self.shopConfigs[i].store.logo)+')"></div>'
+                                                    +'<div class="sdContent ui_btn" data-action="tiaozhuan" data-id="'+_self.shopConfigs[i].store.id+'">'
+                                                    +'<div class="storeName">'+_self.shopConfigs[i].store.name+'</div>'
+                                                    +'<div class="sdStoreIntroduce">'
+                                                    +'<div class="identity">店铺身份：'+_self.shopConfigs[i].shopRoleName+'</div>'
+                                                    +'<div class="sdTime">'+Y+M+D+'</div>'
+                                                    +'</div>'
+                                                    +'</div>'
+                                                    +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
+                                                    +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopConfigs[i].totalMoney==null?0:_self.shopConfigs[i].totalMoney)+'</div>'
+                                                    +'</div>'
+                                            }
+                                            $('#storeList_01').html(str);
                                         }
-                                        $('#storeList_01').html(str);
                                     }
                                     var strTwo = '';
-                                    for (var j=0 ;j<_self.shopMembers.length;j++){
-                                        if(_self.shopMembers[i]==null){
-                                            $('#storeList_02').hide();
-                                        }else{
-                                            var dateTwo = new Date(_self.shopMembers[j].createTime);
-                                            Y = date.getFullYear() + '.';
-                                            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
-                                                    date.getMonth()+1) + '.';
-                                            D = date.getDate() + ' ';
-                                            h = date.getHours() + ':';
-                                            m = date.getMinutes() + ':';
-                                            s = date.getSeconds();
-                                            strTwo +='<div class="sdList">'
-                                                +'<div class="storeLogo" style="background-image: url('+(_self.shopMembers[j].store.logo==null?'images/headT.png':_self.shopMembers[j].store.logo)+')"></div>'
-                                                +'<div class="sdContent ui_btn" data-action="goInStoreDetails">'
-                                                +'<div class="storeName">'+_self.shopMembers[j].store.name+'</div>'
-                                                +'<div class="sdStoreIntroduce">'
-                                                +'<div class="identity">店铺身份：'+_self.shopMembers[j].shopRoleName+'</div>'
-                                                +'<div class="sdTime">'+Y+M+D+'</div>'
-                                                +'</div>'
-                                                +'</div>'
-                                                +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
-                                                +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopMembers[j].totalMoney==null?0:_self.shopMembers[j].totalMoney)+'</div>'
-                                                +'</div>'
+                                    if(_self.shopMembers.length == 0){
+                                        $('#storeList_02').hide();
+                                    }else{
+                                        for (var j=0 ;j<_self.shopMembers.length;j++){
+                                            if(_self.shopMembers[i]==null || _self.shopMembers[i]==''){
+                                                $('#storeList_02').hide();
+                                            }else{
+                                                var dateTwo = new Date(_self.shopMembers[j].createTime);
+                                                Y = date.getFullYear() + '.';
+                                                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
+                                                        date.getMonth()+1) + '.';
+                                                D = date.getDate() + ' ';
+                                                h = date.getHours() + ':';
+                                                m = date.getMinutes() + ':';
+                                                s = date.getSeconds();
+                                                strTwo +='<div class="sdList ui_btn">'
+                                                    +'<div class="storeLogo" style="background-image: url('+(_self.shopMembers[j].store.logo==null?'images/headT.png':_self.shopMembers[j].store.logo)+')"></div>'
+                                                    +'<div class="sdContent ui_btn"  data-action="tiaozhuan" data-id="'+_self.shopMembers[i].store.id+'">'
+                                                    +'<div class="storeName">'+_self.shopMembers[j].store.name+'</div>'
+                                                    +'<div class="sdStoreIntroduce">'
+                                                    +'<div class="identity">店铺身份：'+_self.shopMembers[j].shopRoleName+'</div>'
+                                                    +'<div class="sdTime">'+Y+M+D+'</div>'
+                                                    +'</div>'
+                                                    +'</div>'
+                                                    +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
+                                                    +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopMembers[j].totalMoney==null?0:_self.shopMembers[j].totalMoney)+'</div>'
+                                                    +'</div>'
+                                            }
+                                            $('#storeList_02').html(strTwo);
                                         }
-                                        $('#storeList_02').html(strTwo);
                                     }
 
                                     var strThree = '';
@@ -7654,9 +7893,9 @@ Views.storeDistributionView = $.extend({}, Views.PanelView, {
                                     h = date.getHours() + ':';
                                     m = date.getMinutes() + ':';
                                     s = date.getSeconds();
-                                    strThree ='<div class="sdList">'
+                                    strThree ='<div class="sdList ui_btn" >'
                                         +'<div class="storeLogo" style="background-image: url('+(_self.store.logo==null?'images/headT.png':_self.store.logo)+')"></div>'
-                                        +'<div class="sdContent ui_btn" data-action="goInStoreDetails">'
+                                        +'<div class="sdContent ui_btn" data-action="tiaozhuan" data-id="'+_self.store.id+'">'
                                         +'<div class="storeName">'+_self.store.name+'</div>'
                                         +'<div class="sdStoreIntroduce">'
                                         +'<div class="identity">店铺身份：店长</div>'
@@ -7680,7 +7919,8 @@ Views.storeDistributionView = $.extend({}, Views.PanelView, {
 
                         }
                     });
-                }else{
+                }
+                else{
                     var url = WEB_URL +'/api/shopConfig/selectAllByUser';
                     $.ajax({
                         type:'GET',
@@ -7700,118 +7940,140 @@ Views.storeDistributionView = $.extend({}, Views.PanelView, {
                                 if(_self.store == undefined){
                                     $('#storeList_03').hide();
                                     var str = '';
-                                    for (var i=0 ;i<_self.shopConfigs.length;i++){
-                                        if(_self.shopConfigs[i]==null){
-                                            $('#storeList_01').hide();
-                                        }else{
-                                            var date = new Date(_self.shopConfigs[i].createTime);
-                                            Y = date.getFullYear() + '.';
-                                            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
-                                                    date.getMonth()+1) + '.';
-                                            D = date.getDate() + ' ';
-                                            h = date.getHours() + ':';
-                                            m = date.getMinutes() + ':';
-                                            s = date.getSeconds();
-                                            str +='<div class="sdList">'
-                                                +'<div class="storeLogo" style="background-image: url('+(_self.shopConfigs[i].store.logo==null?'images/headT.png':_self.shopConfigs[i].store.logo)+')"></div>'
-                                                +'<div class="sdContent ui_btn" data-action="goInStoreDetails">'
-                                                +'<div class="storeName">'+_self.shopConfigs[i].store.name+'</div>'
-                                                +'<div class="sdStoreIntroduce">'
-                                                +'<div class="identity">店铺身份：'+_self.shopConfigs[i].shopRoleName+'</div>'
-                                                +'<div class="sdTime">'+Y+M+D+'</div>'
-                                                +'</div>'
-                                                +'</div>'
-                                                +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
-                                                +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopConfigs[i].totalMoney==null?0:_self.shopConfigs[i].totalMoney)+'</div>'
-                                                +'</div>'
+                                    if(_self.shopConfigs.length == 0){
+                                        $('#storeList_01').hide();
+                                    }else{
+                                        for (var i=0 ;i<_self.shopConfigs.length;i++){
+                                            if(_self.shopConfigs[i]==null){
+                                                $('#storeList_01').hide();
+                                            }else{
+                                                var date = new Date(_self.shopConfigs[i].createTime);
+                                                Y = date.getFullYear() + '.';
+                                                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
+                                                        date.getMonth()+1) + '.';
+                                                D = date.getDate() + ' ';
+                                                h = date.getHours() + ':';
+                                                m = date.getMinutes() + ':';
+                                                s = date.getSeconds();
+                                                str +='<div class="sdList ui_btn" >'
+                                                    +'<div class="storeLogo" style="background-image: url('+(_self.shopConfigs[i].store.logo==null?'images/headT.png':_self.shopConfigs[i].store.logo)+')"></div>'
+                                                    +'<div class="sdContent ui_btn" data-action="tiaozhuan" data-id="'+_self.shopConfigs[i].store.id+'">'
+                                                    +'<div class="storeName">'+_self.shopConfigs[i].store.name+'</div>'
+                                                    +'<div class="sdStoreIntroduce">'
+                                                    +'<div class="identity">店铺身份：'+_self.shopConfigs[i].shopRoleName+'</div>'
+                                                    +'<div class="sdTime">'+Y+M+D+'</div>'
+                                                    +'</div>'
+                                                    +'</div>'
+                                                    +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
+                                                    +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopConfigs[i].totalMoney==null?0:_self.shopConfigs[i].totalMoney)+'</div>'
+                                                    +'</div>'
+                                            }
+                                            $('#storeList_01').html(str);
                                         }
-                                        $('#storeList_01').html(str);
                                     }
+
                                     var strTwo = '';
-                                    for (var j=0 ;j<_self.shopMembers.length;j++){
-                                        if(_self.shopMembers[i]==null){
-                                            $('#storeList_02').hide();
-                                        }else{
-                                            var dateTwo = new Date(_self.shopMembers[j].createTime);
-                                            Y = date.getFullYear() + '.';
-                                            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
-                                                    date.getMonth()+1) + '.';
-                                            D = date.getDate() + ' ';
-                                            h = date.getHours() + ':';
-                                            m = date.getMinutes() + ':';
-                                            s = date.getSeconds();
-                                            strTwo +='<div class="sdList">'
-                                                +'<div class="storeLogo" style="background-image: url('+(_self.shopMembers[j].store.logo==null?'images/headT.png':_self.shopMembers[j].store.logo)+')"></div>'
-                                                +'<div class="sdContent ui_btn" data-action="goInStoreDetails">'
-                                                +'<div class="storeName">'+_self.shopMembers[j].store.name+'</div>'
-                                                +'<div class="sdStoreIntroduce">'
-                                                +'<div class="identity">店铺身份：'+_self.shopMembers[j].shopRoleName+'</div>'
-                                                +'<div class="sdTime">'+Y+M+D+'</div>'
-                                                +'</div>'
-                                                +'</div>'
-                                                +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
-                                                +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopMembers[j].totalMoney==null?0:_self.shopMembers[j].totalMoney)+'</div>'
-                                                +'</div>'
+                                    if(_self.shopMembers.length == 0){
+                                        $('#storeList_02').hide();
+                                    }else {
+                                        for (var j=0 ;j<_self.shopMembers.length;j++){
+                                            if(_self.shopMembers[i]==null){
+                                                $('#storeList_02').hide();
+                                            }else{
+                                                var dateTwo = new Date(_self.shopMembers[j].createTime);
+                                                Y = date.getFullYear() + '.';
+                                                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
+                                                        date.getMonth()+1) + '.';
+                                                D = date.getDate() + ' ';
+                                                h = date.getHours() + ':';
+                                                m = date.getMinutes() + ':';
+                                                s = date.getSeconds();
+                                                strTwo +='<div class="sdList ui_btn" >'
+                                                    +'<div class="storeLogo" style="background-image: url('+(_self.shopMembers[j].store.logo==null?'images/headT.png':_self.shopMembers[j].store.logo)+')"></div>'
+                                                    +'<div class="sdContent ui_btn" data-action="tiaozhuan" data-id="'+_self.shopMembers[i].store.id+'">'
+                                                    +'<div class="storeName">'+_self.shopMembers[j].store.name+'</div>'
+                                                    +'<div class="sdStoreIntroduce">'
+                                                    +'<div class="identity">店铺身份：'+_self.shopMembers[j].shopRoleName+'</div>'
+                                                    +'<div class="sdTime">'+Y+M+D+'</div>'
+                                                    +'</div>'
+                                                    +'</div>'
+                                                    +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
+                                                    +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopMembers[j].totalMoney==null?0:_self.shopMembers[j].totalMoney)+'</div>'
+                                                    +'</div>'
+                                            }
+                                            $('#storeList_02').html(strTwo);
                                         }
-                                        $('#storeList_02').html(strTwo);
                                     }
-                                }else{
+                                }
+                                else{
                                     var str = '';
-                                    for (var i=0 ;i<_self.shopConfigs.length;i++){
-                                        if(_self.shopConfigs[i]==null){
-                                            $('#storeList_01').hide();
-                                        }else{
-                                            var date = new Date(_self.shopConfigs[i].createTime);
-                                            Y = date.getFullYear() + '.';
-                                            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
-                                                    date.getMonth()+1) + '.';
-                                            D = date.getDate() + ' ';
-                                            h = date.getHours() + ':';
-                                            m = date.getMinutes() + ':';
-                                            s = date.getSeconds();
-                                            str +='<div class="sdList">'
-                                                +'<div class="storeLogo" style="background-image: url('+(_self.shopConfigs[i].store.logo==null?'images/headT.png':_self.shopConfigs[i].store.logo)+')"></div>'
-                                                +'<div class="sdContent ui_btn" data-action="goInStoreDetails">'
-                                                +'<div class="storeName">'+_self.shopConfigs[i].store.name+'</div>'
-                                                +'<div class="sdStoreIntroduce">'
-                                                +'<div class="identity">店铺身份：'+_self.shopConfigs[i].shopRoleName+'</div>'
-                                                +'<div class="sdTime">'+Y+M+D+'</div>'
-                                                +'</div>'
-                                                +'</div>'
-                                                +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
-                                                +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopConfigs[i].totalMoney==null?0:_self.shopConfigs[i].totalMoney)+'</div>'
-                                                +'</div>'
-                                        }
-                                        $('#storeList_01').html(str);
+                                    if(_self.shopConfigs.length == 0){
+                                        $('#storeList_01').hide();
                                     }
+                                    else {
+                                        for (var i=0 ;i<_self.shopConfigs.length;i++){
+                                            if(_self.shopConfigs[i]==null){
+                                                $('#storeList_01').hide();
+                                            }else{
+                                                var date = new Date(_self.shopConfigs[i].createTime);
+                                                Y = date.getFullYear() + '.';
+                                                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
+                                                        date.getMonth()+1) + '.';
+                                                D = date.getDate() + ' ';
+                                                h = date.getHours() + ':';
+                                                m = date.getMinutes() + ':';
+                                                s = date.getSeconds();
+                                                str +='<div class="sdList ui_btn" >'
+                                                    +'<div class="storeLogo" style="background-image: url('+(_self.shopConfigs[i].store.logo==null?'images/headT.png':_self.shopConfigs[i].store.logo)+')"></div>'
+                                                    +'<div class="sdContent ui_btn" data-action="tiaozhuan" data-id="'+_self.shopConfigs[i].store.id+'">'
+                                                    +'<div class="storeName">'+_self.shopConfigs[i].store.name+'</div>'
+                                                    +'<div class="sdStoreIntroduce">'
+                                                    +'<div class="identity">店铺身份：'+_self.shopConfigs[i].shopRoleName+'</div>'
+                                                    +'<div class="sdTime">'+Y+M+D+'</div>'
+                                                    +'</div>'
+                                                    +'</div>'
+                                                    +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
+                                                    +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopConfigs[i].totalMoney==null?0:_self.shopConfigs[i].totalMoney)+'</div>'
+                                                    +'</div>'
+                                            }
+                                            $('#storeList_01').html(str);
+                                        }
+                                    }
+
                                     var strTwo = '';
-                                    for (var j=0 ;j<_self.shopMembers.length;j++){
-                                        if(_self.shopMembers[i]==null){
-                                            $('#storeList_02').hide();
-                                        }else{
-                                            var dateTwo = new Date(_self.shopMembers[j].createTime);
-                                            Y = date.getFullYear() + '.';
-                                            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
-                                                    date.getMonth()+1) + '.';
-                                            D = date.getDate() + ' ';
-                                            h = date.getHours() + ':';
-                                            m = date.getMinutes() + ':';
-                                            s = date.getSeconds();
-                                            strTwo +='<div class="sdList">'
-                                                +'<div class="storeLogo" style="background-image: url('+(_self.shopMembers[j].store.logo==null?'images/headT.png':_self.shopMembers[j].store.logo)+')"></div>'
-                                                +'<div class="sdContent ui_btn" data-action="goInStoreDetails">'
-                                                +'<div class="storeName">'+_self.shopMembers[j].store.name+'</div>'
-                                                +'<div class="sdStoreIntroduce">'
-                                                +'<div class="identity">店铺身份：'+_self.shopMembers[j].shopRoleName+'</div>'
-                                                +'<div class="sdTime">'+Y+M+D+'</div>'
-                                                +'</div>'
-                                                +'</div>'
-                                                +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
-                                                +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopMembers[j].totalMoney==null?0:_self.shopMembers[j].totalMoney)+'</div>'
-                                                +'</div>'
-                                        }
-                                        $('#storeList_02').html(strTwo);
+                                    if(_self.shopMembers.length == 0){
+                                        $('#storeList_02').hide();
                                     }
+                                    else {
+                                        for (var j=0 ;j<_self.shopMembers.length;j++){
+                                            if(_self.shopMembers[i]==null){
+                                                $('#storeList_02').hide();
+                                            }else{
+                                                var dateTwo = new Date(_self.shopMembers[j].createTime);
+                                                Y = date.getFullYear() + '.';
+                                                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) :
+                                                        date.getMonth()+1) + '.';
+                                                D = date.getDate() + ' ';
+                                                h = date.getHours() + ':';
+                                                m = date.getMinutes() + ':';
+                                                s = date.getSeconds();
+                                                strTwo +='<div class="sdList ui_btn" >'
+                                                    +'<div class="storeLogo" style="background-image: url('+(_self.shopMembers[j].store.logo==null?'images/headT.png':_self.shopMembers[j].store.logo)+')"></div>'
+                                                    +'<div class="sdContent ui_btn" data-action="tiaozhuan" data-id="'+_self.shopMembers[i].store.id+'">'
+                                                    +'<div class="storeName">'+_self.shopMembers[j].store.name+'</div>'
+                                                    +'<div class="sdStoreIntroduce">'
+                                                    +'<div class="identity">店铺身份：'+_self.shopMembers[j].shopRoleName+'</div>'
+                                                    +'<div class="sdTime">'+Y+M+D+'</div>'
+                                                    +'</div>'
+                                                    +'</div>'
+                                                    +'<div class="commissionPrompt ui_btn" data-action="commissionPrompt">分佣总计</div>'
+                                                    +'<div class="commission ui_btn" data-action="commission">￥'+(_self.shopMembers[j].totalMoney==null?0:_self.shopMembers[j].totalMoney)+'</div>'
+                                                    +'</div>'
+                                            }
+                                            $('#storeList_02').html(strTwo);
+                                        }
+                                    }
+
 
                                     var strThree = '';
                                     var date = new Date(_self.store.createTime);
@@ -7822,9 +8084,9 @@ Views.storeDistributionView = $.extend({}, Views.PanelView, {
                                     h = date.getHours() + ':';
                                     m = date.getMinutes() + ':';
                                     s = date.getSeconds();
-                                    strThree ='<div class="sdList">'
+                                    strThree ='<div class="sdList ui_btn" >'
                                         +'<div class="storeLogo" style="background-image: url('+(_self.store.logo==null?'images/headT.png':_self.store.logo)+')"></div>'
-                                        +'<div class="sdContent ui_btn" data-action="goInStoreDetails">'
+                                        +'<div class="sdContent ui_btn" data-action="tiaozhuan" data-id="'+_self.store.id+'">'
                                         +'<div class="storeName">'+_self.store.name+'</div>'
                                         +'<div class="sdStoreIntroduce">'
                                         +'<div class="identity">店铺身份：店长</div>'
@@ -7869,9 +8131,10 @@ Views.storeDistributionView = $.extend({}, Views.PanelView, {
         $(btn).hide();
         $(btn).siblings('.commissionPrompt').show();
     },
-    // goInStoreDetails:function(){
-    //     Views.storeDetailsView.show();
-    // }
+    tiaozhuan:function(btn){
+        dataSave('storeId',$(btn).attr('data-id'))
+        Views.storeDetailsView.show();
+    }
 
 })
 /***********************店铺分销nd**********************/
@@ -7890,47 +8153,148 @@ Views.dpsfView = $.extend({}, Views.PanelView, {
     },
 
     didShow: function () {
-
-        var url     = WEB_URL +'/api/indexProductConf/show/store';
+        var url  = WEB_URL + "/api/core/selectLoginUser";
         $.ajax({
             type:'POST',
             dataType:'json',
             url:url,
-            data: {},
+            data:{},
             contentType:'application/json;charset=utf-8',
-            error: function (XMLHttpRequest, textStatus, errorThrown) {},
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest, textStatus, errorThrown);
+            },
             success:function(data){
-                if(!data.success){
-                    console.log(data.msg);
-                    if(data.msg == '你还没有自己的店铺或代理商店铺！'){
-                        alert(data.msg);
-                        Views.indexMineView.show();
+                if(!data.success) {
+                    if (data.codeEnum == 'OVERTIME') {
+                        Views.signInView.show();
                     }else{
                         alert(data.msg);
                     }
+
                 }else{
-                    var _thisData           = data.data;
-                    console.log(_thisData);
-                    $('#superiorData_pt input').val(_thisData.PlatformStore);
-                    if(_thisData.partnersStore==null){
-                        $('#superiorData_my').hide();
-                    }else{
-                        $('#superiorData_my input').val(_thisData.partnersStore.id);
-                        $('#superiorData_my .left').html(_thisData.partnersStore.name==''?'我的店铺':_thisData.partnersStore.name);
-                    }
-                    if(_thisData.agentStoreList==null){
-                        alert('您没有代理商店铺')
-                    }else{
-                        var _self = _thisData.agentStoreList;
-                        var str   ='';
-                        for(var i=0;i<_self.length;i++){
-                            str +='<div class="msList">'
-                                +'<div class="left">'+_self[i].storeName+'  ('+_self[i].shopRoleName+')'+'</div>'
-                                +'<div class="right"><input type="radio" name="leavl" value="'+_self[i].storeId+'" style="width:20px;height:20px;"></div>'
-                                +'</div>'
+                    var _self = data.data;
+                    console.log(_self)
+                    var showStoreId = _self.showStoreId;
+                    // var Dates = new Date();
+                    // var dates = new Date(_self.updateStoreTime);
+                    // var datess  = Dates.getTime() - dates.getTime();//更改店铺样式后的24小时冷却时间
+                    // var day   = parseInt(86400000);//24小时转换成时间戳
+                    // if(day-datess>=0){
+                    //     $('#timesss').html('距离下次修改时间还剩'+parseFloat((day-datess)/1000/60/60).toFixed(2)+'小时')
+                    //     $('.superiorData input').attr('disabled','false')
+                    //     console.log($('.superiorData input'))
+                    // }
+                    var url     = WEB_URL +'/api/indexProductConf/show/store';
+                    $.ajax({
+                        type:'POST',
+                        dataType:'json',
+                        url:url,
+                        data: {},
+                        contentType:'application/json;charset=utf-8',
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                        success:function(data){
+                            if(!data.success){
+                                console.log(data.msg);
+                                if(data.msg == '你还没有自己的店铺或代理商店铺！'){
+                                    alert(data.msg);
+                                    Views.indexMineView.show();
+                                }else{
+                                    alert(data.msg);
+                                }
+                            }else{
+                                var _thisData           = data.data;
+                                var obj = [];
+                                console.log(_thisData)
+
+                                $('#superiorData_pt input').val(_thisData.PlatformStore);
+                                if(_thisData.partnersStore==null){
+                                    $('#superiorData_my').hide();
+                                }else{
+                                    $('#superiorData_my input').val(_thisData.partnersStore.id);
+                                    $('#superiorData_my .left').html(_thisData.partnersStore.name==''?'我的店铺':_thisData.partnersStore.name);
+                                }
+                                if(_thisData.agentStoreList==null || _thisData.agentStoreList==''){
+                                    alert('您没有代理商店铺')
+                                }else{
+                                    var _self = _thisData.agentStoreList;
+                                    var str   ='';
+                                    for(var i=0;i<_self.length;i++){
+                                        var arr = {};
+                                        arr.name=_self[i].storeName
+                                        arr.id=_self[i].storeId
+                                        obj.push(arr);
+                                        str +='<div class="msList">'
+                                            +'<div class="left">'+_self[i].storeName+'  ('+_self[i].shopRoleName+')'+'</div>'
+                                            +'<div class="right"><input type="radio" name="leavl" value="'+_self[i].storeId+'" style="width:20px;height:20px;"></div>'
+                                            +'</div>'
+                                    }
+                                    $('#dddddd').html(str);
+                                    if(_thisData.partnersStore==null){
+                                        $('#superiorData_my').hide();
+                                        if(showStoreId == _thisData.PlatformStore){
+                                            $('#msHead_name').html('平台');
+                                        }else {
+                                            for (var B=0;B<obj.length;B++){
+                                                if(obj[B].id == showStoreId){
+                                                    $('#msHead_name').html(obj[B].name);
+                                                }
+                                            }
+                                        }
+                                    }else{
+                                        if(showStoreId == _thisData.PlatformStore){
+                                            console.log(1)
+                                            $('#msHead_name').html('平台');
+                                        }else if (showStoreId == _thisData.partnersStore.id){
+                                            console.log(2)
+                                            $('#msHead_name').html('我的店铺');
+                                        }else {
+                                            console.log(3)
+                                            for (var B=0;B<obj.length;B++){
+                                                if(obj[B].id == showStoreId){
+                                                    $('#msHead_name').html(obj[B].name);
+                                                }
+                                            }
+                                        }
+                                    }
+
+
+
+                                }
+                                var url  = WEB_URL + "/api/core/selectLoginUser";
+                                $.ajax({
+                                    type:'POST',
+                                    dataType:'json',
+                                    url:url,
+                                    data:{},
+                                    contentType:'application/json;charset=utf-8',
+                                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                        alert(XMLHttpRequest, textStatus, errorThrown);
+                                    },
+                                    success:function(data){
+                                        if(!data.success) {
+                                            if (data.codeEnum == 'OVERTIME') {
+                                                Views.signInView.show();
+                                            }else{
+                                                alert(data.msg);
+                                            }
+
+                                        }else{
+                                            var _self = data.data;
+                                            console.log(_self)
+                                            var Dates = new Date();
+                                            var dates = new Date(_self.updateStoreTime);
+                                            var datess  = Dates.getTime() - dates.getTime();//更改店铺样式后的24小时冷却时间
+                                            var day   = parseInt(86400000);//24小时转换成时间戳
+                                            if(day-datess>=0){
+                                                $('#timesss').html('距离下次修改时间还剩'+parseFloat((day-datess)/1000/60/60).toFixed(2)+'小时')
+                                                $('.superiorData input').attr('disabled','false')
+                                            }
+                                        }
+                                    }
+                                });
+                            }
                         }
-                        $('#dddddd').html(str);
-                    }
+                    });
                 }
             }
         });
@@ -7943,10 +8307,12 @@ Views.dpsfView = $.extend({}, Views.PanelView, {
 
     },
     msHead_02:function(){
+        $('#background').show();
+    },
+    xiugai:function(){
         var urlTwo =   WEB_URL +'/api/indexProductConf/update/show/store';
         var storeId  =   parseInt($('#ddddddd').val());
-        var data={storeId:storeId};
-        console.log(data)
+        var data={storeId:parseInt(storeId)};
         $.ajax({
             type:'POST',
             dataType:'json',
@@ -7957,16 +8323,21 @@ Views.dpsfView = $.extend({}, Views.PanelView, {
             success:function(data){
                 if(!data.success){
                    alert(data.msg);
+                    $('#background').hide();
                 }else{
                     var _thisData           = data.data;
-                    console.log(_thisData);
-                    alert('修改成功')
-                    $('#fixedssss').show();
+                    alert('修改成功');
+                    $('#msHead_name').html($('#msHead_01').text());
+                    $('#fixedssss').hide();
+                    // $('#background div').hide();
 
                 }
             }
         });
-        $('#msHead_name').html($('#msHead_01').text());
+
+    },
+    quxiao:function(){
+        $('#background').hide();
     }
 
 })
@@ -7987,45 +8358,7 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
     },
 
     didShow: function () {
-        var swiper3 = new Swiper('.swiper3', {
-            loop: true,
-            autoplay: 5000,
-
-        });
-        $(function(){
-
-
             //导航条的显示隐藏
-            window.onclick = function(e){
-
-                e = e|| window.event;
-                var el = e.srcElement;
-                var className =  el.className;
-                var id = el.id;
-
-                if(className == "moreClose" || className == "list"){
-                    $('#sDNew').show();
-                    //$('#sDNew').attr("data-state","hide")
-                }
-
-                //分享
-                if(id == "newShare"){
-                    $('#bgMask').show();
-                    $('#sDNew').hide();
-                    $('#shareShowT').show();
-                    $('#shareShowT').stop().animate({
-                        bottom:0
-                    });
-                }
-                if(id == "bgMask" || id == "bgCancel"){
-                    $('#bgMask').hide();
-                    $('#shareShow').hide();
-                    $('#shareShowT').stop().animate({
-                        bottom:'-405px'
-                    });
-                }
-                //$('#sDNew').attr("data-state","show")
-            }
 
             //店招
             window.onscroll = function () {
@@ -8046,7 +8379,6 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                     $('#windowBottom').stop().slideDown();
                 }
             };
-        });
 
         var urlTwoS  = WEB_URL + '/api/indexAdvert/app/store/list';
         var datass = {storeId:dataGet('storeId')}; //店铺ID
@@ -8061,19 +8393,25 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                 if(!data.success){
                     console.log(data.msg);
                 }else{
-                    var _self = data.data;
+                    console.log(data)
+                    var _self = data.data.list;
                     var sytsss = '';
                     for (var i=0;i<_self.length;i++){
-                        sytsss +='<div class="swiper-slide index_head ui_btn" data-action="banner_link"><img src="images/index/banner.png" alt="" style="position: relative;height:210px;width:100%;"></div>'
+                        sytsss +='<div class="swiper-slide index_head ui_btn" data-action="banner_link"><img src="'+_self[i].picture+'" alt="" style="position: relative;height:210px;width:100%;"></div>'
                     }
+                    $('#swiper_sort').html(sytsss);
+                    var swiper3 = new Swiper('.swiper3', {
+                        loop: true,
+                        autoplay: 5000,
+
+                    });
                 }
             }
         });
 
 
-        var url  = WEB_URL + '/api/store/selectOne/'+dataGet('ipAddress');
-        var data = {id:dataGet('storeId')}; //店铺ID
-
+        var url  = WEB_URL + '/api/store/selectOne';
+        var data = {id:dataGet('storeId'),ip:dataGet('user_id')}; //店铺ID
         $.ajax({
             type:'POST',
             dataType:'json',
@@ -8090,6 +8428,10 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                     var _thisData       = data.data;
                     //店长信息
                     dataSave('dzUserId',_thisData.store.userId)
+                    dataSave('commissionLine',_thisData.store.commissionLine)
+                    dataSave('phone',_thisData.store.phone)
+                    dataSave('idCodeddd',_thisData.idCode)
+
                     // 分佣线区分店铺
                     if(_thisData.store.commissionLine == 2){ //花想容
 
@@ -8138,12 +8480,13 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                                 $('.become').html('暂时不能补货')
                             }
                         }else if(_thisIdCode == 2){
+                            dataSave('idCode', 0);//存储当前身份 1(有身份) / 0
                             var str ='';
                             var strs ='';
                             var shopRole = _thisData.shopRole;
                             if(shopRole.length!==0){
                                 for (var i=shopRole.length-1;i>=0;i--){
-                                    str += '<div class="becomeLeft" data-action="becomeSort">' +shopRole[i].name+'</div>'
+                                    str += '<div class="becomeLeft ui_btn" data-action="becomeSort">' +shopRole[i].name+'</div>'
                                 }
                                 $('.become').html(str)
                             }else{
@@ -8155,7 +8498,8 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                                 $(this).css({borderRight:'inherit',width:'50%'});
                             }
                         });
-                    }else if(_thisData.store.commissionLine == 3){
+                    }
+                    else if(_thisData.store.commissionLine == 3 || _thisData.store.commissionLine == 5){
                         $('#information').show();//花想容会员信息
                         // alert('这是磁疗贴!')
 
@@ -8164,7 +8508,7 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                         var _thisLogo       = _thisData.store.logo;//店铺Logo
                         var _thisIdentity   = _thisData.identity;//当前登录身份
                         var _thisIdCode     = _thisData.idCode;//店铺身份
-                        dataSave('idCode', _thisIdCode);//存储当前身份 1(有身份) / 0
+                        dataSave('idCode',_thisData.idCode);//存储当前身份 1(有身份) / 0
                         $('.sdbLogo').css('background-image','url('+_thisLogo+')');
                         $('.shopName .name').html(_thisName);
                         $('.shopName .identity').html('我的店铺身份：'+_thisIdentity);
@@ -8198,9 +8542,10 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                             var str ='';
                             var strs ='';
                             var shopRole = _thisData.shopRole;
+                            dataSave('idCode', 0);//存储当前身份 1(有身份) / 0
                             if(shopRole.length!==0){
                                 for (var i=shopRole.length-1;i>=0;i--){
-                                    str += '<div class="becomeLeft" data-action="becomeSort">' +shopRole[i].name+'</div>'
+                                    str += '<div class="becomeLeft ui_btn" data-action="becomeSort">' +shopRole[i].name+'</div>'
                                 }
                                 $('.become').html(str)
                             }else{
@@ -8212,7 +8557,8 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                                 $(this).css({borderRight:'inherit',width:'50%'});
                             }
                         });
-                    }else {
+                    }
+                    else {
 
                         var _thisName       = _thisData.store.name;//店铺名称
                         var _thisLogo       = _thisData.store.logo;//店铺Logo
@@ -8244,7 +8590,7 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                             var str = '';
                             var shopRole = _thisData.shopRole;
                             if(shopRole.length!==0){
-                                $('.become').html('<div class="becomeLefts ui_btn" data-action="becomeSort">补货区</div>');
+                                $('.become').html('<div class="becomeLefts ui_btn"  data-action="becomeSort">补货区</div>');
                             }else{
                                 $('.become').html('暂时不能补货')
                             }
@@ -8252,9 +8598,10 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
                             var str ='';
                             var strs ='';
                             var shopRole = _thisData.shopRole;
+                            dataSave('idCode', 0);//存储当前身份 1(有身份) / 0
                             if(shopRole.length!==0){
                                 for (var i=shopRole.length-1;i>=0;i--){
-                                    str += '<div class="becomeLeft" data-action="becomeSort">' +shopRole[i].name+'</div>'
+                                    str += '<div class="becomeLeft ui_btn" data-action="becomeSort">' +shopRole[i].name+'</div>'
                                 }
                                 $('.become').html(str)
                             }else{
@@ -8309,46 +8656,117 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
         })
 
 
+        $('.more').click(function (e) {
+            if($('#sDNew').css('display')=='none'){
+                $('#sDNew').show();
+            }else{
+                $('#sDNew').hide();
+            }
+            $(document).click(function(){
+                $('#sDNew').hide();
+            })
+            e.stopPropagation();
+        });
+
+
+        //绑定输入框，这里只能 是ID
+        $(".search input").keydown(function(event){
+            event=document.all?window.event:event;
+            if((event.keyCode || event.which)==13){
+                if($('.search input').val() == ''){
+                    alert('请输入您需要搜索的商品或店铺')
+                }else{
+                    var names        =$('.search input').val();
+                    dataSave('proName',$('.search input').val());
+                    var urlTwo      = WEB_URL + '/api/indexSearch/product/search';
+                    var name        =names;
+                    var isVolume    =true;
+                    var isAvgEva    =true;
+                    var pageNum     =1;
+                    var size        =20;
+                    var data        ={name:name,isVolume:isVolume,isAvgEva:isAvgEva,pageNum:pageNum,size:size};
+                    $.ajax({
+                        type:'POST',
+                        dataType:'json',
+                        url:urlTwo,
+                        data: JSON.stringify(data),
+                        contentType:'application/json;charset=utf-8',
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {},
+                        success:function(data){
+                            if(!data.success){
+                                console.log(data.msg);
+                            }else{
+                                Views.sCommodityListView.show();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
 
 
     },
+    com_fenxiang:function(){
+        var sharedModule = api.require('shareAction');
+        //path:'http://www.51att.cn/sm666/fenxiang.html?mobile='+dataGet('mobile')
+        sharedModule.share({
+            type:'text',
+            text:'http://123.206.115.18:8084/sm667/index.html?pageName=storeDetails&rtime=78761502358281272&storeId='+parseInt(dataGet('storeId'))+'&ip='+parseInt(dataGet('user_id'))+'&mobile='+parseInt(dataGet('mobile'))
+        });
+    },
     // 会员信息  跳转
     vipinformation:function(btn){
-        var storeId = dataGet('storeId');  //根据店铺id 查找会员信息   花想容为3，磁疗贴 为15
-        if(dataGet('idCode')==0){
-            alert('您未开通店铺身份，无法进入！')
-        }else{
-            if(storeId == 3){
+        var commissionLine = dataGet('commissionLine');  //根据分佣线
+        if(dataGet('idCodeddd')==2){
+            if(commissionLine == 2){
                 Views.hxmineView.show();
-            }else if(storeId == 15){
+            }else if(commissionLine == 3 || commissionLine == 5){
                 Views.clmineView.show();
                 // alert('这是进磁疗贴的')
             }
+        }else{
+            if(dataGet('idCode')==0){
+                alert('您未开通店铺身份，无法进入！')
+            }else{
+                if(commissionLine == 2){
+                    Views.hxmineView.show();
+                }else if(commissionLine == 3 || commissionLine == 5){
+                    Views.clmineView.show();
+                    // alert('这是进磁疗贴的')
+                }
+            }
         }
+
     },
     windowBottomLeft:function(){
         Views.commodityEvaluationView.show();
     },
     lxmj:function(){
-        var url = WEB_URL + '/api/orderMall/selectMobileByStoreId';
-        $.ajax({
-            type:'POST',
-            dataType:'json',
-            url:url,
-            data: JSON.stringify({storeId:parseInt(dataGet('storeId'))}),
-            // data: JSON.stringify({storeId:parseInt(2)}),
-            contentType:'application/json;charset=utf-8',
-            error: function (XMLHttpRequest, textStatus, errorThrown) {},
-            success:function(data){
-                if(data.msg=='成功'){
-                    alert('该店家未设置号码!')
-                }else{
-                    console.log(data);
-                    window.location.href='tel:'+data.msg
-                }
-
-            }
-        });
+        if(dataGet('phone') == null || dataGet('phone') == ''){
+            alert('该店铺未设置卖家电话!');
+        }else{
+            window.location.href='tel:'+dataGet('phone')
+        }
+        // var url = WEB_URL + '/api/orderMall/selectMobileByStoreId';
+        // $.ajax({
+        //     type:'POST',
+        //     dataType:'json',
+        //     url:url,
+        //     data: JSON.stringify({storeId:parseInt(dataGet('storeId'))}),
+        //     // data: JSON.stringify({storeId:parseInt(2)}),
+        //     contentType:'application/json;charset=utf-8',
+        //     error: function (XMLHttpRequest, textStatus, errorThrown) {},
+        //     success:function(data){
+        //         if(data.msg=='成功'){
+        //             alert('该店家未设置号码!')
+        //         }else{
+        //             console.log(data);
+        //             window.location.href='tel:'+data.msg
+        //         }
+        //
+        //     }
+        // });
     },
     collection:function(btn){
         if($(btn).html()=='收藏'){
@@ -8446,16 +8864,13 @@ Views.storeDetailsView = $.extend({}, Views.PanelView, {
             dataSave('commodityUuid',$(btn).attr('data-uuid'));
             Views.commodityDetailsView.show();
     },
-    moreClose:function(){
-        var state =$('#sDNew').attr("data-state");
-        if(state == "hide"){
-            $('#sDNew').show();
-            $('#sDNew').attr("data-state","show");
-        }else{
-            $('#sDNew').hide();
-            $('#sDNew').attr("data-state","hide");
-        }
-    },
+    // moreClose:function(){
+    //     if($('#sDNew').css('display')=='none'){
+    //         $('#sDNew').show();
+    //     }else{
+    //         $('#sDNew').hide();
+    //     }
+    // },
     search_r:function(){
         var names        =$('.search input').val();
         dataSave('proName',$('.search input').val());
@@ -8502,9 +8917,8 @@ Views.shopIntroductionView = $.extend({}, Views.PanelView, {
     },
 
     didShow: function () {
-        var url  = WEB_URL + '/api/store/selectOne/'+dataGet('ipAddress');
-        var data = {id:dataGet('storeId')}; //店铺ID
-
+        var url  = WEB_URL + '/api/store/selectOne';
+        var data = {id:dataGet('storeId'),ip:dataGet('user_id')}; //店铺ID
         $.ajax({
             type:'POST',
             dataType:'json',
@@ -8523,6 +8937,7 @@ Views.shopIntroductionView = $.extend({}, Views.PanelView, {
                     var _thisIdentity   = _thisData.identity;//当前登录身份
                     var _thisIdCode     = _thisData.idCode;//店铺身份
                     dataSave('idCode', _thisIdCode);//存储当前身份 1(有身份) / 0
+                    $('.shopIntroduction_area').html(_thisData.store.content)
                     if(_thisLogo == null){
                         _thisLogo = 'images/null.png'
                     }else{
@@ -8537,9 +8952,28 @@ Views.shopIntroductionView = $.extend({}, Views.PanelView, {
                     }else{
 
                     }
+                    var date = new Date(_thisData.store.createTime);
+                    Y = date.getFullYear() + '-';
+                    M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                    D = date.getDate() + ' ';
+                    h = date.getHours() + ':';
+                    m = date.getMinutes() + ':';
+                    s = date.getSeconds();
+                    $('#hpl').html('100%');//好评率
+                    $('#szd').html(_thisData.store.region+_thisData.store.address);//所在地
+                    $('#kdsj').html(Y+M+D);//开店时间
+                    $('#xfms').html(_thisData.store.goodsScore);//描述相符
+                    $('#fwtd').html(_thisData.store.sellerScore);//服务态度
+                    $('#wlfw').html(_thisData.store.logisticsScore);//物流时间
+                    $('#zgm').html(_thisData.store.name);//展柜名
+                    $('#fwdh').html(_thisData.store.phone);//服务电话
+                    dataSave('fwdh',_thisData.store.phone)
                 }
             }
         });
+    },
+    comment_tel:function(){
+        window.location.href = 'tel:'+dataGet('fwdh')
     },
     collection:function(btn){
         if($(btn).html()=='收藏'){

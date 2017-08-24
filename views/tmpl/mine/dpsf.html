@@ -27,10 +27,38 @@
 </div>
 
 <div style="margin-top: 20px;font-size: 20px;font-weight: 900;text-align: center;">说明：每24小时才能修改板式一次</div>
+<p id="timesss" style="text-align: center;color: red;font-size: 18px;margin-top: 20px;"></p>
 
 <input type="text" id="ddddddd" value="" hidden="hidden">
 
 <div id="fixedssss">
 	<div id="times"></div>
 </div>
-
+<style>
+	#span span {
+		display: inline-block;
+		width:60px;
+		height:40px;
+		border: 1px solid #eee;
+		line-height: 40px;
+		border-radius: 8px;
+		background: #20a0ff;
+		color: #fff;
+		font-size: 18px;
+		margin: 15px 10px;
+	}
+</style>
+<div id="background" style="position: fixed;top:40px;left:0;background: rgba(0,0,0,.5);width:100%;height:100%;z-index: 99;display: none;">
+	<div style="    position: relative;
+    top: 30%;
+    background: #fff;
+    width: 80%;
+    margin: auto;
+    border-radius: 8px;">
+		<p style="font-size: 24px;color: red;padding: 10px 0;text-align: center;">24小时内只能修改一次哦！</p>
+		<p id="span" style="text-align: center;">
+			<span class="ui_btn" data-action="xiugai">修改</span>
+			<span class="ui_btn" data-action="quxiao">取消</span>
+		</p>
+	</div>
+</div>

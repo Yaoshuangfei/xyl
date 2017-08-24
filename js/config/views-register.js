@@ -71,7 +71,7 @@ var Views = {
 
 		mySuperior:'views/tmpl/mine/mySuperior.html:我的上级:#f7f7f7',
         dpsf:'views/tmpl/mine/dpsf.html:店铺身份:#f7f7f7',
-		billingDetailsA:'views/tmpl/mine/billingDetails.html:我的账单详情:#fff',
+		billingDetailsA:'views/tmpl/mine/billingDetailss.html:我的账单详情:#fff',
 		XXbillingDetailsA:'views/tmpl/mine/billingDetails.html:消息通知详情:#fff',
 
 		myWallet:'views/tmpl/mine/myWallet.html:我的钱包:#f7f7f7',

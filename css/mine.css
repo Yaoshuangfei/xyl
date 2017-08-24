@@ -2859,7 +2859,8 @@
 }
 .mine_warp .shoppingCart_wareArea {
     width: 100%;
-    margin-bottom: 10px;
+    border-bottom: 10px solid #eee;
+    /*margin-bottom: 10px;*/
 }
 .mine_warp .shoppingCart_wareArea .shoppingCart_wareStore {
     width: 90%;

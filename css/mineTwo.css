@@ -250,7 +250,7 @@
     margin-top: 10px;
     background-color: #eeeeee;
     display:inline-block;
-    margin-right: 1%;
+    margin-right: 3%;
 }
 
 .productArea .product .pic{
@@ -457,11 +457,13 @@
     color: #666666;
 }
 .store_warp .shopIntroduction_area img {
-    height: 2004px;
+    /*height: 2004px;*/
     width: 100%;
     background-size: cover;
 }
-
+.store_warp .shopIntroduction_area p {
+    text-align: justify;
+}
 
 /*客服*/
 
@@ -718,13 +720,13 @@
 }
 
 .transactionData .dataTitle{
-    width: 50%;
+    width: 40%;
     text-align: left;
     float: left;
 }
 
 .transactionData .dataContent{
-    width: 50%;
+    width: 60%;
     text-align: right;
     float: left;
 }

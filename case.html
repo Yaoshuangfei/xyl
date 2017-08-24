@@ -1,28 +1,202 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>图片上传预览</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>通讯录操作</title>
     <script type="text/javascript" src="plugins/jquery-1.11.1.min.js"></script>
+    <style type="text/css">
+        body{
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        input{
+            padding: .2rem;
+            margin: .5rem auto 0 auto;
+            font-size: .5rem;
+            border-radius: .5rem;
+            display: block;
+            width: 5rem;
+            color: red;
+            background: white;
+        }
+        #text{
+            line-height: .6rem;
+            font-size: .35rem;
+            color: red;
+            padding: .3rem;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<script>
-    $.ajax({
-        type:'POST',
-        dataType:'json',
-        url:'http://192.168.0.102:8080//api/shopMember/selectListByRole',
-        data:JSON.stringify({pageNum:1,size:10,storeId:3}),
-        contentType:'application/json;charset=utf-8',
-        error: function (XMLHttpRequest, textStatus, errorThrown) {},
-        success:function(data){
-            if(!data.success){
-                alert(data.msg)
-            }else{
-                console.log(data)
-                var list	= data.data
-            }
-        }
-    });
-</script>
+
+<input type="button" value="通讯录增" id="Insert" />
+<input type="button" value="通讯录删" id="Delete" />
+<input type="button" value="通讯录改" id="Update" />
+<input type="button" value="通讯录查" id="Select" />
+<input type="button" value="返回主页" id="ReturnIndex">
+<div id="text"></div>
 </body>
 </html>
+<script type="text/javascript">
+    /**
+     * 页面布局rem重置语句
+     */
+    $('html').css("font-size", $(window).width()/10);
+
+    /**
+     * 手机端页面初始化事件, 所有操作均要写在在该事件内
+     * 否则可能会出现错误: plus is not defind
+     */
+    document.addEventListener('plusready', function(){
+        /**
+         * 返回首页的事件
+         */
+        $('#ReturnIndex').on('touchstart', function(){
+            location.href = 'Index.html';
+        });
+
+        /**
+         * 获取手机通讯录操作对象 plus.contacts.getAddressBook( type, A(), B());
+         * 1: type: 通讯录类型, 手机通讯录 -> plus.contacts.ADDRESSBOOK_PHONE, SIM卡通讯录 -> plus.contacts.ADDRESSBOOK_SIM
+         * 2: A( addressBook ): 获取通讯录对象成功回调函数
+         * 2.1: addressBook: 可以进行增删改查操作的通讯录对象
+         * 3: B(error): 获取通讯录对象失败回调函数
+         * 3.1: error: 联系人操作的错误信息
+         * 获取通讯录操作(增, 删, 克隆)对象  var create = addressbook.create();
+         */
+        var address = null;
+        var contact = null;
+        var contacts = null;
+        plus.contacts.getAddressBook(plus.contacts.ADDRESSBOOK_PHONE, function(addressBook){
+            address = addressBook;
+            contact = address.create();
+        }, function(error){
+            $('#text').html(error.code + ': ' + error.message);
+        });
+
+        /**
+         * contact 对象的属性分别为
+         * 01: id: 联系人的id
+         * 02: displayName: 联系人显示的名字
+         * 03: name: 联系人的名称
+         * 03.1: name.formatted: 联系人的完整名称，由其它字段组合生成
+         * 03.2: name.familyName: 联系人的姓
+         * 03.3: name.givenName: 联系人的名
+         * 03.4: name.middleName: 联系人的中间名
+         * 03.5: name.honorificPrefix: 联系人的前缀
+         * 03.6: name.honorificSuffix: 联系人的后缀
+         * 04: nickname: 联系人的昵称
+         * 05: phoneNumbers: 数组，联系人的电话
+         * 05.1: phoneNumbers[i].type: 联系人域类型，如电话号码中的 "mobile", "home", "company"
+         * 05.2: phoneNumbers[i].value: 联系人域值, 如: "北京"
+         * 05.3: phoneNumbers[i].preferred: 是否为首选项, true或false
+         * 06: emails: 数组，联系人的邮箱
+         * 06.1: emails[i].type: 联系人域类型，如电话号码中的 "mobile", "home", "company"
+         * 06.2: emails[i].value: 联系人域值, 如: "北京"
+         * 06.3: emails[i].preferred: 是否为首选项, true或false
+         * 07: addresses: 数组，联系人的地址
+         * 07.1: addresses[i].type: (String 类型 )联系人地址类型，如“home”表示家庭地址、“company”表示单位地址
+         * 07.2: addresses[i].formatted: (String 类型 )完整地址，由其它字段组合而成
+         * 07.3: addresses[i].streetAddress: (String 类型 )完整的街道地址
+         * 07.4: addresses[i].locality: (String 类型 )城市或地区
+         * 07.5: addresses[i].region: (String 类型 )省或地区
+         * 07.6: addresses[i].country: (String 类型 )国家
+         * 07.7: addresses[i].postalCode: (String 类型 )邮政编码
+         * 07.8: addresses[i].preferred: (Boolean 类型 )是否为首选项
+         * 08: ims: 数组，联系人的即时通讯地址
+         * 08.1: ims[i].type: 联系人域类型，如电话号码中的 "mobile", "home", "company"
+         * 08.2: ims[i].value: 联系人域值, 如: "北京"
+         * 08.3: ims[i].preferred: 是否为首选项, true或false
+         * 09: organizations: 数组，联系人所属组织信息
+         * 09.1: organizations[i].type: (String 类型 )联系人所属组织类型，如"company"
+         * 09.2: organizations[i].name: (String 类型 ) 联系人所属组织名称
+         * 09.3: organizations[i].department: (String 类型 )联系人所属组织部门
+         * 09.4: organizations[i].title: (String 类型 )联系人在组织中的职位
+         * 09.5: organizations[i].preferred: (Boolean 类型 )是否为首选项
+         * 10: birthday: 联系人的生日, Date 类型
+         * 11: note: 联系人的备注
+         * 12: photos: 数组，联系人的头像
+         * 12.1: photos.type: (String 类型 )联系人域类型，如电话号码中的"mobile", "home". "company"
+         * 12.2: photos.value: (String 类型 )联系人域值, 如 "_doc/a.png"
+         * 12.3: photos.preferred: (Boolean 类型 )是否为首选项
+         * 13: categories: 数组，联系人的组名
+         * 13.1: categories.type: (String 类型 )联系人所属组织类型，如"company"
+         * 13.2: categories.name: (String 类型 ) 联系人所属组织名称
+         * 13.3: categories.department: (String 类型 )联系人所属组织部门
+         * 13.4: categories.title: (String 类型 )联系人在组织中的职位
+         * 13.5: categories.preferred: (Boolean 类型 )是否为首选项
+         * 14: urls: 数组，联系人的网址
+         * 14.1: urls[i].type: (String 类型 )联系人所属组织类型，如"company"
+         * 14.2: urls[i].name: (String 类型 ) 联系人所属组织名称
+         * 14.3: urls[i].department: (String 类型 )联系人所属组织部门
+         * 14.4: urls[i].title: (String 类型 )联系人在组织中的职位
+         * 14.5: urls[i].preferred: (Boolean 类型 )是否为首选项
+         */
+
+        /** contact 的方法分别为
+         * 01: clone: 克隆联系人
+         * 02: remove( A(), B() ): 删除联系人
+         * 03: save( A(), B()): 保存联系人
+         * 03.1: A(): 成功的回调
+         * 03.2: B(): 失败的回调
+         */
+        $('#Insert').on('touchstart', function(){
+            contact.name = {
+                formatted: "测试用户",
+                familyName: "测试",
+                givenName:"用户"
+            };
+            contact.phoneNumbers = [{
+                type: "手机",
+                value: "18353355962",
+                preferred: true
+            }];
+            contact.save(function(){
+                $('#text').html("联系人保存成功");
+            }, function(error){
+                $('#text').html(error.code + ': ' + error.message);
+            });
+        });
+        $('#Delete').on('touchstart', function(){
+            contacts[0].remove(function(){
+                $('#text').html(contacts[0].displayName + " : 被删除了");
+            }, function(erroe){
+                $('#text').html(error.code + ': ' + error.message);
+            });
+        });
+        $('#Update').on('touchstart', function(){
+            var data = contacts[0].clone();
+            data.displayName = "测试用户";
+            data.save(function(){
+                $('#text').html("联系人保存成功");
+            }, function(error){
+                $('#text').html(error.code + ': ' + error.message);
+            });
+        });
+
+        /**
+         * 查询联系人的方法 address.find( contactFields, A(), B(), findOptions )
+         * 1, contactFields: 返回数据中需要包含的数据, contact对象的属性, 若指定为null或""或空数组则包含所有联系人信息, 如 'name.familyName'
+         * 2, A(contacts): 成功的回调
+         * 3, B(error{code, message}): 失败的回调
+         * 4: findOptions: 查找联系人的参数
+         * 4.1: findOptions.filter[i] = "黄"
+         * 4.2: findOptions.multiple = true; bool类型
+         */
+        $('#Select').on('touchstart', function(){
+            address.find(['id', 'displayName', 'phoneNumbers'], function(datas){
+                contacts = datas;
+                var str = '';
+                for(var i = 0; i < datas.length; i++){
+                    str += datas[i].displayName + ':' + datas[i].phoneNumbers[0].value + '<br>';
+                }
+                $('#text').html(str);
+            }, function(error){
+                $('#text').html(error.code + ': ' + error.message);
+            });
+        });
+    });
+</script>

@@ -1103,11 +1103,7 @@ footer .lib .install span {
     font-size: 1rem;
 }
 .setUp_warp .area_aside {
-    width: 95%;
-    /*background-color: #ffffff;*/
-    padding-left: 5%;
-    border-top: 1px solid #eeeeee;
-    border-bottom: 1px solid #eeeeee;
+    width: 100%;
 }
 .setUp_warp .area_top {
     height: 25px;

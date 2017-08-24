@@ -41,6 +41,12 @@ Views.clmineView = $.extend({}, Views.PanelView, {
                     $("#mineSf").html(data.data.shopConfig.shopRoleName);
                     $("#cltWalth").html(data.data.shopConfig.shopWallet);
                     $("#imageId").attr("src",data.data.user.headImg);
+                    if(data.data.shopConfig.shopRoleName == '店长'){
+                        $('.superiorData .msList').eq(0).hide();
+                        $('.superiorData .msList').eq(1).hide();
+                        $('.superiorData .msList').eq(3).hide();
+                    }
+
                 }
             }
         });

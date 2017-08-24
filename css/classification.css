@@ -773,9 +773,13 @@
     height: 100px;
     background-color: #fff;
     margin-top: 20px;
-    overflow: auto;
+    /*overflow: auto;*/
+    margin-bottom: 100px;
 }
-
+.details p {
+    text-align: justify;
+    line-height: 24px;
+}
 
 
 .footNavBar{

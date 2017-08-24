@@ -134,11 +134,10 @@ body{
 .introduce{
     width: 100%;
     height: 35px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
     overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;/*���õ�����*/
-    -webkit-box-orient: vertical;
 }
 
 .title{

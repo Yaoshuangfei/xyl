@@ -170,7 +170,7 @@ Views.indexView = $.extend({}, Views.PanelView, {
                             +'<span>'+_length[i].goodsDesc+'</span>'
                             +'<span>￥ </span>'
                             +'<span style="margin-right: 8px;">'+_length[i].price+'</span>'
-                            +'<span>'+_length[i].price+'付款</span>'
+                            +'<span>'+_length[i].paidNum+'人付款</span>'
                             +'<div class="dian"></div>'
                             +'</div>'
                             +'</div>'
@@ -185,6 +185,26 @@ Views.indexView = $.extend({}, Views.PanelView, {
             dataSave('ipAddress',ip);
         });
 
+
+        //查找当前登录用户昵称
+        var urlName = WEB_URL + '/api/core/selectLoginUser' //用户昵称
+        $.ajax({
+            type:'POST',
+            dataType:'json',
+            url:urlName,
+            data:{},
+            contentType:'application/json;charset=utf-8',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {},
+            success:function(data){
+                if(!data.success){
+                    console.log(data.msg);
+                }else{
+                    console.log(data)
+                    dataSave('nickName',data.data.nickName)
+                    dataSave('headImg',data.data.headImg);
+                }
+            }
+        });
     },
     // banner_link:function(){
     //     Views.storeDetailsView.show();

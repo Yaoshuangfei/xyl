@@ -19,27 +19,56 @@ Views.voucherCenterView = $.extend({}, Views.PanelView, {
         $('#mobileNum').blur(function(){
             var reg = /^(13|15|18)[0-9]{9}$/;//点击查询
             tel=$('#mobileNum').val();
-            if(tel){
-                if(reg.test(tel)){
-                    $.ajax({
-                        type: "get",
-                        url: 'http://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel='+tel,
-                        dataType: "jsonp",
-                        jsonp: "callback",
-                        success: function(data){
-                            $('#error').html(data.carrier);
-                        },
-                        error:function (){
-                            $('li span').html('');
-                            $('.error').css('display','block');
-                        }
-                    });
-                }else{
-                    $('#mobileNum').val('');
-                    $('#error').html('号码有误 或 无数据');
+            if(tel == ''){
+                $('#error').html('');
+            }else{
+                if(tel){
+                    if(reg.test(tel)){
+                        $.ajax({
+                            type: "get",
+                            url: 'http://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel='+tel,
+                            dataType: "jsonp",
+                            jsonp: "callback",
+                            success: function(data){
+                                $('#error').html(data.carrier);
+                            },
+                            error:function (){
+                                $('li span').html('');
+                                $('.error').css('display','block');
+                            }
+                        });
+                    }
                 }
             }
         });
+
+        $('#mobileNum').on('input propertychange',function(){
+            var reg = /^(13|15|18)[0-9]{9}$/;//点击查询
+            tel=$('#mobileNum').val();
+            if(tel == ''){
+                $('#error').html('');
+            }else{
+                if(tel){
+                    if(reg.test(tel)){
+                        $.ajax({
+                            type: "get",
+                            url: 'http://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel='+tel,
+                            dataType: "jsonp",
+                            jsonp: "callback",
+                            success: function(data){
+                                $('#error').html(data.carrier);
+                            },
+                            error:function (){
+                                $('li span').html('');
+                                $('.error').css('display','block');
+                            }
+                        });
+                    }
+                }
+            }
+        })
+
+
 
         var url     = WEB_URL +'/api/rechargeConfig/recharge/goodsClassList';
         $.ajax({
@@ -77,14 +106,14 @@ Views.voucherCenterView = $.extend({}, Views.PanelView, {
                                 var str     ='';
                                 console.log(_self);
                                 for (var i=0;i<_self.length;i++){
-                                    var PPPP    = _self[i].goodsData;
-                                    var PPPPstr ='';
-                                    var key     =eval('('+PPPP+')')[0].key;
-                                    var values  =eval('('+PPPP+')')[0].value;
-                                    PPPPstr =   key+':'+values
+                                    // var PPPP    = _self[i].goodsData;
+                                    // var PPPPstr ='';
+                                    // var key     =eval('('+PPPP+')')[0].key;
+                                    // var values  =eval('('+PPPP+')')[0].value;
+                                    // PPPPstr =   key+':'+values
                                     str +=  '<div class="voucherCenter_Area ui_btn" data-action="voucherCenter_Area_btn" data-uuids="'+_self[i].goodsSpecs[0].id+'">'
                                             +'<div class="telephoneFare">'
-                                            +' <span>'+values+'元</span> <span>售价：'+_self[i].price+'元</span> '
+                                            +' <span>'+_self[i].goodsSpecs[0].costPrice+'元</span> <span>售价：'+_self[i].price+'元</span> '
                                             +'</div>'
                                             +'</div>'
                                 }
@@ -160,7 +189,10 @@ Views.voucherCenterView = $.extend({}, Views.PanelView, {
                 error: function (XMLHttpRequest, textStatus, errorThrown) {},
                 success:function(data){
                     if(!data.success){
-                        console.log(data.msg);
+                        alert(data.msg);
+                        if(data.msg == '未登陆/登陆超时'){
+                            Views.signInView.show();
+                        }
                     }else{
                         console.log(data);
                         if(data.data.payPassword == null){
@@ -183,7 +215,7 @@ Views.voucherCenterView = $.extend({}, Views.PanelView, {
                                 error: function (XMLHttpRequest, textStatus, errorThrown) {},
                                 success:function(data){
                                     if(!data.success){
-                                        console.log(data.msg);
+                                        alert(data.msg);
                                     }else{
                                         console.log(data.data);
                                         dataSave('payIdsss',data.data.id);
@@ -192,6 +224,7 @@ Views.voucherCenterView = $.extend({}, Views.PanelView, {
                                         var payType = 0;
                                         var orderMalls = [{id:data.data.id}];
                                         var datas = {payId:payId,payType:payType,orderMalls:orderMalls};
+
                                         $.ajax({
                                             type:'POST',
                                             dataType:'json',
@@ -203,7 +236,8 @@ Views.voucherCenterView = $.extend({}, Views.PanelView, {
                                                 if(!data.success){
                                                     console.log(data.msg);
                                                 }else{
-                                                    console.log(data.data);
+                                                    // console.log(data.data);
+                                                    // window.location.href='index5.html?tradeNo='+data.data.payId;
                                                     dataSave('payIds', data.data.payId);//支付商品id
                                                     var url  = WEB_URL + "/api/coreMoney/wxpay";
                                                     $.ajax({
@@ -257,7 +291,8 @@ Views.voucherCenterView = $.extend({}, Views.PanelView, {
                     }
                 }
             });
-        }else if($('.wantToRechargePay .warp_Rg').html()=='余额支付'){
+        }
+        else if($('.wantToRechargePay .warp_Rg').html()=='余额支付'){
             var patwodd = WEB_URL + '/api/core/selectLoginUser';
             $.ajax({
                 type:'POST',
@@ -268,7 +303,10 @@ Views.voucherCenterView = $.extend({}, Views.PanelView, {
                 error: function (XMLHttpRequest, textStatus, errorThrown) {},
                 success:function(data){
                     if(!data.success){
-                        console.log(data.msg);
+                        alert(data.msg);
+                        if(data.msg == '未登陆/登陆超时'){
+                            Views.signInView.show();
+                        }
                     }else{
                         console.log(data);
                         if(data.data.payPassword == null){
@@ -280,7 +318,6 @@ Views.voucherCenterView = $.extend({}, Views.PanelView, {
                             var orderType = 3;
                             var orderGoods = [{specId:dataGet('uuids'),attrName:$('#mobileNum').val()}];
                             var dataTwo = {storeId:storeId,orderType:orderType,orderGoods:orderGoods};
-                            console.log(dataTwo);
                             $.ajax({
                                 type:'POST',
                                 dataType:'json',
@@ -447,6 +484,32 @@ Views.chargeFlowView = $.extend({}, Views.PanelView, {
                 }
             }
         });
+        $('#mobileNum').on('input propertychange',function(){
+            var reg = /^(13|15|18)[0-9]{9}$/;//点击查询
+            tel=$('#mobileNum').val();
+            if(tel == ''){
+                $('#error').html('');
+            }else{
+                if(tel){
+                    if(reg.test(tel)){
+                        $.ajax({
+                            type: "get",
+                            url: 'http://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel='+tel,
+                            dataType: "jsonp",
+                            jsonp: "callback",
+                            success: function(data){
+                                $('#error').html(data.carrier);
+                            },
+                            error:function (){
+                                $('li span').html('');
+                                $('.error').css('display','block');
+                            }
+                        });
+                    }
+                }
+            }
+
+        });
 
         var url     = WEB_URL +'/api/rechargeConfig/recharge/goodsClassList';
         $.ajax({
@@ -464,7 +527,7 @@ Views.chargeFlowView = $.extend({}, Views.PanelView, {
                 }else{
                     var _self   = data.data;
                     console.log(data.data)
-                    dataSave('rechargeId',_self[2].id);
+                    dataSave('rechargeId',_self[1].id);
                     var url     = WEB_URL +'/api/rechargeConfig/recharge/goodsList';
                     var dataTwo    ={id:dataGet('rechargeId')};
                     $.ajax({
@@ -555,7 +618,10 @@ Views.chargeFlowView = $.extend({}, Views.PanelView, {
                 error: function (XMLHttpRequest, textStatus, errorThrown) {},
                 success:function(data){
                     if(!data.success){
-                        console.log(data.msg);
+                        alert(data.msg);
+                        if(data.msg == '未登陆/登陆超时'){
+                            Views.signInView.show();
+                        }
                     }else{
                         console.log(data);
                         if(data.data.payPassword == null){
@@ -663,7 +729,10 @@ Views.chargeFlowView = $.extend({}, Views.PanelView, {
                 error: function (XMLHttpRequest, textStatus, errorThrown) {},
                 success:function(data){
                     if(!data.success){
-                        console.log(data.msg);
+                        alert(data.msg);
+                        if(data.msg == '未登陆/登陆超时'){
+                            Views.signInView.show();
+                        }
                     }else{
                         console.log(data);
                         if(data.data.payPassword == null){
@@ -1448,9 +1517,20 @@ Views.czjlView = $.extend({}, Views.PanelView, {
                         }
                         if(_self[i].orderStatus == 2){
                             _self[i].orderStatus = '充值中'
-                        }else{
+                        }else if(_self[i].orderStatus == 8){
                             _self[i].orderStatus = '已完成'
+                        }else if(_self[i].orderStatus == 1){
+                            _self[i].orderStatus = '未付款'
+                        }else if(_self[i].orderStatus == 4){
+                            _self[i].orderStatus = '超时未支付'
+                        }else if(_self[i].orderStatus == 9){
+                            _self[i].orderStatus = '审核不通过'
+                        }else if(_self[i].orderStatus == 11){
+                            _self[i].orderStatus = '审核中'
+                        }else {
+                            _self[i].orderStatus = '联系客服'
                         }
+
                         var date = new Date(_self[i].createTime);
                         Y = date.getFullYear() + '.';
                         M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '.';
@@ -1522,8 +1602,18 @@ Views.czjlView = $.extend({}, Views.PanelView, {
                             }
                             if(_self[i].orderStatus == 2){
                                 _self[i].orderStatus = '充值中'
-                            }else{
+                            }else if(_self[i].orderStatus == 8){
                                 _self[i].orderStatus = '已完成'
+                            }else if(_self[i].orderStatus == 1){
+                                _self[i].orderStatus = '未付款'
+                            }else if(_self[i].orderStatus == 4){
+                                _self[i].orderStatus = '超时未支付，系统自动关闭订单'
+                            }else if(_self[i].orderStatus == 9){
+                                _self[i].orderStatus = '审核不通过'
+                            }else if(_self[i].orderStatus == 11){
+                                _self[i].orderStatus = '审核中'
+                            }else {
+                                _self[i].orderStatus = '联系客服'
                             }
                             var date = new Date(_self[i].createTime);
                             Y = date.getFullYear() + '.';

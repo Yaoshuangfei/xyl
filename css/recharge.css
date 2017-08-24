@@ -3,8 +3,8 @@
     text-align: center;
     font-size: .75rem;
     color: #3b99da;
-    position: fixed;
-    bottom: 5%;
+    position: relative;
+    margin-top: 30%;
 }
 .rule span {
     color: #3b99da;
@@ -483,8 +483,8 @@
 }
 .czjl_nav_01 {width:18%;}
 .czjl_nav_02 {width:20%;}
-.czjl_nav_03 {width:23%;}
-.czjl_nav_04 {width:14%;}
+.czjl_nav_03 {width:20%;}
+.czjl_nav_04 {width:17%;}
 .czjl_nav_05 {width:25%;}
 .czjl_detail p {
     float:left;
